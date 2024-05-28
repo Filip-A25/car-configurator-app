@@ -1,33 +1,57 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { User } from "../types/userType";
 import { userState } from "../state/userState";
+import {
+  usernameMinLength,
+  usernameMaxLength,
+} from "../const/userInputRequirements";
+import EmailInput from "./inputs/EmailInput";
+import PasswordInput from "./inputs/PasswordInput";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthRegisterForm() {
-  const { register, handleSubmit } = useForm<User>();
+  const navigate = useNavigate();
+
+  const form = useForm<User>();
   const [userData, setUserData] = useRecoilState(userState);
 
-  const onSubmit: SubmitHandler<User> = (data) => console.log(data);
+  const onSubmit = (data: User) => {
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        throw new Error(err.message);
+      });
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>Register</h2>
-      <label>Enter a nickname</label>
-      <input
-        {...(register("name"), { required: true })}
-        placeholder="Enter a nickname..."
-      />
-      <label>Enter your e-mail</label>
-      <input
-        {...(register("email"), { required: true })}
-        placeholder="Enter your e-mail..."
-      />
-      <label>Enter a password</label>
-      <input
-        {...(register("password"), { required: true })}
-        placeholder="Enter a password..."
-      />
-      <input type="submit" />
-    </form>
+    <FormProvider {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <h2>Register</h2>
+        <label>Enter a nickname</label>
+        <input
+          {...form.register("name", {
+            required: true,
+            minLength: {
+              value: usernameMinLength,
+              message: `Nickname must be atleast ${usernameMinLength} characters long.`,
+            },
+            maxLength: {
+              value: usernameMaxLength,
+              message: `Nickname cannot be longer than ${usernameMaxLength} characters.`,
+            },
+          })}
+        />
+        <label>Enter your e-mail</label>
+        <EmailInput email="email" />
+        <label>Enter a password</label>
+        <PasswordInput password="password" />
+        <input type="submit" />
+      </form>
+    </FormProvider>
   );
 }
