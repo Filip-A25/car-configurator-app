@@ -1,14 +1,14 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { User } from "../types/userType";
-import { userState } from "../state/userState";
+import { userState, loggedState } from "../state/userState";
 import {
   usernameMinLength,
   usernameMaxLength,
 } from "../const/userInputRequirements";
 import EmailInput from "./inputs/EmailInput";
 import PasswordInput from "./inputs/PasswordInput";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -17,10 +17,23 @@ export default function AuthRegisterForm() {
 
   const form = useForm<User>();
   const [userData, setUserData] = useRecoilState(userState);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedState);
 
   const onSubmit = (data: User) => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
-      .then(() => {
+      .then(async (userCredential) => {
+        if (auth.currentUser) {
+          await updateProfile(auth.currentUser, {
+            displayName: data.name,
+          });
+        }
+        console.log(userCredential);
+        setUserData({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        });
+        setIsLoggedIn(true);
         navigate("/");
       })
       .catch((err) => {

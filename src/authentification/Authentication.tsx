@@ -5,6 +5,6 @@ import { userState } from "./state/userState";
 import AuthRegisterForm from "./components/AuthRegisterForm";
 import AuthLoginForm from "./components/AuthLoginForm";
 
-export default function Authentification() {
+export default function Authentication() {
   return <div></div>;
 }
