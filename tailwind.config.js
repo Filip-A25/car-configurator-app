@@ -31,6 +31,31 @@ module.exports = {
             width: "80%"
           }
         },
+        navbarMenuTopAnimationReverse: {
+          "0%": {
+            transform: "rotate(-45deg)",
+            marginBottom: "0px",
+            width: "80%"
+          },
+          "25%": {
+            transform: "rotate(-33.75deg)",
+            marginBottom: "1.75px",
+          },
+          "50%": {
+            transform: "rotate(-22.5deg)",
+            marginBottom: "3.5px",
+            width: "90%"
+          },
+          "75%": {
+            transform: "rotate(-11.25deg)",
+            marginBottom: "5.25px",
+          },
+          "100%": {
+            transform: "rotate(0deg)",
+            marginBottom: "7px",
+            width: "100%"
+          }
+        },
         navbarMenuBottomAnimation: {
           "0%": {
             transform: "rotate(0deg)"
@@ -48,20 +73,139 @@ module.exports = {
             transform: "rotate(45deg) translateY(-1.75px)"
           }
         },
+        navbarMenuBottomAnimationReverse: {
+          "0%": {
+            transform: "rotate(45deg) translateY(-1.75px)"
+          },
+          "25%": {
+            transform: "rotate(33.75deg) translateY(-1.50px)"
+          },
+          "50%": {
+            transform: "rotate(22.5deg) translateY(-1.25px)"
+          },
+          "75%": {
+            transform: "rotate(11.25deg) translateY(-0.625px)"
+          },
+          "100%": {
+            transform: "rotate(0deg)"
+          }
+        },
         navbarMenuCenterAnimation: {
           "0%": {},
           "100%": {
             alignItems: "center"
           }
+        },
+        navbarMenuCenterAnimationReverse: {
+          "0%": {
+            alignItems: "center"
+          },
+          "100%": {}
+        },
+        navbarDropdownAnimation: {
+          "0%": {
+            transform: "translateY(-100%)"
+          },
+          "25%": {
+            transform: "translateY(-75%)"
+          },
+          "50%": {
+            transform: "translateY(-50%)"
+          },
+          "75%": {
+            transform: "translateY(-25%)"
+          },
+          "100%": {
+            transform: "translateY(0%)"
+          }
+        },
+        navbarDropdownAnimationReverse: {
+          "0%": {
+            transform: "translateY(0%)"
+          },
+          "25%": {
+            transform: "translateY(-25%)"
+          },
+          "50%": {
+            transform: "translateY(-50%)"
+          },
+          "75%": {
+            transform: "translateY(-75%)"
+          },
+          "100%": {
+            transform: "translateY(-100%)"
+          }
+        },
+        navbarMobileDropdownAnimation: {
+          "0%": {
+            transform: "translateX(-100%)"
+          },
+          "25%": {
+            transform: "translateX(-75%)"
+          },
+          "50%": {
+            transform: "translateX(-50%)"
+          },
+          "75%": {
+            transform: "translateX(-25%)"
+          },
+          "100%": {
+            transform: "translateX(0%)"
+          }
+        },
+        navbarMobileColorAnimation: {
+          "0%": {
+            background: "#2E2E38"
+          },
+          "100%": {
+            background: "#3F3FE4" 
+          }
+        },
+        navbarMobileDropdownAnimationReverse: {
+          "0%": {
+            transform: "translateX(0%)"
+          },
+          "25%": {
+            transform: "translateX(-25%)"
+          },
+          "50%": {
+            transform: "translateX(-50%)"
+          },
+          "75%": {
+            transform: "translateX(-75%)"
+          },
+          "100%": {
+            transform: "translateX(-100%)"
+          }
+        },
+        navbarMobileColorAnimationReverse: {
+          "0%": {
+            background: "#3F3FE4"
+          },
+          "100%": {
+            background: "#2E2E38" 
+          }
         }
       },
       animation: {
-        navbarMenuTopAnimation: "navbarMenuTopAnimation .2s ease-in-out forwards alternate",
-        navbarMenuBottomAnimation: "navbarMenuBottomAnimation .2s ease-in-out forwards alternate"
+        navbarMenuTopAnimation: "navbarMenuTopAnimation .2s ease-in-out forwards",
+        navbarMenuTopAnimationReverse: "navbarMenuTopAnimationReverse .2s ease-in-out forwards",
+        navbarMenuBottomAnimation: "navbarMenuBottomAnimation .2s ease-in-out forwards",
+        navbarMenuBottomAnimationReverse: "navbarMenuBottomAnimationReverse .2s ease-in-out forwards",
+        navbarDropdownAnimation: "navbarDropdownAnimation .2s ease-in-out forwards ",
+        navbarDropdownAnimationReverse: "navbarDropdownAnimationReverse .2s ease-in-out forwards",
+        navbarMobileDropdownAnimation: "navbarMobileDropdownAnimation .2s ease-in-out forwards",
+        navbarMobileColorAnimation: "navbarMobileColorAnimation .2s ease-in-out forwards",
+        navbarMobileDropdownAnimationReverse: "navbarMobileDropdownAnimationReverse .2s ease-in-out forwards",
+        navbarMobileColorAnimationReverse: "navbarMobileColorAnimationReverse .2s ease-in-out forwards"
       },
       height: {
-        "navbar-full-height": "80px" 
+        "navbar-full-height": "70px" 
       },
+      zIndex: {
+        "negative": "-1",
+        "10": "10"
+      }
     },
     colors: {
       "navbar-dark-gray-color": "#2E2E38",

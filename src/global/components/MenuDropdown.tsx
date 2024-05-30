@@ -13,9 +13,9 @@ export default function MenuDropdown(props: Path) {
   };
 
   return (
-    <li className="h-[50px]">
+    <li className="h-[70px] md:h-[50px] hover:bg-light-gray-element-color transition ease-in-out delay-75 border-b border-light-gray-background-color !-z-1">
       <button
-        className="text-text-purple h-full w-full text-left px-[15%] text-[14px]"
+        className="text-text-purple h-full w-full text-left px-[12.5%] md:px-[15%] text-[20px] md:text-[14px] !-z-1"
         onClick={handleNavigate}
       >
         {props.name}

@@ -1,22 +1,41 @@
+import { useLayoutEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { menuState } from "../state/navbarState";
+import { menuState, mobileState } from "../state/navbarState";
 import MenuDropdown from "./MenuDropdown";
 import { pathSelector } from "../state/navigationState";
 
 export default function Navbar() {
   const [isMenuOpen, setMenuOpen] = useRecoilState(menuState);
   const filteredPathsArray = useRecoilValue(pathSelector);
+  const [isMobileSize, setIsMobileSize] = useRecoilState(mobileState);
 
-  const handleAnimateMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOpenMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     setMenuOpen(!isMenuOpen);
   };
 
+  useLayoutEffect(() => {
+    if (window.innerWidth < 768) setIsMobileSize(true);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth < 768 && !isMobileSize) setIsMobileSize(true);
+    if (window.innerWidth >= 768 && isMobileSize) setIsMobileSize(false);
+  });
+
   return (
-    <nav className="relative h-navbar-full-height w-screen bg-navbar-dark-gray-color flex items-center">
+    <nav
+      className={`relative h-navbar-full-height w-screen bg-navbar-dark-gray-color flex items-center !z-10 ${
+        isMenuOpen && isMobileSize
+          ? "animate-navbarMobileColorAnimation"
+          : !isMenuOpen && isMobileSize
+          ? "animate-navbarMobileColorAnimationReverse"
+          : ""
+      }`}
+    >
       <NavLink
         to="/"
-        className="absolute flex items-center justify-center h-[40px] w-[40px] left-[40px]"
+        className="absolute flex items-center justify-center h-[40px] w-[40px] left-[40px] outline-none"
       >
         <svg
           width="18"
@@ -34,27 +53,39 @@ export default function Navbar() {
         </svg>
       </NavLink>
       <button
-        className="absolute h-[40px] w-[40px] right-[40px] flex flex-col justify-center"
-        onClick={handleAnimateMenu}
+        className="absolute h-[40px] w-[40px] right-[40px] flex flex-col justify-center outline-none"
+        onClick={handleOpenMenu}
       >
         <div
           className={`${
-            isMenuOpen ? "animate-navbarMenuTopAnimation" : "mb-[7px]"
+            isMenuOpen
+              ? "animate-navbarMenuTopAnimation"
+              : "animate-navbarMenuTopAnimationReverse mb-[7px]"
           } h-[5%] w-full bg-light-gray-element-color`}
         ></div>
         <div
           className={`${
-            isMenuOpen ? "animate-navbarMenuBottomAnimation" : "w-[80%]"
+            isMenuOpen
+              ? "animate-navbarMenuBottomAnimation"
+              : "animate-navbarMenuBottomAnimationReverse w-[80%]"
           } h-[5%] w-[80%] bg-light-gray-element-color`}
         ></div>
       </button>
-      {isMenuOpen && (
-        <ul className="absolute right-0 top-full w-[15%] bg-basic-white">
-          {filteredPathsArray.map((path) => (
-            <MenuDropdown key={path.path} name={path.name} path={path.path} />
-          ))}
-        </ul>
-      )}
+      <ul
+        className={`${
+          isMenuOpen && isMobileSize
+            ? "animate-navbarMobileDropdownAnimation"
+            : !isMenuOpen && isMobileSize
+            ? "animate-navbarMobileDropdownAnimationReverse"
+            : !isMenuOpen
+            ? "hidden"
+            : ""
+        } animate-navbarMobileDropdownAnimation md:animate-navbarDropdownAnimation absolute !-z-1 h-[calc(100vh-80px)] md:h-[100px] md:right-[40px] top-full w-full md:w-[20%] 2xl:w-[15%] bg-basic-white`}
+      >
+        {filteredPathsArray.map((path) => (
+          <MenuDropdown key={path.path} name={path.name} path={path.path} />
+        ))}
+      </ul>
     </nav>
   );
 }
