@@ -1,48 +1,25 @@
-import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { NavLink } from "react-router-dom";
-import { loggedState } from "../../authentification/state/userState";
+import { menuState } from "../state/navbarState";
+import { Path } from "../types/navigationType";
 
-interface Path {
-  name: string;
-  path: string;
-}
+export default function MenuDropdown(props: Path) {
+  const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useRecoilState(menuState);
 
-export default function MenuDropdown() {
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedState);
-  const [pathArray, setPathArray] = useState<Path[]>([]);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      setPathArray([
-        {
-          name: "Register",
-          path: "/auth/register",
-        },
-        {
-          name: "Log in",
-          path: "/auth/log-in",
-        },
-      ]);
-    } else {
-      setPathArray([
-        {
-          name: "My saved configurations",
-          path: "/configurations/saved",
-        },
-        {
-          name: "Logout",
-          path: "/",
-        },
-      ]);
-    }
-  }, [isLoggedIn]);
+  const handleNavigate = () => {
+    setIsMenuOpen(false);
+    navigate(props.path);
+  };
 
   return (
-    <>
-      {pathArray.map((path) => {
-        <NavLink to={path.path}>{path.name}</NavLink>;
-      })}
-    </>
+    <li className="h-[50px]">
+      <button
+        className="text-text-purple h-full w-full text-left px-[15%] text-[14px]"
+        onClick={handleNavigate}
+      >
+        {props.name}
+      </button>
+    </li>
   );
 }

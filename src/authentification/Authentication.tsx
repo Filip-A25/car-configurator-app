@@ -1,10 +1,12 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useRecoilState } from "recoil";
-import { User } from "./types/userType";
-import { userState } from "./state/userState";
-import AuthRegisterForm from "./components/AuthRegisterForm";
+import { Route, Routes } from "react-router-dom";
 import AuthLoginForm from "./components/AuthLoginForm";
+import AuthRegisterForm from "./components/AuthRegisterForm";
 
 export default function Authentication() {
-  return <div></div>;
+  return (
+    <Routes>
+      <Route path="/auth/register" element={<AuthRegisterForm />} />
+      <Route path="/auth/login" element={<AuthLoginForm />} />
+    </Routes>
+  );
 }

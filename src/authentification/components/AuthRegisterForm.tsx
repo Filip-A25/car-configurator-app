@@ -27,7 +27,6 @@ export default function AuthRegisterForm() {
             displayName: data.name,
           });
         }
-        console.log(userCredential);
         setUserData({
           name: data.name,
           email: data.email,

@@ -1,8 +1,12 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { menuState } from "../state/navbarState";
+import MenuDropdown from "./MenuDropdown";
+import { pathSelector } from "../state/navigationState";
 
 export default function Navbar() {
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useRecoilState(menuState);
+  const filteredPathsArray = useRecoilValue(pathSelector);
 
   const handleAnimateMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     setMenuOpen(!isMenuOpen);
@@ -44,6 +48,13 @@ export default function Navbar() {
           } h-[5%] w-[80%] bg-light-gray-element-color`}
         ></div>
       </button>
+      {isMenuOpen && (
+        <ul className="absolute right-0 top-full w-[15%] bg-basic-white">
+          {filteredPathsArray.map((path) => (
+            <MenuDropdown key={path.path} name={path.name} path={path.path} />
+          ))}
+        </ul>
+      )}
     </nav>
   );
 }

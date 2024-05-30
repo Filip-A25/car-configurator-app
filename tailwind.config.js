@@ -66,7 +66,9 @@ module.exports = {
     colors: {
       "navbar-dark-gray-color": "#2E2E38",
       "light-gray-background-color": "#F1F1F4",
-      "light-gray-element-color": "#FCFCFD"
+      "light-gray-element-color": "#FCFCFD",
+      "basic-white": "#FFFFFF",
+      "text-purple": "#3F3FE4"
     }
   },
   plugins: [],
