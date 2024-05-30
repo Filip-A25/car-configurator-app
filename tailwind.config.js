@@ -205,6 +205,12 @@ module.exports = {
       zIndex: {
         "negative": "-1",
         "10": "10"
+      },
+      borderRadius: {
+        "input-radius": "3px"
+      },
+      padding: {
+        "input-padding": "0px 12px 0px 12px"
       }
     },
     colors: {
@@ -212,7 +218,12 @@ module.exports = {
       "light-gray-background-color": "#F1F1F4",
       "light-gray-element-color": "#FCFCFD",
       "basic-white": "#FFFFFF",
-      "text-purple": "#3F3FE4"
+
+      "text-purple": "#3F3FE4",
+      "text-default-gray": "#2E2E38",
+      "input-border-gray": "#C7C7D1",
+
+      "button-purple": "#1E1ED2"
     }
   },
   plugins: [],

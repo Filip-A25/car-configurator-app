@@ -1,4 +1,3 @@
-import { emailRegexp } from "../../const/userInputRequirements";
 import { useFormContext } from "react-hook-form";
 
 interface Props {
@@ -10,6 +9,7 @@ export default function EmailInput({ email }: Props) {
   return (
     <input
       type="email"
+      className="h-[32px] rounded-input-radius p-input-padding outline-none border-[1px] border-input-border-gray"
       {...register(email, {
         required: true,
       })}

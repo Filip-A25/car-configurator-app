@@ -1,7 +1,9 @@
 import { RecoilRoot } from "recoil";
 import { Routes, Route } from "react-router-dom";
-import Authentication from "./authentification/Authentication";
 import Navbar from "./global/components/Navbar";
+import AuthRegisterForm from "./authentification/components/AuthRegisterForm";
+import AuthLoginForm from "./authentification/components/AuthLoginForm";
+import Authentication from "./authentification/Authentication";
 
 export default function App() {
   return (
@@ -9,7 +11,7 @@ export default function App() {
       <RecoilRoot>
         <Navbar />
         <Routes>
-          <Route path="/auth" element={<Authentication />}></Route>
+          <Route path="/auth/*" element={<Authentication />}></Route>
         </Routes>
       </RecoilRoot>
     </div>

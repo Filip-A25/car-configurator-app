@@ -15,6 +15,7 @@ export default function PasswordInput({ password }: Props) {
   return (
     <input
       type="password"
+      className="h-[32px] rounded-input-radius p-input-padding outline-none border-[1px] border-input-border-gray"
       {...register(password, {
         required: true,
         minLength: {
@@ -31,6 +32,7 @@ export default function PasswordInput({ password }: Props) {
             "Password must contain atleast one uppercase letter, one lowercase letter and a number or a special character.",
         },
       })}
+      placeholder="Enter a password..."
     />
   );
 }

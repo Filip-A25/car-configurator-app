@@ -4,9 +4,10 @@ import AuthRegisterForm from "./components/AuthRegisterForm";
 
 export default function Authentication() {
   return (
-    <Routes>
-      <Route path="/auth/register" element={<AuthRegisterForm />} />
-      <Route path="/auth/login" element={<AuthLoginForm />} />
-    </Routes>
+    <div className="h-[calc(100%-70px)] flex justify-center pt-14">
+      <Routes>
+        <Route path="register" element={<AuthRegisterForm />}></Route>
+      </Routes>
+    </div>
   );
 }
