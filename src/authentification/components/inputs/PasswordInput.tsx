@@ -15,7 +15,7 @@ export default function PasswordInput({ password }: Props) {
   return (
     <input
       type="password"
-      className="h-[32px] rounded-input-radius p-input-padding outline-none border-[1px] border-input-border-gray"
+      className="h-[48px] sm:h-[32px] rounded-input-radius p-input-padding outline-none border-[1px] border-input-border-gray"
       {...register(password, {
         required: true,
         minLength: {
