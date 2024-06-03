@@ -7,9 +7,10 @@ import { useFormContext } from "react-hook-form";
 
 interface Props {
   password: string;
+  placeholder: string;
 }
 
-export default function PasswordInput({ password }: Props) {
+export default function PasswordInput({ password, placeholder }: Props) {
   const { register } = useFormContext();
 
   return (
@@ -32,7 +33,7 @@ export default function PasswordInput({ password }: Props) {
             "Password must contain atleast one uppercase letter, one lowercase letter and a number or a special character.",
         },
       })}
-      placeholder="Enter a password..."
+      placeholder={placeholder}
     />
   );
 }
