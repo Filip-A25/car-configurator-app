@@ -1,10 +1,24 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
 
-*, ::before, ::after {
-    font-family: 'Inter', sans-serif;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*,
+::before,
+::after {
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@layer utilities {
+  .navbar-height {
+    @apply h-[70px];
+  }
+  .input-padding {
+    @apply px-[12px];
+  }
+  .form-size-header {
+    @apply text-[2.5rem];
+  }
 }

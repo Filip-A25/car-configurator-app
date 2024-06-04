@@ -13,7 +13,7 @@ export default function InputField({ name, placeholder, validation }: Props) {
   return (
     <input
       {...register(name, { ...validation })}
-      className="h-[48px] sm:h-[32px] rounded-input-radius p-input-padding outline-none border border-input-border-gray"
+      className="h-[48px] sm:h-[32px] border input-padding outline-none rounded-[3px] border-input-border-gray"
       placeholder={placeholder}
     />
   );

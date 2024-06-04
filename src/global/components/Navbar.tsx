@@ -1,4 +1,4 @@
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { pathSelector } from "../state/navigationState";
@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`relative h-navbar-full-height w-screen bg-navbar-dark-gray-color flex items-center ${
+      className={`relative navbar-height w-screen bg-navbar-dark-gray-color flex items-center ${
         isMenuOpen
           ? "max-sm:animate-navbarMobileColorAnimation"
           : !isMenuOpen

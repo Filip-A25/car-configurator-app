@@ -211,22 +211,6 @@ module.exports = {
         navbarMobileColorAnimation: "navbarMobileColorAnimation .2s ease-in-out forwards",
         navbarMobileDropdownAnimationReverse: "navbarMobileDropdownAnimationReverse .2s ease-in-out forwards",
         navbarMobileColorAnimationReverse: "navbarMobileColorAnimationReverse .2s ease-in-out forwards"
-      },
-      height: {
-        "navbar-full-height": "70px" 
-      },
-      zIndex: {
-        "negative": "-1",
-        "10": "10"
-      },
-      borderRadius: {
-        "input-radius": "3px"
-      },
-      padding: {
-        "input-padding": "0px 12px 0px 12px"
-      },
-      fontSize: {
-        "form-header": "2.5rem"
       }
     },
     colors: {
