@@ -16,10 +16,14 @@ export default function MenuDropdown({
         isMenuOpen
           ? "animate-navbarDropdownAnimation"
           : "animate-navbarDropdownAnimationReverse"
-      } max-sm:hidden absolute !-z-1 h-[calc(100vh-80px)] md:h-[100px] md:right-[40px] top-full w-full md:w-[20%] 2xl:w-[15%] bg-basic-white`}
+      } max-sm:hidden absolute h-[calc(100vh-80px)] md:h-[100px] md:right-[40px] top-full w-full md:w-[20%] 2xl:w-[15%] bg-basic-white`}
     >
-      {filteredPathsArray.map((path) => (
-        <MenuDropdownItem key={path.path} name={path.name} path={path.path} />
+      {filteredPathsArray.map((route) => (
+        <MenuDropdownItem
+          key={route.path}
+          name={route.name}
+          path={route.path}
+        />
       ))}
     </ul>
   );

@@ -28,6 +28,8 @@ export default function AuthRegisterForm() {
           throw new Error("User data could not be found.");
         await updateProfile(auth.currentUser, {
           displayName: data.name,
+        }).catch((err) => {
+          throw new Error(err);
         });
         setUserData({
           name: data.name,
@@ -47,7 +49,7 @@ export default function AuthRegisterForm() {
       <form
         id="register-form"
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col h-full w-screen sm:w-[500px] bg-basic-white text-text-default-gray px-10 py-8 sm:shadow-md"
+        className="flex flex-col w-screen sm:w-[500px] bg-basic-white text-text-default-gray px-10 py-8 sm:shadow-md"
       >
         <h2 className="text-form-header font-bold">Sign Up</h2>
         <span className="text-sm">Don't have an account? Create one now!</span>

@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`relative h-navbar-full-height w-screen bg-navbar-dark-gray-color flex items-center !z-10 ${
+      className={`relative h-navbar-full-height w-screen bg-navbar-dark-gray-color flex items-center ${
         isMenuOpen
           ? "max-sm:animate-navbarMobileColorAnimation"
           : !isMenuOpen

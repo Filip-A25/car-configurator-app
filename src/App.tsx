@@ -1,19 +1,20 @@
-import { RecoilRoot } from "recoil";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./global/components/Navbar";
-import AuthRegisterForm from "./authentification/components/AuthRegisterForm";
-import AuthLoginForm from "./authentification/components/AuthLoginForm";
 import Authentication from "./authentification/Authentication";
+import { useRecoilState } from "recoil";
+import { userState } from "./authentification/state/userState";
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(userState);
+
   return (
     <div className="relative min-h-screen bg-basic-white sm:bg-light-gray-background-color">
-      <RecoilRoot>
-        <Navbar />
-        <Routes>
-          <Route path="/auth/*" element={<Authentication />}></Route>
-        </Routes>
-      </RecoilRoot>
+      <Navbar />
+      <Routes>
+        {!isLoggedIn ? (
+          <Route path="/auth/*" element={<Authentication />} />
+        ) : null}
+      </Routes>
     </div>
   );
 }

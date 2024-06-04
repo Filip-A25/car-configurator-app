@@ -35,6 +35,6 @@ export const pathSelector = selector<Path[]>({
     const isLoggedIn = get(loggedState);
 
     if (isLoggedIn) return pathsArray.filter((path) => path.userLoggedIn);
-    else return pathsArray.filter((path) => !path.userLoggedIn);
+    return pathsArray.filter((path) => !path.userLoggedIn);
   },
 });
