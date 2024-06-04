@@ -7,7 +7,7 @@ import Authentication from "./authentification/Authentication";
 
 export default function App() {
   return (
-    <div className="relative h-screen bg-light-gray-background-color">
+    <div className="relative min-h-screen bg-basic-white sm:bg-light-gray-background-color">
       <RecoilRoot>
         <Navbar />
         <Routes>

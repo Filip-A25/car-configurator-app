@@ -2,11 +2,11 @@ import { atom } from "recoil";
 import { User } from "../types/userType";
 
 export const userState = atom<User | undefined>({
-  key: "userState",
+  key: "authentication.userState",
   default: undefined,
 });
 
 export const loggedState = atom({
-  key: "isLoggedIn",
+  key: "authentication.isLoggedIn",
   default: false,
 });

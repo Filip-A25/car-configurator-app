@@ -1,35 +1,31 @@
-import { useLayoutEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { menuState, mobileState } from "../state/navbarState";
-import MenuDropdown from "./MenuDropdown";
+import { useEffect, useState, useLayoutEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import { pathSelector } from "../state/navigationState";
+import MenuDropdownMobile from "./MenuDropdownMobile";
+import MenuDropdown from "./MenuDropdown";
 
 export default function Navbar() {
-  const [isMenuOpen, setMenuOpen] = useRecoilState(menuState);
+  const [isMenuOpen, setMenuOpen] = useState(false);
   const filteredPathsArray = useRecoilValue(pathSelector);
-  const [isMobileSize, setIsMobileSize] = useRecoilState(mobileState);
+
+  const { pathname } = useLocation();
 
   const handleOpenMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     setMenuOpen(!isMenuOpen);
   };
 
-  useLayoutEffect(() => {
-    if (window.innerWidth < 768) setIsMobileSize(true);
-  });
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth < 768 && !isMobileSize) setIsMobileSize(true);
-    if (window.innerWidth >= 768 && isMobileSize) setIsMobileSize(false);
-  });
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   return (
     <nav
       className={`relative h-navbar-full-height w-screen bg-navbar-dark-gray-color flex items-center !z-10 ${
-        isMenuOpen && isMobileSize
-          ? "animate-navbarMobileColorAnimation"
-          : !isMenuOpen && isMobileSize
-          ? "animate-navbarMobileColorAnimationReverse"
+        isMenuOpen
+          ? "max-sm:animate-navbarMobileColorAnimation"
+          : !isMenuOpen
+          ? "max-sm:animate-navbarMobileColorAnimationReverse"
           : ""
       }`}
     >
@@ -71,21 +67,14 @@ export default function Navbar() {
           } h-[5%] w-[80%] bg-light-gray-element-color`}
         ></div>
       </button>
-      <ul
-        className={`${
-          isMenuOpen && isMobileSize
-            ? "animate-navbarMobileDropdownAnimation"
-            : !isMenuOpen && isMobileSize
-            ? "animate-navbarMobileDropdownAnimationReverse"
-            : !isMenuOpen
-            ? "hidden"
-            : ""
-        } animate-navbarMobileDropdownAnimation md:animate-navbarDropdownAnimation absolute !-z-1 h-[calc(100vh-80px)] md:h-[100px] md:right-[40px] top-full w-full md:w-[20%] 2xl:w-[15%] bg-basic-white`}
-      >
-        {filteredPathsArray.map((path) => (
-          <MenuDropdown key={path.path} name={path.name} path={path.path} />
-        ))}
-      </ul>
+      <MenuDropdownMobile
+        filteredPathsArray={filteredPathsArray}
+        isMenuOpen={isMenuOpen}
+      />
+      <MenuDropdown
+        filteredPathsArray={filteredPathsArray}
+        isMenuOpen={isMenuOpen}
+      />
     </nav>
   );
 }

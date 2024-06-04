@@ -4,6 +4,19 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
+    screens: {
+      'sm': '640px',
+
+      "max-sm": {"max": "640px"},
+
+      'md': '768px',
+
+      'lg': '1024px',
+
+      'xl': '1280px',
+
+      '2xl': '1536px',
+    },
     extend: {
       keyframes: {
         navbarMenuTopAnimation: {
@@ -104,16 +117,16 @@ module.exports = {
         },
         navbarDropdownAnimation: {
           "0%": {
-            transform: "translateY(-100%)"
+            transform: "translateY(-200%)"
           },
           "25%": {
-            transform: "translateY(-75%)"
+            transform: "translateY(-150%)"
           },
           "50%": {
-            transform: "translateY(-50%)"
+            transform: "translateY(-100%)"
           },
           "75%": {
-            transform: "translateY(-25%)"
+            transform: "translateY(-50%)"
           },
           "100%": {
             transform: "translateY(0%)"
@@ -124,16 +137,16 @@ module.exports = {
             transform: "translateY(0%)"
           },
           "25%": {
-            transform: "translateY(-25%)"
-          },
-          "50%": {
             transform: "translateY(-50%)"
           },
+          "50%": {
+            transform: "translateY(-100%)"
+          },
           "75%": {
-            transform: "translateY(-75%)"
+            transform: "translateY(-150%)"
           },
           "100%": {
-            transform: "translateY(-100%)"
+            transform: "translateY(-200%)"
           }
         },
         navbarMobileDropdownAnimation: {
@@ -192,8 +205,8 @@ module.exports = {
         navbarMenuTopAnimationReverse: "navbarMenuTopAnimationReverse .2s ease-in-out forwards",
         navbarMenuBottomAnimation: "navbarMenuBottomAnimation .2s ease-in-out forwards",
         navbarMenuBottomAnimationReverse: "navbarMenuBottomAnimationReverse .2s ease-in-out forwards",
-        navbarDropdownAnimation: "navbarDropdownAnimation .2s ease-in-out forwards ",
-        navbarDropdownAnimationReverse: "navbarDropdownAnimationReverse .2s ease-in-out forwards",
+        navbarDropdownAnimation: "navbarDropdownAnimation .15s ease-in-out forwards ",
+        navbarDropdownAnimationReverse: "navbarDropdownAnimationReverse .15s ease-in-out forwards",
         navbarMobileDropdownAnimation: "navbarMobileDropdownAnimation .2s ease-in-out forwards",
         navbarMobileColorAnimation: "navbarMobileColorAnimation .2s ease-in-out forwards",
         navbarMobileDropdownAnimationReverse: "navbarMobileDropdownAnimationReverse .2s ease-in-out forwards",
@@ -211,6 +224,9 @@ module.exports = {
       },
       padding: {
         "input-padding": "0px 12px 0px 12px"
+      },
+      fontSize: {
+        "form-header": "2.5rem"
       }
     },
     colors: {

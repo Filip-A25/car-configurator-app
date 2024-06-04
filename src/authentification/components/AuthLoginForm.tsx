@@ -1,6 +1,10 @@
 import { useForm, FormProvider } from "react-hook-form";
-import EmailInput from "./inputs/EmailInput";
-import PasswordInput from "./inputs/PasswordInput";
+import InputField from "./inputs/InputField";
+import {
+  passwordMaxLength,
+  passwordMinLength,
+  passwordRegexp,
+} from "../const/userInputRequirements";
 
 export default function AuthLoginForm() {
   const form = useForm();
@@ -9,10 +13,33 @@ export default function AuthLoginForm() {
     <FormProvider {...form}>
       <form>
         <h2>Log In</h2>
-        <label>Enter your e-mail</label>
-        <EmailInput email="email" />
-        <label>Enter a password</label>
-        <PasswordInput password="password" />
+        <label>E-mail address</label>
+        <InputField
+          name="email"
+          placeholder="Enter your email..."
+          validation={{ required: true }}
+        />
+        <label>Password</label>
+        <InputField
+          name="password"
+          placeholder="Enter a password..."
+          validation={{
+            required: true,
+            minLength: {
+              value: passwordMinLength,
+              message: `Password must be atleast ${passwordMinLength} characters long.`,
+            },
+            maxLength: {
+              value: passwordMaxLength,
+              message: `Password cannot be longer than ${passwordMaxLength} characters.`,
+            },
+            pattern: {
+              value: passwordRegexp,
+              message:
+                "Password must contain atleast one uppercase letter, one lowercase letter and a number or a special character.",
+            },
+          }}
+        />
         <input type="submit" />
       </form>
     </FormProvider>

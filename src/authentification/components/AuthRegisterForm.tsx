@@ -5,12 +5,14 @@ import { userState, loggedState } from "../state/userState";
 import {
   usernameMinLength,
   usernameMaxLength,
+  passwordMinLength,
+  passwordMaxLength,
+  passwordRegexp,
 } from "../const/userInputRequirements";
-import EmailInput from "./inputs/EmailInput";
-import PasswordInput from "./inputs/PasswordInput";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { useNavigate } from "react-router-dom";
+import InputField from "./inputs/InputField";
 
 export default function AuthRegisterForm() {
   const navigate = useNavigate();
@@ -22,11 +24,11 @@ export default function AuthRegisterForm() {
   const onSubmit = (data: User) => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(async (userCredential) => {
-        if (auth.currentUser) {
-          await updateProfile(auth.currentUser, {
-            displayName: data.name,
-          });
-        }
+        if (!userCredential || !auth.currentUser)
+          throw new Error("User data could not be found.");
+        await updateProfile(auth.currentUser, {
+          displayName: data.name,
+        });
         setUserData({
           name: data.name,
           email: data.email,
@@ -45,15 +47,16 @@ export default function AuthRegisterForm() {
       <form
         id="register-form"
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col w-screen sm:w-[500px] h-full sm:h-[500px] bg-basic-white text-text-default-gray px-10 py-8 shadow-md"
+        className="flex flex-col h-full w-screen sm:w-[500px] bg-basic-white text-text-default-gray px-10 py-8 sm:shadow-md"
       >
-        <h2 className="text-[2.5rem] font-bold">Sign Up</h2>
+        <h2 className="text-form-header font-bold">Sign Up</h2>
         <span className="text-sm">Don't have an account? Create one now!</span>
         <section className="flex flex-col justify-between h-[320px] my-5 pb-5 sm:pb-10">
           <label>Nickname</label>
-          <input
-            className="h-[48px] sm:h-[32px] rounded-input-radius p-input-padding outline-none border-[1px] border-input-border-gray mb-2"
-            {...form.register("name", {
+          <InputField
+            name="name"
+            placeholder="Enter a nickname..."
+            validation={{
               required: true,
               minLength: {
                 value: usernameMinLength,
@@ -63,13 +66,35 @@ export default function AuthRegisterForm() {
                 value: usernameMaxLength,
                 message: `Nickname cannot be longer than ${usernameMaxLength} characters.`,
               },
-            })}
-            placeholder="Enter a nickname..."
+            }}
           />
           <label>E-mail address</label>
-          <EmailInput email="email" />
+          <InputField
+            name="email"
+            placeholder="Enter your email..."
+            validation={{ required: true }}
+          />
           <label>Password</label>
-          <PasswordInput password="password" />
+          <InputField
+            name="password"
+            placeholder="Enter a password..."
+            validation={{
+              required: true,
+              minLength: {
+                value: passwordMinLength,
+                message: `Password must be atleast ${passwordMinLength} characters long.`,
+              },
+              maxLength: {
+                value: passwordMaxLength,
+                message: `Password cannot be longer than ${passwordMaxLength} characters.`,
+              },
+              pattern: {
+                value: passwordRegexp,
+                message:
+                  "Password must contain atleast one uppercase letter, one lowercase letter and a number or a special character.",
+              },
+            }}
+          />
         </section>
         <button
           form="register-form"
