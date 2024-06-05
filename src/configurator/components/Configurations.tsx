@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { userConfigurationsState } from "../state/configurationsState";
 import ConfigurationsSaved from "./ConfigurationsSaved";
 
-export default function HomeView() {
+export default function Configurations() {
   const [userConfigurations] = useRecoilState(userConfigurationsState);
 
   return (

@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import HomeView from "./components/HomeView";
+import Configurations from "./components/Configurations";
 
 export default function Configurator() {
   return (
     <div id="configurator-content">
       <Routes>
-        <Route path="/" element={<HomeView />} />
+        <Route path="/configurations" element={<Configurations />} />
       </Routes>
     </div>
   );
