@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./global/components/Navbar";
-import Authentication from "./authentification/Authentication";
+import Navbar from "./modules/global/components/Navbar";
+import Authentication from "./modules/authentification/Authentication";
 import { useRecoilState } from "recoil";
-import { userState } from "./authentification/state/userState";
+import { userState } from "./modules/authentification/state/userState";
 
 export default function App() {
   const [isLoggedIn] = useRecoilState(userState);
