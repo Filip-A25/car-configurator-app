@@ -22,3 +22,22 @@
     @apply text-[2.5rem];
   }
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .link-button-font {
+    @apply text-[3rem];
+  }
+  .link-button-height {
+    @apply h-[44px];
+  }
+  .link-button-width {
+    @apply w-[146px];
+  }
+  .par-font-size {
+    @apply text-[18px];
+  }
+}
