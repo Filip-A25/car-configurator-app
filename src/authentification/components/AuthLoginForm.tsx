@@ -17,12 +17,14 @@ export default function AuthLoginForm() {
         <InputField
           name="email"
           placeholder="Enter your email..."
+          type="email"
           validation={{ required: true }}
         />
         <label>Password</label>
         <InputField
           name="password"
           placeholder="Enter a password..."
+          type="password"
           validation={{
             required: true,
             minLength: {

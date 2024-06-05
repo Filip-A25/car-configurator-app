@@ -24,8 +24,9 @@ export default function AuthRegisterForm() {
   const onSubmit = (data: User) => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(async (userCredential) => {
-        if (!userCredential || !auth.currentUser)
+        if (!userCredential || !auth.currentUser) {
           throw new Error("User data could not be found.");
+        }
         await updateProfile(auth.currentUser, {
           displayName: data.name,
         }).catch((err) => {
@@ -58,6 +59,7 @@ export default function AuthRegisterForm() {
           <InputField
             name="name"
             placeholder="Enter a nickname..."
+            type="text"
             validation={{
               required: true,
               minLength: {
@@ -74,12 +76,14 @@ export default function AuthRegisterForm() {
           <InputField
             name="email"
             placeholder="Enter your email..."
+            type="email"
             validation={{ required: true }}
           />
           <label>Password</label>
           <InputField
             name="password"
             placeholder="Enter a password..."
+            type="password"
             validation={{
               required: true,
               minLength: {

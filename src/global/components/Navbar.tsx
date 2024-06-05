@@ -58,14 +58,14 @@ export default function Navbar() {
               ? "animate-navbarMenuTopAnimation"
               : "animate-navbarMenuTopAnimationReverse mb-[7px]"
           } h-[5%] w-full bg-light-gray-element-color`}
-        ></div>
+        />
         <div
           className={`${
             isMenuOpen
               ? "animate-navbarMenuBottomAnimation"
               : "animate-navbarMenuBottomAnimationReverse w-[80%]"
           } h-[5%] w-[80%] bg-light-gray-element-color`}
-        ></div>
+        />
       </button>
       <MenuDropdownMobile
         filteredPathsArray={filteredPathsArray}
