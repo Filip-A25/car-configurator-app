@@ -37,7 +37,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`relative navbar-height w-screen bg-navbar-dark-gray-color flex items-center ${
+      className={`relative navbar-height bg-navbar-dark-gray-color flex items-center ${
         isMenuOpen
           ? "max-sm:animate-navbarMobileColorAnimation"
           : !isMenuOpen

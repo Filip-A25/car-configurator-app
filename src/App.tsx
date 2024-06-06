@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./modules/global/components/Navbar";
 import Authentication from "./modules/authentification/Authentication";
 import { RoutePrivateGuard } from "./modules/global/components/RoutePrivateGuard";
-import Configurator from "./configurator/Configurator";
+import Configurator from "./modules/configurator/Configurator";
 
 export default function App() {
   return (
