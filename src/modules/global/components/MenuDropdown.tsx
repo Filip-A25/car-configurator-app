@@ -1,33 +1,19 @@
 import MenuDropdownItem from "./MenuDropdownItem";
 import { Path } from "../types/navigationType";
-import { useRecoilState } from "recoil";
-import { loggedState } from "../../authentification/state/userState";
-import { auth } from "../../firebase/firebase";
-import { signOut } from "firebase/auth";
-import { Navigate } from "react-router-dom";
 
 interface Props {
   filteredPathsArray: Path[];
   isMenuOpen: boolean;
+  isLoggedIn: boolean;
+  handleLogout: () => void;
 }
 
 export default function MenuDropdown({
   filteredPathsArray,
   isMenuOpen,
+  isLoggedIn,
+  handleLogout,
 }: Props) {
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedState);
-
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        setIsLoggedIn(false);
-        return <Navigate to="/" />;
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
-  };
-
   return (
     <ul
       className={`${
