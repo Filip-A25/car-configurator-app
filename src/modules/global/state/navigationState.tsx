@@ -20,11 +20,6 @@ export const pathsState = atom<Path[]>({
       path: "/home",
       userLoggedIn: true,
     },
-    {
-      name: "Logout",
-      path: "/",
-      userLoggedIn: true,
-    },
   ],
 });
 

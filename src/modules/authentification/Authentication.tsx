@@ -7,6 +7,7 @@ export default function Authentication() {
     <div className="flex justify-center sm:pt-10">
       <Routes>
         <Route path="register" element={<AuthRegisterForm />} />
+        <Route path="log-in" element={<AuthLoginForm />} />
       </Routes>
     </div>
   );

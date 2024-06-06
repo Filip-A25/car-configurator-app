@@ -1,5 +1,10 @@
 import MenuDropdownItem from "./MenuDropdownItem";
 import { Path } from "../types/navigationType";
+import { useRecoilState } from "recoil";
+import { loggedState } from "../../authentification/state/userState";
+import { auth } from "../../firebase/firebase";
+import { signOut } from "firebase/auth";
+import { Navigate } from "react-router-dom";
 
 interface Props {
   filteredPathsArray: Path[];
@@ -10,6 +15,19 @@ export default function MenuDropdown({
   filteredPathsArray,
   isMenuOpen,
 }: Props) {
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedState);
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        setIsLoggedIn(false);
+        return <Navigate to="/" />;
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
+  };
+
   return (
     <ul
       className={`${
@@ -25,6 +43,16 @@ export default function MenuDropdown({
           path={route.path}
         />
       ))}
+      {isLoggedIn && (
+        <li className="flex items-center h-[70px] md:h-[50px] hover:bg-light-gray-element-color transition ease-in-out delay-75 border-b border-light-gray-background-color cursor-pointer">
+          <button
+            onClick={handleLogout}
+            className="text-text-purple h-[70px] md:h-[50px] w-full leading-[70px] md:leading-[50px] px-5 text-left text-[20px] md:text-[14px] py-auto align-middle"
+          >
+            Logout
+          </button>
+        </li>
+      )}
     </ul>
   );
 }
