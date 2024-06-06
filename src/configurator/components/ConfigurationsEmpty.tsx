@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import emptyStateCar from "../assets/audi-rs6/front-blue-1.png";
+import emptyStateCarImg from "../assets/audi-rs6/front-blue-1.png";
 
 export default function ConfigurationsEmpty() {
   return (
     <section className="flex flex-col items-center py-20 md:px-12 lg:px-16 xl:px-28">
       <img
-        src={emptyStateCar}
+        src={emptyStateCarImg}
         alt="Car"
         className="filter grayscale opacity-10 w-[641px] h-[200px] object-contain"
       />

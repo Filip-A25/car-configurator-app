@@ -9,7 +9,7 @@ export default function ConfigureLinkButton({ path, title }: Props) {
   return (
     <Link
       to={path}
-      className="text-basic-white bg-button-purple link-button-height w-full sm:link-button-width text-sm text-center leading-[44px]"
+      className="text-basic-white bg-button-purple link-button-height w-full sm:link-button-width leading-[44px] text-center"
     >
       {title}
     </Link>
