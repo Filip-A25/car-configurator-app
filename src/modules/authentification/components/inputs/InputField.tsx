@@ -3,8 +3,6 @@ import { RegisterOptions, useFormContext, FieldValues } from "react-hook-form";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  placeholder: string;
-  type: string;
   validation?: RegisterOptions<FieldValues>;
 }
 

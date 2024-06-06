@@ -3,6 +3,7 @@ import Navbar from "./modules/global/components/Navbar";
 import Authentication from "./modules/authentification/Authentication";
 import { useRecoilState } from "recoil";
 import { userState } from "./modules/authentification/state/userState";
+import { RoutePrivateGuard } from "./modules/global/components/RoutePrivateGuard";
 
 export default function App() {
   const [isLoggedIn] = useRecoilState(userState);
@@ -11,9 +12,14 @@ export default function App() {
     <div className="relative min-h-screen bg-basic-white sm:bg-light-gray-background-color">
       <Navbar />
       <Routes>
-        {!isLoggedIn ? (
-          <Route path="/auth/*" element={<Authentication />} />
-        ) : null}
+        <Route
+          path="/auth/*"
+          element={
+            <RoutePrivateGuard>
+              <Authentication />
+            </RoutePrivateGuard>
+          }
+        />
       </Routes>
     </div>
   );
