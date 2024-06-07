@@ -1,13 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./modules/global/components/Navbar";
 import Authentication from "./modules/authentification/Authentication";
-import { useRecoilState } from "recoil";
-import { userState } from "./modules/authentification/state/userState";
+import Configurator from "./modules/configurator/Configurator";
 import { RoutePrivateGuard } from "./modules/global/components/RoutePrivateGuard";
 
 export default function App() {
-  const [isLoggedIn] = useRecoilState(userState);
-
   return (
     <div className="relative min-h-screen bg-basic-white sm:bg-light-gray-background-color">
       <Navbar />
@@ -17,6 +14,14 @@ export default function App() {
           element={
             <RoutePrivateGuard>
               <Authentication />
+            </RoutePrivateGuard>
+          }
+        />
+        <Route
+          path="/home/*"
+          element={
+            <RoutePrivateGuard>
+              <Configurator />
             </RoutePrivateGuard>
           }
         />
