@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Configurations from "./components/Configurations";
+import Configurations from "./components/saved-configurations/Configurations";
 
 export default function Configurator() {
   return (

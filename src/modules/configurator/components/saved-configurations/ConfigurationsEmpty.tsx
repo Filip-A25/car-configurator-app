@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import emptyStateCarImg from "../assets/audi-rs6/front-blue-1.png";
+import emptyStateCarImg from "../../assets/audi-rs6/front-blue-1.png";
 
 export default function ConfigurationsEmpty() {
   return (
