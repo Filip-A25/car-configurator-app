@@ -1,6 +1,5 @@
 import { useForm, FormProvider } from "react-hook-form";
-import { useRecoilState } from "recoil";
-import { User } from "../types/userType";
+import { useSetRecoilState } from "recoil";
 import { userState, loggedState } from "../state/userState";
 import {
   usernameMinLength,
@@ -14,14 +13,20 @@ import { auth } from "../../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 import InputField from "./inputs/InputField";
 
+interface RegisterData {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export default function AuthRegisterForm() {
   const navigate = useNavigate();
 
-  const form = useForm<User>();
-  const [userData, setUserData] = useRecoilState(userState);
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedState);
+  const form = useForm<RegisterData>();
+  const setUserData = useSetRecoilState(userState);
+  const setIsLoggedIn = useSetRecoilState(loggedState);
 
-  const onSubmit = (data: User) => {
+  const onSubmit = (data: RegisterData) => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(async (userCredential) => {
         if (!userCredential || !auth.currentUser) {
@@ -35,7 +40,6 @@ export default function AuthRegisterForm() {
         setUserData({
           name: data.name,
           email: data.email,
-          password: data.password,
         });
         setIsLoggedIn(true);
         navigate("/");
