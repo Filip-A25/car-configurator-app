@@ -51,7 +51,7 @@ export default function AuthRegisterForm() {
           email: data.email,
         });
         setIsLoggedIn(true);
-        navigate("/");
+        navigate("/home");
       })
       .catch((err) => {
         throw new Error(err.message);
@@ -74,7 +74,7 @@ export default function AuthRegisterForm() {
         });
 
         setIsLoggedIn(true);
-        navigate("/");
+        navigate("/home");
       })
       .catch((err) => {
         throw new Error(err.message);
@@ -92,23 +92,18 @@ export default function AuthRegisterForm() {
       </span>
       {!isFormOpen ? (
         <div className="mt-8 flex flex-col items-center justify-evenly h-[30%] sm:h-[40%]">
-          <button
-            className="bg-button-purple right-0 left-0 h-[60px] sm:h-[52px] w-full text-basic-white mx-auto hover:brightness-[110%] transition-all delay-100 ease-in-out"
+          <PrimaryButton
+            label="Sign up with e-mail"
+            variant="primary"
             onClick={() => setIsFormOpen(true)}
-          >
-            Sign up with e-mail
-          </button>
-          <button
-            className="flex justify-center items-center right-0 left-0 h-[60px] sm:h-[52px] w-full text-button-purple border-[1px] mx-auto hover:brightness-[110%] transition-all delay-100 ease-in-out"
+          />
+          <PrimaryButton
+            label="Sign up with Google"
+            variant="secondary"
             onClick={handleGoogleSignUp}
-          >
-            <img
-              src={googleLogoImg}
-              alt="Google logo"
-              className="w-[20px] h-[20px] mr-2"
-            />
-            <span>Sign up with a Google account</span>
-          </button>
+            imgSrc={googleLogoImg}
+            imgAlt="Google Logo"
+          />
         </div>
       ) : (
         <FormProvider {...form}>
@@ -165,7 +160,7 @@ export default function AuthRegisterForm() {
                 }}
               />
             </section>
-            <PrimaryButton label="Sign up" />
+            <PrimaryButton label="Sign up" variant="primary" />
           </form>
         </FormProvider>
       )}

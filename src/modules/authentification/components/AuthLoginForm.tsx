@@ -15,6 +15,7 @@ import { useNavigate, Link } from "react-router-dom";
 import googleLogoImg from "../assets/google-logo.png";
 import InputField from "./inputs/InputField";
 import { useForm, FormProvider } from "react-hook-form";
+import PrimaryButton from "../../../shared/PrimaryButton";
 
 interface LoginData {
   email: string;
@@ -42,7 +43,7 @@ export default function AuthLoginForm() {
         });
 
         setIsLoggedIn(true);
-        navigate("/");
+        navigate("/home");
       })
       .catch((err) => {
         throw new Error(err.message);
@@ -50,22 +51,26 @@ export default function AuthLoginForm() {
   };
 
   const handleGoogleSignIn = () => {
-    signInWithPopup(auth, provider).then((result) => {
-      const userCredential = GoogleAuthProvider.credentialFromResult(result);
-      const accessToken = userCredential?.accessToken;
-      const user = result.user;
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const userCredential = GoogleAuthProvider.credentialFromResult(result);
+        const accessToken = userCredential?.accessToken;
+        const user = result.user;
 
-      if (!user.displayName || !user.email || !accessToken) {
-        throw new Error("User data could not be found.");
-      }
-      setUserData({
-        name: user.displayName,
-        email: user.email,
+        if (!user.displayName || !user.email || !accessToken) {
+          throw new Error("User data could not be found.");
+        }
+        setUserData({
+          name: user.displayName,
+          email: user.email,
+        });
+
+        setIsLoggedIn(true);
+        navigate("/home");
+      })
+      .catch((err) => {
+        throw new Error(err.message);
       });
-
-      setIsLoggedIn(true);
-      navigate("/");
-    });
   };
 
   return (
@@ -113,24 +118,14 @@ export default function AuthLoginForm() {
             }}
           />
         </section>
-        <button
-          form="log-in-form"
-          type="submit"
-          className="absolute bg-button-purple bottom-[180px] sm:bottom-[120px] right-0 left-0 h-[48px] sm:h-[44px] w-[85%] text-basic-white mx-auto hover:brightness-[110%] transition-all delay-100 ease-in-out"
-        >
-          Sign In
-        </button>
-        <button
-          className="absolute flex justify-center items-center bottom-[60px] right-0 left-0 h-[48px] sm:h-[44px] w-[85%] text-button-purple border-[1px] mx-auto hover:brightness-[110%] transition-all delay-100 ease-in-out"
+        <PrimaryButton label="Sign in" variant="primary" />
+        <PrimaryButton
+          label="Sign in with a Google account"
+          variant="secondary"
+          imgSrc={googleLogoImg}
+          imgAlt="Google Logo"
           onClick={handleGoogleSignIn}
-        >
-          <img
-            src={googleLogoImg}
-            alt="Google logo"
-            className="w-[20px] h-[20px] mr-2"
-          />
-          <span>Sign in with a Google account</span>
-        </button>
+        />
       </form>
     </FormProvider>
   );
