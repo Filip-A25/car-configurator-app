@@ -78,16 +78,16 @@ export default function AuthLoginForm() {
       <form
         id="log-in-form"
         onSubmit={form.handleSubmit(onSubmit)}
-        className="relative flex flex-col w-screen sm:w-[500px] h-full sm:h-[500px] bg-basic-white text-text-default-gray py-8 shadow-md"
+        className="relative flex flex-col w-screen sm:w-[500px] bg-basic-white text-text-default-gray py-8 px-10 sm:shadow-md"
       >
-        <h2 className="text-[2.5rem] font-bold mx-auto w-[85%]">Sign In</h2>
-        <span className="text-sm mx-auto w-[85%]">
+        <h2 className="form-size-header font-bold">Sign In</h2>
+        <span className="text-sm">
           Don't have an account?{" "}
           <Link to="/auth/register" className="text-text-purple">
             Create one now!
           </Link>
         </span>
-        <section className="flex flex-col justify-between h-[200px] w-[85%] mx-auto my-5 pb-5 sm:pb-10">
+        <section className="flex flex-col my-5 pb-5 sm:pb-10">
           <label>E-mail address</label>
           <InputField
             name="email"
@@ -118,7 +118,7 @@ export default function AuthLoginForm() {
             }}
           />
         </section>
-        <PrimaryButton label="Sign in" variant="primary" />
+        <PrimaryButton label="Sign In" variant="primary" />
         <PrimaryButton
           label="Sign in with a Google account"
           variant="secondary"

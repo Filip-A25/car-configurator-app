@@ -22,6 +22,6 @@
     @apply text-[2.5rem];
   }
   .form-input-margin {
-    @apply mb-5;
+    @apply mb-5 mt-1;
   }
 }

@@ -83,7 +83,7 @@ export default function AuthRegisterForm() {
 
   return (
     <section className="relative flex flex-col w-screen sm:w-[500px] bg-basic-white text-text-default-gray px-10 py-8 sm:shadow-md">
-      <h2 className="text-[2.5rem] font-bold">Sign Up</h2>
+      <h2 className="form-size-header font-bold">Sign Up</h2>
       <span className="text-sm">
         Already have an account?{" "}
         <Link to="/auth/log-in" className="text-text-purple">
@@ -91,7 +91,7 @@ export default function AuthRegisterForm() {
         </Link>
       </span>
       {!isFormOpen ? (
-        <div className="mt-8 flex flex-col items-center justify-evenly h-[30%] sm:h-[40%]">
+        <div className="mt-8">
           <PrimaryButton
             label="Sign up with e-mail"
             variant="primary"
@@ -107,11 +107,7 @@ export default function AuthRegisterForm() {
         </div>
       ) : (
         <FormProvider {...form}>
-          <form
-            id="register-form"
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col"
-          >
+          <form id="register-form" onSubmit={form.handleSubmit(onSubmit)}>
             <section className="flex flex-col my-5 pb-5 sm:pb-10">
               <label>Nickname</label>
               <InputField
@@ -160,7 +156,7 @@ export default function AuthRegisterForm() {
                 }}
               />
             </section>
-            <PrimaryButton label="Sign up" variant="primary" />
+            <PrimaryButton label="Sign Up" variant="primary" />
           </form>
         </FormProvider>
       )}

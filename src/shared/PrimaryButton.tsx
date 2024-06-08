@@ -16,8 +16,8 @@ export default function PrimaryButton({
 }: ButtonProps) {
   const className =
     variant === "primary"
-      ? "absolute bg-button-purple bottom-[180px] sm:bottom-[120px] right-0 left-0 h-[48px] sm:h-[44px] w-[85%] text-basic-white mx-auto hover:brightness-[110%] transition-all delay-100 ease-in-out"
-      : "absolute flex justify-center items-center bottom-[60px] right-0 left-0 h-[48px] sm:h-[44px] w-[85%] text-button-purple border-[1px] mx-auto hover:brightness-[110%] transition-all delay-100 ease-in-out";
+      ? "bg-button-purple bottom-[180px] h-[48px] sm:h-[44px] w-full mb-4 text-basic-white hover:brightness-[110%] transition-all delay-100 ease-in-out"
+      : "flex justify-center items-center h-[48px] sm:h-[44px] w-full mb-4 text-button-purple border hover:brightness-[110%] transition-all delay-100 ease-in-out";
 
   return (
     <button {...rest} className={className}>
