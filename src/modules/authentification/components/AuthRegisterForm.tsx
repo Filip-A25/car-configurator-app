@@ -108,7 +108,7 @@ export default function AuthRegisterForm() {
       ) : (
         <FormProvider {...form}>
           <form id="register-form" onSubmit={form.handleSubmit(onSubmit)}>
-            <section className="flex flex-col my-5 pb-5 sm:pb-10">
+            <section className="flex flex-col form-vertical-margin form-bottom-padding">
               <label>Nickname</label>
               <InputField
                 name="name"

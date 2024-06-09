@@ -18,6 +18,16 @@
     @apply h-[70px];
   }
 
+  /* NAVBAR MENU LINKS */
+
+  .nav-menu-link-height {
+    @apply h-[40px];
+  }
+
+  .nav-menu-link-width {
+    @apply w-[40px];
+  }
+
   /* AUTH FORM STYLES */
 
   .input-padding {
@@ -28,6 +38,12 @@
   }
   .form-input-margin {
     @apply mb-5 mt-1;
+  }
+  .form-vertical-margin {
+    @apply my-5;
+  }
+  .form-bottom-padding {
+    @apply pb-5 sm:pb-10;
   }
 
   /* NAVBAR DROPDOWN STYLES */

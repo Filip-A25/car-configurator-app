@@ -87,7 +87,7 @@ export default function AuthLoginForm() {
             Create one now!
           </Link>
         </span>
-        <section className="flex flex-col my-5 pb-5 sm:pb-10">
+        <section className="flex flex-col form-vertical-margin form-bottom-padding">
           <label>E-mail address</label>
           <InputField
             name="email"
@@ -98,7 +98,7 @@ export default function AuthLoginForm() {
           <label>Password</label>
           <InputField
             name="password"
-            placeholder="Enter a password..."
+            placeholder="Enter your password..."
             type="password"
             validation={{
               required: true,

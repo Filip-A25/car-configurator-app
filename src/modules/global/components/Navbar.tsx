@@ -25,15 +25,15 @@ export default function Navbar() {
     <nav
       className={`relative navbar-height w-screen bg-navbar-dark-gray-color flex items-center ${
         isMenuOpen
-          ? "max-sm:animate-navbarMobileColorAnimation"
+          ? "max-md:animate-navbarMobileColorAnimation"
           : !isMenuOpen
-          ? "max-sm:animate-navbarMobileColorAnimationReverse"
+          ? "max-md:animate-navbarMobileColorAnimationReverse"
           : ""
       }`}
     >
       <NavLink
         to="/"
-        className="absolute flex items-center justify-center h-[40px] w-[40px] left-[40px] outline-none"
+        className="absolute flex items-center justify-center nav-menu-link-height nav-menu-link-width left-[40px] outline-none"
       >
         <svg
           width="18"
@@ -51,7 +51,7 @@ export default function Navbar() {
         </svg>
       </NavLink>
       <button
-        className="absolute h-[40px] w-[40px] right-[40px] flex flex-col justify-center outline-none"
+        className="absolute nav-menu-link-height nav-menu-link-width right-[40px] flex flex-col justify-center outline-none"
         onClick={handleOpenMenu}
       >
         <div
