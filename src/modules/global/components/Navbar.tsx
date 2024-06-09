@@ -1,34 +1,20 @@
 import { useEffect, useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { pathSelector } from "../state/navigationState";
 import MenuDropdownMobile from "./MenuDropdownMobile";
 import MenuDropdown from "./MenuDropdown";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
 import { loggedState } from "../../authentification/state/userState";
 
 export default function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const filteredPathsArray = useRecoilValue(pathSelector);
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedState);
-  const navigate = useNavigate();
+  const [isLoggedIn] = useRecoilState(loggedState);
 
   const { pathname } = useLocation();
 
   const handleOpenMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     setMenuOpen(!isMenuOpen);
-  };
-
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        setIsLoggedIn(false);
-        navigate("/");
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
   };
 
   useEffect(() => {
@@ -87,13 +73,11 @@ export default function Navbar() {
         filteredPathsArray={filteredPathsArray}
         isMenuOpen={isMenuOpen}
         isLoggedIn={isLoggedIn}
-        handleLogout={handleLogout}
       />
       <MenuDropdown
         filteredPathsArray={filteredPathsArray}
         isMenuOpen={isMenuOpen}
         isLoggedIn={isLoggedIn}
-        handleLogout={handleLogout}
       />
     </nav>
   );

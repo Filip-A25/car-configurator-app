@@ -12,9 +12,14 @@
 }
 
 @layer utilities {
+  /* NAVBAR STYLES */
+
   .navbar-height {
     @apply h-[70px];
   }
+
+  /* AUTH FORM STYLES */
+
   .input-padding {
     @apply px-[12px];
   }
@@ -23,5 +28,17 @@
   }
   .form-input-margin {
     @apply mb-5 mt-1;
+  }
+
+  /* NAVBAR DROPDOWN STYLES */
+
+  .dropdown-li-height {
+    @apply h-[70px] md:h-[50px];
+  }
+  .dropdown-link-line-height {
+    @apply leading-[70px] md:leading-[50px];
+  }
+  .dropdown-font-size {
+    @apply text-[20px] md:text-[14px];
   }
 }
