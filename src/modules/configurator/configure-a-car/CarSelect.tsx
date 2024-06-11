@@ -10,17 +10,19 @@ export default function CarSelect() {
   const [carsArray, setCarsState] = useRecoilState(carsState);
 
   useEffect(() => {
-    async function fetchCarsData() {
-      try {
-        const carsData = await fetchAllCarData();
-        if (carsData) setCarsState(carsData);
-      } catch (err: any) {
-        throw new Error(err);
-      }
-    }
-
-    fetchCarsData();
+    handleFetchData();
   }, []);
+
+  const handleFetchData = async () => {
+    try {
+      const carsData = await fetchAllCarData();
+      const newCars = [...carsData];
+      console.log(newCars);
+      setCarsState(newCars);
+    } catch (err: any) {
+      throw new Error(err);
+    }
+  };
 
   return (
     <section className="cs-horizontal-padding cs-vertical-padding">
