@@ -29,4 +29,12 @@ export const fetchAllCarData = async () => {
         throw new Error(err);
     }
 }
+
+export const fetchCarImage = async () => {
+    try {
+        
+    } catch (err: any) {
+        throw new Error(err);
+    }
+}
       
