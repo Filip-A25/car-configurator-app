@@ -1,16 +1,23 @@
-import { Car } from "../types/carType";
 import PrimaryButtonLink from "../../../shared/PrimaryButtonLink";
 
-export default function CarItem({ model, productionYear, photo }: Car) {
+interface CarItemProps {
+  model: string;
+  productionYear: number;
+  photo?: string;
+}
+
+export default function CarItem({
+  model,
+  productionYear,
+  photo,
+}: CarItemProps) {
   return (
     <div>
-      <section>
-        <img src={photo} alt={model} />
-      </section>
+      <section></section>
       <section>
         <h3>{productionYear}</h3>
         <h1>{model}</h1>
-        <PrimaryButtonLink path="/" title="Configure Now" />
+        <PrimaryButtonLink path="/" label="Configure Now" />
       </section>
     </div>
   );

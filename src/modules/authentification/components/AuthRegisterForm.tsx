@@ -1,5 +1,5 @@
 import { useForm, FormProvider } from "react-hook-form";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { User } from "../types/userType";
 import { userState, loggedState } from "../state/userState";
 import {
@@ -18,8 +18,8 @@ export default function AuthRegisterForm() {
   const navigate = useNavigate();
 
   const form = useForm<User>();
-  const [userData, setUserData] = useRecoilState(userState);
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedState);
+  const setUserData = useSetRecoilState(userState);
+  const setIsLoggedIn = useSetRecoilState(loggedState);
 
   const onSubmit = (data: User) => {
     createUserWithEmailAndPassword(auth, data.email, data.password)

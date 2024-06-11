@@ -21,4 +21,12 @@
   .form-size-header {
     @apply text-[2.5rem];
   }
+
+  /* CONFIGURE A CAR - CAR SELECT */
+  .cs-verical-padding {
+    @apply py-16;
+  }
+  .cs-horizontal-padding {
+    @apply px-10 sm:px-20 md:px-20 lg:px-36;
+  }
 }

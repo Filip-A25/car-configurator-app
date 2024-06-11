@@ -1,13 +1,13 @@
-interface Props {
+interface HeadingProps {
   title: string;
   text: string;
 }
 
-export default function SectionHeading({ title, text }: Props) {
+export default function SectionHeading({ title, text }: HeadingProps) {
   return (
     <header>
-      <h2 className="mb-6 text-lg sm:text-sm">{title}</h2>
-      <p>{text}</p>
+      <h2 className="mb-2 text-lg">{title}</h2>
+      <p className="text-sm">{text}</p>
     </header>
   );
 }

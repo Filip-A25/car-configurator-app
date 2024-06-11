@@ -7,6 +7,7 @@ import MenuDropdown from "./MenuDropdown";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { loggedState } from "../../authentification/state/userState";
+import { fetchAllCarData } from "../../../services/API_carModel";
 
 export default function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -30,6 +31,10 @@ export default function Navbar() {
         throw new Error(err);
       });
   };
+
+  useEffect(() => {
+    fetchAllCarData();
+  }, []);
 
   useEffect(() => {
     setMenuOpen(false);

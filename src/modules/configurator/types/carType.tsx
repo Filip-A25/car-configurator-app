@@ -1,5 +1,8 @@
 export interface Car {
-  model: string;
+  id: string;
+  name: string;
   productionYear: number;
-  photo: string;
+  colors: string[];
+  wheelVariants: number[];
+  interiorVariants: string[];
 }
