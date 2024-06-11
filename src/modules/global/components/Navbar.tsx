@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { pathSelector } from "../state/navigationState";
 import MenuDropdownMobile from "./MenuDropdownMobile";
 import MenuDropdown from "./MenuDropdown";
@@ -9,7 +9,7 @@ import { loggedState } from "../../authentification/state/userState";
 export default function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const filteredPathsArray = useRecoilValue(pathSelector);
-  const [isLoggedIn] = useRecoilState(loggedState);
+  const isLoggedIn = useRecoilValue(loggedState);
 
   const { pathname } = useLocation();
 

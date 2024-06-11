@@ -19,7 +19,7 @@ import { auth, provider } from "../../firebase/firebase";
 import { useNavigate, Link } from "react-router-dom";
 import InputField from "./inputs/InputField";
 import googleLogoImg from "../assets/google-logo.png";
-import PrimaryButton from "../../../shared/PrimaryButton";
+import Button from "../../../shared/Button";
 
 interface RegisterData {
   name: string;
@@ -92,12 +92,12 @@ export default function AuthRegisterForm() {
       </span>
       {!isFormOpen ? (
         <div className="mt-8">
-          <PrimaryButton
+          <Button
             label="Sign up with e-mail"
             variant="primary"
             onClick={() => setIsFormOpen(true)}
           />
-          <PrimaryButton
+          <Button
             label="Sign up with Google"
             variant="secondary"
             onClick={handleGoogleSignUp}
@@ -156,7 +156,7 @@ export default function AuthRegisterForm() {
                 }}
               />
             </section>
-            <PrimaryButton label="Sign Up" variant="primary" />
+            <Button label="Sign Up" variant="primary" />
           </form>
         </FormProvider>
       )}

@@ -7,7 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   imgAlt?: string;
 }
 
-export default function PrimaryButton({
+export default function Button({
   label,
   variant,
   imgSrc,

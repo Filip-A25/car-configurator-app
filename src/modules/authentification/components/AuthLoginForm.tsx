@@ -8,6 +8,7 @@ import {
   passwordMaxLength,
   passwordMinLength,
   passwordRegexp,
+  emailRegexp,
 } from "../const/userInputRequirements";
 import { userState, loggedState } from "../state/userState";
 import { useSetRecoilState } from "recoil";
@@ -15,7 +16,7 @@ import { useNavigate, Link } from "react-router-dom";
 import googleLogoImg from "../assets/google-logo.png";
 import InputField from "./inputs/InputField";
 import { useForm, FormProvider } from "react-hook-form";
-import PrimaryButton from "../../../shared/PrimaryButton";
+import Button from "../../../shared/Button";
 
 interface LoginData {
   email: string;
@@ -30,7 +31,11 @@ export default function AuthLoginForm() {
   const setIsLoggedIn = useSetRecoilState(loggedState);
 
   const onSubmit = (data: LoginData) => {
-    if (!data.email) return;
+    if (
+      (!data.email && !emailRegexp.test(data.email)) ||
+      (!data.password && !emailRegexp.test(data.email))
+    )
+      return;
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         if (!userCredential.user.displayName) {
@@ -118,8 +123,8 @@ export default function AuthLoginForm() {
             }}
           />
         </section>
-        <PrimaryButton label="Sign In" variant="primary" />
-        <PrimaryButton
+        <Button label="Sign In" variant="primary" />
+        <Button
           label="Sign in with a Google account"
           variant="secondary"
           imgSrc={googleLogoImg}
