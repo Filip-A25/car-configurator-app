@@ -1,7 +1,7 @@
 import PrimaryButtonLink from "../../../shared/PrimaryButtonLink";
 import { fetchCarImageByColorAndVariant } from "../../../services/API_carModel";
 import { useEffect, useState } from "react";
-import { CarPos } from "../types/carType";
+import { CarPosition } from "../types/carType";
 
 interface CarItemProps {
   id: string;
@@ -25,23 +25,31 @@ export default function CarItem({
   const handleImageFetch = async () => {
     const color = colors[Math.floor(Math.random() * colors.length)];
     const image = await fetchCarImageByColorAndVariant(
-      id,
+      model,
       color,
       1,
-      CarPos.front
+      CarPosition.front
     );
 
     setCarImg(image);
   };
 
   return (
-    <div>
-      <section>
-        <img src={carImg} alt={model} />
+    <div className="bg-basic-white">
+      <section className="overflow-hidden">
+        <img
+          src={carImg}
+          alt={model}
+          className="h-[325px] object-cover ml-[-35%]"
+        />
       </section>
-      <section>
-        <h3>{productionYear}</h3>
-        <h1>{model}</h1>
+      <section className="px-10 py-10">
+        <h3 className="text-text-muted-gray text-xl cs-font-family font-light">
+          {productionYear}
+        </h3>
+        <h1 className="text-text-default-gray text-4xl cs-font-family font-light">
+          {model}
+        </h1>
         <PrimaryButtonLink path="/" label="Configure Now" />
       </section>
     </div>

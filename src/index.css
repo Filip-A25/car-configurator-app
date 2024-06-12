@@ -29,4 +29,7 @@
   .cs-horizontal-padding {
     @apply px-10 sm:px-20 md:px-20 lg:px-36;
   }
+  .cs-font-family {
+    @apply font-optician-sans;
+  }
 }

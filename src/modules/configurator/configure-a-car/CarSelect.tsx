@@ -31,7 +31,7 @@ export default function CarSelect() {
             text="Pick your favorite model and start configuring."
           />
         </section>
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-3 gap-5 mt-6">
           {carsArray &&
             carsArray.map((car: Car, index) => (
               <CarItem

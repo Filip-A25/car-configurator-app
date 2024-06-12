@@ -7,7 +7,7 @@ export interface Car {
   interiorVariants: string[];
 }
 
-export enum CarPos {
+export enum CarPosition {
   front = "front",
   back = "back",
   side = "side",

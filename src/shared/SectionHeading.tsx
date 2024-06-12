@@ -6,8 +6,8 @@ interface HeadingProps {
 export default function SectionHeading({ title, text }: HeadingProps) {
   return (
     <header>
-      <h2 className="mb-2 text-lg">{title}</h2>
-      <p className="text-sm">{text}</p>
+      <h2 className="mb-2 text-xl">{title}</h2>
+      <p className="text-xs">{text}</p>
     </header>
   );
 }

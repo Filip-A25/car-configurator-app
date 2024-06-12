@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
+    fontFamily: {
+      'optician-sans': ['Optician Sans', 'sans-serif']
+    },
     screens: {
       'sm': '640px',
 
@@ -221,6 +224,7 @@ module.exports = {
 
       "text-purple": "#3F3FE4",
       "text-default-gray": "#2E2E38",
+      "text-muted-gray": "#73738C",
       "input-border-gray": "#C7C7D1",
 
       "button-purple": "#1E1ED2"

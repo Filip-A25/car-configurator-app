@@ -1,13 +1,7 @@
-import {collection, getDocs, DocumentData, doc, getDoc} from "firebase/firestore";
+import {collection, getDocs, DocumentData} from "firebase/firestore";
 import {getDownloadURL, ref, getStorage} from "firebase/storage";
 import {db} from "../modules/firebase/firebase";
-import {Car, CarPos} from "../modules/configurator/types/carType";
-
-interface CarPhotoProps {
-    color: string;
-    wheel_variant: number;
-    photos: DocumentData;
-}
+import {Car, CarPosition} from "../modules/configurator/types/carType";
 
 const storage = getStorage();
 
@@ -39,24 +33,24 @@ export const fetchAllCarData = async () => {
     }
 }
 
-export const fetchCarImageByColorAndVariant = async (id: string, color: string, wheelVariant: number, position: CarPos) => {
+export const fetchCarImageByColorAndVariant = async (modelName: string, color: string, wheelVariant: number, position: CarPosition) => {
     try {
-        const docRef = doc(db, "car-models", id);
-        const response = await getDoc(docRef);
-
-        const responseData = response.data();
-
-        if (!responseData) {
-            throw new Error("Car data could not be found.");
+        let modelFile: string;
+        switch(modelName) {
+            case "Audi RS5":
+                modelFile = "audi_rs5";
+                break;
+            case "Audi RS6":
+                modelFile = "audi-rs6";
+                break;
+            case "Audi e-tron GT":
+                modelFile = "audi_e-tron_gt";
+                break;
+            default:
+                throw new Error("Model file doesn't exist");
         }
-        const {photo}: DocumentData = responseData;
 
-        const photoRef: CarPhotoProps = photo.find((item: CarPhotoProps) => item.color === color && item.wheel_variant === wheelVariant);
-
-        const photoDoc = await getDoc(photoRef.photos[position]);
-        const storagePath = photoDoc.ref.path.slice(40); 
-
-        const photoUrl = await getDownloadURL(ref(storage, storagePath));
+        const photoUrl = await getDownloadURL(ref(storage, `${modelFile}/models/${color}/${position}-${wheelVariant}.png`));
 
         return photoUrl;
     } catch (err: any) {
