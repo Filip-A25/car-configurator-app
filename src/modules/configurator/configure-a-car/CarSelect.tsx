@@ -16,9 +16,7 @@ export default function CarSelect() {
   const handleFetchData = async () => {
     try {
       const carsData = await fetchAllCarData();
-      const newCars = [...carsData];
-      console.log(newCars);
-      setCarsState(newCars);
+      setCarsState([...carsData]);
     } catch (err: any) {
       throw new Error(err);
     }
@@ -38,8 +36,10 @@ export default function CarSelect() {
             carsArray.map((car: Car, index) => (
               <CarItem
                 key={index}
+                id={car.id}
                 model={car.name}
                 productionYear={car.productionYear}
+                colors={car.colors}
               />
             ))}
         </div>

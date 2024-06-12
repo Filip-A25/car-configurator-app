@@ -5,11 +5,12 @@ export interface Car {
   colors: string[];
   wheelVariants: number[];
   interiorVariants: string[];
-  photo: CarPhotoProps;
 }
 
-export interface CarPhotoProps {
-  color: string;
-  wheel_variant: number;
-  photos: object[];
+export enum CarPos {
+  front = "front",
+  back = "back",
+  side = "side",
+  backLeft = "back_left",
+  frontLeft = "front_left",
 }
