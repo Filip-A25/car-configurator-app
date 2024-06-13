@@ -8,6 +8,7 @@ import {
   passwordMinLength,
   passwordMaxLength,
   passwordRegexp,
+  emailRegexp,
 } from "../const/userInputRequirements";
 import {
   createUserWithEmailAndPassword,
@@ -131,7 +132,13 @@ export default function AuthRegisterForm() {
                 name="email"
                 placeholder="Enter your email..."
                 type="email"
-                validation={{ required: true }}
+                validation={{
+                  required: true,
+                  pattern: {
+                    value: emailRegexp,
+                    message: "Incorrect email format submitted.",
+                  },
+                }}
               />
               <label>Password</label>
               <InputField

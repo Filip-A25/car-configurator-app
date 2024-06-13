@@ -31,11 +31,7 @@ export default function AuthLoginForm() {
   const setIsLoggedIn = useSetRecoilState(loggedState);
 
   const onSubmit = (data: LoginData) => {
-    if (
-      (!data.email && !emailRegexp.test(data.email)) ||
-      (!data.password && !emailRegexp.test(data.email))
-    )
-      return;
+    if (!data.email || !data.password) return;
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         if (!userCredential.user.displayName) {
@@ -98,7 +94,13 @@ export default function AuthLoginForm() {
             name="email"
             placeholder="Enter your email..."
             type="email"
-            validation={{ required: true }}
+            validation={{
+              required: true,
+              pattern: {
+                value: emailRegexp,
+                message: "Incorrect email format submitted.",
+              },
+            }}
           />
           <label>Password</label>
           <InputField
