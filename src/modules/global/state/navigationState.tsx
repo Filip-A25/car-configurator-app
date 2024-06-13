@@ -17,8 +17,8 @@ export const pathsState = atom<Path[]>({
     },
     {
       name: "My saved configurations",
-      path: "/home",
-      userLoggedIn: true,
+      path: "/home/configurations",
+      userLoggedIn: false,
     },
   ],
 });
