@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { fetchAllCarData } from "../../../services/API_carModel";
 import { Car } from "../types/carType";
 import CarItem from "./CarItem";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function CarSelect() {
   const [carsArray, setCarsState] = useRecoilState(carsState);
@@ -23,7 +24,7 @@ export default function CarSelect() {
   };
 
   return (
-    <section className="cs-horizontal-padding cs-vertical-padding">
+    <section className="cs-horizontal-padding cs-vertical-padding overflow-x-visible">
       <div className="py-20">
         <section>
           <SectionHeading
@@ -31,18 +32,27 @@ export default function CarSelect() {
             text="Pick your favorite model and start configuring."
           />
         </section>
-        <div className="grid grid-cols-3 gap-5 mt-6">
-          {carsArray &&
-            carsArray.map((car: Car, index) => (
-              <CarItem
-                key={index}
-                id={car.id}
-                model={car.name}
-                productionYear={car.productionYear}
-                colors={car.colors}
-              />
-            ))}
-        </div>
+        <section className="mt-12 3xl:pr-64 overflow-x-visible">
+          <Swiper
+            slidesPerView={2}
+            spaceBetween={40}
+            scrollbar={{ draggable: true }}
+            className="overflow-x-visible"
+          >
+            {carsArray &&
+              carsArray.map((car: Car, index) => (
+                <SwiperSlide key={index}>
+                  <CarItem
+                    key={index}
+                    id={car.id}
+                    model={car.name}
+                    productionYear={car.productionYear}
+                    colors={car.colors}
+                  />
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        </section>
       </div>
     </section>
   );

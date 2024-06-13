@@ -11,6 +11,10 @@
   padding: 0;
 }
 
+.swiper {
+  overflow: visible !important;
+}
+
 @layer utilities {
   .navbar-height {
     @apply h-[70px];
