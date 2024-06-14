@@ -52,7 +52,7 @@ export default function AuthRegisterForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col w-screen sm:w-[500px] bg-basic-white text-text-default-gray px-10 py-8 sm:shadow-md"
       >
-        <h2 className="form-size-header font-bold">Sign Up</h2>
+        <h2 className="text-[2.5rem] font-bold">Sign Up</h2>
         <span className="text-sm">Don't have an account? Create one now!</span>
         <section className="flex flex-col justify-between h-[320px] my-5 pb-5 sm:pb-10">
           <label>Nickname</label>

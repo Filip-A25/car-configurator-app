@@ -18,20 +18,3 @@
 .swiper-slide {
   height: fit-content !important;
 }
-
-@layer utilities {
-  .navbar-height {
-    @apply h-[70px];
-  }
-  .input-padding {
-    @apply px-[12px];
-  }
-  .form-size-header {
-    @apply text-[2.5rem];
-  }
-
-  /* CONFIGURE A CAR - CAR SELECT */
-  .cs-font-family {
-    @apply font-optician-sans;
-  }
-}

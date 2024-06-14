@@ -5,6 +5,7 @@ export default function Configurator() {
   return (
     <div id="configurator-content">
       <Routes>
+        {/*There will be more routes here.*/}
         <Route path="/configure-a-car/*" element={<ConfigureACar />} />
       </Routes>
     </div>

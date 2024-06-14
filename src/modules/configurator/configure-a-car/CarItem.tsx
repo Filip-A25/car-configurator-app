@@ -56,13 +56,14 @@ export default function CarItem({
       </section>
       <section className="relative flex flex-col flex-1 justify-center lg:px-10 py-4 md:py-8 3xl:pt-16 3xl:pb-20">
         <div className="mb-4 3xl:mb-8 overflow-x-hidden">
-          <h3 className="text-text-muted-gray max-xs:text-lg text-xl 3xl:text-4xl cs-font-family font-light leading-none">
+          <h3 className="text-text-muted-gray max-xs:text-lg text-xl 3xl:text-4xl font-optician-sans font-light leading-none">
             {productionYear}
           </h3>
-          <h1 className="text-text-default-gray max-xs:text-xl text-3xl lg:text-4xl 2xl:text-5xl 3xl:text-6xl cs-font-family font-light lg:whitespace-nowrap">
+          <h1 className="text-text-default-gray max-xs:text-xl text-3xl lg:text-4xl 2xl:text-5xl 3xl:text-6xl font-optician-sans font-light lg:whitespace-nowrap">
             {model}
           </h1>
         </div>
+        {/*TODO: Path will be added when Configuration View is added.*/}
         <ButtonLink path="/" label="Configure Now" />
       </section>
     </div>
