@@ -7,7 +7,9 @@ import "swiper/css";
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-basic-white sm:bg-light-gray-background-color overflow-x-hidden">
+    <div
+      className={`relative min-h-screen bg-light-gray-background-color overflow-x-hidden`}
+    >
       <Navbar />
       <Routes>
         <Route

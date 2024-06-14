@@ -24,8 +24,8 @@ export default function CarSelect() {
   };
 
   return (
-    <section className="cs-horizontal-padding cs-vertical-padding overflow-x-visible">
-      <div className="py-10 sm:py-20">
+    <section className="px-5 sm:px-10 md:px-14 2xl:px-24 3xl:px-36 py-2 md:py-3 overflow-x-visible">
+      <div className="py-10 sm:py-20 md:py-12">
         <section>
           <SectionHeading
             title="Configure a car"
@@ -34,14 +34,26 @@ export default function CarSelect() {
         </section>
         <section className="mt-12 3xl:pr-64 overflow-x-visible">
           <Swiper
-            slidesPerView={3}
+            width={1800}
+            slidesPerView={2}
             spaceBetween={40}
-            direction="vertical"
+            direction="horizontal"
             breakpoints={{
+              0: {
+                direction: "vertical",
+              },
               1024: {
                 direction: "horizontal",
+                width: 1000,
                 slidesPerView: 2,
                 spaceBetween: 40,
+              },
+              1536: {
+                width: 1100,
+                slidesPerView: 2,
+              },
+              1920: {
+                width: 1800,
               },
             }}
             scrollbar={{ draggable: true }}

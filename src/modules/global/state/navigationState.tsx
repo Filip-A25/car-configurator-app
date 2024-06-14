@@ -21,7 +21,7 @@ export const pathsState = atom<Path[]>({
       name: "My saved configurations",
       path: "/home",
       userLoggedIn: false,
-      inDropdown: true,
+      inDropdown: false,
     },
     {
       name: "Car select",

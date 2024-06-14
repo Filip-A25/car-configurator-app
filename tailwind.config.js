@@ -8,6 +8,8 @@ module.exports = {
       'optician-sans': ['Optician Sans', 'sans-serif']
     },
     screens: {
+      'max-xs': {"max": "400px"},
+
       'sm': '640px',
 
       "max-sm": {"max": "640px"},
