@@ -21,7 +21,7 @@ export default function Button({
 
   return (
     <button {...rest} className={className}>
-      {imgSrc && <img src={imgSrc} alt={imgAlt} className="w-5 h-5 mr-2" />}
+      {imgSrc && <img src={imgSrc} alt={imgAlt} className="w-5 mr-2" />}
       {label}
     </button>
   );
