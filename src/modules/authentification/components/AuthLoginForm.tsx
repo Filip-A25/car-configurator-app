@@ -1,78 +1,13 @@
-import { auth, provider } from "../../firebase/firebase";
-import {
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
-import {
-  passwordMaxLength,
-  passwordMinLength,
-  passwordRegexp,
-  emailRegexp,
-} from "../const/userInputRequirements";
-import { userState, loggedState } from "../state/userState";
-import { useSetRecoilState } from "recoil";
-import { useNavigate, Link } from "react-router-dom";
+import { validation } from "../const/userInputRequirements";
+import { Link } from "react-router-dom";
 import googleLogoImg from "../assets/google-logo.png";
 import InputField from "./inputs/InputField";
-import { useForm, FormProvider } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import Button from "../../../shared/Button";
-
-interface LoginData {
-  email: string;
-  password: string;
-}
+import useAuthLogin from "../hooks/useAuthLogin";
 
 export default function AuthLoginForm() {
-  const navigate = useNavigate();
-
-  const form = useForm<LoginData>();
-  const setUserData = useSetRecoilState(userState);
-  const setIsLoggedIn = useSetRecoilState(loggedState);
-
-  const onSubmit = (data: LoginData) => {
-    if (!data.email || !data.password) return;
-    signInWithEmailAndPassword(auth, data.email, data.password)
-      .then((userCredential) => {
-        if (!userCredential.user.displayName) {
-          throw new Error("User display name could not be found.");
-        }
-
-        setUserData({
-          name: userCredential.user.displayName,
-          email: data.email,
-        });
-
-        setIsLoggedIn(true);
-        navigate("/home");
-      })
-      .catch((err) => {
-        throw new Error(err.message);
-      });
-  };
-
-  const handleGoogleSignIn = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const userCredential = GoogleAuthProvider.credentialFromResult(result);
-        const accessToken = userCredential?.accessToken;
-        const user = result.user;
-
-        if (!user.displayName || !user.email || !accessToken) {
-          throw new Error("User data could not be found.");
-        }
-        setUserData({
-          name: user.displayName,
-          email: user.email,
-        });
-
-        setIsLoggedIn(true);
-        navigate("/home");
-      })
-      .catch((err) => {
-        throw new Error(err.message);
-      });
-  };
+  const { handleGoogleSignIn, onSubmit, form } = useAuthLogin();
 
   return (
     <FormProvider {...form}>
@@ -94,35 +29,14 @@ export default function AuthLoginForm() {
             name="email"
             placeholder="Enter your email..."
             type="email"
-            validation={{
-              required: true,
-              pattern: {
-                value: emailRegexp,
-                message: "Incorrect email format submitted.",
-              },
-            }}
+            validation={validation.email}
           />
           <label>Password</label>
           <InputField
             name="password"
             placeholder="Enter your password..."
             type="password"
-            validation={{
-              required: true,
-              minLength: {
-                value: passwordMinLength,
-                message: `Password must be atleast ${passwordMinLength} characters long.`,
-              },
-              maxLength: {
-                value: passwordMaxLength,
-                message: `Password cannot be longer than ${passwordMaxLength} characters.`,
-              },
-              pattern: {
-                value: passwordRegexp,
-                message:
-                  "Password must contain atleast one uppercase letter, one lowercase letter and a number or a special character.",
-              },
-            }}
+            validation={validation.password}
           />
         </section>
         <Button label="Sign In" variant="primary" />
