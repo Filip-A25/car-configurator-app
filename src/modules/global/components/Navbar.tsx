@@ -1,35 +1,21 @@
 import { useEffect, useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { NavLink, useLocation } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import { pathSelector } from "../state/navigationState";
 import MenuDropdownMobile from "./MenuDropdownMobile";
 import MenuDropdown from "./MenuDropdown";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
 import { loggedState } from "../../authentification/state/userState";
 import { fetchAllCarData } from "../../../services/API_carModel";
 
 export default function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const filteredPathsArray = useRecoilValue(pathSelector);
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedState);
-  const navigate = useNavigate();
+  const isLoggedIn = useRecoilValue(loggedState);
 
   const { pathname } = useLocation();
 
   const handleOpenMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     setMenuOpen(!isMenuOpen);
-  };
-
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        setIsLoggedIn(false);
-        navigate("/");
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
   };
 
   useEffect(() => {
@@ -44,15 +30,15 @@ export default function Navbar() {
     <nav
       className={`relative h-[70px] w-screen bg-navbar-dark-gray-color flex items-center ${
         isMenuOpen
-          ? "max-sm:animate-navbarMobileColorAnimation"
+          ? "max-md:animate-navbarMobileColorAnimation"
           : !isMenuOpen
-          ? "max-sm:animate-navbarMobileColorAnimationReverse"
+          ? "max-md:animate-navbarMobileColorAnimationReverse"
           : ""
       }`}
     >
       <NavLink
         to="/"
-        className="absolute flex items-center justify-center h-[40px] w-[40px] left-[40px] outline-none"
+        className="absolute flex items-center justify-center nav-menu-link-height nav-menu-link-width left-[40px] outline-none"
       >
         <svg
           width="18"
@@ -70,7 +56,7 @@ export default function Navbar() {
         </svg>
       </NavLink>
       <button
-        className="absolute h-[40px] w-[40px] right-[40px] flex flex-col justify-center outline-none"
+        className="absolute nav-menu-link-height nav-menu-link-width right-[40px] flex flex-col justify-center outline-none"
         onClick={handleOpenMenu}
       >
         <div
@@ -92,13 +78,11 @@ export default function Navbar() {
         filteredPathsArray={filteredPathsArray}
         isMenuOpen={isMenuOpen}
         isLoggedIn={isLoggedIn}
-        handleLogout={handleLogout}
       />
       <MenuDropdown
         filteredPathsArray={filteredPathsArray}
         isMenuOpen={isMenuOpen}
         isLoggedIn={isLoggedIn}
-        handleLogout={handleLogout}
       />
     </nav>
   );

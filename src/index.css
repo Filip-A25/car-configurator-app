@@ -18,3 +18,50 @@
 .swiper-slide {
   height: fit-content !important;
 }
+
+@layer utilities {
+  /* NAVBAR STYLES */
+
+  .navbar-height {
+    @apply h-[70px];
+  }
+
+  /* NAVBAR MENU LINKS */
+
+  .nav-menu-link-height {
+    @apply h-[40px];
+  }
+
+  .nav-menu-link-width {
+    @apply w-[40px];
+  }
+
+  /* AUTH FORM STYLES */
+
+  .input-padding {
+    @apply px-[12px];
+  }
+  .form-size-header {
+    @apply text-[2.5rem];
+  }
+  .form-input-margin {
+    @apply mb-5 mt-1;
+  }
+  .form-vertical-margin {
+    @apply my-5;
+  }
+  .form-bottom-padding {
+    @apply pb-5 sm:pb-10;
+  }
+
+  /* NAVBAR DROPDOWN STYLES */
+
+  .dropdown-li-height {
+    @apply h-[70px] md:h-[50px];
+  }
+  .dropdown-link-line-height {
+    @apply leading-[70px] md:leading-[50px];
+  }
+  .dropdown-font-size {
+    @apply text-[20px] md:text-[14px];
+  }

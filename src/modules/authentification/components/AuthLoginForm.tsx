@@ -1,48 +1,52 @@
-import { useForm, FormProvider } from "react-hook-form";
+import { validation } from "../const/userInputRequirements";
+import { Link } from "react-router-dom";
+import googleLogoImg from "../assets/google-logo.png";
 import InputField from "./inputs/InputField";
-import {
-  passwordMaxLength,
-  passwordMinLength,
-  passwordRegexp,
-} from "../const/userInputRequirements";
+import { FormProvider } from "react-hook-form";
+import Button from "../../../shared/Button";
+import useAuthLogin from "../hooks/useAuthLogin";
 
 export default function AuthLoginForm() {
-  const form = useForm();
+  const { handleGoogleSignIn, onSubmit, form } = useAuthLogin();
 
   return (
     <FormProvider {...form}>
-      <form>
-        <h2>Log In</h2>
-        <label>E-mail address</label>
-        <InputField
-          name="email"
-          placeholder="Enter your email..."
-          type="email"
-          validation={{ required: true }}
+      <form
+        id="log-in-form"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="relative flex flex-col w-screen sm:w-[500px] bg-basic-white text-text-default-gray py-8 px-10 sm:shadow-md"
+      >
+        <h2 className="form-size-header font-bold">Sign In</h2>
+        <span className="text-sm">
+          Don't have an account?{" "}
+          <Link to="/auth/register" className="text-text-purple">
+            Create one now!
+          </Link>
+        </span>
+        <section className="flex flex-col form-vertical-margin form-bottom-padding">
+          <label>E-mail address</label>
+          <InputField
+            name="email"
+            placeholder="Enter your email..."
+            type="email"
+            validation={validation.email}
+          />
+          <label>Password</label>
+          <InputField
+            name="password"
+            placeholder="Enter your password..."
+            type="password"
+            validation={validation.password}
+          />
+        </section>
+        <Button label="Sign In" variant="primary" />
+        <Button
+          label="Sign in with a Google account"
+          variant="secondary"
+          imgSrc={googleLogoImg}
+          imgAlt="Google Logo"
+          onClick={handleGoogleSignIn}
         />
-        <label>Password</label>
-        <InputField
-          name="password"
-          placeholder="Enter a password..."
-          type="password"
-          validation={{
-            required: true,
-            minLength: {
-              value: passwordMinLength,
-              message: `Password must be atleast ${passwordMinLength} characters long.`,
-            },
-            maxLength: {
-              value: passwordMaxLength,
-              message: `Password cannot be longer than ${passwordMaxLength} characters.`,
-            },
-            pattern: {
-              value: passwordRegexp,
-              message:
-                "Password must contain atleast one uppercase letter, one lowercase letter and a number or a special character.",
-            },
-          }}
-        />
-        <input type="submit" />
       </form>
     </FormProvider>
   );
