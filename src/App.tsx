@@ -28,14 +28,6 @@ export default function App() {
             </RoutePrivateGuard>
           }
         />
-        <Route
-          path="/home/*"
-          element={
-            <RoutePrivateGuard>
-              <Configurator />
-            </RoutePrivateGuard>
-          }
-        />
       </Routes>
     </div>
   );
