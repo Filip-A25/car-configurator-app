@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./modules/global/components/Navbar";
 import Authentication from "./modules/authentification/Authentication";
-import Configurator from "./modules/configurator/Configurator";
 import { RoutePrivateGuard } from "./modules/global/components/RoutePrivateGuard";
 import "swiper/css";
 
