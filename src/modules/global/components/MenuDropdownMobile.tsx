@@ -22,13 +22,16 @@ export default function MenuDropdownMobile({
           : "animate-navbarMobileDropdownAnimationReverse"
       } md:hidden absolute h-[calc(100vh-80px)] md:h-[100px] md:right-[40px] top-full w-full md:w-[20%] 2xl:w-[15%] bg-basic-white z-10`}
     >
-      {filteredPathsArray.map((route) => (
-        <MenuDropdownItem
-          key={route.path}
-          name={route.name}
-          path={route.path}
-        />
-      ))}
+      {filteredPathsArray.map(
+        (route) =>
+          route.inDropdown && (
+            <MenuDropdownItem
+              key={route.path}
+              name={route.name}
+              path={route.path}
+            />
+          )
+      )}
       {isLoggedIn && (
         <li className="flex items-center h-[70px] md:h-[50px] hover:bg-light-gray-element-color transition ease-in-out delay-75 border-b border-light-gray-background-color cursor-pointer">
           <button

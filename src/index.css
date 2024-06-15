@@ -11,23 +11,10 @@
   padding: 0;
 }
 
-@layer utilities {
-  .navbar-height {
-    @apply h-[70px];
-  }
-  .input-padding {
-    @apply px-[12px];
-  }
-  .form-size-header {
-    @apply text-[2.5rem];
-  }
-  .link-button-font {
-    @apply text-[3rem];
-  }
-  .link-button-width {
-    @apply w-[146px];
-  }
-  .par-font-size {
-    @apply text-[18px];
-  }
+.swiper {
+  overflow: visible !important;
+}
+
+.swiper-slide {
+  height: fit-content !important;
 }

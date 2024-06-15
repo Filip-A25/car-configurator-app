@@ -7,6 +7,7 @@ import MenuDropdown from "./MenuDropdown";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { loggedState } from "../../authentification/state/userState";
+import { fetchAllCarData } from "../../../services/API_carModel";
 
 export default function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -32,12 +33,16 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    fetchAllCarData();
+  }, []);
+
+  useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
   return (
     <nav
-      className={`relative navbar-height bg-navbar-dark-gray-color flex items-center ${
+      className={`relative h-[70px] w-screen bg-navbar-dark-gray-color flex items-center ${
         isMenuOpen
           ? "max-sm:animate-navbarMobileColorAnimation"
           : !isMenuOpen

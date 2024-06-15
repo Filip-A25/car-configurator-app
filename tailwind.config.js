@@ -4,7 +4,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
+    fontFamily: {
+      'optician-sans': ['Optician Sans', 'sans-serif']
+    },
     screens: {
+      'max-xs': {"max": "400px"},
+
       'sm': '640px',
 
       "max-sm": {"max": "640px"},
@@ -16,6 +21,8 @@ module.exports = {
       'xl': '1280px',
 
       '2xl': '1536px',
+
+      '3xl': '1920px'
     },
     extend: {
       keyframes: {
@@ -221,6 +228,7 @@ module.exports = {
 
       "text-purple": "#3F3FE4",
       "text-default-gray": "#2E2E38",
+      "text-muted-gray": "#73738C",
       "input-border-gray": "#C7C7D1",
 
       "button-purple": "#1E1ED2"
