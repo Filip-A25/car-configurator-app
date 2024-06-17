@@ -65,3 +65,4 @@
   .dropdown-font-size {
     @apply text-[20px] md:text-[14px];
   }
+}
