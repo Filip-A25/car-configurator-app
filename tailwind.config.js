@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
+    fontFamily: {
+      'optician-sans': ['Optician Sans', 'sans-serif']
+    },
     screens: {
       'sm': '640px',
 
@@ -218,13 +221,16 @@ module.exports = {
       "light-gray-background-color": "#F1F1F4",
       "light-gray-element-color": "#FCFCFD",
       "basic-white": "#FFFFFF",
+      "muted-grey": "#9D9DAF",
 
       "text-purple": "#3F3FE4",
       "text-default-gray": "#2E2E38",
       "input-border-gray": "#C7C7D1",
+      "property-name-grey": "#73738C",
+      "checkmark-green": "#1ED286",
 
       "button-purple": "#1E1ED2"
-    }
+    },
   },
   plugins: [],
 }
