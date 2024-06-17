@@ -29,6 +29,11 @@ export const pathsState = atom<Path[]>({
       userLoggedIn: true,
       inDropdown: false,
     },
+    {
+      name: "Configuration Edit",
+      path: "/home/configure-a-car/configuration-edit",
+      userLoggedIn: false,
+    },
   ],
 });
 
