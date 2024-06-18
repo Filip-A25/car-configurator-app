@@ -7,7 +7,7 @@ export interface CarConfigurations {
     model: string;
     productionYear: number;
     colors: string[];
-    wheelVariants: Variant[];
-    interiorVariants: Variant[];
-    totalPrice: number;
+    wheelVariants: number[];
+    interiorVariants: string[];
+    //totalPrice: number;
 }

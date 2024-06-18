@@ -1,16 +1,9 @@
 import { atom } from "recoil";
-import { CarModel } from "../types/carType";
+import { CarConfigurations } from "../types";
 
-export const currentConfiguration = atom<CarModel>({
+export const currentConfiguration = atom<CarConfigurations | undefined>({
   key: "configurator.currentConfiguration",
-  default: {
-    id: "8fYqUodzXUKYFVMYtUnJ",
-    model: "Audi RS5",
-    productionYear: 2022,
-    wheelVariant: 1,
-    interiorVariant: "black and red",
-    totalPrice: 200000,
-  },
+  default: undefined,
 });
 
 export const modelConfigurations = atom({

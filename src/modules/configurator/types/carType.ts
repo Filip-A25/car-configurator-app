@@ -10,6 +10,7 @@ export interface CarModel {
   id: string;
   model: string;
   productionYear: number;
+  color: string;
   wheelVariant: number;
   interiorVariant: string;
   totalPrice: number;

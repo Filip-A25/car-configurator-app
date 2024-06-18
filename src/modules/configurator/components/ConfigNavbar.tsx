@@ -1,8 +1,8 @@
 import { ReturnButton } from "../../../shared";
 
 interface ConfigNavbarProps {
-  model: string;
-  productionYear: number;
+  model: string | undefined;
+  productionYear: number | undefined;
 }
 
 export function ConfigNavbar({ model, productionYear }: ConfigNavbarProps) {
