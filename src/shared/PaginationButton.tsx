@@ -1,8 +1,13 @@
 import { IconDirection } from "./types";
 
-export function PaginationButton({ direction }: { direction: IconDirection }) {
+interface PaginationButtonProps {
+  direction: IconDirection;
+  ref: any;
+}
+
+export function PaginationButton({ direction, ref }: PaginationButtonProps) {
   return (
-    <button className="w-[24px] h-[24px]">
+    <button className="w-[24px] h-[24px]" ref={ref}>
       <svg
         width="7"
         height="12"
