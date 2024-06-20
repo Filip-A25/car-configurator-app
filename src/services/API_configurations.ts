@@ -42,17 +42,42 @@ export const fetchCarImagesByColorAndVariant = async (modelName: string, color: 
                 throw new Error("Model file doesn't exist.");
         }
 
-        const listRef = ref(storage, `${modelFile}/models/${color}/`);
+        const listRef = ref(storage, `${modelFile}/models/wheel_${wheelVariant}/${color}`);
         const photosList = await listAll(listRef);
 
-        const photoListItems = photosList.items.filter(item => item.name.includes("1"));
-        const photoPromises = photoListItems.map(item => getDownloadURL(ref(storage, item.fullPath)));
+        const photoPromises = photosList.items.map(item => getDownloadURL(ref(storage, item.fullPath)));
+
 
         const filteredPhotosList = await Promise.all(photoPromises);
 
-        console.log(filteredPhotosList);
-
         return filteredPhotosList;
+    } catch (err: any) {
+        throw new Error(err);
+    }
+}
+
+export const fetchPropertyImagesByVariant = async (modelName:string, name: string, variant: string | number) => {
+    try {
+        let modelFile: string;
+        switch(modelName) {
+            case "Audi RS5":
+                modelFile = "audi_rs5";
+                break;
+            case "Audi RS6":
+                modelFile = "audi-rs6";
+                break;
+            case "Audi e-tron GT":
+                modelFile = "audi_e-tron_gt";
+                break;
+            default:
+                throw new Error("Model file doesn't exist.");
+        }
+if (name === "color") name = "colors";
+        const variantRef = ref(storage, `${modelFile}/${name}/${variant}.png`);
+
+        const photoItem = await getDownloadURL(variantRef);
+        
+        return photoItem;
     } catch (err: any) {
         throw new Error(err);
     }
