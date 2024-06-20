@@ -5,12 +5,13 @@ import { Configurator } from "./modules/configurator";
 import { useRecoilState } from "recoil";
 import { userState } from "./modules/authentification/state/userState";
 import { RoutePrivateGuard } from "./modules/global/components/RoutePrivateGuard";
+import "swiper/css";
 
 export default function App() {
   const [isLoggedIn] = useRecoilState(userState);
 
   return (
-    <div className="relative min-h-screen bg-basic-white sm:bg-light-gray-background-color">
+    <div className="relative bg-light-gray-background-color">
       <Navbar />
       <Routes>
         <Route

@@ -9,7 +9,7 @@ export function ConfigPropertyDropdown({
 }) {
   const configuration = useRecoilValue(currentConfiguration);
   const currentProperties =
-    propertyName === "paint color"
+    propertyName === "color"
       ? configuration?.colors
       : configuration?.wheelVariants;
 
@@ -18,7 +18,13 @@ export function ConfigPropertyDropdown({
       {currentProperties &&
         currentProperties.length > 0 &&
         currentProperties.map((item, index) => (
-          <ConfigProperty name={propertyName} description={item} photo="" />
+          <ConfigProperty
+            key={index}
+            modelName={configuration?.model}
+            label={item.label}
+            name={propertyName}
+            description={item.name}
+          />
         ))}
     </ul>
   );

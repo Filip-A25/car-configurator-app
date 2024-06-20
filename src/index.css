@@ -11,6 +11,14 @@
   padding: 0;
 }
 
+.swiper-slide {
+  padding: 0 30rem 0 30rem;
+}
+
+.swiper-pagination-current {
+  color: #2e2e38;
+}
+
 @layer utilities {
   .navbar-height {
     @apply h-[70px];

@@ -1,13 +1,13 @@
 export interface Variant {
-    variant: number;
+    label: string | number;
+    name: string;
     price: number;
 }
 
 export interface CarConfigurations {
     model: string;
     productionYear: number;
-    colors: string[];
-    wheelVariants: number[];
+    colors: Variant[];
+    wheelVariants: Variant[];
     interiorVariants: string[];
-    //totalPrice: number;
 }

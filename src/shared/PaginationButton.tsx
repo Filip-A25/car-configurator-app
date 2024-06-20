@@ -2,23 +2,24 @@ import { IconDirection } from "./types";
 
 interface PaginationButtonProps {
   direction: IconDirection;
-  ref: any;
+  childRef: React.MutableRefObject<HTMLButtonElement | null>;
 }
 
-export function PaginationButton({ direction, ref }: PaginationButtonProps) {
+export function PaginationButton({
+  direction,
+  childRef,
+}: PaginationButtonProps) {
   return (
-    <button className="w-[24px] h-[24px]" ref={ref}>
+    <button className="w-10 py-2" ref={childRef}>
       <svg
-        width="7"
-        height="12"
         viewBox="0 0 7 12"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="mx-auto"
+        className="mx-auto w-4 h-4"
       >
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d={direction}
           fill="#2E2E38"
         />
