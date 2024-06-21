@@ -2,6 +2,7 @@ import {getDoc, doc} from "firebase/firestore";
 import {db, storage} from "../modules/firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { CarConfigurations } from "../modules/configurator/types";
+import {fileNames} from "./const/fileNames";
 
 export const fetchCarConfigurations = async (id: string) => {
     try {
@@ -25,22 +26,9 @@ export const fetchCarConfigurations = async (id: string) => {
     }
 }
 
-export const fetchCarImagesByColorAndVariant = async (modelName: string, color: string, wheelVariant: number) => {
+export const fetchCarImagesByColorAndVariant = async (modelName: "Audi RS5" | "Audi RS6" | "Audi e-tron GT", color: string, wheelVariant: number) => {
     try {
-        let modelFile: string;
-        switch(modelName) {
-            case "Audi RS5":
-                modelFile = "audi_rs5";
-                break;
-            case "Audi RS6":
-                modelFile = "audi-rs6";
-                break;
-            case "Audi e-tron GT":
-                modelFile = "audi_e-tron_gt";
-                break;
-            default:
-                throw new Error("Model file doesn't exist.");
-        }
+        let modelFile = fileNames[modelName];
 
         const listRef = ref(storage, `${modelFile}/models/wheel_${wheelVariant}/${color}`);
         const photosList = await listAll(listRef);
@@ -56,23 +44,11 @@ export const fetchCarImagesByColorAndVariant = async (modelName: string, color: 
     }
 }
 
-export const fetchPropertyImagesByVariant = async (modelName: string, name: string, variant: string | number) => {
+export const fetchPropertyImagesByVariant = async (modelName: "Audi RS5" | "Audi RS6" | "Audi e-tron GT", name: string, variant: string | number) => {
     try {
-        let modelFile: string;
-        switch(modelName) {
-            case "Audi RS5":
-                modelFile = "audi_rs5";
-                break;
-            case "Audi RS6":
-                modelFile = "audi-rs6";
-                break;
-            case "Audi e-tron GT":
-                modelFile = "audi_e-tron_gt";
-                break;
-            default:
-                throw new Error("Model file doesn't exist.");
-        }
-if (name === "color") name = "colors";
+        let modelFile = fileNames[modelName];
+
+        if (name === "color") name = "colors";
         const variantRef = ref(storage, `${modelFile}/${name}/${variant}.png`);
 
         const photoItem = await getDownloadURL(variantRef);
