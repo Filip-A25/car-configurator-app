@@ -11,7 +11,7 @@ export interface NumberVariant {
 }
 
 export interface CarConfigurations {
-    model: string;
+    model: "Audi RS5" | "Audi RS6" | "Audi e-tron GT";
     productionYear: number;
     colors: TextVariant[];
     wheelVariants: NumberVariant[];
@@ -19,7 +19,7 @@ export interface CarConfigurations {
 }
 
 export interface UserCarConfiguration {
-    model: string;
+    model: "Audi RS5" | "Audi RS6" | "Audi e-tron GT";
     productionYear: number;
     color: TextVariant;
     wheels: NumberVariant;

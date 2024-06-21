@@ -1,86 +1,21 @@
-import { useEffect, useState, useRef } from "react";
 import { ConfigNavbar } from "./ConfigNavbar";
-import {
-  currentConfigurations,
-  userConfiguration,
-  dropdownOpen,
-  dropdownState,
-} from "../state";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { ConfigSidebar } from "./ConfigSidebar";
 import { ConfigSidebarSelect } from "./ConfigSidebarSelect";
-import {
-  fetchCarConfigurations,
-  fetchCarImagesByColorAndVariant,
-} from "../../../services/API_configurations";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { PaginationButton } from "../../../shared";
 import { IconDirection } from "../../../shared/types";
+import { useConfigEdit } from "../hooks";
 
 export function ConfigEdit() {
-  const [configurations, setConfigurations] = useRecoilState(
-    currentConfigurations
-  );
-  const [currentUserConfiguration, setCurrentUserConfiguration] =
-    useRecoilState(userConfiguration);
-  const [configImages, setConfigImages] = useState<string[]>();
-  const isDropdownOpen = useRecoilValue(dropdownOpen);
-  const activeDropdownName = useRecoilValue(dropdownState);
-
-  const paginationBackRef = useRef(null);
-  const paginationNextRef = useRef(null);
-
-  useEffect(() => {
-    handleCarConfigurationsFetch("8fYqUodzXUKYFVMYtUnJ");
-    handleCarImageFetch("Audi RS5", "tango_red", 1);
-  }, []);
-
-  useEffect(() => {
-    if (currentUserConfiguration) {
-      handleCarImageFetch(
-        currentUserConfiguration.model,
-        currentUserConfiguration.color.label,
-        currentUserConfiguration.wheels.label
-      );
-    }
-  }, [currentUserConfiguration]);
-
-  const handleCarImageFetch = async (
-    modelName: string,
-    color: string,
-    wheelVariant: number
-  ) => {
-    try {
-      const photos = await fetchCarImagesByColorAndVariant(
-        modelName,
-        color,
-        wheelVariant
-      );
-
-      setConfigImages(photos);
-    } catch (err: any) {
-      throw new Error(err);
-    }
-  };
-
-  const handleCarConfigurationsFetch = async (id: string) => {
-    try {
-      const response = await fetchCarConfigurations(id);
-
-      setConfigurations(response);
-
-      setCurrentUserConfiguration({
-        model: response.model,
-        productionYear: response.productionYear,
-        color: response.colors[0],
-        wheels: response.wheelVariants[0],
-        interiorVariant: response.interiorVariants[0],
-      });
-    } catch (err: any) {
-      throw new Error(err);
-    }
-  };
+  const {
+    configurations,
+    configImages,
+    isDropdownOpen,
+    activeDropdownName,
+    paginationBackRef,
+    paginationNextRef,
+  } = useConfigEdit();
 
   return (
     <section className="relative">
@@ -90,7 +25,7 @@ export function ConfigEdit() {
       />
       <div>
         <section className="relative flex min-h-[calc(100vh-140px)]">
-          <div className="flex items-center w-[20%] min-w-[calc(100%-400px)]">
+          <div className="flex items-center w-[20%] xl:min-w-[calc(100%-400px)] 2xl:min-w-[calc(100%-500px)]">
             <Swiper
               modules={[Navigation, Pagination]}
               direction="horizontal"

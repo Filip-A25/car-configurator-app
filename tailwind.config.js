@@ -201,6 +201,40 @@ module.exports = {
           "100%": {
             background: "#2E2E38" 
           }
+        },
+        sidebarCloseAnimation: {
+          "0%": {
+            transform: "translateX(0%)"
+          },
+          "25%": {
+            transform: "translateX(25%)"
+          },
+          "50%": {
+            transform: "translateX(50%)"
+          },
+          "75%": {
+            transform: "translateX(75%)"
+          },
+          "100%": {
+            transform: "translateX(100%)"
+          }
+        },
+        sidebarOpenAnimation: {
+          "0%": {
+            transform: "translateX(100%)"
+          },
+          "25%": {
+            transform: "translateX(75%)"
+          },
+          "50%": {
+            transform: "translateX(50%)"
+          },
+          "75%": {
+            transform: "translateX(25%)"
+          },
+          "100%": {
+            transform: "translateX(0%)"
+          }
         }
       },
       animation: {
@@ -213,7 +247,9 @@ module.exports = {
         navbarMobileDropdownAnimation: "navbarMobileDropdownAnimation .2s ease-in-out forwards",
         navbarMobileColorAnimation: "navbarMobileColorAnimation .2s ease-in-out forwards",
         navbarMobileDropdownAnimationReverse: "navbarMobileDropdownAnimationReverse .2s ease-in-out forwards",
-        navbarMobileColorAnimationReverse: "navbarMobileColorAnimationReverse .2s ease-in-out forwards"
+        navbarMobileColorAnimationReverse: "navbarMobileColorAnimationReverse .2s ease-in-out forwards",
+        sidebarCloseAnimation: "sidebarCLoseAnimation .3s ease-in-out forwards",
+        sidebarOpenAnimation: "sidebarOpenAnimation .3s ease-in-out forwards"
       }
     },
     colors: {

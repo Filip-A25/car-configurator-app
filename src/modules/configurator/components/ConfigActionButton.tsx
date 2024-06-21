@@ -7,7 +7,7 @@ interface ActionButtonProps {
 export function ConfigActionButton({ text, arrow, action }: ActionButtonProps) {
   return (
     <button
-      className="absolute flex justify-center bottom-0 bg-button-purple w-full py-7"
+      className="absolute flex justify-center bottom-0 left-0 bg-button-purple w-full py-7"
       onClick={action}
     >
       <span className="text-light-gray-element-color text-xl">{text}</span>

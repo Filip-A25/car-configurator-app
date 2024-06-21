@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
-import { fetchPropertyImagesByVariant } from "../../../services/API_configurations";
-import {
-  dropdownState,
-  dropdownOpen,
-  userConfiguration,
-  activePropState,
-} from "../state";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useConfigProperty } from "../hooks";
 
 interface PropertyProps {
   index: number;
   propertyName: "color" | "wheels";
-  modelName: string | undefined;
+  modelName: "Audi RS5" | "Audi RS6" | "Audi e-tron GT" | undefined;
   label: string | number;
   name: string;
   description: string;
@@ -25,48 +17,15 @@ export function ConfigProperty({
   name,
   description,
 }: PropertyProps) {
-  const [propertyImgUrl, setPropertyImgUrl] = useState("");
-  const setActiveDropdownName = useSetRecoilState(dropdownState);
-  const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownOpen);
-  const [currentUserConfiguration, setCurrentUserConfiguration] =
-    useRecoilState(userConfiguration);
-
-  const [activePropIndex, setActivePropIndex] = useRecoilState(activePropState);
-
-  useEffect(() => {
-    handleImageFetch();
-  }, []);
-
-  const handleImageFetch = async () => {
-    try {
-      if (!modelName) return;
-      const photoUrl = await fetchPropertyImagesByVariant(
-        modelName,
-        name,
-        label
-      );
-      setPropertyImgUrl(photoUrl);
-    } catch (err: any) {
-      throw new Error(err);
-    }
-  };
-
-  const handleOpenDropdown = () => {
-    if (!isDropdownOpen) {
-      setIsDropdownOpen(true);
-      setActiveDropdownName(propertyName);
-    } else {
-      if (!currentUserConfiguration) return;
-      setCurrentUserConfiguration({
-        ...currentUserConfiguration,
-        [propertyName]: {
-          ...currentUserConfiguration[propertyName],
-          label: label,
-        },
-      });
-      setActivePropIndex({ ...activePropIndex, [propertyName]: index });
-    }
-  };
+  const { handleOpenDropdown, propertyImgUrl, activePropIndex } =
+    useConfigProperty({
+      index,
+      propertyName,
+      modelName,
+      label,
+      name,
+      description,
+    });
 
   return (
     <button className="flex items-center" onClick={handleOpenDropdown}>
@@ -74,7 +33,7 @@ export function ConfigProperty({
         <img
           src={propertyImgUrl}
           alt={name}
-          className="w-12 2xl:w-16 rounded-[50%]"
+          className="w-12 2xl:w-20 rounded-[50%]"
         />
         {activePropIndex[propertyName] === index && (
           <div className="absolute bottom-5 right-4 bg-checkmark-green w-5 h-5 rounded-[50%] flex justify-center items-center">
@@ -94,10 +53,10 @@ export function ConfigProperty({
         )}
       </div>
       <section className="text-left pl-3">
-        <h3 className="text-text-default-gray text-md 2xl:text-lg">
+        <h3 className="text-text-default-gray text-md 2xl:text-xl">
           {description}
         </h3>
-        <h4 className="font-optician-sans text-sm 2xl:text-lg text-property-name-grey tracking-[2px]">
+        <h4 className="font-optician-sans text-sm 2xl:text-xl text-property-name-grey tracking-[2px]">
           {name}
         </h4>
       </section>
