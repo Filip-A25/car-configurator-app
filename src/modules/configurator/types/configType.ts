@@ -1,5 +1,11 @@
-export interface Variant {
-    label: string | number;
+export interface TextVariant {
+    label: string;
+    name: string;
+    price: number;
+}
+
+export interface NumberVariant {
+    label: number;
     name: string;
     price: number;
 }
@@ -7,16 +13,16 @@ export interface Variant {
 export interface CarConfigurations {
     model: string;
     productionYear: number;
-    colors: Variant[];
-    wheelVariants: Variant[];
+    colors: TextVariant[];
+    wheelVariants: NumberVariant[];
     interiorVariants: string[];
 }
 
 export interface UserCarConfiguration {
     model: string;
     productionYear: number;
-    color: Variant;
-    wheelVariant: Variant;
+    color: TextVariant;
+    wheels: NumberVariant;
     interiorVariant: string;
 }
 

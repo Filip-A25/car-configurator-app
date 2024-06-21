@@ -59,7 +59,10 @@ export function ConfigProperty({
       if (!currentUserConfiguration) return;
       setCurrentUserConfiguration({
         ...currentUserConfiguration,
-        [propertyName]: label,
+        [propertyName]: {
+          ...currentUserConfiguration[propertyName],
+          label: label,
+        },
       });
       setActivePropIndex({ ...activePropIndex, [propertyName]: index });
     }
