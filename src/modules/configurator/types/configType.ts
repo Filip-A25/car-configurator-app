@@ -19,3 +19,8 @@ export interface UserCarConfiguration {
     wheelVariant: Variant;
     interiorVariant: string;
 }
+
+export interface PropIndex {
+    color: number;
+    wheels: number;
+}

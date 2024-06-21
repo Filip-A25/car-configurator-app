@@ -1,7 +1,6 @@
 import { ConfigProperty } from "./ConfigProperty";
-import { currentConfigurations } from "../state";
+import { currentConfigurations, activePropState } from "../state";
 import { useRecoilValue } from "recoil";
-import { useState } from "react";
 
 interface DropdownProps {
   propertyName: "color" | "wheels";
@@ -12,9 +11,8 @@ export function ConfigPropertyDropdown({
   propertyName,
   isActive,
 }: DropdownProps) {
-  const [activePropIndex, setActivePropIndex] = useState(0);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const configurations = useRecoilValue(currentConfigurations);
+  const activePropIndex = useRecoilValue(activePropState);
 
   const currentProperties =
     propertyName === "color"
@@ -26,7 +24,7 @@ export function ConfigPropertyDropdown({
       {currentProperties &&
         currentProperties.length > 0 &&
         currentProperties.map((item, index) =>
-          !isActive && activePropIndex === index ? (
+          !isActive && activePropIndex[propertyName] === index ? (
             <ConfigProperty
               key={index}
               index={index}
@@ -35,8 +33,6 @@ export function ConfigPropertyDropdown({
               label={item.label}
               name={propertyName}
               description={item.name}
-              isDropdownOpen={isDropdownOpen}
-              setActivePropIndex={setActivePropIndex}
             />
           ) : isActive ? (
             <ConfigProperty
@@ -47,8 +43,6 @@ export function ConfigPropertyDropdown({
               label={item.label}
               name={propertyName}
               description={item.name}
-              isDropdownOpen={isDropdownOpen}
-              setActivePropIndex={setActivePropIndex}
             />
           ) : null
         )}
