@@ -1,8 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 import { ConfigNavbar } from "./ConfigNavbar";
-import { currentConfigurations, userConfiguration } from "../state/carState";
-import { useRecoilState } from "recoil";
+import {
+  currentConfigurations,
+  userConfiguration,
+  dropdownOpen,
+  dropdownState,
+} from "../state";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { ConfigSidebar } from "./ConfigSidebar";
+import { ConfigSidebarSelect } from "./ConfigSidebarSelect";
 import {
   fetchCarConfigurations,
   fetchCarImagesByColorAndVariant,
@@ -16,9 +22,10 @@ export function ConfigEdit() {
   const [configurations, setConfigurations] = useRecoilState(
     currentConfigurations
   );
-  const [currentUserConfiguration, setCurrentUserConfiguration] =
-    useRecoilState(userConfiguration);
+  const setCurrentUserConfiguration = useSetRecoilState(userConfiguration);
   const [configImages, setConfigImages] = useState<string[]>();
+  const isDropdownOpen = useRecoilValue(dropdownOpen);
+  const activeDropdownName = useRecoilValue(dropdownState);
 
   const paginationBackRef = useRef(null);
   const paginationNextRef = useRef(null);
@@ -61,14 +68,14 @@ export function ConfigEdit() {
   };
 
   return (
-    <>
+    <section className="relative">
       <ConfigNavbar
         model={configurations?.model}
         productionYear={configurations?.productionYear}
       />
       <div>
-        <section className="flex min-h-[calc(100vh-140px)] relative">
-          <div className="md:pt-36 lg:pt-28 2xl:pt-24 w-[20%] min-w-[calc(100%-300px)]">
+        <section className="relative flex min-h-[calc(100vh-140px)]">
+          <div className="flex items-center w-[20%] min-w-[calc(100%-400px)]">
             <Swiper
               modules={[Navigation, Pagination]}
               direction="horizontal"
@@ -89,7 +96,7 @@ export function ConfigEdit() {
                     <img
                       src={imgUrl}
                       alt={configurations?.model}
-                      className="md:py-16"
+                      className="md:pb-16"
                     />
                   </SwiperSlide>
                 ))}
@@ -108,9 +115,12 @@ export function ConfigEdit() {
               </div>
             </Swiper>
           </div>
-          <ConfigSidebar />
+          {!isDropdownOpen && <ConfigSidebar />}
         </section>
+        {isDropdownOpen && (
+          <ConfigSidebarSelect propertyName={activeDropdownName} />
+        )}
       </div>
-    </>
+    </section>
   );
 }

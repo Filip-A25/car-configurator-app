@@ -1,22 +1,14 @@
 import { ConfigPropertyDropdown } from "./ConfigPropertyDropdown";
-import { useRecoilValue } from "recoil";
-import { dropdownState } from "../state";
+import { ConfigActionButton } from "./ConfigActionButton";
 
 export function ConfigSidebar() {
-  const dropdownActiveName = useRecoilValue(dropdownState);
-
   return (
-    <div className="min-w-[350px] bg-light-gray-element-color py-6 px-4 absolute right-0 h-full">
-      {dropdownActiveName === "color" ? (
-        <ConfigPropertyDropdown propertyName="color" />
-      ) : dropdownActiveName === "wheels" ? (
-        <ConfigPropertyDropdown propertyName="wheels" />
-      ) : (
-        <>
-          <ConfigPropertyDropdown propertyName="color" />
-          <ConfigPropertyDropdown propertyName="wheels" />
-        </>
-      )}
+    <div className="xl:min-w-[325px] 2xl:min-w-[400px] bg-light-gray-element-color py-8 px-4 absolute right-0 top-0 h-full">
+      <div className="relative h-full">
+        <ConfigPropertyDropdown propertyName="color" isActive={false} />
+        <ConfigPropertyDropdown propertyName="wheels" isActive={false} />
+        <ConfigActionButton text="Interior" />
+      </div>
     </div>
   );
 }
