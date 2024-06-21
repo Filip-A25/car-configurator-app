@@ -1,31 +1,55 @@
 import { ConfigProperty } from "./ConfigProperty";
-import { currentConfiguration } from "../state";
+import { currentConfigurations } from "../state";
 import { useRecoilValue } from "recoil";
+import { useState } from "react";
 
 export function ConfigPropertyDropdown({
   propertyName,
 }: {
-  propertyName: string;
+  propertyName: "color" | "wheels";
 }) {
-  const configuration = useRecoilValue(currentConfiguration);
+  const [activePropIndex, setActivePropIndex] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const configurations = useRecoilValue(currentConfigurations);
+
   const currentProperties =
     propertyName === "color"
-      ? configuration?.colors
-      : configuration?.wheelVariants;
+      ? configurations?.colors
+      : configurations?.wheelVariants;
 
   return (
     <ul>
       {currentProperties &&
         currentProperties.length > 0 &&
-        currentProperties.map((item, index) => (
-          <ConfigProperty
-            key={index}
-            modelName={configuration?.model}
-            label={item.label}
-            name={propertyName}
-            description={item.name}
-          />
-        ))}
+        currentProperties.map((item, index) =>
+          !isDropdownOpen && activePropIndex === index ? (
+            <ConfigProperty
+              key={index}
+              index={index}
+              propertyName={propertyName}
+              modelName={configurations?.model}
+              label={item.label}
+              name={propertyName}
+              description={item.name}
+              isDropdownOpen={isDropdownOpen}
+              setIsDropdownOpen={setIsDropdownOpen}
+              setActivePropIndex={setActivePropIndex}
+            />
+          ) : isDropdownOpen ? (
+            <ConfigProperty
+              key={index}
+              index={index}
+              propertyName={propertyName}
+              modelName={configurations?.model}
+              label={item.label}
+              name={propertyName}
+              description={item.name}
+              isDropdownOpen={isDropdownOpen}
+              setIsDropdownOpen={setIsDropdownOpen}
+              setActivePropIndex={setActivePropIndex}
+            />
+          ) : null
+        )}
     </ul>
   );
 }

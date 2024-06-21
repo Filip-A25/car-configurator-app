@@ -56,7 +56,7 @@ export const fetchCarImagesByColorAndVariant = async (modelName: string, color: 
     }
 }
 
-export const fetchPropertyImagesByVariant = async (modelName:string, name: string, variant: string | number) => {
+export const fetchPropertyImagesByVariant = async (modelName: string, name: string, variant: string | number) => {
     try {
         let modelFile: string;
         switch(modelName) {

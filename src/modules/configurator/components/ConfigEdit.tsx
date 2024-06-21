@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { ConfigNavbar } from "./ConfigNavbar";
-import { currentConfiguration } from "../state/carState";
+import { currentConfigurations, userConfiguration } from "../state/carState";
 import { useRecoilState } from "recoil";
 import { ConfigSidebar } from "./ConfigSidebar";
 import {
@@ -13,8 +13,11 @@ import { PaginationButton } from "../../../shared";
 import { IconDirection } from "../../../shared/types";
 
 export function ConfigEdit() {
-  const [configuration, setConfiguration] =
-    useRecoilState(currentConfiguration);
+  const [configurations, setConfigurations] = useRecoilState(
+    currentConfigurations
+  );
+  const [currentUserConfiguration, setCurrentUserConfiguration] =
+    useRecoilState(userConfiguration);
   const [configImages, setConfigImages] = useState<string[]>();
 
   const paginationBackRef = useRef(null);
@@ -43,7 +46,15 @@ export function ConfigEdit() {
     try {
       const response = await fetchCarConfigurations(id);
 
-      setConfiguration(response);
+      setConfigurations(response);
+
+      setCurrentUserConfiguration({
+        model: response.model,
+        productionYear: response.productionYear,
+        color: response.colors[0],
+        wheelVariant: response.wheelVariants[0],
+        interiorVariant: response.interiorVariants[0],
+      });
     } catch (err: any) {
       throw new Error(err);
     }
@@ -52,11 +63,11 @@ export function ConfigEdit() {
   return (
     <>
       <ConfigNavbar
-        model={configuration?.model}
-        productionYear={configuration?.productionYear}
+        model={configurations?.model}
+        productionYear={configurations?.productionYear}
       />
       <div>
-        <section className="flex h-[calc(100vh-130px)] relative">
+        <section className="flex min-h-[calc(100vh-140px)] relative">
           <div className="md:pt-36 lg:pt-28 2xl:pt-24 w-[20%] min-w-[calc(100%-300px)]">
             <Swiper
               modules={[Navigation, Pagination]}
@@ -77,8 +88,8 @@ export function ConfigEdit() {
                   <SwiperSlide key={index}>
                     <img
                       src={imgUrl}
-                      alt={configuration?.model}
-                      className="py-40"
+                      alt={configurations?.model}
+                      className="md:py-16"
                     />
                   </SwiperSlide>
                 ))}

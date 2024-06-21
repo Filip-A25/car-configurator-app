@@ -11,7 +11,7 @@ export default function App() {
   const [isLoggedIn] = useRecoilState(userState);
 
   return (
-    <div className="relative bg-light-gray-background-color">
+    <div className="relative bg-light-gray-background-color overflow-x-hidden">
       <Navbar />
       <Routes>
         <Route
