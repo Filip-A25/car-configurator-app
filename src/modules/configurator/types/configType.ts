@@ -11,3 +11,11 @@ export interface CarConfigurations {
     wheelVariants: Variant[];
     interiorVariants: string[];
 }
+
+export interface UserCarConfiguration {
+    model: string;
+    productionYear: number;
+    color: Variant;
+    wheelVariant: Variant;
+    interiorVariant: string;
+}

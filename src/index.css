@@ -11,9 +11,23 @@
   padding: 0;
 }
 
-.swiper-slide {
-  padding: 0 30rem 0 30rem;
-  height: fit-content !important;
+@media screen and (min-width: 1024px) {
+  .swiper-slide {
+    padding: 0 4rem 0 4rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .swiper-slide {
+    padding: 0 10rem 0 10rem;
+  }
+}
+
+@media screen and (min-width: 1536px) {
+  .swiper-slide {
+    padding: 0 18rem 0 18rem;
+    height: fit-content !important;
+  }
 }
 
 .swiper-pagination-current {

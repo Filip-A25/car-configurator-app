@@ -1,12 +1,12 @@
 import { atom } from "recoil";
-import { CarConfigurations } from "../types";
+import { CarConfigurations, UserCarConfiguration } from "../types";
 
-export const currentConfiguration = atom<CarConfigurations | undefined>({
-  key: "configurator.currentConfiguration",
+export const currentConfigurations = atom<CarConfigurations | undefined>({
+  key: "configurator.currentConfigurations",
   default: undefined,
 });
 
-export const modelConfigurations = atom({
-  key: "configurator.modelConfigurations",
-  default: {},
+export const userConfiguration = atom<UserCarConfiguration | undefined>({
+  key: "configurator.userConfiguration",
+  default: undefined,
 });
