@@ -22,7 +22,8 @@ export function ConfigEdit() {
   const [configurations, setConfigurations] = useRecoilState(
     currentConfigurations
   );
-  const setCurrentUserConfiguration = useSetRecoilState(userConfiguration);
+  const [currentUserConfiguration, setCurrentUserConfiguration] =
+    useRecoilState(userConfiguration);
   const [configImages, setConfigImages] = useState<string[]>();
   const isDropdownOpen = useRecoilValue(dropdownOpen);
   const activeDropdownName = useRecoilValue(dropdownState);
@@ -32,15 +33,29 @@ export function ConfigEdit() {
 
   useEffect(() => {
     handleCarConfigurationsFetch("8fYqUodzXUKYFVMYtUnJ");
-    handleCarImageFetch();
+    handleCarImageFetch("Audi RS5", "tango_red", 1);
   }, []);
 
-  const handleCarImageFetch = async () => {
+  useEffect(() => {
+    if (currentUserConfiguration) {
+      handleCarImageFetch(
+        currentUserConfiguration.model,
+        currentUserConfiguration.color.label,
+        currentUserConfiguration.wheels.label
+      );
+    }
+  }, [currentUserConfiguration]);
+
+  const handleCarImageFetch = async (
+    modelName: string,
+    color: string,
+    wheelVariant: number
+  ) => {
     try {
       const photos = await fetchCarImagesByColorAndVariant(
-        "Audi RS5",
-        "tango_red",
-        1
+        modelName,
+        color,
+        wheelVariant
       );
 
       setConfigImages(photos);
@@ -59,7 +74,7 @@ export function ConfigEdit() {
         model: response.model,
         productionYear: response.productionYear,
         color: response.colors[0],
-        wheelVariant: response.wheelVariants[0],
+        wheels: response.wheelVariants[0],
         interiorVariant: response.interiorVariants[0],
       });
     } catch (err: any) {
