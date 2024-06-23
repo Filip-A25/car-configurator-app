@@ -16,7 +16,7 @@ export function ConfigPropertyDropdown({
 
   const currentProperties =
     propertyName === "color"
-      ? configurations?.colors
+      ? configurations?.color
       : configurations?.wheelVariants;
 
   return (
