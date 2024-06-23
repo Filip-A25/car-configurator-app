@@ -6,16 +6,6 @@ export enum CarPosition {
   frontLeft = "front-left",
 }
 
-export interface CarModel {
-  id: string;
-  model: string;
-  productionYear: number;
-  color: string;
-  wheelVariant: number;
-  interiorVariant: string;
-  totalPrice: number;
-}
-
 export interface CarModelImages {
   front: string;
   back: string;

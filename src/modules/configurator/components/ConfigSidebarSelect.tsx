@@ -19,7 +19,7 @@ export function ConfigSidebarSelect({ propertyName }: SidebarSelectProps) {
     <div
       className={`${
         isDropdownOpen && "animate-sidebarOpenAnimation"
-      } absolute right-0 top-0 border-l border-input-border-gray xl:min-w-[400px] 2xl:min-w-[500px] bg-light-gray-element-color px-4 h-full`}
+      } absolute right-0 top-0 border-l border-input-border-gray min-w-[250px] md:min-w-[350px] lg:min-w-[400px] 2xl:min-w-[425px] 3xl:min-w-[500px] bg-light-gray-element-color px-4 h-full`}
     >
       <h1 className="leading-10 px-5 pt-4 pb-12 font-optician-sans text-3xl">
         {propertyName}

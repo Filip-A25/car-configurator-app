@@ -15,7 +15,7 @@ export const fetchCarConfigurations = async (id: string) => {
         const carData: CarConfigurations = {
             model: responseData.name,
             productionYear: responseData.production_year,
-            colors: responseData.color,
+            color: responseData.color,
             wheelVariants: responseData.wheel_variant,
             interiorVariants: responseData.interior_variant
         }
@@ -48,7 +48,6 @@ export const fetchPropertyImagesByVariant = async (modelName: "Audi RS5" | "Audi
     try {
         let modelFile = fileNames[modelName];
 
-        if (name === "color") name = "colors";
         const variantRef = ref(storage, `${modelFile}/${name}/${variant}.png`);
 
         const photoItem = await getDownloadURL(variantRef);

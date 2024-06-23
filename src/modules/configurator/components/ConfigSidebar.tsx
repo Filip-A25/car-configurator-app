@@ -6,7 +6,7 @@ export function ConfigSidebar() {
   const handleNavigate = () => {};
 
   return (
-    <div className="border-l xl:min-w-[400px] 2xl:min-w-[500px] border-input-border-gray bg-light-gray-element-color py-8 px-6 absolute right-0 top-0 h-full">
+    <div className="border-l min-w-[250px] md:min-w-[350px] lg:min-w-[400px] 2xl:min-w-[425px] 3xl:min-w-[500px] border-input-border-gray bg-light-gray-element-color py-8 px-6 absolute right-0 top-0 h-full">
       <ConfigPropertyDropdown propertyName="color" isActive={false} />
       <ConfigPropertyDropdown propertyName="wheels" isActive={false} />
       <ConfigActionButton

@@ -1,3 +1,5 @@
+export * from './CarImageSlide';
+export * from './ConfigActionButton';
 export * from './ConfigEdit';
 export * from './ConfigNavbar';
 export * from './ConfigProperty';
