@@ -33,6 +33,7 @@ export function ConfigPropertyDropdown({
               label={item.label}
               name={propertyName}
               description={item.name}
+              price={item.price}
             />
           ) : isActive ? (
             <ConfigProperty
@@ -43,6 +44,7 @@ export function ConfigPropertyDropdown({
               label={item.label}
               name={propertyName}
               description={item.name}
+              price={item.price}
             />
           ) : null
         )}

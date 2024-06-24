@@ -30,8 +30,9 @@ export function useConfigEdit() {
         model: response.model,
         productionYear: response.productionYear,
         color: response.color[0],
-        wheels: response.wheelVariants[0],
+        wheels: response.wheelVariants[1],
         interiorVariant: response.interiorVariants[0],
+        price: response.price,
       });
     } catch (err: any) {
       throw new Error(err);

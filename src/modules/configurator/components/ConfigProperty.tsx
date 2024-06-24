@@ -7,6 +7,7 @@ interface PropertyProps {
   label: string | number;
   name: string;
   description: string;
+  price: number;
 }
 
 export function ConfigProperty({
@@ -16,6 +17,7 @@ export function ConfigProperty({
   label,
   name,
   description,
+  price,
 }: PropertyProps) {
   const { handleOpenDropdown, propertyImgUrl, activePropIndex } =
     useConfigProperty({
@@ -25,10 +27,11 @@ export function ConfigProperty({
       label,
       name,
       description,
+      price,
     });
 
   return (
-    <button className="flex items-center" onClick={handleOpenDropdown}>
+    <button className="flex items-center pr-40" onClick={handleOpenDropdown}>
       <div className="relative p-5">
         <img
           src={propertyImgUrl}

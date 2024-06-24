@@ -21,15 +21,15 @@ export function ConfigNavbar({ model, productionYear }: ConfigNavbarProps) {
       <section
         className={`${
           isDropdownOpen && "hidden"
-        } flex justify-between min-w-[400px] text-text-default-gray text-md`}
+        } flex justify-between text-text-default-gray text-md`}
       >
-        <h3 className="font-bold">
+        <h3 className="font-bold sm:px-4 lg:px-8">
           <span className="text-muted-grey">01</span> Exterior
         </h3>
-        <h3 className="">
+        <h3 className="sm:px-4 lg:px-8">
           <span className="text-muted-grey">02</span> Interior
         </h3>
-        <h3 className="">
+        <h3 className="sm:px-4 lg:px-8">
           <span className="text-muted-grey">03</span> Summary
         </h3>
       </section>
