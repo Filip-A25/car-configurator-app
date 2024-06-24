@@ -15,6 +15,7 @@ interface PropertyProps {
   label: string | number;
   name: string;
   description: string;
+  price: number;
 }
 
 export function useConfigProperty({
@@ -24,6 +25,7 @@ export function useConfigProperty({
   label,
   name,
   description,
+  price,
 }: PropertyProps) {
   const [propertyImgUrl, setPropertyImgUrl] = useState("");
   const setActiveDropdownName = useSetRecoilState(dropdownState);
@@ -60,8 +62,9 @@ export function useConfigProperty({
       setCurrentUserConfiguration({
         ...currentUserConfiguration,
         [propertyName]: {
-          ...currentUserConfiguration[propertyName],
           label: label,
+          description: description,
+          price: price,
         },
       });
       setActivePropIndex({ ...activePropIndex, [propertyName]: index });

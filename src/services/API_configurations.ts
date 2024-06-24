@@ -17,7 +17,8 @@ export const fetchCarConfigurations = async (id: string) => {
             productionYear: responseData.production_year,
             color: responseData.color,
             wheelVariants: responseData.wheel_variant,
-            interiorVariants: responseData.interior_variant
+            interiorVariants: responseData.interior_variant,
+            price: responseData.price
         }
 
         return carData;

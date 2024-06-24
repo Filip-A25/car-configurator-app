@@ -1,0 +1,1 @@
+export const decimalRegexp = /\B(?=(\d{3})+(?!\d))/g;

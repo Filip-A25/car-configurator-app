@@ -16,6 +16,7 @@ export interface CarConfigurations {
     color: TextVariant[];
     wheelVariants: NumberVariant[];
     interiorVariants: string[];
+    price: number;
 }
 
 export interface UserCarConfiguration {
@@ -24,6 +25,7 @@ export interface UserCarConfiguration {
     color: TextVariant;
     wheels: NumberVariant;
     interiorVariant: string;
+    price: number;
 }
 
 export interface PropIndex {

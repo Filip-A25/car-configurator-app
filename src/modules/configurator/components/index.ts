@@ -7,3 +7,4 @@ export * from './ConfigPropertyDropdown';
 export * from './ConfigSidebar';
 export * from './ConfigSidebarSelect';
 export * from './ConfigureACar';
+export * from './PriceDisplay';
