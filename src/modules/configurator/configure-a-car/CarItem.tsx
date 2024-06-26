@@ -11,12 +11,7 @@ interface CarItemProps {
   colors: string[];
 }
 
-export default function CarItem({
-  id,
-  model,
-  productionYear,
-  colors,
-}: CarItemProps) {
+export function CarItem({ id, model, productionYear, colors }: CarItemProps) {
   const [carImg, setCarImg] = useState("");
 
   useEffect(() => {

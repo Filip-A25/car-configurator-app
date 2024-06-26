@@ -4,10 +4,10 @@ import { carsState } from "../state/carsState";
 import { useEffect } from "react";
 import { fetchAllCarData } from "../../../services/API_carModel";
 import { Car } from "../types/carType";
-import CarItem from "./CarItem";
+import { CarItem } from "./CarItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-export default function CarSelect() {
+export function CarSelect() {
   const [carsArray, setCarsState] = useRecoilState(carsState);
 
   useEffect(() => {

@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import ConfigureACar from "./configure-a-car/ConfigureACar";
+import { ConfigureACar } from "./configure-a-car";
 import Configurations from "./components/saved-configurations/Configurations";
 
-export default function Configurator() {
+export function Configurator() {
   return (
     <div id="configurator-content">
       <Routes>

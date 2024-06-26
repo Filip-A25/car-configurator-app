@@ -6,7 +6,7 @@ import { FormProvider } from "react-hook-form";
 import Button from "../../../shared/Button";
 import useAuthLogin from "../hooks/useAuthLogin";
 
-export default function AuthLoginForm() {
+export function AuthLoginForm() {
   const { handleGoogleSignIn, onSubmit, form } = useAuthLogin();
 
   return (

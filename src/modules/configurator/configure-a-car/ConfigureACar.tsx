@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import CarSelect from "./CarSelect";
+import { CarSelect } from "./";
 
-export default function ConfigureACar() {
+export function ConfigureACar() {
   return (
     <Routes>
       {/*There will be more routes here.*/}

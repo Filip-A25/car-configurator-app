@@ -7,7 +7,7 @@ import Button from "../../../shared/Button";
 import useAuthRegister from "../hooks/useAuthRegister";
 import { FormProvider } from "react-hook-form";
 
-export default function AuthRegisterForm() {
+export function AuthRegisterForm() {
   const { onSubmit, handleGoogleSignUp, form } = useAuthRegister();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
