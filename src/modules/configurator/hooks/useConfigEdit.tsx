@@ -39,6 +39,18 @@ export function useConfigEdit() {
     }
   };
 
+  useEffect(() => {
+    const preventPageLeave = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+    };
+
+    window.addEventListener("beforeunload", preventPageLeave);
+
+    return () => {
+      window.removeEventListener("beforeunload", preventPageLeave);
+    };
+  }, []);
+
   return {
     configurations,
     isDropdownOpen,

@@ -24,8 +24,8 @@ export function ConfigSidebarSelect({ propertyName }: SidebarSelectProps) {
     >
       <div className="flex flex-col justify-between min-h-full pb-24">
         <section>
-          <div className="flex justify-between px-5 pt-2 sm:pt-4 pb-2 sm:pb-12">
-            <h1 className="leading-10 font-optician-sans text-3xl">
+          <div className="flex justify-between px-2 sm:px-5 pt-2 sm:pt-4 pb-2 sm:pb-12">
+            <h1 className="leading-10 font-optician-sans text-xl sm:text-3xl">
               {propertyName}
             </h1>
             <button className="px-3" onClick={handleDropdownClose}>
