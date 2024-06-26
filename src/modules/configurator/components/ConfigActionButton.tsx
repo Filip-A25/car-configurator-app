@@ -10,7 +10,9 @@ export function ConfigActionButton({ text, arrow, action }: ActionButtonProps) {
       className="absolute flex justify-center bottom-0 left-0 bg-button-purple w-full py-5 3xl:py-7"
       onClick={action}
     >
-      <span className="text-light-gray-element-color text-xl">{text}</span>
+      <span className="text-light-gray-element-color text-xl 3xl:text-2xl">
+        {text}
+      </span>
       {arrow && (
         <svg
           viewBox="0 0 7 12"

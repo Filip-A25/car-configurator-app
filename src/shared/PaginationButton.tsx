@@ -3,14 +3,16 @@ import { IconDirection } from "./types";
 interface PaginationButtonProps {
   direction: IconDirection;
   childRef: React.MutableRefObject<HTMLButtonElement | null>;
+  className: string;
 }
 
 export function PaginationButton({
   direction,
   childRef,
+  className,
 }: PaginationButtonProps) {
   return (
-    <button className="w-10 py-2" ref={childRef}>
+    <button className={className} ref={childRef}>
       <svg
         viewBox="0 0 7 12"
         fill="none"

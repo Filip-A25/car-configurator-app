@@ -49,11 +49,13 @@ export function CarImageSlide() {
           <PaginationButton
             direction={IconDirection.back}
             childRef={paginationBackRef}
+            className="max-sm:absolute w-10 py-2 max-sm:left-0 max-sm:top-[50%] max-sm:z-10"
           />
           <span className="swiper-pagination text-input-border-gray"></span>
           <PaginationButton
             direction={IconDirection.next}
             childRef={paginationNextRef}
+            className="max-sm:absolute w-10 py-2 max-sm:right-0 max-sm:top-[50%] max-sm:z-10"
           />
         </div>
       </div>

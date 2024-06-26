@@ -31,19 +31,22 @@ export function ConfigProperty({
     });
 
   return (
-    <button className="flex items-center pr-40" onClick={handleOpenDropdown}>
-      <div className="relative p-5">
+    <button
+      className="flex items-center sm:pr-40 3xl:pr-64"
+      onClick={handleOpenDropdown}
+    >
+      <div className="relative p-2 xs:p-3 sm:p-5">
         {propertyImgUrl ? (
           <img
             src={propertyImgUrl}
             alt={name}
-            className="w-12 2xl:w-14 3xl:w-20 rounded-[50%]"
+            className="w-10 sm:w-12 2xl:w-14 3xl:w-20 rounded-[50%]"
           />
         ) : (
           <div className="w-12 2xl:w-14 h-12 2xl:h-14 bg-light-gray-background-color rounded-[50%]"></div>
         )}
         {activePropIndex[propertyName] === index && (
-          <div className="absolute bottom-5 right-4 bg-checkmark-green w-5 h-5 rounded-[50%] flex justify-center items-center">
+          <div className="absolute right-3 bottom-3 sm:bottom-5 sm:right-4 bg-checkmark-green w-3 h-3 sm:w-5 sm:h-5 rounded-[50%] flex justify-center items-center">
             <svg
               width="12"
               height="12"
@@ -60,10 +63,10 @@ export function ConfigProperty({
         )}
       </div>
       <section className="text-left pl-3">
-        <h3 className="text-text-default-gray text-md 2xl:text-lg 3xl:text-xl">
+        <h3 className="text-text-default-gray text-sm sm:text-md 2xl:text-lg 3xl:text-xl">
           {description}
         </h3>
-        <h4 className="font-optician-sans text-sm 2xl:text-md 3xl:text-lg text-property-name-grey tracking-[2px]">
+        <h4 className="font-optician-sans text-xs sm:text-sm 2xl:text-md 3xl:text-lg text-property-name-grey tracking-[2px]">
           {propertyName === "color" ? `paint ${name}` : name}
         </h4>
       </section>
