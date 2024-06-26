@@ -19,12 +19,12 @@ export function ConfigSidebarSelect({ propertyName }: SidebarSelectProps) {
   return (
     <div
       className={`${
-        isDropdownOpen && "animate-sidebarOpenAnimation"
-      } absolute right-0 top-0 border-l border-input-border-gray min-w-[250px] md:min-w-[350px] lg:min-w-[400px] 2xl:min-w-[425px] 3xl:min-w-[500px] bg-light-gray-element-color px-4 h-full`}
+        isDropdownOpen && "sm:animate-sidebarOpenAnimation"
+      } absolute bottom-0 w-full sm:right-0 sm:top-0 border-l border-input-border-gray min-w-[250px] md:min-w-[350px] lg:min-w-[400px] 2xl:min-w-[425px] 3xl:min-w-[500px] bg-light-gray-element-color px-4 sm:h-full`}
     >
       <div className="flex flex-col justify-between min-h-full pb-24">
         <section>
-          <div className="flex justify-between px-5 pt-4 pb-12">
+          <div className="flex justify-between px-5 pt-2 sm:pt-4 pb-2 sm:pb-12">
             <h1 className="leading-10 font-optician-sans text-3xl">
               {propertyName}
             </h1>

@@ -5,7 +5,7 @@ export function PriceDisplay() {
   const displayPrice = useRecoilValue(configurationPrice);
 
   return (
-    <section className="flex justify-between items-end px-5">
+    <section className="flex justify-between items-end max-sm:pt-2 px-5">
       <span className="flex items-center">
         <h4 className="tracking-widest text-muted-grey">TOTAL</h4>
         <svg

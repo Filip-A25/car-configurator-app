@@ -15,7 +15,7 @@ export function PaginationButton({
         viewBox="0 0 7 12"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="mx-auto w-4 h-4"
+        className="mx-auto w-3 h-3 sm:w-4 sm:h-4"
       >
         <path
           fillRule="evenodd"

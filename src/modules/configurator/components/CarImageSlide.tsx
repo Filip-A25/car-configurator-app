@@ -28,12 +28,12 @@ export function CarImageSlide() {
       }}
     >
       {configImages && configImages.length > 0 ? (
-        configImages?.map((imgUrl, index) => (
+        configImages.map((imgUrl, index) => (
           <SwiperSlide key={index}>
             <img
               src={imgUrl}
               alt={configurations?.model}
-              className="md:pb-16"
+              className="pb-8 md:pb-16"
             />
           </SwiperSlide>
         ))
@@ -45,7 +45,7 @@ export function CarImageSlide() {
         />
       )}
       <div className="flex justify-center items-center">
-        <div className="flex items-center text-text-default-gray text-2xl">
+        <div className="flex items-center text-text-default-gray text-lg sm:text-2xl">
           <PaginationButton
             direction={IconDirection.back}
             childRef={paginationBackRef}
