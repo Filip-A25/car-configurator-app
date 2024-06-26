@@ -20,7 +20,7 @@ export function ConfigSidebarSelect({ propertyName }: SidebarSelectProps) {
     <div
       className={`${
         isDropdownOpen && "sm:animate-sidebarOpenAnimation"
-      } absolute bottom-0 w-full sm:right-0 sm:top-0 border-l border-input-border-gray min-w-[250px] md:min-w-[350px] lg:min-w-[400px] 2xl:min-w-[425px] 3xl:min-w-[500px] bg-light-gray-element-color px-4 sm:h-full`}
+      } absolute bottom-0 max-xs:w-full sm:right-0 sm:top-0 border-l border-input-border-gray min-w-[250px] md:min-w-[350px] lg:min-w-[400px] 2xl:min-w-[425px] 3xl:min-w-[500px] bg-light-gray-element-color px-4 sm:h-full`}
     >
       <div className="flex flex-col justify-between min-h-full pb-24">
         <section>

@@ -7,6 +7,7 @@ import {
 } from "../state";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { fetchCarConfigurations } from "../../../services/API_configurations";
+import { useParams } from "react-router-dom";
 
 export function useConfigEdit() {
   const [configurations, setConfigurations] = useRecoilState(
@@ -16,8 +17,11 @@ export function useConfigEdit() {
   const isDropdownOpen = useRecoilValue(dropdownOpen);
   const activeDropdownName = useRecoilValue(dropdownState);
 
+  const { id } = useParams();
+
   useEffect(() => {
-    handleCarConfigurationsFetch("8fYqUodzXUKYFVMYtUnJ");
+    if (!id) return;
+    handleCarConfigurationsFetch(id);
   }, []);
 
   const handleCarConfigurationsFetch = async (id: string) => {
@@ -30,7 +34,7 @@ export function useConfigEdit() {
         model: response.model,
         productionYear: response.productionYear,
         color: response.color[0],
-        wheels: response.wheelVariants[1],
+        wheels: response.wheelVariants[0],
         interiorVariant: response.interiorVariants[0],
         price: response.price,
       });

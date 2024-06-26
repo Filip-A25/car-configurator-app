@@ -4,22 +4,25 @@ import Authentication from "./modules/authentification/Authentication";
 import { Configurator } from "./modules/configurator";
 import { useRecoilState } from "recoil";
 import { userState } from "./modules/authentification/state/userState";
-import { RoutePrivateGuard } from "./modules/global/components/RoutePrivateGuard";
+import {
+  RoutePrivateGuard,
+  RoutePublicGuard,
+} from "./modules/global/components/";
 import "swiper/css";
 
 export default function App() {
   const [isLoggedIn] = useRecoilState(userState);
 
   return (
-    <div className="relative bg-light-gray-background-color overflow-x-hidden">
+    <div className="relative bg-light-gray-background-color overflow-x-hidden min-h-screen">
       <Navbar />
       <Routes>
         <Route
           path="/auth/*"
           element={
-            <RoutePrivateGuard>
+            <RoutePublicGuard>
               <Authentication />
-            </RoutePrivateGuard>
+            </RoutePublicGuard>
           }
         />
         <Route
