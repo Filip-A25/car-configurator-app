@@ -50,6 +50,40 @@
   overflow: visible !important;
 }
 
+@media screen and (max-width: 640px) {
+  .swiper-wrapper {
+    height: auto !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .swiper-slide {
+    padding: 0 4rem 0 4rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .swiper-slide {
+    padding: 0 6rem 0 6rem;
+  }
+}
+
+@media screen and (min-width: 1536px) {
+  .swiper-slide {
+    padding: 0 12rem 0 12rem;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .swiper-slide {
+    padding: 0 18rem 0 18rem;
+  }
+}
+
+.swiper-pagination-current {
+  color: #2e2e38;
+}
+
 @layer utilities {
   /* NAVBAR STYLES */
 
@@ -74,26 +108,5 @@
   }
   .form-size-header {
     @apply text-[2.5rem];
-  }
-  .form-input-margin {
-    @apply mb-5 mt-1;
-  }
-  .form-vertical-margin {
-    @apply my-5;
-  }
-  .form-bottom-padding {
-    @apply pb-5 sm:pb-10;
-  }
-
-  /* NAVBAR DROPDOWN STYLES */
-
-  .dropdown-li-height {
-    @apply h-[70px] md:h-[50px];
-  }
-  .dropdown-link-line-height {
-    @apply leading-[70px] md:leading-[50px];
-  }
-  .dropdown-font-size {
-    @apply text-[20px] md:text-[14px];
   }
 }

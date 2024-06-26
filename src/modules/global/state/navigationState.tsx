@@ -8,7 +8,7 @@ export const pathsState = atom<Path[]>({
     {
       name: "Register",
       path: "/auth/register",
-      userLoggedIn: false,
+      userLoggedIn: true,
       inDropdown: true,
     },
     {

@@ -2,8 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./modules/global/components/Navbar";
 import { Authentication } from "./modules/authentification";
 import { Configurator } from "./modules/configurator";
-import { useRecoilState } from "recoil";
-import { userState } from "./modules/authentification/state/userState";
 import {
   RoutePrivateGuard,
   RoutePublicGuard,
