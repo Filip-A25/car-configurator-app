@@ -13,10 +13,9 @@ export function ConfigNavbar({ model, productionYear }: ConfigNavbarProps) {
   const pageStep = useRecoilValue(pageState);
 
   return (
-    <div className="h-[50px] sm:h-[70px] 3xl:h-[85px] bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
-      <section className="flex justify-between text-lg sm:text-2xl text-text-default-gray">
-        {/* TODO: Path za navbar vodi nazad na Car select ili My configurations. */}
-        <ReturnButton path="/" />
+    <div className="py-3 sm:py-6 bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
+      <section className="flex justify-between text-lg sm:text-2xl 3xl:text-3xl text-text-default-gray">
+        <ReturnButton path="/car-select" />
         <h3 className="text-muted-grey font-optician-sans px-2">
           {productionYear}
         </h3>
@@ -25,7 +24,7 @@ export function ConfigNavbar({ model, productionYear }: ConfigNavbarProps) {
       <section
         className={`${
           isDropdownOpen && "hidden"
-        } flex justify-between text-text-default-gray text-md`}
+        } flex justify-between text-text-default-gray text-sm sm:text-md md:text-lg 3xl:text-xl`}
       >
         {pageStep.map((page, index) => (
           <h3

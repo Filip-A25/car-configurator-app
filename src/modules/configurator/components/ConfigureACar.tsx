@@ -4,7 +4,7 @@ import { ConfigEdit } from "./ConfigEdit";
 export function ConfigureACar() {
   return (
     <Routes>
-      <Route path="configuration-edit" element={<ConfigEdit />}></Route>
+      <Route path="configuration-edit/:id" element={<ConfigEdit />} />
     </Routes>
   );
 }

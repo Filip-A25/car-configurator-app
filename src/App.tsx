@@ -2,22 +2,25 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./modules/global/components/Navbar";
 import { Authentication } from "./modules/authentification";
 import { Configurator } from "./modules/configurator";
-import { RoutePrivateGuard } from "./modules/global/components/RoutePrivateGuard";
+import { useRecoilState } from "recoil";
+import { userState } from "./modules/authentification/state/userState";
+import {
+  RoutePrivateGuard,
+  RoutePublicGuard,
+} from "./modules/global/components/";
 import "swiper/css";
 
 export default function App() {
   return (
-    <div
-      className={`relative min-h-screen bg-light-gray-background-color overflow-x-hidden`}
-    >
+    <div className="relative bg-light-gray-background-color overflow-x-hidden min-h-screen">
       <Navbar />
       <Routes>
         <Route
           path="/auth/*"
           element={
-            <RoutePrivateGuard>
+            <RoutePublicGuard>
               <Authentication />
-            </RoutePrivateGuard>
+            </RoutePublicGuard>
           }
         />
         <Route

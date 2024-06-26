@@ -11,10 +11,6 @@ export function useCarImageSlide() {
   const paginationNextRef = useRef(null);
 
   useEffect(() => {
-    handleCarImageFetch("Audi RS5", "nardo_grey", 2);
-  }, []);
-
-  useEffect(() => {
     if (currentUserConfiguration) {
       handleCarImageFetch(
         currentUserConfiguration.model,
