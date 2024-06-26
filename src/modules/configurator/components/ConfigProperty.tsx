@@ -33,11 +33,15 @@ export function ConfigProperty({
   return (
     <button className="flex items-center pr-40" onClick={handleOpenDropdown}>
       <div className="relative p-5">
-        <img
-          src={propertyImgUrl}
-          alt={name}
-          className="w-12 2xl:w-14 3xl:w-20 rounded-[50%]"
-        />
+        {propertyImgUrl ? (
+          <img
+            src={propertyImgUrl}
+            alt={name}
+            className="w-12 2xl:w-14 3xl:w-20 rounded-[50%]"
+          />
+        ) : (
+          <div className="w-12 2xl:w-14 h-12 2xl:h-14 bg-light-gray-background-color rounded-[50%]"></div>
+        )}
         {activePropIndex[propertyName] === index && (
           <div className="absolute bottom-5 right-4 bg-checkmark-green w-5 h-5 rounded-[50%] flex justify-center items-center">
             <svg
