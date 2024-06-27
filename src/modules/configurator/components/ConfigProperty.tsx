@@ -32,7 +32,7 @@ export function ConfigProperty({
 
   return (
     <button
-      className="flex items-center sm:pr-40 3xl:pr-64"
+      className="flex items-center sm:pr-40 lg:pr-48 3xl:pr-64"
       onClick={handleOpenDropdown}
     >
       <div className="relative p-2 xs:p-3 sm:p-5">
@@ -46,7 +46,7 @@ export function ConfigProperty({
           <div className="w-12 2xl:w-14 h-12 2xl:h-14 bg-light-gray-background-color rounded-[50%]"></div>
         )}
         {activePropIndex[propertyName] === index && (
-          <div className="absolute right-3 bottom-3 sm:bottom-5 sm:right-4 bg-checkmark-green w-3 h-3 sm:w-5 sm:h-5 rounded-[50%] flex justify-center items-center">
+          <div className="absolute max-xs:right-2 max-xs:bottom-2 right-3 bottom-3 sm:bottom-5 sm:right-4 bg-checkmark-green w-3 h-3 sm:w-5 sm:h-5 rounded-[50%] flex justify-center items-center">
             <svg
               width="12"
               height="12"

@@ -5,7 +5,7 @@ import { ConfigActionButton } from "./ConfigActionButton";
 import { PriceDisplay } from "./PriceDisplay";
 
 interface SidebarSelectProps {
-  propertyName: string | undefined;
+  propertyName: string;
 }
 
 export function ConfigSidebarSelect({ propertyName }: SidebarSelectProps) {
@@ -20,13 +20,13 @@ export function ConfigSidebarSelect({ propertyName }: SidebarSelectProps) {
     <div
       className={`${
         isDropdownOpen && "sm:animate-sidebarOpenAnimation"
-      } absolute bottom-0 max-xs:w-full sm:right-0 sm:top-0 border-l border-input-border-gray min-w-[250px] md:min-w-[350px] lg:min-w-[400px] 2xl:min-w-[425px] 3xl:min-w-[500px] bg-light-gray-element-color px-4 sm:h-full`}
+      } absolute bottom-0 max-sm:w-full sm:right-0 sm:top-0 border-l border-input-border-gray sm:w-[350px] md:w-[425px] lg:w-[475px] 3xl:w-[565px] bg-light-gray-element-color px-4 sm:h-full`}
     >
-      <div className="flex flex-col justify-between min-h-full pb-24">
+      <div className="flex flex-col justify-between min-h-full pb-20 sn:pt-8 sm:pb-24 3xl:pb-28">
         <section>
-          <div className="flex justify-between px-2 sm:px-5 pt-2 sm:pt-4 pb-2 sm:pb-12">
-            <h1 className="leading-10 font-optician-sans text-xl sm:text-3xl">
-              {propertyName}
+          <div className="flex justify-between px-2 sm:px-5 pt-3 sm:pt-5 pb-2 sm:pb-10">
+            <h1 className="leading-10 text-xl sm:text-2xl">
+              {propertyName.charAt(0).toUpperCase() + propertyName.slice(1)}
             </h1>
             <button className="px-3" onClick={handleDropdownClose}>
               <svg

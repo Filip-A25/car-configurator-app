@@ -1,5 +1,5 @@
 import { ConfigProperty } from "./ConfigProperty";
-import { currentConfigurations, activePropState } from "../state";
+import { currentConfigurationsState, activePropState } from "../state";
 import { useRecoilValue } from "recoil";
 
 interface DropdownProps {
@@ -11,7 +11,7 @@ export function ConfigPropertyDropdown({
   propertyName,
   isActive,
 }: DropdownProps) {
-  const configurations = useRecoilValue(currentConfigurations);
+  const configurations = useRecoilValue(currentConfigurationsState);
   const activePropIndex = useRecoilValue(activePropState);
 
   const currentProperties =

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import {
-  currentConfigurations,
-  userConfiguration,
+  currentConfigurationsState,
+  userConfigurationState,
   dropdownOpen,
   dropdownState,
 } from "../state";
@@ -11,9 +11,9 @@ import { useParams } from "react-router-dom";
 
 export function useConfigEdit() {
   const [configurations, setConfigurations] = useRecoilState(
-    currentConfigurations
+    currentConfigurationsState
   );
-  const setCurrentUserConfiguration = useSetRecoilState(userConfiguration);
+  const setCurrentUserConfiguration = useSetRecoilState(userConfigurationState);
   const isDropdownOpen = useRecoilValue(dropdownOpen);
   const activeDropdownName = useRecoilValue(dropdownState);
 

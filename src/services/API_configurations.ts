@@ -34,9 +34,9 @@ export const fetchCarImagesByColorAndVariant = async (modelName: "Audi RS5" | "A
         const listRef = ref(storage, `${modelFile}/models/wheel_${wheelVariant}/${color}`);
         const photosList = await listAll(listRef);
 
-        const sortedArr = ["front-left.png", "front.png", "side.png", "back-left.png", "back.png"];
+        const sortedPhotosList = ["front-left.png", "front.png", "side.png", "back-left.png", "back.png"];
 
-        const photoPromises = photosList.items.sort((a, b) => sortedArr.indexOf(a.name) - sortedArr.indexOf(b.name)).map(item => getDownloadURL(ref(storage, item.fullPath)));
+        const photoPromises = photosList.items.sort((a, b) => sortedPhotosList.indexOf(a.name) - sortedPhotosList.indexOf(b.name)).map(item => getDownloadURL(ref(storage, item.fullPath)));
 
         const filteredPhotosList = await Promise.all(photoPromises);
 

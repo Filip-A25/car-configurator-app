@@ -1,11 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 import { fetchCarImagesByColorAndVariant } from "../../../services/API_configurations";
-import { userConfiguration } from "../state";
+import { userConfigurationState } from "../state";
 import { useRecoilValue } from "recoil";
 
 export function useCarImageSlide() {
   const [configImages, setConfigImages] = useState<string[]>();
-  const currentUserConfiguration = useRecoilValue(userConfiguration);
+  const currentUserConfiguration = useRecoilValue(userConfigurationState);
 
   const paginationBackRef = useRef(null);
   const paginationNextRef = useRef(null);

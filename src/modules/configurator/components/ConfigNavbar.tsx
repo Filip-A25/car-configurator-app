@@ -13,7 +13,7 @@ export function ConfigNavbar({ model, productionYear }: ConfigNavbarProps) {
   const pageStep = useRecoilValue(pageState);
 
   return (
-    <div className="py-3 sm:py-6 bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
+    <div className="h-[50px] sm:h-[70px] bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
       <section className="flex justify-between text-lg sm:text-2xl 3xl:text-3xl text-text-default-gray">
         <ReturnButton path="/car-select" />
         <h3 className="text-muted-grey font-optician-sans px-2">

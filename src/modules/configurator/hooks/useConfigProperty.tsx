@@ -3,7 +3,7 @@ import { fetchPropertyImagesByVariant } from "../../../services/API_configuratio
 import {
   dropdownState,
   dropdownOpen,
-  userConfiguration,
+  userConfigurationState,
   activePropState,
 } from "../state";
 import { useSetRecoilState, useRecoilState } from "recoil";
@@ -31,7 +31,7 @@ export function useConfigProperty({
   const setActiveDropdownName = useSetRecoilState(dropdownState);
   const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownOpen);
   const [currentUserConfiguration, setCurrentUserConfiguration] =
-    useRecoilState(userConfiguration);
+    useRecoilState(userConfigurationState);
 
   const [activePropIndex, setActivePropIndex] = useRecoilState(activePropState);
 

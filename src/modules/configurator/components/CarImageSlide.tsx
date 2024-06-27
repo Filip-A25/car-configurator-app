@@ -3,7 +3,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import { useCarImageSlide } from "../hooks";
 import { PaginationButton } from "../../../shared";
 import { IconDirection } from "../../../shared/types";
-import { currentConfigurations } from "../state";
+import { currentConfigurationsState } from "../state";
 import { useRecoilValue } from "recoil";
 import carIcon from "../assets/car-icon.png";
 
@@ -11,7 +11,7 @@ export function CarImageSlide() {
   const { configImages, paginationBackRef, paginationNextRef } =
     useCarImageSlide();
 
-  const configurations = useRecoilValue(currentConfigurations);
+  const configurations = useRecoilValue(currentConfigurationsState);
 
   return (
     <Swiper
@@ -29,7 +29,7 @@ export function CarImageSlide() {
     >
       {configImages && configImages.length > 0 ? (
         configImages.map((imgUrl, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="swiper-slide-config-edit">
             <img
               src={imgUrl}
               alt={configurations?.model}

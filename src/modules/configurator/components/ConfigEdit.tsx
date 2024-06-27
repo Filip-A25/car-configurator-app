@@ -9,28 +9,28 @@ export function ConfigEdit() {
     useConfigEdit();
 
   return (
-    <section className="relative">
+    <section className="relative h-full">
       <ConfigNavbar
         model={configurations?.model}
         productionYear={configurations?.productionYear}
       />
-      <div>
-        <section className="relative flex max-sm:flex-col min-h-[calc(100vh-120px)] sm:min-h-[calc(100vh-151px)] 3xl:min-h-[calc(100vh-155px)]">
-          <div
-            className={`${
-              isDropdownOpen && activeDropdownName === "color"
-                ? ""
-                : "max-xs:py-14"
-            } max-sm:relative xs:py-28 flex sm:items-center max-sm:h-full w-full sm:w-[calc(100%-413px)] md:w-[calc(100%-350px)] lg:w-[calc(100%-400px)] 2xl:w-[calc(100%-425px)] 3xl:w-[calc(100%-565px)]`}
-          >
-            <CarImageSlide />
-          </div>
-          {!isDropdownOpen && <ConfigSidebar />}
-        </section>
-        {isDropdownOpen && (
-          <ConfigSidebarSelect propertyName={activeDropdownName} />
-        )}
-      </div>
+      {/*50px i 70px u calc-u su height ConfigNavbar-a.*/}
+      <section className="relative flex max-sm:flex-col min-h-[calc(100%-50px)] sm:min-h-[calc(100%-70px)]">
+        <div
+          className={`${
+            isDropdownOpen && activeDropdownName === "color"
+              ? ""
+              : "max-xs:py-14"
+            //Px values u calc-u su width Sidebar-a.
+          } xs:py-28 max-sm:relative flex sm:items-center max-sm:h-full w-full sm:w-[calc(100%-350px)] md:w-[calc(100%-425px)] lg:w-[calc(100%-475px)] 3xl:w-[calc(100%-565px)]`}
+        >
+          <CarImageSlide />
+        </div>
+        {!isDropdownOpen && <ConfigSidebar />}
+      </section>
+      {isDropdownOpen && activeDropdownName && (
+        <ConfigSidebarSelect propertyName={activeDropdownName} />
+      )}
     </section>
   );
 }

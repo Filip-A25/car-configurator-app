@@ -1,7 +1,7 @@
 import { atom } from "recoil";
-import { Car } from "../types/carType";
+import { CarConfigurationsWithId } from "../types";
 
-export const carsState = atom<Car[] | undefined>({
+export const carsState = atom<CarConfigurationsWithId[] | undefined>({
   key: "configurator.carsState",
   default: undefined,
 });

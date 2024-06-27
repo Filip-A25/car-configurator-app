@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { carsState } from "../state/carsState";
 import { useEffect } from "react";
 import { fetchAllCarData } from "../../../services/API_carModel";
-import { Car } from "../types/carType";
+import { CarConfigurationsWithId } from "../types";
 import { CarItem } from "./CarItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -34,6 +34,7 @@ export function CarSelect() {
         </section>
         <section className="mt-12 3xl:pr-64 overflow-x-visible">
           <Swiper
+            className="swiper-car-select"
             width={1800}
             slidesPerView={2}
             spaceBetween={40}
@@ -59,14 +60,14 @@ export function CarSelect() {
             scrollbar={{ draggable: true }}
           >
             {carsArray &&
-              carsArray.map((car: Car, index) => (
+              carsArray.map((car: CarConfigurationsWithId, index) => (
                 <SwiperSlide key={index}>
                   <CarItem
                     key={index}
                     id={car.id}
-                    model={car.name}
+                    model={car.model}
                     productionYear={car.productionYear}
-                    colors={car.colors}
+                    color={car.color}
                   />
                 </SwiperSlide>
               ))}

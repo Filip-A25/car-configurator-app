@@ -19,6 +19,10 @@ export interface CarConfigurations {
     price: number;
 }
 
+export interface CarConfigurationsWithId extends CarConfigurations {
+    id: string;
+}
+
 export interface UserCarConfiguration {
     model: "Audi RS5" | "Audi RS6" | "Audi e-tron GT";
     productionYear: number;

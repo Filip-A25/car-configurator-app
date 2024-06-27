@@ -1,7 +1,7 @@
 import ConfigureLinkButton from "../ConfigureLinkButton";
 import ConfigurationsEmpty from "./ConfigurationsEmpty";
 import { useRecoilValue } from "recoil";
-import { userConfigurationsState } from "../../state/configurationsState";
+import { userConfigurationsState } from "../../state";
 import ConfigurationsSaved from "./ConfigurationsSaved";
 
 export default function Configurations() {
@@ -13,7 +13,7 @@ export default function Configurations() {
         <h2 className="mb-6 text-lg sm:text-sm">View saved configurations</h2>
         <ConfigureLinkButton path="/configure-a-car" title="Configure a car" />
       </header>
-      {userConfigurations.length === 0 ? (
+      {userConfigurations && userConfigurations.length === 0 ? (
         <ConfigurationsEmpty />
       ) : (
         <ConfigurationsSaved />

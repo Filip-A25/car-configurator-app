@@ -1,7 +1,8 @@
 import {collection, getDocs, DocumentData} from "firebase/firestore";
 import {getDownloadURL, ref, getStorage} from "firebase/storage";
 import {db} from "../modules/firebase/firebase";
-import {Car, CarPosition} from "../modules/configurator/types/carType";
+import {CarConfigurationsWithId, CarPosition} from "../modules/configurator/types";
+import {fileNames} from "./const/fileNames";
 
 const storage = getStorage();
 
@@ -11,17 +12,18 @@ export const fetchAllCarData = async () => {
     try {
         const response = await getDocs(modelsRef);
 
-        const carsArray: Car[] = response.docs.map(car => {
+        const carsArray: CarConfigurationsWithId[] = response.docs.map(car => {
             const carId = car.id;
-            const {name, production_year, color, wheel_variant, interior_variant}: DocumentData = car.data();
+            const {name, production_year, color, wheel_variant, interior_variant, price}: DocumentData = car.data();
 
-            const newCar: Car = {
+            const newCar: CarConfigurationsWithId = {
                 id: carId,
-                name: name,
+                model: name,
                 productionYear: production_year,
-                colors: color,
+                color: color,
                 wheelVariants: wheel_variant,
                 interiorVariants: interior_variant,
+                price: price
             }
 
             return newCar;
@@ -33,24 +35,11 @@ export const fetchAllCarData = async () => {
     }
 }
 
-export const fetchCarImageByColorAndVariant = async (modelName: string, color: string, wheelVariant: number, position: CarPosition) => {
+export const fetchCarImageByColorAndVariant = async (modelName: "Audi RS5" | "Audi RS6" | "Audi e-tron GT", color: string, wheelVariant: number, position: CarPosition) => {
     try {
-        let modelFile: string;
-        switch(modelName) {
-            case "Audi RS5":
-                modelFile = "audi_rs5";
-                break;
-            case "Audi RS6":
-                modelFile = "audi-rs6";
-                break;
-            case "Audi e-tron GT":
-                modelFile = "audi_e-tron_gt";
-                break;
-            default:
-                throw new Error("Model file doesn't exist");
-        }
+        let modelFile = fileNames[modelName];
 
-        const photoUrl = await getDownloadURL(ref(storage, `${modelFile}/models/${color}/${position}-${wheelVariant}.png`));
+        const photoUrl = await getDownloadURL(ref(storage, `${modelFile}/models/wheel_${wheelVariant}/${color}/${position}.png`));
 
         return photoUrl;
     } catch (err: any) {
