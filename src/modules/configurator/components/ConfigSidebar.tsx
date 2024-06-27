@@ -3,7 +3,7 @@ import { ConfigActionButton } from "./ConfigActionButton";
 import { PriceDisplay } from "./PriceDisplay";
 
 export function ConfigSidebar() {
-  // TODO: Navigiranje na sljedeci step u configuratoru (interior).
+  // TODO: Handling navigation to the next step in the configurator (interior).
   const handleNavigate = () => {};
 
   return (
