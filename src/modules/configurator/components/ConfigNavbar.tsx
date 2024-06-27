@@ -30,10 +30,10 @@ export function ConfigNavbar({ model, productionYear }: Props) {
       >
         {pageStep.map((page, index) => (
           <h3
-            className={clsx("sm:px-4 lg:px-8", {
-              "font-bold": page.isActive,
-              "max-sm:hidden": !page.isActive,
-            })}
+            className={clsx(
+              "sm:px-4 lg:px-8",
+              page.isActive ? "font-bold" : "max-sm:hidden"
+            )}
             key={index}
           >
             <span className="text-muted-grey">{"0" + page.index} </span>
