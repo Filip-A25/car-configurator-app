@@ -1,3 +1,4 @@
+export * from './DropdownLogoutItem';
 export * from './MenuDropdown';
 export * from './MenuDropdownItem';
 export * from './MenuDropdownMobile';

@@ -15,3 +15,8 @@ export * from './Configurator';
 export * from './ConfigureACar';
 export * from './ConfigureLinkButton';
 export * from './PriceDisplay';
+export * from './ConfigOptionsButton';
+export * from './ConfigureLinkButton';
+export * from './OptionsDropdown';
+export * from './OptionsDropdownItem';
+export * from './SavedConfigurationItem';
