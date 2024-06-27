@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchPropertyImagesByVariant } from "../../../services/API_configurations";
+import { fetchPropertyImagesByVariant } from "../services";
 import {
   dropdownState,
   dropdownOpen,

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { fetchCarImagesByColorAndVariant } from "../../../services/API_configurations";
+import { fetchCarImagesByColorAndVariant } from "../services";
 import { userConfigurationState } from "../state";
 import { useRecoilValue } from "recoil";
 import { CarModel } from "../types";

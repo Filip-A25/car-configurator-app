@@ -2,7 +2,7 @@ import SectionHeading from "../../../shared/SectionHeading";
 import { useRecoilState } from "recoil";
 import { carsState } from "../state/carsState";
 import { useEffect } from "react";
-import { fetchAllCarData } from "../../../services/API_carModel";
+import { fetchAllCarData } from "../services";
 import { CarItem } from "./CarItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 

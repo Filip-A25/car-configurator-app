@@ -1,5 +1,5 @@
 import ButtonLink from "../../../shared/ButtonLink";
-import { fetchCarImageByColorAndVariant } from "../../../services/API_carModel";
+import { fetchCarImageByColorAndVariant } from "../services";
 import { useEffect, useState } from "react";
 import carIcon from "../assets/car-icon.png";
 import { CarModel, TextVariant, CarPosition } from "../types";

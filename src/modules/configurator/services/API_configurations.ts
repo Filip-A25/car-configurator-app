@@ -1,7 +1,7 @@
 import {getDoc, doc} from "firebase/firestore";
-import {db, storage} from "../modules/firebase";
+import {db, storage} from "../../firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { CarConfigurations, CarModel } from "../modules/configurator/types";
+import { CarConfigurations, CarModel } from "../types";
 import {fileNames, sortedPhotoNames} from "./const/fileNames";
 
 export const fetchCarConfigurations = async (id: string) => {

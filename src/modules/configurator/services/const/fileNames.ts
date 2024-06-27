@@ -1,4 +1,4 @@
-import {CarModel} from "../../modules/configurator/types";
+import {CarModel} from "../../types";
 
 export const fileNames: Record<CarModel, string> = {
     "Audi RS5": "audi_rs5",

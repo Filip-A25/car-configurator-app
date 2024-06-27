@@ -6,7 +6,7 @@ import {
   dropdownState,
 } from "../state";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { fetchCarConfigurations } from "../../../services/API_configurations";
+import { fetchCarConfigurations } from "../services";
 import { useParams } from "react-router-dom";
 
 export function useConfigEdit() {

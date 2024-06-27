@@ -1,7 +1,7 @@
 import {collection, getDocs, DocumentData} from "firebase/firestore";
 import {getDownloadURL, ref, getStorage} from "firebase/storage";
-import {db} from "../modules/firebase/firebase";
-import {CarConfigurationsWithId, CarPosition, CarModel} from "../modules/configurator/types";
+import {db} from "../../firebase/firebase";
+import {CarConfigurationsWithId, CarPosition, CarModel} from "../types";
 import {fileNames} from "./const/fileNames";
 
 const storage = getStorage();
