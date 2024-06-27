@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { fetchCarImagesByColorAndVariant } from "../../../services/API_configurations";
 import { userConfigurationState } from "../state";
 import { useRecoilValue } from "recoil";
+import { CarModel } from "../types";
 
 export function useCarImageSlide() {
   const [configImages, setConfigImages] = useState<string[]>();
@@ -10,33 +11,32 @@ export function useCarImageSlide() {
   const paginationBackRef = useRef(null);
   const paginationNextRef = useRef(null);
 
-  useEffect(() => {
-    if (currentUserConfiguration) {
-      handleCarImageFetch(
-        currentUserConfiguration.model,
-        currentUserConfiguration.color.label,
-        currentUserConfiguration.wheels.label
-      );
-    }
-  }, [currentUserConfiguration]);
-
   const handleCarImageFetch = async (
-    modelName: "Audi RS5" | "Audi RS6" | "Audi e-tron GT",
+    modelName: CarModel,
     color: string,
     wheelVariant: number
   ) => {
     try {
-      const photos = await fetchCarImagesByColorAndVariant(
+      const photos = await fetchCarImagesByColorAndVariant({
         modelName,
         color,
-        wheelVariant
-      );
+        wheelVariant,
+      });
 
       setConfigImages(photos);
     } catch (err: any) {
       throw new Error(err);
     }
   };
+
+  useEffect(() => {
+    if (!currentUserConfiguration) return;
+    handleCarImageFetch(
+      currentUserConfiguration.model,
+      currentUserConfiguration.color.label,
+      currentUserConfiguration.wheels.label
+    );
+  }, [currentUserConfiguration]);
 
   return { configImages, paginationBackRef, paginationNextRef };
 }

@@ -1,7 +1,7 @@
 import {atom} from "recoil";
-import {PropIndex} from "../types";
+import {CurrentPropertyIndex} from "../types";
 
-export const activePropState = atom<PropIndex>({
+export const activePropState = atom<CurrentPropertyIndex>({
     key: "configurator.activePropIndex",
     default: {
         color: 0,

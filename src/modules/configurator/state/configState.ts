@@ -24,7 +24,7 @@ export const configurationPrice = selector({
     
     if (!configuration) return;
     const price = configuration.price + configuration.color.price + configuration.wheels.price;
-    const decimalPrice = price.toFixed(2).toString().replace(decimalRegexp, ",");
+    const decimalPrice = price.toFixed(2).replace(decimalRegexp, ",");
     
     return decimalPrice;
   }

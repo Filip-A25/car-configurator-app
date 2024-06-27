@@ -2,13 +2,14 @@ import { ReturnButton } from "../../../shared";
 import { dropdownOpen } from "../state";
 import { useRecoilValue } from "recoil";
 import { pageState } from "../state";
+import clsx from "clsx";
 
-interface ConfigNavbarProps {
-  model: string | undefined;
-  productionYear: number | undefined;
+interface Props {
+  model?: string;
+  productionYear?: number;
 }
 
-export function ConfigNavbar({ model, productionYear }: ConfigNavbarProps) {
+export function ConfigNavbar({ model, productionYear }: Props) {
   const isDropdownOpen = useRecoilValue(dropdownOpen);
   const pageStep = useRecoilValue(pageState);
 
@@ -22,19 +23,17 @@ export function ConfigNavbar({ model, productionYear }: ConfigNavbarProps) {
         <h3 className="font-optician-sans px-2">{model}</h3>
       </section>
       <section
-        className={`${
+        className={clsx(
+          "flex justify-between text-text-default-gray text-sm sm:text-md md:text-lg 3xl:text-xl",
           isDropdownOpen && "hidden"
-        } flex justify-between text-text-default-gray text-sm sm:text-md md:text-lg 3xl:text-xl`}
+        )}
       >
         {pageStep.map((page, index) => (
           <h3
-            className={`${
-              page.isActive
-                ? "font-bold"
-                : !page.isActive
-                ? "max-sm:hidden"
-                : ""
-            } sm:px-4 lg:px-8`}
+            className={clsx("sm:px-4 lg:px-8", {
+              "font-bold": page.isActive,
+              "max-sm:hidden": !page.isActive,
+            })}
             key={index}
           >
             <span className="text-muted-grey">{"0" + page.index} </span>

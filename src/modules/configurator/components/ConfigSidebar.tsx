@@ -18,11 +18,7 @@ export function ConfigSidebar() {
         </section>
         <PriceDisplay />
       </div>
-      <ConfigActionButton
-        text="Interior"
-        arrow={true}
-        action={handleNavigate}
-      />
+      <ConfigActionButton text="Interior" isArrow onClick={handleNavigate} />
     </div>
   );
 }

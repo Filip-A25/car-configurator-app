@@ -3,12 +3,13 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { dropdownState, dropdownOpen } from "../state";
 import { ConfigActionButton } from "./ConfigActionButton";
 import { PriceDisplay } from "./PriceDisplay";
+import clsx from "clsx";
 
-interface SidebarSelectProps {
+interface Props {
   propertyName: string;
 }
 
-export function ConfigSidebarSelect({ propertyName }: SidebarSelectProps) {
+export function ConfigSidebarSelect({ propertyName }: Props) {
   const activeDropdownName = useRecoilValue(dropdownState);
   const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownOpen);
 
@@ -18,15 +19,16 @@ export function ConfigSidebarSelect({ propertyName }: SidebarSelectProps) {
 
   return (
     <div
-      className={`${
+      className={clsx(
+        "absolute bottom-0 max-sm:w-full sm:right-0 sm:top-0 border-l border-input-border-gray sm:w-[350px] md:w-[425px] lg:w-[475px] 3xl:w-[565px] bg-light-gray-element-color px-6 sm:h-full",
         isDropdownOpen && "sm:animate-sidebarOpenAnimation"
-      } absolute bottom-0 max-sm:w-full sm:right-0 sm:top-0 border-l border-input-border-gray sm:w-[350px] md:w-[425px] lg:w-[475px] 3xl:w-[565px] bg-light-gray-element-color px-4 sm:h-full`}
+      )}
     >
       <div className="flex flex-col justify-between min-h-full pb-20 sn:pt-8 sm:pb-24 3xl:pb-28">
         <section>
           <div className="flex justify-between px-2 sm:px-5 pt-3 sm:pt-5 pb-2 sm:pb-10">
-            <h1 className="leading-10 text-xl sm:text-2xl">
-              {propertyName.charAt(0).toUpperCase() + propertyName.slice(1)}
+            <h1 className="leading-10 text-xl sm:text-2xl capitalize">
+              {propertyName}
             </h1>
             <button className="px-3" onClick={handleDropdownClose}>
               <svg
@@ -43,20 +45,15 @@ export function ConfigSidebarSelect({ propertyName }: SidebarSelectProps) {
               </svg>
             </button>
           </div>
-          {activeDropdownName === "color" && (
+          {activeDropdownName === "color" ? (
             <ConfigPropertyDropdown propertyName="color" isActive={true} />
-          )}
-          {activeDropdownName === "wheels" && (
+          ) : (
             <ConfigPropertyDropdown propertyName="wheels" isActive={true} />
           )}
         </section>
         <PriceDisplay />
       </div>
-      <ConfigActionButton
-        text="Done"
-        arrow={false}
-        action={handleDropdownClose}
-      />
+      <ConfigActionButton text="Done" isArrow onClick={handleDropdownClose} />
     </div>
   );
 }

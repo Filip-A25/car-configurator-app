@@ -1,8 +1,8 @@
 import {getDoc, doc} from "firebase/firestore";
 import {db, storage} from "../modules/firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { CarConfigurations } from "../modules/configurator/types";
-import {fileNames} from "./const/fileNames";
+import { CarConfigurations, CarModel } from "../modules/configurator/types";
+import {fileNames, sortedPhotoNames} from "./const/fileNames";
 
 export const fetchCarConfigurations = async (id: string) => {
     try {
@@ -27,16 +27,20 @@ export const fetchCarConfigurations = async (id: string) => {
     }
 }
 
-export const fetchCarImagesByColorAndVariant = async (modelName: "Audi RS5" | "Audi RS6" | "Audi e-tron GT", color: string, wheelVariant: number) => {
+export interface ColorAndVariantProps {
+    modelName: CarModel;
+    color: string;
+    wheelVariant: number;
+}
+
+export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVariant}: ColorAndVariantProps) => {
     try {
-        let modelFile = fileNames[modelName];
+        const modelFile = fileNames[modelName];
 
         const listRef = ref(storage, `${modelFile}/models/wheel_${wheelVariant}/${color}`);
         const photosList = await listAll(listRef);
 
-        const sortedPhotosList = ["front-left.png", "front.png", "side.png", "back-left.png", "back.png"];
-
-        const photoPromises = photosList.items.sort((a, b) => sortedPhotosList.indexOf(a.name) - sortedPhotosList.indexOf(b.name)).map(item => getDownloadURL(ref(storage, item.fullPath)));
+        const photoPromises = photosList.items.sort((a, b) => sortedPhotoNames.indexOf(a.name) - sortedPhotoNames.indexOf(b.name)).map(item => getDownloadURL(ref(storage, item.fullPath)));
 
         const filteredPhotosList = await Promise.all(photoPromises);
 
@@ -46,9 +50,15 @@ export const fetchCarImagesByColorAndVariant = async (modelName: "Audi RS5" | "A
     }
 }
 
-export const fetchPropertyImagesByVariant = async (modelName: "Audi RS5" | "Audi RS6" | "Audi e-tron GT", name: string, variant: string | number) => {
+export interface VariantProps {
+    modelName: CarModel;
+    name: string;
+    variant: string | number;
+}
+
+export const fetchPropertyImagesByVariant = async ({modelName, name, variant}: VariantProps) => {
     try {
-        let modelFile = fileNames[modelName];
+        const modelFile = fileNames[modelName];
 
         const variantRef = ref(storage, `${modelFile}/${name}/${variant}.png`);
 

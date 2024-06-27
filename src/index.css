@@ -11,37 +11,6 @@
   padding: 0;
 }
 
-@media screen and (max-width: 640px) {
-  .swiper-wrapper {
-    height: auto !important;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .swiper-slide-config-edit {
-    padding: 0 4rem 0 4rem;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .swiper-slide-config-edit {
-    padding: 0 6rem 0 6rem;
-  }
-}
-
-@media screen and (min-width: 1536px) {
-  .swiper-slide-config-edit {
-    padding: 0 12rem 0 12rem;
-  }
-}
-
-@media screen and (min-width: 2000px) {
-  .swiper-slide-config-edit {
-    padding: 0 18rem 0 18rem;
-    height: fit-content !important;
-  }
-}
-
 .swiper-pagination-current {
   color: #2e2e38;
 }
@@ -51,6 +20,14 @@
 }
 
 @layer utilities {
+  .swiper-wrapper {
+    @apply max-sm:!h-auto;
+  }
+
+  .swiper-slide-config-edit {
+    @apply lg:px-[4rem]  xl:px-[6rem] 2xl:px-[12rem] 3xl:px-[18rem] 3xl:!w-fit;
+  }
+
   /* NAVBAR STYLES */
 
   .navbar-height {

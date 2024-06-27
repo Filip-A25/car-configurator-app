@@ -1,14 +1,5 @@
 import { useConfigProperty } from "../hooks";
-
-interface PropertyProps {
-  index: number;
-  propertyName: "color" | "wheels";
-  modelName: "Audi RS5" | "Audi RS6" | "Audi e-tron GT" | undefined;
-  label: string | number;
-  name: string;
-  description: string;
-  price: number;
-}
+import { CarProperty } from "../types";
 
 export function ConfigProperty({
   index,
@@ -18,7 +9,7 @@ export function ConfigProperty({
   name,
   description,
   price,
-}: PropertyProps) {
+}: CarProperty) {
   const { handleOpenDropdown, propertyImgUrl, activePropIndex } =
     useConfigProperty({
       index,
@@ -43,7 +34,7 @@ export function ConfigProperty({
             className="w-10 sm:w-12 2xl:w-14 3xl:w-20 rounded-[50%]"
           />
         ) : (
-          <div className="w-12 2xl:w-14 h-12 2xl:h-14 bg-light-gray-background-color rounded-[50%]"></div>
+          <div className="w-12 2xl:w-14 h-12 2xl:h-14 bg-light-gray-background-color rounded-[50%]" />
         )}
         {activePropIndex[propertyName] === index && (
           <div className="absolute max-xs:right-2 max-xs:bottom-2 right-3 bottom-3 sm:bottom-5 sm:right-4 bg-checkmark-green w-3 h-3 sm:w-5 sm:h-5 rounded-[50%] flex justify-center items-center">

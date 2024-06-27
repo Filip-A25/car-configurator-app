@@ -3,7 +3,6 @@ import { useRecoilState } from "recoil";
 import { carsState } from "../state/carsState";
 import { useEffect } from "react";
 import { fetchAllCarData } from "../../../services/API_carModel";
-import { CarConfigurationsWithId } from "../types";
 import { CarItem } from "./CarItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -59,18 +58,11 @@ export function CarSelect() {
             }}
             scrollbar={{ draggable: true }}
           >
-            {carsArray &&
-              carsArray.map((car: CarConfigurationsWithId, index) => (
-                <SwiperSlide key={index}>
-                  <CarItem
-                    key={index}
-                    id={car.id}
-                    model={car.model}
-                    productionYear={car.productionYear}
-                    color={car.color}
-                  />
-                </SwiperSlide>
-              ))}
+            {carsArray?.map((car, index) => (
+              <SwiperSlide key={index}>
+                <CarItem key={index} {...car} />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </section>
       </div>

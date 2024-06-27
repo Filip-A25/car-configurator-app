@@ -13,7 +13,7 @@ export default function Configurations() {
         <h2 className="mb-6 text-lg sm:text-sm">View saved configurations</h2>
         <ConfigureLinkButton path="/configure-a-car" title="Configure a car" />
       </header>
-      {userConfigurations && userConfigurations.length === 0 ? (
+      {!Boolean(userConfigurations.length) ? (
         <ConfigurationsEmpty />
       ) : (
         <ConfigurationsSaved />

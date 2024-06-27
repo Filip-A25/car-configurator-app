@@ -1,7 +1,7 @@
 import {collection, getDocs, DocumentData} from "firebase/firestore";
 import {getDownloadURL, ref, getStorage} from "firebase/storage";
 import {db} from "../modules/firebase/firebase";
-import {CarConfigurationsWithId, CarPosition} from "../modules/configurator/types";
+import {CarConfigurationsWithId, CarPosition, CarModel} from "../modules/configurator/types";
 import {fileNames} from "./const/fileNames";
 
 const storage = getStorage();
@@ -20,10 +20,10 @@ export const fetchAllCarData = async () => {
                 id: carId,
                 model: name,
                 productionYear: production_year,
-                color: color,
+                color,
                 wheelVariants: wheel_variant,
                 interiorVariants: interior_variant,
-                price: price
+                price
             }
 
             return newCar;
@@ -35,9 +35,16 @@ export const fetchAllCarData = async () => {
     }
 }
 
-export const fetchCarImageByColorAndVariant = async (modelName: "Audi RS5" | "Audi RS6" | "Audi e-tron GT", color: string, wheelVariant: number, position: CarPosition) => {
+interface Props {
+    modelName: CarModel;
+    color: string;
+    wheelVariant: number;
+    position: CarPosition
+}
+
+export const fetchCarImageByColorAndVariant = async ({modelName, color, wheelVariant, position}: Props) => {
     try {
-        let modelFile = fileNames[modelName];
+        const modelFile = fileNames[modelName];
 
         const photoUrl = await getDownloadURL(ref(storage, `${modelFile}/models/wheel_${wheelVariant}/${color}/${position}.png`));
 

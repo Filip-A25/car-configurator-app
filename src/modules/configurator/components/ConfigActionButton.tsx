@@ -1,19 +1,20 @@
-interface ActionButtonProps {
+import { ButtonHTMLAttributes } from "react";
+
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  arrow: boolean;
-  action: () => void;
+  isArrow: boolean;
 }
 
-export function ConfigActionButton({ text, arrow, action }: ActionButtonProps) {
+export function ConfigActionButton({ text, isArrow, ...props }: Props) {
   return (
     <button
       className="absolute flex justify-center bottom-0 left-0 bg-button-purple w-full py-5 3xl:py-7"
-      onClick={action}
+      {...props}
     >
       <span className="text-light-gray-element-color text-xl 3xl:text-2xl">
         {text}
       </span>
-      {arrow && (
+      {isArrow && (
         <svg
           viewBox="0 0 7 12"
           fill="none"

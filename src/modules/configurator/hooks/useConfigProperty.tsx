@@ -7,16 +7,7 @@ import {
   activePropState,
 } from "../state";
 import { useSetRecoilState, useRecoilState } from "recoil";
-
-interface PropertyProps {
-  index: number;
-  propertyName: "color" | "wheels";
-  modelName: "Audi RS5" | "Audi RS6" | "Audi e-tron GT" | undefined;
-  label: string | number;
-  name: string;
-  description: string;
-  price: number;
-}
+import { CarProperty } from "../types";
 
 export function useConfigProperty({
   index,
@@ -26,7 +17,7 @@ export function useConfigProperty({
   name,
   description,
   price,
-}: PropertyProps) {
+}: CarProperty) {
   const [propertyImgUrl, setPropertyImgUrl] = useState("");
   const setActiveDropdownName = useSetRecoilState(dropdownState);
   const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownOpen);
@@ -35,40 +26,45 @@ export function useConfigProperty({
 
   const [activePropIndex, setActivePropIndex] = useRecoilState(activePropState);
 
-  useEffect(() => {
-    handleImageFetch();
-  }, []);
-
   const handleImageFetch = async () => {
     try {
       if (!modelName) return;
-      const photoUrl = await fetchPropertyImagesByVariant(
-        modelName,
-        name,
-        label
-      );
+
+      const requestData = {
+        modelName: modelName,
+        name: name,
+        variant: label,
+      };
+      const photoUrl = await fetchPropertyImagesByVariant(requestData);
+
       setPropertyImgUrl(photoUrl);
     } catch (err: any) {
       throw new Error(err);
     }
   };
 
+  useEffect(() => {
+    handleImageFetch();
+  }, [modelName]);
+
   const handleOpenDropdown = () => {
     if (!isDropdownOpen) {
       setIsDropdownOpen(true);
       setActiveDropdownName(propertyName);
-    } else {
-      if (!currentUserConfiguration) return;
-      setCurrentUserConfiguration({
-        ...currentUserConfiguration,
-        [propertyName]: {
-          label: label,
-          description: description,
-          price: price,
-        },
-      });
-      setActivePropIndex({ ...activePropIndex, [propertyName]: index });
+      return;
     }
+    if (!currentUserConfiguration) return;
+
+    setCurrentUserConfiguration({
+      ...currentUserConfiguration,
+      [propertyName]: {
+        label: label,
+        description: description,
+        price: price,
+      },
+    });
+    setActivePropIndex({ ...activePropIndex, [propertyName]: index });
   };
+
   return { handleOpenDropdown, propertyImgUrl, activePropIndex };
 }

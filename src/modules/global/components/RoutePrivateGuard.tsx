@@ -8,7 +8,7 @@ export const RoutePrivateGuard: React.FC<PropsWithChildren> = ({
 }) => {
   const isLoggedIn = useRecoilValue(loggedState);
 
-  if (!isLoggedIn) return <Navigate to="/" />;
+  if (!isLoggedIn) return <Navigate to="/auth/log-in" />;
 
   return <>{children}</>;
 };

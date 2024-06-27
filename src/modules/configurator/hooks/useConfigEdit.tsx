@@ -19,11 +19,6 @@ export function useConfigEdit() {
 
   const { id } = useParams();
 
-  useEffect(() => {
-    if (!id) return;
-    handleCarConfigurationsFetch(id);
-  }, []);
-
   const handleCarConfigurationsFetch = async (id: string) => {
     try {
       const response = await fetchCarConfigurations(id);
@@ -31,17 +26,20 @@ export function useConfigEdit() {
       setConfigurations(response);
 
       setCurrentUserConfiguration({
-        model: response.model,
-        productionYear: response.productionYear,
+        ...response,
         color: response.color[0],
         wheels: response.wheelVariants[0],
         interiorVariant: response.interiorVariants[0],
-        price: response.price,
       });
     } catch (err: any) {
       throw new Error(err);
     }
   };
+
+  useEffect(() => {
+    if (!id) return;
+    handleCarConfigurationsFetch(id);
+  }, []);
 
   useEffect(() => {
     const preventPageLeave = (e: BeforeUnloadEvent) => {

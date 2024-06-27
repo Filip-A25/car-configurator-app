@@ -32,7 +32,7 @@ export interface UserCarConfiguration {
     price: number;
 }
 
-export interface PropIndex {
+export interface CurrentPropertyIndex {
     color: number;
     wheels: number;
 }

@@ -27,7 +27,7 @@ export function CarImageSlide() {
         nextEl: paginationNextRef.current,
       }}
     >
-      {configImages && configImages.length > 0 ? (
+      {configImages && Boolean(configImages.length) ? (
         configImages.map((imgUrl, index) => (
           <SwiperSlide key={index} className="swiper-slide-config-edit">
             <img
@@ -40,7 +40,7 @@ export function CarImageSlide() {
       ) : (
         <img
           src={carIcon}
-          alt="Car icom"
+          alt="Car ico"
           className="animate-pulse w-20 mx-auto md:py-40 opacity-10"
         />
       )}
@@ -51,7 +51,7 @@ export function CarImageSlide() {
             childRef={paginationBackRef}
             className="max-sm:absolute w-10 py-2 max-sm:left-0 max-sm:top-[50%] max-sm:z-10"
           />
-          <span className="swiper-pagination text-input-border-gray"></span>
+          <span className="swiper-pagination text-input-border-gray" />
           <PaginationButton
             direction={IconDirection.next}
             childRef={paginationNextRef}

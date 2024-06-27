@@ -1,18 +1,17 @@
 import ButtonLink from "../../../shared/ButtonLink";
 import { fetchCarImageByColorAndVariant } from "../../../services/API_carModel";
 import { useEffect, useState } from "react";
-import { CarPosition } from "../types/carType";
-import { TextVariant } from "../types/configType";
 import carIcon from "../assets/car-icon.png";
+import { CarModel, TextVariant, CarPosition } from "../types";
 
-interface CarItemProps {
+interface Props {
   id: string;
-  model: "Audi RS5" | "Audi RS6" | "Audi e-tron GT";
+  model: CarModel;
   productionYear: number;
   color: TextVariant[];
 }
 
-export function CarItem({ id, model, productionYear, color }: CarItemProps) {
+export function CarItem({ id, model, productionYear, color }: Props) {
   const [carImg, setCarImg] = useState("");
 
   useEffect(() => {
@@ -21,12 +20,14 @@ export function CarItem({ id, model, productionYear, color }: CarItemProps) {
 
   const handleImageFetch = async () => {
     const randomColor = color[Math.floor(Math.random() * color.length)];
-    const image = await fetchCarImageByColorAndVariant(
-      model,
-      randomColor.label,
-      1,
-      CarPosition.front
-    );
+
+    const requestData = {
+      modelName: model,
+      color: randomColor.label,
+      wheelVariant: 1,
+      position: CarPosition.front,
+    };
+    const image = await fetchCarImageByColorAndVariant(requestData);
 
     setCarImg(image);
   };
