@@ -2,7 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./modules/global/components/Navbar";
 import { Authentication } from "./modules/authentification";
 import { Configurator } from "./modules/configurator";
-import { RoutePrivateGuard } from "./modules/global/components/RoutePrivateGuard";
+import {
+  RoutePrivateGuard,
+  RoutePublicGuard,
+} from "./modules/global/components";
 import "swiper/css";
 
 export default function App() {
@@ -15,9 +18,9 @@ export default function App() {
         <Route
           path="/auth/*"
           element={
-            <RoutePrivateGuard>
+            <RoutePublicGuard>
               <Authentication />
-            </RoutePrivateGuard>
+            </RoutePublicGuard>
           }
         />
         <Route

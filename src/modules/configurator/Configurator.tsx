@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { ConfigureACar } from "./configure-a-car";
+import { ConfigureACar } from "./components";
 import Configurations from "./components/saved-configurations/Configurations";
 
 export function Configurator() {

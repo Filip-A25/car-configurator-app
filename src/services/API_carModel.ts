@@ -50,7 +50,7 @@ export const fetchCarImageByColorAndVariant = async (modelName: string, color: s
                 throw new Error("Model file doesn't exist");
         }
 
-        const photoUrl = await getDownloadURL(ref(storage, `${modelFile}/models/${color}/${position}-${wheelVariant}.png`));
+        const photoUrl = await getDownloadURL(ref(storage, `${modelFile}/models/wheel_${wheelVariant}/${color}/${position}.png`));
 
         return photoUrl;
     } catch (err: any) {

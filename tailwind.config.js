@@ -8,11 +8,13 @@ module.exports = {
       'optician-sans': ['Optician Sans', 'sans-serif']
     },
     screens: {
-      'max-xs': {"max": "400px"},
+      "max-xs": {"max": "380px"},
+
+      "xs": '380px',
 
       'sm': '640px',
 
-      "max-md": {"max": "768px"},
+      "max-sm": {"max": "640px"},
 
       'md': '768px',
 
@@ -22,7 +24,7 @@ module.exports = {
 
       '2xl': '1536px',
 
-      '3xl': '1920px'
+      '3xl': '2000px'
     },
     extend: {
       keyframes: {
@@ -218,6 +220,9 @@ module.exports = {
         navbarMobileColorAnimation: "navbarMobileColorAnimation .2s ease-in-out forwards",
         navbarMobileDropdownAnimationReverse: "navbarMobileDropdownAnimationReverse .2s ease-in-out forwards",
         navbarMobileColorAnimationReverse: "navbarMobileColorAnimationReverse .2s ease-in-out forwards"
+      },
+      boxShadow: {
+        "dropdown-shadow": "0 25px 50px -12px rgb(0 0 0 / 0.25)"
       }
     },
     colors: {
@@ -230,6 +235,9 @@ module.exports = {
       "text-default-gray": "#2E2E38",
       "text-muted-gray": "#73738C",
       "input-border-gray": "#C7C7D1",
+      "text-dark-gray": "#505062",
+      "text-light-grey": "#9D9DAF",
+      "text-red": "#D2341E",
 
       "button-purple": "#1E1ED2"
     }
