@@ -1,8 +1,8 @@
-import ConfigureLinkButton from "../ConfigureLinkButton";
-import ConfigurationsEmpty from "./ConfigurationsEmpty";
+import { ConfigureLinkButton } from "./ConfigureLinkButton";
+import { ConfigurationsEmpty } from "./ConfigurationsEmpty";
 import { useRecoilValue } from "recoil";
-import { userConfigurationsState } from "../../state";
-import ConfigurationsSaved from "./ConfigurationsSaved";
+import { userConfigurationsState } from "../state";
+import { ConfigurationsSaved } from "./ConfigurationsSaved";
 
 export default function Configurations() {
   const userConfigurations = useRecoilValue(userConfigurationsState);
