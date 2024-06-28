@@ -1,10 +1,7 @@
-import {db} from "../../firebase";
-import {doc, deleteDoc, getDocs, collection, DocumentData} from "firebase/firestore";
-import { UserCarConfiguration } from "../types";
-import {getDoc, doc, deleteDoc} from "firebase/firestore";
+import {getDocs, collection, DocumentData, getDoc, doc, deleteDoc} from "firebase/firestore";
 import {db, storage} from "../../firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { CarConfigurations, CarModel } from "../types";
+import { CarConfigurations, CarModel, UserCarConfiguration } from "../types";
 import {fileNames, sortedPhotoNames} from "./const/fileNames";
 
 export interface ColorAndVariantProps {
