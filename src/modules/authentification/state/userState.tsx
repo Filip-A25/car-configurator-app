@@ -8,5 +8,5 @@ export const userState = atom<User | undefined>({
 
 export const loggedState = atom({
   key: "authentication.isLoggedIn",
-  default: true,
+  default: false,
 });
