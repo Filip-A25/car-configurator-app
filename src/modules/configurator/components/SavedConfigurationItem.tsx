@@ -26,10 +26,6 @@ export function SavedConfigurationItem({
   const [imgUrl, setImgUrl] = useState("");
   const [isOptionsDropdownOpen, setIsOptionsDropdownOpen] = useState(false);
 
-  useEffect(() => {
-    handleCarImageFetch(name, colorLabel, wheelsLabel, CarPosition.side);
-  }, []);
-
   const handleCarImageFetch = async (
     modelName: CarModel,
     color: string,
@@ -45,6 +41,10 @@ export function SavedConfigurationItem({
 
     setImgUrl(image);
   };
+
+  useEffect(() => {
+    handleCarImageFetch(name, colorLabel, wheelsLabel, CarPosition.side);
+  }, []);
 
   return (
     <li className="flex bg-basic-white mb-12">

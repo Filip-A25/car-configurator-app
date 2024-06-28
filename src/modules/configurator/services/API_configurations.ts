@@ -1,3 +1,6 @@
+import {db} from "../../firebase";
+import {doc, deleteDoc, getDocs, collection, DocumentData} from "firebase/firestore";
+import { UserCarConfiguration } from "../types";
 import {getDoc, doc, deleteDoc} from "firebase/firestore";
 import {db, storage} from "../../firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
@@ -70,12 +73,41 @@ export const fetchPropertyImagesByVariant = async ({modelName, name, variant}: V
     }
 }
 
-export const deleteUserConfiguration = async (id: string) => {
+export const deleteUserConfiguration = async (userId: string, configId: string) => {
     try {
-        const response = await deleteDoc(doc(db, "user-configurations", id));
+        const response = await deleteDoc(doc(db, `users/${userId}/configurations`, configId));
 
         return response;
     } catch (err: any) {
+        throw new Error(err);
+    }
+}
+
+export const fetchAllUserConfigurations = async (id: string) => {
+    try {
+        const configsRef = collection(db, `users/${id}/configurations`);
+        const response = await getDocs(configsRef);
+
+        const configurationsArray: UserCarConfiguration[] = response.docs.map(config => {
+            const userId = config.id;
+            const {model, model_id, production_year, color, wheel_variant, interior_variant, total_price}: DocumentData = config.data();
+            
+            const newConfig: UserCarConfiguration = {
+                id: userId,
+                model,
+                modelId: model_id,
+                productionYear: production_year,
+                color,
+                wheels: wheel_variant,
+                interiorVariant: interior_variant,
+                totalPrice: total_price
+            }
+
+            return newConfig;
+        })
+
+        return configurationsArray;
+    } catch (err: any) {    
         throw new Error(err);
     }
 }
