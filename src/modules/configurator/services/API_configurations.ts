@@ -1,4 +1,4 @@
-import {getDoc, doc} from "firebase/firestore";
+import {getDoc, doc, deleteDoc} from "firebase/firestore";
 import {db, storage} from "../../firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { CarConfigurations, CarModel } from "../types";
@@ -65,6 +65,16 @@ export const fetchPropertyImagesByVariant = async ({modelName, name, variant}: V
         const photoItem = await getDownloadURL(variantRef);
         
         return photoItem;
+    } catch (err: any) {
+        throw new Error(err);
+    }
+}
+
+export const deleteUserConfiguration = async (id: string) => {
+    try {
+        const response = await deleteDoc(doc(db, "user-configurations", id));
+
+        return response;
     } catch (err: any) {
         throw new Error(err);
     }

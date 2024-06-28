@@ -10,7 +10,9 @@ export default function ConfigurationsSaved() {
       {userConfigurations.map((config, index) => (
         <SavedConfigurationItem
           key={index}
+          id={config.id}
           name={config.model}
+          modelId={config.modelId}
           productionYear={config.productionYear}
           colorLabel={config.color.label}
           colorName={config.color.name}

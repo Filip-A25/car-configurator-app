@@ -26,12 +26,14 @@ export interface CarConfigurationsWithId extends CarConfigurations {
 }
 
 export interface UserCarConfiguration {
+    id: string;
     model: CarModel;
+    modelId: string;
     productionYear: number;
     color: TextVariant;
     wheels: NumberVariant;
     interiorVariant: string;
-    price: number;
+    totalPrice: number;
 }
 
 export interface CurrentPropertyIndex {

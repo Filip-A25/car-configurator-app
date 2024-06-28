@@ -5,11 +5,13 @@ export const userConfigurationsState = atom<UserCarConfiguration[]>({
   key: "configurator.userConfigurations",
   default: [
     {
+      id: "fyD2ZxiqU96iyZOBHwAX",
       model: "Audi RS6",
+      modelId: "4ga5WjQSp8Ik7H1JmA1q",
       productionYear: 2022,
       color: {
-        label: "ultra_blue",
-        name: "Ultra blue",
+        label: "polar_white",
+        name: "Polar white",
         price: 0,
       },
       wheels: {
@@ -18,39 +20,7 @@ export const userConfigurationsState = atom<UserCarConfiguration[]>({
         price: 3900,
       },
       interiorVariant: "black and red",
-      price: 125000,
+      totalPrice: 128900,
     },
-    {
-      model: "Audi e-tron GT",
-      productionYear: 2022,
-      color: {
-        label: "florett_white",
-        name: "Florett white",
-        price: 0,
-      },
-      wheels: {
-        label: 2,
-        name: "Felge 2",
-        price: 3000,
-      },
-      interiorVariant: "red",
-      price: 108000,
-    },
-    {
-      model: "Audi RS5",
-      productionYear: 2022,
-      color: {
-        label: "tango_red",
-        name: "Tango red",
-        price: 0,
-      },
-      wheels: {
-        label: 1,
-        name: "Felge 1",
-        price: 2500,
-      },
-      interiorVariant: "black and gray",
-      price: 80000,
-    },
-  ],
+  ]
 });
