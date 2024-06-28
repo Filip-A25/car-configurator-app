@@ -5,7 +5,9 @@ import { ConfigOptionsButton } from "./ConfigOptionsButton";
 import { OptionsDropdown } from "./OptionsDropdown";
 
 interface Props {
+  id: string;
   name: CarModel;
+  modelId: string;
   productionYear: number;
   colorLabel: string;
   colorName: string;
@@ -13,7 +15,9 @@ interface Props {
 }
 
 export function SavedConfigurationItem({
+  id,
   name,
+  modelId,
   productionYear,
   colorLabel,
   colorName,
@@ -72,7 +76,9 @@ export function SavedConfigurationItem({
             isOptionsDropdownOpen={isOptionsDropdownOpen}
             setIsOptionsDropdownOpen={setIsOptionsDropdownOpen}
           />
-          {isOptionsDropdownOpen && <OptionsDropdown />}
+          {isOptionsDropdownOpen && (
+            <OptionsDropdown id={id} modelId={modelId} />
+          )}
         </div>
       </section>
     </li>
