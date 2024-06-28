@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./modules/global/components/Navbar";
 import { Authentication } from "./modules/authentification";
-import { Configurator } from "./modules/configurator";
+import { Configurator } from "./modules/configurator/components";
 import {
   RoutePrivateGuard,
   RoutePublicGuard,

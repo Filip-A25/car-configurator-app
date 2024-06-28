@@ -8,7 +8,7 @@ export function OptionsDropdownItem({ title }: OptionsDropdownItemProps) {
       <button
         className={`${
           title === "Delete" ? "text-[#D2341E]" : "text-button-purple"
-        } flex w-full text-2xl items-center py-6 px-10 whitespace-nowrap`}
+        } flex w-full 3xl:text-2xl items-center lg:py-4 2xl:py-5 3xl:py-6 lg:pl-4 lg:pr-12 2xl:pl-8 2xl:pr-20 whitespace-nowrap`}
       >
         {title}
       </button>

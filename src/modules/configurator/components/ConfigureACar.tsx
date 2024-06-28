@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { CarSelect } from "../configure-a-car";
+import { CarSelect } from "./CarSelect";
 
 export function ConfigureACar() {
   return (

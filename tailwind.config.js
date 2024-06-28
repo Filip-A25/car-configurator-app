@@ -18,6 +18,8 @@ module.exports = {
 
       'md': '768px',
 
+      "max-lg": {"max": "1024px"},
+
       'lg': '1024px',
 
       'xl': '1280px',
@@ -222,7 +224,7 @@ module.exports = {
         navbarMobileColorAnimationReverse: "navbarMobileColorAnimationReverse .2s ease-in-out forwards"
       },
       boxShadow: {
-        "dropdown-shadow": "0 25px 50px -12px rgb(0 0 0 / 0.25)"
+        "dropdown-shadow": "0 10px 40px -6px rgb(0 0 0 / 0.06)"
       }
     },
     colors: {
