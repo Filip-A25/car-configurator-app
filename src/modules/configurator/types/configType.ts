@@ -1,3 +1,5 @@
+import {CarModel} from "./carType";
+
 export interface TextVariant {
     label: string;
     name: string;
@@ -11,7 +13,7 @@ export interface NumberVariant {
 }
 
 export interface CarConfigurations {
-    model: "Audi RS5" | "Audi RS6" | "Audi e-tron GT";
+    model: CarModel;
     productionYear: number;
     color: TextVariant[];
     wheelVariants: NumberVariant[];
@@ -24,7 +26,7 @@ export interface CarConfigurationsWithId extends CarConfigurations {
 }
 
 export interface UserCarConfiguration {
-    model: "Audi RS5" | "Audi RS6" | "Audi e-tron GT";
+    model: CarModel;
     productionYear: number;
     color: TextVariant;
     wheels: NumberVariant;

@@ -4,6 +4,18 @@ import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { CarConfigurations, CarModel } from "../types";
 import {fileNames, sortedPhotoNames} from "./const/fileNames";
 
+export interface ColorAndVariantProps {
+    modelName: CarModel;
+    color: string;
+    wheelVariant: number;
+}
+
+export interface VariantProps {
+    modelName: CarModel;
+    name: string;
+    variant: string | number;
+}
+
 export const fetchCarConfigurations = async (id: string) => {
     try {
         const configRef = doc(db, "car-models", id);
@@ -27,12 +39,6 @@ export const fetchCarConfigurations = async (id: string) => {
     }
 }
 
-export interface ColorAndVariantProps {
-    modelName: CarModel;
-    color: string;
-    wheelVariant: number;
-}
-
 export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVariant}: ColorAndVariantProps) => {
     try {
         const modelFile = fileNames[modelName];
@@ -48,12 +54,6 @@ export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVa
     } catch (err: any) {
         throw new Error(err);
     }
-}
-
-export interface VariantProps {
-    modelName: CarModel;
-    name: string;
-    variant: string | number;
 }
 
 export const fetchPropertyImagesByVariant = async ({modelName, name, variant}: VariantProps) => {
