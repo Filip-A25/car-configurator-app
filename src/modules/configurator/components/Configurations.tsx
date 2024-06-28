@@ -1,11 +1,31 @@
 import { ConfigureLinkButton } from "./ConfigureLinkButton";
 import { ConfigurationsEmpty } from "./ConfigurationsEmpty";
-import { useRecoilValue } from "recoil";
-import { userConfigurationsState } from "../state";
 import { ConfigurationsSaved } from "./ConfigurationsSaved";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userConfigurationsState } from "../state/configurationsState";
+import { useEffect } from "react";
+import { userState } from "../../authentification/state";
+import { fetchAllUserConfigurations } from "../services";
 
 export function Configurations() {
-  const userConfigurations = useRecoilValue(userConfigurationsState);
+  const [userConfigurations, setUserConfigurations] = useRecoilState(
+    userConfigurationsState
+  );
+  const currentUser = useRecoilValue(userState);
+
+  const handleUserConfigurationsFetch = async (id: string) => {
+    try {
+      const response = await fetchAllUserConfigurations(id);
+      setUserConfigurations(response);
+    } catch (err: any) {
+      throw Error(err);
+    }
+  };
+
+  useEffect(() => {
+    if (!currentUser) return;
+    handleUserConfigurationsFetch(currentUser.id);
+  }, []);
 
   return (
     <section className="text-center md:text-left px-10 sm:px-20 md:px-20 lg:px-20 2xl:px-48 3xl:px-52 py-16 3xl:py-24 flex flex-col">
