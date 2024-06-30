@@ -16,3 +16,10 @@ export enum CarPosition {
 }
 
 export type CarModel = "Audi RS5" | "Audi RS6" | "Audi e-tron GT";
+
+export interface CarImageFetchProps {
+  modelName: CarModel;
+  color: string;
+  wheelVariant: number;
+  position: CarPosition
+}

@@ -1,8 +1,5 @@
 import ButtonLink from "../../../shared/ButtonLink";
-import {
-  fetchCarImageByColorAndVariant,
-  ColorAndVariantProps,
-} from "../services";
+import { fetchCarImageByColorAndVariant } from "../services";
 import { useEffect, useState } from "react";
 import { CarPosition, CarModel, TextVariant } from "../types";
 import carIcon from "../assets/car-icon.png";
@@ -24,13 +21,12 @@ export function CarItem({ id, model, productionYear, color }: Props) {
   const handleImageFetch = async () => {
     const randomColor = color[Math.floor(Math.random() * color.length)];
 
-    const requestData: ColorAndVariantProps = {
+    const image = await fetchCarImageByColorAndVariant({
       modelName: model,
       color: randomColor.label,
       wheelVariant: 1,
       position: CarPosition.front,
-    };
-    const image = await fetchCarImageByColorAndVariant(requestData);
+    });
 
     setCarImg(image);
   };

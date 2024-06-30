@@ -232,6 +232,7 @@ module.exports = {
       "light-gray-background-color": "#F1F1F4",
       "light-gray-element-color": "#FCFCFD",
       "basic-white": "#FFFFFF",
+      "mobile-light-element-color": "#f9f9fb",
 
       "text-purple": "#3F3FE4",
       "text-default-gray": "#2E2E38",
