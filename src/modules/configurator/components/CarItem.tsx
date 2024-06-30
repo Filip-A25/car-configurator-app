@@ -21,13 +21,12 @@ export function CarItem({ id, model, productionYear, color }: Props) {
   const handleImageFetch = async () => {
     const randomColor = color[Math.floor(Math.random() * color.length)];
 
-    const requestData = {
+    const image = await fetchCarImageByColorAndVariant({
       modelName: model,
       color: randomColor.label,
       wheelVariant: 1,
       position: CarPosition.front,
-    };
-    const image = await fetchCarImageByColorAndVariant(requestData);
+    });
 
     setCarImg(image);
   };
