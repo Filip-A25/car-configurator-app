@@ -58,8 +58,7 @@ export default function useAuthLogin() {
         });
 
         setIsLoggedIn(true);
-        console.log(user.uid, user.displayName, user.email);
-        navigate("/home");
+        navigate("/home/configurations");
       })
       .catch((err) => {
         throw new Error(err.message);

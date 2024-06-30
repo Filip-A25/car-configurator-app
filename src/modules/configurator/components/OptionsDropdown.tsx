@@ -11,12 +11,13 @@ interface Props {
 
 export function OptionsDropdown({ id, modelId }: Props) {
   const navigate = useNavigate();
-  const userId = useRecoilValue(userState)?.id;
+  const user = useRecoilValue(userState);
 
   const handleConfigurationDelete = async () => {
+    if (!user) throw new Error("User could not be found.");
     try {
-      if (!userId) throw new Error("User id could not be found.");
-      const response = await deleteUserConfiguration(userId, id);
+      await deleteUserConfiguration(user.id, id);
+      navigate(0);
     } catch (err: any) {
       throw new Error(err);
     }
