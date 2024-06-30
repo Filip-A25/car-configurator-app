@@ -13,7 +13,7 @@ export function ConfigOptionsButton({
         viewBox="0 0 16 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-[16px] h-[16px] 3xl:w-[24px] 3xl:h-[24px]"
+        className="w-[24px] h-[24px] sm:w-[16px] sm:h-[16px] 3xl:w-[24px] 3xl:h-[24px]"
       >
         <path
           d="M10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10C9.10457 10 10 9.10457 10 8Z"

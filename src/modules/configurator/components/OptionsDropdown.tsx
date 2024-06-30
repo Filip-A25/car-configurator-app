@@ -1,39 +1,28 @@
 import { OptionsDropdownItem } from "./OptionsDropdownItem";
-import { deleteUserConfiguration } from "../services";
-import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { userState } from "../../authentification/state";
+import { useOptionsDropdown } from "../hooks";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-interface Props {
+export interface OptionsDropdownProps {
   id: string;
-  modelId: string;
+  setIsOptionsDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function OptionsDropdown({ id, modelId }: Props) {
-  const navigate = useNavigate();
-  const user = useRecoilValue(userState);
-
-  const handleConfigurationDelete = async () => {
-    if (!user) throw new Error("User could not be found.");
-    try {
-      await deleteUserConfiguration(user.id, id);
-      navigate(0);
-    } catch (err: any) {
-      throw new Error(err);
-    }
-  };
-
-  const handleEditConfigurationNavigate = () => {
-    navigate(`/home/configure-a-car/configuration-edit/${modelId}`);
-  };
+export function OptionsDropdown({
+  id,
+  setIsOptionsDropdownOpen,
+}: OptionsDropdownProps) {
+  const { handleDeleteClick, handleEditConfigurationNavigate } =
+    useOptionsDropdown({ id, setIsOptionsDropdownOpen });
 
   return (
-    <ul className="shadow-dropdown-shadow absolute right-0">
+    <ul className="shadow-dropdown-shadow absolute max-sm:right-10 max-sm:top-4 right-0">
       <OptionsDropdownItem
         title="Edit configuration"
         onClick={handleEditConfigurationNavigate}
       />
-      <OptionsDropdownItem title="Delete" onClick={handleConfigurationDelete} />
+      <OptionsDropdownItem title="Delete" onClick={handleDeleteClick} />
+      <ToastContainer />
     </ul>
   );
 }

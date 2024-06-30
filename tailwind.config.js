@@ -257,6 +257,7 @@ module.exports = {
       "basic-white": "#FFFFFF",
       "muted-grey": "#9D9DAF",
       "muted-purple": "#9898F0",
+      "mobile-light-element-color": "#f9f9fb",
 
       "text-purple": "#3F3FE4",
       "text-default-gray": "#2E2E38",

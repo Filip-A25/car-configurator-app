@@ -2,7 +2,7 @@ import { SavedConfigurationItem } from "./SavedConfigurationItem";
 import { useRecoilValue } from "recoil";
 import { userConfigurationsState } from "../state";
 
-export default function ConfigurationsSaved() {
+export function ConfigurationsSaved() {
   const userConfigurations = useRecoilValue(userConfigurationsState);
 
   return (
