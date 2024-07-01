@@ -8,6 +8,7 @@ import {
 } from "../services";
 import { OptionsDropdownProps } from "../components";
 import { toastifySuccessProps } from "../components/const/toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function useOptionsDropdown({
   id,
@@ -30,7 +31,6 @@ export function useOptionsDropdown({
   };
 
   const handleConfigurationDelete = async (userId: string) => {
-    if (!user) throw new Error("User could not be found.");
     try {
       await deleteUserConfiguration(userId, id);
     } catch (err: any) {
@@ -40,7 +40,6 @@ export function useOptionsDropdown({
 
   const handleDeleteClick = async () => {
     if (!user) throw new Error("User could not be found.");
-
     try {
       await handleConfigurationDelete(user.id);
       await handleUserConfigurationsFetch(user.id);

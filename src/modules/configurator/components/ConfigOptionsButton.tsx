@@ -8,10 +8,7 @@ export function ConfigOptionsButton({
   setIsOptionsDropdownOpen,
 }: ConfigOptionsButtonProps) {
   return (
-    <button
-      onClick={() => setIsOptionsDropdownOpen(!isOptionsDropdownOpen)}
-      onBlur={() => setIsOptionsDropdownOpen(false)}
-    >
+    <button onClick={() => setIsOptionsDropdownOpen(!isOptionsDropdownOpen)}>
       <svg
         viewBox="0 0 16 16"
         fill="none"

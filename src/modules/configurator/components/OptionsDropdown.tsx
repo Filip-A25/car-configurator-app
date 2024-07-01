@@ -1,7 +1,5 @@
 import { OptionsDropdownItem } from "./OptionsDropdownItem";
 import { useOptionsDropdown } from "../hooks";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export interface OptionsDropdownProps {
   id: string;
@@ -22,7 +20,6 @@ export function OptionsDropdown({
         onClick={handleEditConfigurationNavigate}
       />
       <OptionsDropdownItem title="Delete" onClick={handleDeleteClick} />
-      <ToastContainer />
     </ul>
   );
 }
