@@ -5,7 +5,7 @@ import { Configurator } from "./modules/configurator/components";
 import {
   RoutePrivateGuard,
   RoutePublicGuard,
-} from "./modules/global/components/";
+} from "./modules/global/components";
 import "swiper/css";
 
 export default function App() {
