@@ -8,7 +8,6 @@ import {
 } from "../services";
 import { OptionsDropdownProps } from "../components";
 import { toastifySuccessProps } from "../components/const/toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export function useOptionsDropdown({
   id,
