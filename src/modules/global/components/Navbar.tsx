@@ -5,7 +5,6 @@ import { pathSelector } from "../state/navigationState";
 import MenuDropdownMobile from "./MenuDropdownMobile";
 import MenuDropdown from "./MenuDropdown";
 import { loggedState } from "../../authentification/state/userState";
-import { fetchAllCarData } from "../../configurator/services/API_carModel";
 
 export default function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -17,10 +16,6 @@ export default function Navbar() {
   const handleOpenMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     setMenuOpen(!isMenuOpen);
   };
-
-  useEffect(() => {
-    fetchAllCarData();
-  }, []);
 
   useEffect(() => {
     setMenuOpen(false);

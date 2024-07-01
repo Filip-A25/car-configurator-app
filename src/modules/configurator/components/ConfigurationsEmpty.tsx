@@ -12,8 +12,10 @@ export function ConfigurationsEmpty() {
       <div className="md:px-24 lg:px-32 xl:px-48 2xl:px-80 pt-10">
         <p className="text-center par-font-size">
           You haven't configured any cars yet. You may choose to{" "}
-          {/* TODO: to="" Path will be added once ConfigureACar components have been added to the app.*/}
-          <Link to="" className="text-text-purple font-bold">
+          <Link
+            to="/home/configure-a-car/car-select"
+            className="text-text-purple font-bold"
+          >
             configure some now.
           </Link>
         </p>
