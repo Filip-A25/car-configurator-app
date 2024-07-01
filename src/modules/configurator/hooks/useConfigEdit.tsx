@@ -8,6 +8,7 @@ import {
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { fetchCarConfigurations } from "../services";
 import { useParams } from "react-router-dom";
+import { Timestamp } from "firebase/firestore";
 
 export function useConfigEdit() {
   const [configurations, setConfigurations] = useRecoilState(
@@ -27,9 +28,12 @@ export function useConfigEdit() {
 
       setCurrentUserConfiguration({
         ...response,
+        modelId: id,
         color: response.color[0],
         wheels: response.wheelVariants[0],
         interiorVariant: response.interiorVariants[0],
+        creationDate: Timestamp.fromDate(new Date()),
+        totalPrice: response.price,
       });
     } catch (err: any) {
       throw new Error(err);
