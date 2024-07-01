@@ -7,7 +7,7 @@ import {
   deleteUserConfiguration,
 } from "../services";
 import { OptionsDropdownProps } from "../components";
-import { toastifySuccessProps } from "../components/const/toastify";
+import { toastifySuccessProps } from "../components/const";
 
 export function useOptionsDropdown({
   id,
