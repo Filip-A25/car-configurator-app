@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { userState } from "../../authentification/state";
 import { fetchAllUserConfigurations } from "../services";
 import { PageLoading } from "../../global/components";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function Configurations() {
   const [userConfigurations, setUserConfigurations] = useRecoilState(
@@ -34,6 +36,7 @@ export function Configurations() {
 
   return (
     <section className="text-center md:text-left px-10 sm:px-20 md:px-20 lg:px-20 2xl:px-48 3xl:px-52 py-12 sm:py-16 3xl:py-24 flex flex-col">
+      <ToastContainer />
       <header className="flex flex-col sm:flex-row items-start justify-between pb-8 3xl:pb-20">
         <h2 className="text-xl sm:text-sm lg:text-xl 3xl:text-2xl pb-10 sm:py-3 md:py-4 3xl:py-5">
           View saved configurations
