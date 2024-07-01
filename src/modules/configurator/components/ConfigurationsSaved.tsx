@@ -17,6 +17,7 @@ export function ConfigurationsSaved() {
           colorLabel={config.color.label}
           colorName={config.color.name}
           wheelsLabel={config.wheels.label}
+          creationDate={config.creationDate}
         />
       ))}
     </ul>

@@ -16,7 +16,7 @@ export function OptionsDropdown({
     useOptionsDropdown({ id, setIsOptionsDropdownOpen });
 
   return (
-    <ul className="shadow-dropdown-shadow absolute max-sm:right-10 max-sm:top-4 right-0">
+    <ul className="shadow-dropdown-shadow absolute max-md:right-10 max-md:top-4 right-0">
       <OptionsDropdownItem
         title="Edit configuration"
         onClick={handleEditConfigurationNavigate}
