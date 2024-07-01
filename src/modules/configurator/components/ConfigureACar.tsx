@@ -1,10 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import { CarSelect } from "./";
+import { ConfigEdit } from "./ConfigEdit";
+import { CarSelect } from "./CarSelect";
 
 export function ConfigureACar() {
   return (
     <Routes>
-      {/*There will be more routes here.*/}
+      <Route path="configuration-edit/:id" element={<ConfigEdit />} />
       <Route path="car-select" element={<CarSelect />} />
     </Routes>
   );

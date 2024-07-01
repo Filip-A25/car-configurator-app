@@ -5,7 +5,7 @@ interface Props {
   title: string;
 }
 
-export default function ConfigureLinkButton({ path, title }: Props) {
+export function ConfigureLinkButton({ path, title }: Props) {
   return (
     <Link
       to={path}

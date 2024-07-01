@@ -8,11 +8,13 @@ module.exports = {
       'optician-sans': ['Optician Sans', 'sans-serif']
     },
     screens: {
-      'max-xs': {"max": "400px"},
+      "max-xs": {"max": "380px"},
+
+      "xs": '380px',
 
       'sm': '640px',
 
-      "max-md": {"max": "768px"},
+      "max-sm": {"max": "640px"},
 
       'md': '768px',
 
@@ -22,7 +24,7 @@ module.exports = {
 
       '2xl': '1536px',
 
-      '3xl': '1920px'
+      '3xl': '2000px'
     },
     extend: {
       keyframes: {
@@ -205,6 +207,23 @@ module.exports = {
           "100%": {
             background: "#2E2E38" 
           }
+        },
+        sidebarOpenAnimation: {
+          "0%": {
+            transform: "translateX(100%)"
+          },
+          "25%": {
+            transform: "translateX(75%)"
+          },
+          "50%": {
+            transform: "translateX(50%)"
+          },
+          "75%": {
+            transform: "translateX(25%)"
+          },
+          "100%": {
+            transform: "translateX(0%)"
+          }
         }
       },
       animation: {
@@ -217,7 +236,8 @@ module.exports = {
         navbarMobileDropdownAnimation: "navbarMobileDropdownAnimation .2s ease-in-out forwards",
         navbarMobileColorAnimation: "navbarMobileColorAnimation .2s ease-in-out forwards",
         navbarMobileDropdownAnimationReverse: "navbarMobileDropdownAnimationReverse .2s ease-in-out forwards",
-        navbarMobileColorAnimationReverse: "navbarMobileColorAnimationReverse .2s ease-in-out forwards"
+        navbarMobileColorAnimationReverse: "navbarMobileColorAnimationReverse .2s ease-in-out forwards",
+        sidebarOpenAnimation: "sidebarOpenAnimation .3s ease-in-out forwards"
       }
     },
     colors: {
@@ -225,14 +245,18 @@ module.exports = {
       "light-gray-background-color": "#F1F1F4",
       "light-gray-element-color": "#FCFCFD",
       "basic-white": "#FFFFFF",
+      "muted-grey": "#9D9DAF",
+      "muted-purple": "#9898F0",
 
       "text-purple": "#3F3FE4",
       "text-default-gray": "#2E2E38",
       "text-muted-gray": "#73738C",
       "input-border-gray": "#C7C7D1",
+      "property-name-grey": "#73738C",
+      "checkmark-green": "#1ED286",
 
       "button-purple": "#1E1ED2"
-    }
+    },
   },
   plugins: [],
 }

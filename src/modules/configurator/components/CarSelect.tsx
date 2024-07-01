@@ -2,8 +2,7 @@ import SectionHeading from "../../../shared/SectionHeading";
 import { useRecoilState } from "recoil";
 import { carsState } from "../state/carsState";
 import { useEffect } from "react";
-import { fetchAllCarData } from "../../../services/API_carModel";
-import { Car } from "../types/carType";
+import { fetchAllCarData } from "../services";
 import { CarItem } from "./CarItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -34,6 +33,7 @@ export function CarSelect() {
         </section>
         <section className="mt-12 3xl:pr-64 overflow-x-visible">
           <Swiper
+            className="swiper-car-select"
             width={1800}
             slidesPerView={2}
             spaceBetween={40}
@@ -58,18 +58,11 @@ export function CarSelect() {
             }}
             scrollbar={{ draggable: true }}
           >
-            {carsArray &&
-              carsArray.map((car: Car, index) => (
-                <SwiperSlide key={index}>
-                  <CarItem
-                    key={index}
-                    id={car.id}
-                    model={car.name}
-                    productionYear={car.productionYear}
-                    colors={car.colors}
-                  />
-                </SwiperSlide>
-              ))}
+            {carsArray?.map((car, index) => (
+              <SwiperSlide key={index}>
+                <CarItem key={index} {...car} />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </section>
       </div>

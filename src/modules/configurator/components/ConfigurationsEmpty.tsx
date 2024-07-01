@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import emptyStateCarImg from "../../assets/audi-rs6/front-blue-1.png";
+import emptyStateCarImg from "../assets/audi-rs6/front-blue-1.png";
 
-export default function ConfigurationsEmpty() {
+export function ConfigurationsEmpty() {
   return (
     <section className="flex flex-col items-center py-20 md:px-12 lg:px-16 xl:px-28">
       <img
