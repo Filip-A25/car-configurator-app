@@ -20,10 +20,10 @@ export default function DropdownLogoutItem() {
   };
 
   return (
-    <li className="flex items-center dropdown-li-height hover:bg-light-gray-element-color transition ease-in-out delay-75 border-b border-light-gray-background-color cursor-pointer">
+    <li className="flex items-center py-4 hover:bg-light-gray-element-color transition ease-in-out delay-75 border-b border-light-gray-background-color cursor-pointer">
       <button
         onClick={handleLogout}
-        className="text-text-purple dropdown-li-height w-full dropdown-link-line-height px-5 text-left dropdown-font-size py-auto align-middle"
+        className="text-text-purple w-full px-5 text-left py-auto align-middle"
       >
         Logout
       </button>

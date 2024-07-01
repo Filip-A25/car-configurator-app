@@ -5,7 +5,6 @@ import { Timestamp } from "firebase/firestore";
 import { useSavedConfiguration } from "../hooks";
 
 interface Props {
-  id: string;
   name: CarModel;
   modelId: string;
   productionYear: number;
@@ -13,6 +12,7 @@ interface Props {
   colorName: string;
   wheelsLabel: number;
   creationDate: Timestamp;
+  id?: string;
 }
 
 export function SavedConfigurationItem({
@@ -62,7 +62,7 @@ export function SavedConfigurationItem({
             isOptionsDropdownOpen={isOptionsDropdownOpen}
             setIsOptionsDropdownOpen={setIsOptionsDropdownOpen}
           />
-          {isOptionsDropdownOpen && (
+          {isOptionsDropdownOpen && id && (
             <OptionsDropdown
               id={id}
               setIsOptionsDropdownOpen={setIsOptionsDropdownOpen}

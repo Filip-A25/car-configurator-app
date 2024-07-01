@@ -23,7 +23,7 @@ export const configurationPrice = selector({
     const configuration = get(userConfigurationState);
     
     if (!configuration) return;
-    const price = configuration.price + configuration.color.price + configuration.wheels.price;
+    const price = configuration.totalPrice + configuration.color.price + configuration.wheels.price;
     const decimalPrice = price.toFixed(2).replace(decimalRegexp, ",");
     
     return decimalPrice;
