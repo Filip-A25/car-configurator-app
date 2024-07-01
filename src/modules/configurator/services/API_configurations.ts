@@ -90,7 +90,7 @@ export const fetchAllUserConfigurations = async (id: string) => {
 
         const configurationsArray: UserCarConfiguration[] = response.docs.map(config => {
             const userId = config.id;
-            const {model, model_id, production_year, color, wheel_variant, interior_variant, total_price}: DocumentData = config.data();
+            const {model, model_id, production_year, color, wheel_variant, interior_variant, creation_date, total_price}: DocumentData = config.data();
             
             const newConfig: UserCarConfiguration = {
                 id: userId,
@@ -100,6 +100,7 @@ export const fetchAllUserConfigurations = async (id: string) => {
                 color,
                 wheels: wheel_variant,
                 interiorVariant: interior_variant,
+                creationDate: creation_date,
                 totalPrice: total_price
             }
 

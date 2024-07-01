@@ -7,6 +7,7 @@ import {
   deleteUserConfiguration,
 } from "../services";
 import { OptionsDropdownProps } from "../components";
+import { toastifySuccessProps } from "../components/const/toastify";
 
 export function useOptionsDropdown({
   id,
@@ -16,13 +17,7 @@ export function useOptionsDropdown({
   const setUserConfigurations = useSetRecoilState(userConfigurationsState);
 
   const notifyDelete = () => {
-    toast.success("Configuration successfully deleted.", {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      theme: "light",
-    });
+    toast.success("Configuration successfully deleted.", toastifySuccessProps);
   };
 
   const handleUserConfigurationsFetch = async (userId: string) => {

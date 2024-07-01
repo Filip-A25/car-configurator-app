@@ -11,16 +11,14 @@ module.exports = {
       "max-xs": {"max": "380px"},
 
       "xs": '380px',
-      "max-xs": {"max": "380px"},
-
-      "xs": '380px',
 
       'sm': '640px',
 
       "max-sm": {"max": "640px"},
-      "max-sm": {"max": "640px"},
 
       'md': '768px',
+
+      'max-md': {'max': '768px'},
 
       "max-lg": {"max": "1024px"},
 
@@ -30,7 +28,6 @@ module.exports = {
 
       '2xl': '1536px',
 
-      '3xl': '2000px'
       '3xl': '2000px'
     },
     extend: {
