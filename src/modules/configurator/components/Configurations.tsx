@@ -3,20 +3,23 @@ import { ConfigurationsEmpty } from "./ConfigurationsEmpty";
 import { ConfigurationsSaved } from "./ConfigurationsSaved";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userConfigurationsState } from "../state/configurationsState";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { userState } from "../../authentification/state";
 import { fetchAllUserConfigurations } from "../services";
+import { PageLoading } from "../../global/components";
 
 export function Configurations() {
   const [userConfigurations, setUserConfigurations] = useRecoilState(
     userConfigurationsState
   );
   const currentUser = useRecoilValue(userState);
+  const [isDataFetching, setIsDataFetching] = useState(true);
 
   const handleUserConfigurationsFetch = async (id: string) => {
     try {
       const response = await fetchAllUserConfigurations(id);
       setUserConfigurations(response);
+      setIsDataFetching(false);
     } catch (err: any) {
       throw Error(err);
     }
@@ -26,6 +29,8 @@ export function Configurations() {
     if (!currentUser) return;
     handleUserConfigurationsFetch(currentUser.id);
   }, []);
+
+  if (isDataFetching) return <PageLoading />;
 
   return (
     <section className="text-center md:text-left px-10 sm:px-20 md:px-20 lg:px-20 2xl:px-48 3xl:px-52 py-12 sm:py-16 3xl:py-24 flex flex-col">
