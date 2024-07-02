@@ -63,7 +63,7 @@ export const fetchPropertyImagesByVariant = async ({modelName, name, variant}: V
         const variantRef = ref(storage, `${modelFile}/${name}/${variant}.png`);
 
         const photoItem = await getDownloadURL(variantRef);
-        
+
         return photoItem;
     } catch (err: any) {
         throw new Error(err);
@@ -106,6 +106,21 @@ export const fetchAllUserConfigurations = async (id: string) => {
 
         return configurationsArray;
     } catch (err: any) {    
+        throw new Error(err);
+    }
+}
+
+export const fetchAllPropertyImagesByVariant = async ({modelName, name, variant}: VariantProps) => {
+    try {
+        const listRef = ref(storage, `${modelName}/${name}/${variant}`);
+        const imagesList = await listAll(listRef);
+
+        const imagePromises = imagesList.items.map(image => getDownloadURL(ref(storage, image.fullPath)));
+
+        const propertyImagesArray = await Promise.all(imagePromises);
+
+        return propertyImagesArray;
+    } catch (err: any) {
         throw new Error(err);
     }
 }

@@ -6,8 +6,8 @@ import {
   userConfigurationState,
   activePropState,
 } from "../state";
-import { useSetRecoilState, useRecoilState } from "recoil";
-import { CarProperty } from "../types";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { CarProperty, InteriorPosition } from "../types";
 
 export function useConfigProperty({
   index,
@@ -33,8 +33,12 @@ export function useConfigProperty({
       const requestData = {
         modelName: modelName,
         name: name,
-        variant: label,
+        variant:
+          propertyName === "interior_variants"
+            ? `${label}_${InteriorPosition.seats}`
+            : label,
       };
+
       const photoUrl = await fetchPropertyImagesByVariant(requestData);
 
       setPropertyImgUrl(photoUrl);

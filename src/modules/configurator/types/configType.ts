@@ -18,7 +18,7 @@ export interface CarConfigurations {
     productionYear: number;
     color: TextVariant[];
     wheelVariants: NumberVariant[];
-    interiorVariants: string[];
+    interiorVariants: TextVariant[];
     price: number;
 }
 
@@ -41,4 +41,5 @@ export interface UserCarConfiguration {
 export interface CurrentPropertyIndex {
     color: number;
     wheels: number;
+    interior_variants: number;
 }

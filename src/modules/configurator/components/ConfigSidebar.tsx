@@ -1,10 +1,22 @@
 import { ConfigPropertyDropdown } from "./ConfigPropertyDropdown";
 import { ConfigActionButton } from "./ConfigActionButton";
 import { PriceDisplay } from "./PriceDisplay";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { activePageState, pageState } from "../state";
 
 export function ConfigSidebar() {
+  const activePage = useRecoilValue(activePageState);
+  const [pages, setPages] = useRecoilState(pageState);
+
   // TODO: Handling navigation to the next step in the configurator (interior).
-  const handleNavigate = () => {};
+  const handleNavigate = () => {
+    const newPages = pages.map((page) => ({
+      ...page,
+      isActive: page.index === activePage.index + 1,
+    }));
+
+    setPages(newPages);
+  };
 
   return (
     <div
@@ -13,8 +25,17 @@ export function ConfigSidebar() {
     >
       <div className="flex flex-col justify-between min-h-full">
         <section className="pb-4 xs:pb-16">
-          <ConfigPropertyDropdown propertyName="color" isActive={false} />
-          <ConfigPropertyDropdown propertyName="wheels" isActive={false} />
+          {activePage.name === "Interior" ? (
+            <ConfigPropertyDropdown
+              propertyName="interior_variants"
+              isActive={false}
+            />
+          ) : (
+            <>
+              <ConfigPropertyDropdown propertyName="color" isActive={false} />
+              <ConfigPropertyDropdown propertyName="wheels" isActive={false} />
+            </>
+          )}
         </section>
         <PriceDisplay />
       </div>

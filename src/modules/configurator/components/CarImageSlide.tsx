@@ -3,15 +3,19 @@ import { Navigation, Pagination } from "swiper/modules";
 import { useCarImageSlide } from "../hooks";
 import { PaginationButton } from "../../../shared";
 import { IconDirection } from "../../../shared/types";
-import { currentConfigurationsState } from "../state";
+import { activePageState, currentConfigurationsState } from "../state";
 import { useRecoilValue } from "recoil";
-import carIcon from "../assets/car-icon.png";
+import { PageLoading } from "../../global/components";
+import clsx from "clsx";
 
 export function CarImageSlide() {
   const { configImages, paginationBackRef, paginationNextRef } =
     useCarImageSlide();
 
   const configurations = useRecoilValue(currentConfigurationsState);
+  const activePage = useRecoilValue(activePageState);
+
+  if (!configImages) return <PageLoading />;
 
   return (
     <Swiper
@@ -27,23 +31,23 @@ export function CarImageSlide() {
         nextEl: paginationNextRef.current,
       }}
     >
-      {configImages && Boolean(configImages.length) ? (
+      {Boolean(configImages.length) &&
         configImages.map((imgUrl, index) => (
-          <SwiperSlide key={index} className="swiper-slide-config-edit">
+          <SwiperSlide
+            key={index}
+            className={clsx(
+              activePage.name === "Exterior"
+                ? "swiper-slide-car-edit"
+                : "swiper-slide-interior-edit"
+            )}
+          >
             <img
               src={imgUrl}
               alt={configurations?.model}
               className="pb-8 md:pb-16"
             />
           </SwiperSlide>
-        ))
-      ) : (
-        <img
-          src={carIcon}
-          alt="Car ico"
-          className="animate-pulse w-20 mx-auto md:py-40 opacity-10"
-        />
-      )}
+        ))}
       <div className="flex justify-center items-center">
         <div className="flex items-center text-text-default-gray text-lg sm:text-2xl">
           <PaginationButton

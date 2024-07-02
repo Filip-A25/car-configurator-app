@@ -1,9 +1,11 @@
 import { ConfigProperty } from "./ConfigProperty";
 import { currentConfigurationsState, activePropState } from "../state";
 import { useRecoilValue } from "recoil";
+import { CarPropertyName } from "../types";
+import { PageLoading } from "../../global/components";
 
 interface Props {
-  propertyName: "color" | "wheels";
+  propertyName: CarPropertyName;
   isActive: boolean;
 }
 
@@ -14,7 +16,11 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
   const currentProperties =
     propertyName === "color"
       ? configurations?.color
-      : configurations?.wheelVariants;
+      : propertyName === "wheels"
+      ? configurations?.wheelVariants
+      : configurations?.interiorVariants;
+
+  if (!currentProperties) return <PageLoading />;
 
   return (
     <ul>
