@@ -56,7 +56,7 @@ export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVa
     }
 }
 
-export const fetchPropertyImagesByVariant = async ({modelName, name, variant}: VariantProps) => {
+export const fetchPropertyImageByVariant = async ({modelName, name, variant}: VariantProps) => {
     try {
         const modelFile = fileNames[modelName];
 

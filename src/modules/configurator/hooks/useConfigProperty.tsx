@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { fetchPropertyImagesByVariant } from "../services";
+import { fetchPropertyImageByVariant } from "../services";
 import {
   dropdownState,
   dropdownOpen,
   userConfigurationState,
   activePropState,
+  activePageState,
 } from "../state";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { CarProperty, InteriorPosition } from "../types";
 
 export function useConfigProperty({
@@ -23,6 +24,7 @@ export function useConfigProperty({
   const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownOpen);
   const [currentUserConfiguration, setCurrentUserConfiguration] =
     useRecoilState(userConfigurationState);
+  const activePage = useRecoilValue(activePageState);
 
   const [activePropIndex, setActivePropIndex] = useRecoilState(activePropState);
 
@@ -39,7 +41,7 @@ export function useConfigProperty({
             : label,
       };
 
-      const photoUrl = await fetchPropertyImagesByVariant(requestData);
+      const photoUrl = await fetchPropertyImageByVariant(requestData);
 
       setPropertyImgUrl(photoUrl);
     } catch (err: any) {
@@ -49,7 +51,7 @@ export function useConfigProperty({
 
   useEffect(() => {
     handleImageFetch();
-  }, [modelName]);
+  }, [modelName, activePage]);
 
   const handleOpenDropdown = () => {
     if (!isDropdownOpen) {

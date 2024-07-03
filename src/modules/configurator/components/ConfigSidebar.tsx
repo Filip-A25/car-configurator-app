@@ -8,8 +8,7 @@ export function ConfigSidebar() {
   const activePage = useRecoilValue(activePageState);
   const [pages, setPages] = useRecoilState(pageState);
 
-  // TODO: Handling navigation to the next step in the configurator (interior).
-  const handleNavigate = () => {
+  const handleNavigateNext = () => {
     const newPages = pages.map((page) => ({
       ...page,
       isActive: page.index === activePage.index + 1,
@@ -39,7 +38,11 @@ export function ConfigSidebar() {
         </section>
         <PriceDisplay />
       </div>
-      <ConfigActionButton text="Interior" isArrow onClick={handleNavigate} />
+      <ConfigActionButton
+        text="Interior"
+        isArrow
+        onClick={handleNavigateNext}
+      />
     </div>
   );
 }

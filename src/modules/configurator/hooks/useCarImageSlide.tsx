@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import {
   fetchCarImagesByColorAndVariant,
-  fetchPropertyImagesByVariant,
+  fetchPropertyImageByVariant,
   VariantProps,
 } from "../services";
 import { userConfigurationState, activePageState } from "../state";
@@ -16,11 +16,17 @@ export function useCarImageSlide() {
   const paginationBackRef = useRef(null);
   const paginationNextRef = useRef(null);
 
-  const handleCarImageFetch = async (
-    modelName: CarModel,
-    color: string,
-    wheelVariant: number
-  ) => {
+  interface Props {
+    modelName: CarModel;
+    color: string;
+    wheelVariant: number;
+  }
+
+  const handleCarImageFetch = async ({
+    modelName,
+    color,
+    wheelVariant,
+  }: Props) => {
     try {
       const images = await fetchCarImagesByColorAndVariant({
         modelName,
@@ -53,7 +59,7 @@ export function useCarImageSlide() {
         },
       ];
       const imagePromises = requestData.map((request) =>
-        fetchPropertyImagesByVariant(request)
+        fetchPropertyImageByVariant(request)
       );
 
       const images = await Promise.all(imagePromises);
@@ -68,11 +74,13 @@ export function useCarImageSlide() {
     if (!currentUserConfiguration) return;
 
     if (activePage.name === "Exterior") {
-      handleCarImageFetch(
-        currentUserConfiguration.model,
-        currentUserConfiguration.color.label,
-        currentUserConfiguration.wheels.label
-      );
+      const requestData: Props = {
+        modelName: currentUserConfiguration.model,
+        color: currentUserConfiguration.color.label,
+        wheelVariant: currentUserConfiguration.wheels.label,
+      };
+
+      handleCarImageFetch(requestData);
     }
 
     if (activePage.name === "Interior") {
