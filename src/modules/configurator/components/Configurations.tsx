@@ -2,7 +2,7 @@ import { ConfigureLinkButton } from "./ConfigureLinkButton";
 import { ConfigurationsEmpty } from "./ConfigurationsEmpty";
 import { ConfigurationsSaved } from "./ConfigurationsSaved";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { userConfigurationsState } from "../state/configurationsState";
+import { userConfigurationsState } from "../state";
 import { useEffect, useState } from "react";
 import { userState } from "../../authentification/state";
 import { fetchAllUserConfigurations } from "../services";
