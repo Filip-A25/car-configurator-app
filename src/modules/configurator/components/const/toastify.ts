@@ -1,15 +1,6 @@
-import { ToastPosition, Theme } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css";
+import { ToastOptions } from "react-toastify"
 
-interface ToastifyProps {
-    position: ToastPosition;
-    autoClose: number;
-    hideProgressBar: boolean;
-    closeOnClick: boolean;
-    theme: Theme;
-}
-
-export const toastifySuccessProps: ToastifyProps = {
+export const toastifySuccessProps: ToastOptions = {
     position: "top-center",
     autoClose: 2000,
     hideProgressBar: true,

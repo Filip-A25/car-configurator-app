@@ -29,7 +29,7 @@ export function SavedConfigurationItem({
     imgUrl,
     isOptionsDropdownOpen,
     setIsOptionsDropdownOpen,
-    getDisplayDate,
+    displayDate,
   } = useSavedConfiguration({ name, colorLabel, wheelsLabel, creationDate });
 
   return (
@@ -54,7 +54,7 @@ export function SavedConfigurationItem({
             </h4>
           </div>
           <span className="text-text-light-grey max-lg:text-sm max-md:text-left">
-            Created {getDisplayDate()}
+            Created {displayDate}
           </span>
         </div>
         <div className="relative max-md:flex max-md:py-10 max-md:px-3">

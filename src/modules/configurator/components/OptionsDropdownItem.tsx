@@ -1,14 +1,10 @@
 import { ButtonHTMLAttributes } from "react";
 
-interface OptionsDropdownItemProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
 }
 
-export function OptionsDropdownItem({
-  title,
-  ...props
-}: OptionsDropdownItemProps) {
+export function OptionsDropdownItem({ title, ...props }: Props) {
   return (
     <li className="border-b border-light-gray-background-color hover:bg-light-gray-element-color cursor-pointer">
       <button

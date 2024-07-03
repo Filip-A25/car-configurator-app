@@ -59,13 +59,7 @@ export function CarSelect() {
           >
             {carsArray?.map((car, index) => (
               <SwiperSlide key={index}>
-                <CarItem
-                  key={index}
-                  id={car.id}
-                  model={car.model}
-                  productionYear={car.productionYear}
-                  color={car.color}
-                />
+                <CarItem {...car} />
               </SwiperSlide>
             ))}
           </Swiper>

@@ -1,4 +1,4 @@
-interface ConfigOptionsButtonProps {
+interface Props {
   isOptionsDropdownOpen: boolean;
   setIsOptionsDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -6,7 +6,7 @@ interface ConfigOptionsButtonProps {
 export function ConfigOptionsButton({
   isOptionsDropdownOpen,
   setIsOptionsDropdownOpen,
-}: ConfigOptionsButtonProps) {
+}: Props) {
   return (
     <button onClick={() => setIsOptionsDropdownOpen(!isOptionsDropdownOpen)}>
       <svg

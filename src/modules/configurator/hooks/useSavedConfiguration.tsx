@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { userConfigurationsState } from "../state";
 import { Timestamp } from "firebase/firestore";
-import { monthNames } from "../components/const";
 import { CarImageFetchProps, CarModel, CarPosition } from "../types";
 import { fetchCarImageByColorAndVariant } from "../services";
+import { format } from "date-fns";
 
 interface Props {
   name: CarModel;
@@ -22,35 +22,6 @@ export function useSavedConfiguration({
   const [imgUrl, setImgUrl] = useState("");
   const [isOptionsDropdownOpen, setIsOptionsDropdownOpen] = useState(false);
   const userConfigurations = useRecoilValue(userConfigurationsState);
-
-  const nthFormat = (day: number) => {
-    if (day > 3 && day < 21) return "th";
-    switch (day % 10) {
-      case 1:
-        return "st";
-      case 2:
-        return "nd";
-      case 3:
-        return "rd";
-      default:
-        return "th";
-    }
-  };
-
-  const getDisplayDate = () => {
-    const date = creationDate.toDate();
-
-    const daySuffix = nthFormat(date.getDate());
-    const displayDate =
-      monthNames[date.getMonth()] +
-      " " +
-      date.getDate() +
-      daySuffix +
-      " " +
-      date.getFullYear();
-
-    return displayDate;
-  };
 
   const handleCarImageFetch = async ({
     modelName,
@@ -77,10 +48,12 @@ export function useSavedConfiguration({
     });
   }, [userConfigurations]);
 
+  const displayDate = format(creationDate.toDate(), "PPP").split(",");
+
   return {
     imgUrl,
     isOptionsDropdownOpen,
     setIsOptionsDropdownOpen,
-    getDisplayDate,
+    displayDate,
   };
 }
