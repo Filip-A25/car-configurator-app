@@ -14,23 +14,21 @@ export const RoutePrivateGuard: React.FC<PropsWithChildren> = ({
   const [isPageLoading, setIsPageLoading] = useState(true);
 
   useEffect(() => {
-    const handleAuthPreserve = () => {
-      onAuthStateChanged(auth, (user) => {
-        if (!user) throw new Error("User could not be found.");
-        if (!user.displayName || !user.email)
-          throw new Error("User data coult not be found");
-        setIsPageLoading(false);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) throw new Error("User could not be found.");
+      if (!user.displayName || !user.email)
+        throw new Error("User data coult not be found");
+      setIsPageLoading(false);
 
-        setUserData({
-          id: user.uid,
-          name: user.displayName,
-          email: user.email,
-        });
-        setIsLoggedIn(true);
+      setUserData({
+        id: user.uid,
+        name: user.displayName,
+        email: user.email,
       });
-    };
+      setIsLoggedIn(true);
+    });
 
-    return handleAuthPreserve();
+    return () => unsubscribe();
   }, []);
 
   if (isPageLoading) return <PageLoading />;
