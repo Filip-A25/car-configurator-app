@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { useCarImageSlide } from "../hooks";
 import { PaginationButton } from "../../../shared";
 import { IconDirection } from "../../../shared/types";
-import { activePageState, currentConfigurationsState } from "../state";
+import { currentConfigurationsState } from "../state";
 import { useRecoilValue } from "recoil";
 import { PageLoading } from "../../global/components";
 
@@ -13,13 +12,6 @@ export function CarImageSlide() {
     useCarImageSlide();
 
   const configurations = useRecoilValue(currentConfigurationsState);
-  const activePage = useRecoilValue(activePageState);
-  const [activePageName, setActivePageName] = useState("");
-
-  useEffect(() => {
-    setActivePageName(activePage.name);
-    console.log(activePageName);
-  }, [activePage]);
 
   if (isDataFetching || !configImages) return <PageLoading />;
 

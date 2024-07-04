@@ -84,7 +84,7 @@ export const fetchAllUserConfigurations = async (id: string) => {
                 productionYear: production_year,
                 color,
                 wheels: wheel_variant,
-                interiorVariant: interior_variant,
+                interior_variants: interior_variant,
                 creationDate: creation_date,
                 totalPrice: total_price
             }

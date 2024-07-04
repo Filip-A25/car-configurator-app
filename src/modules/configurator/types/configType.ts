@@ -32,7 +32,7 @@ export interface UserCarConfiguration {
     productionYear: number;
     color: TextVariant;
     wheels: NumberVariant;
-    interiorVariant: string;
+    interior_variants: TextVariant;
     creationDate: Timestamp;
     totalPrice: number;
     id?: string;

@@ -31,7 +31,7 @@ export function useConfigEdit() {
         modelId: id,
         color: response.color[0],
         wheels: response.wheelVariants[0],
-        interiorVariant: response.interiorVariants[0],
+        interior_variants: response.interiorVariants[0],
         creationDate: Timestamp.fromDate(new Date()),
         totalPrice: response.price,
       });

@@ -58,7 +58,6 @@ export function useConfigProperty({
       return;
     }
     if (!currentUserConfiguration) return;
-
     setCurrentUserConfiguration({
       ...currentUserConfiguration,
       [propertyName]: {

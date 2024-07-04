@@ -58,6 +58,7 @@ export function useCarImageSlide() {
           variant: `${variant}_${InteriorPosition.seats}`,
         },
       ];
+
       const imagePromises = requestData.map((request) =>
         fetchPropertyImageByVariant(request)
       );
