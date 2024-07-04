@@ -21,25 +21,24 @@ export function CarItem({ id, model, productionYear, color }: Props) {
   const handleImageFetch = async () => {
     const randomColor = color[Math.floor(Math.random() * color.length)];
 
-    const requestData = {
+    const image = await fetchCarImageByColorAndVariant({
       modelName: model,
       color: randomColor.label,
       wheelVariant: 1,
       position: CarPosition.front,
-    };
-    const image = await fetchCarImageByColorAndVariant(requestData);
+    });
 
     setCarImg(image);
   };
 
   return (
     <div className="bg-basic-white flex lg:flex-col min-h-full">
-      <section className="overflow-hidden basis-[50%]">
+      <section className="overflow-hidden">
         {carImg !== "" ? (
           <img
             src={carImg}
             alt={model}
-            className="max-xs:min-h-[150px] min-h-[175px] sm:min-h-[300px] md:min-h-[325px] lg:min-h-[350px] 2xl:min-h-[375px] 3xl:min-h-[550px] object-cover ml-[-35%] md:ml-[-30%] lg:ml-[-35%]"
+            className="block max-xs:min-h-[150px] min-h-[175px] sm:min-h-[300px] md:min-h-[325px] lg:min-h-[350px] 2xl:min-h-[375px] 3xl:min-h-[550px] object-cover ml-[-35%] md:ml-[-30%] lg:ml-[-35%]"
           />
         ) : (
           <div className="cs-item-image flex justify-center items-center">

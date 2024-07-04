@@ -6,11 +6,14 @@ import {
   RoutePrivateGuard,
   RoutePublicGuard,
 } from "./modules/global/components/";
+import { ToastContainer } from "react-toastify";
 import "swiper/css";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   return (
     <div className="relative bg-light-gray-background-color overflow-x-hidden min-h-screen">
+      <ToastContainer />
       <Navbar />
       <Routes>
         <Route

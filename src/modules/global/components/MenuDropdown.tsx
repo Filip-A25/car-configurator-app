@@ -19,7 +19,7 @@ export default function MenuDropdown({
         isMenuOpen
           ? "animate-navbarDropdownAnimation"
           : "animate-navbarDropdownAnimationReverse"
-      } max-md:hidden absolute h-[calc(100vh-80px)] md:h-[100px] md:right-[40px] top-full w-full md:w-[20%] 2xl:w-[15%] bg-basic-white z-20`}
+      } max-md:hidden absolute md:right-[40px] top-full w-full md:w-[30%] lg:w-[25%] xl:w-[20%] 2xl:w-[15%] bg-basic-white z-20`}
     >
       {filteredPathsArray.map((route) => (
         <MenuDropdownItem

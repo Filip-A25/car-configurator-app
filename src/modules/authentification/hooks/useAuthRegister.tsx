@@ -37,6 +37,7 @@ export default function useAuthRegister() {
           throw new Error(err);
         });
         setUserData({
+          id: auth.currentUser.uid,
           name: data.name,
           email: data.email,
         });
@@ -59,6 +60,7 @@ export default function useAuthRegister() {
           throw new Error("User data could not be found.");
         }
         setUserData({
+          id: user.uid,
           name: user.displayName,
           email: user.email,
         });

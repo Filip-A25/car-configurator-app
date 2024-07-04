@@ -18,6 +18,10 @@ module.exports = {
 
       'md': '768px',
 
+      'max-md': {'max': '768px'},
+
+      "max-lg": {"max": "1024px"},
+
       'lg': '1024px',
 
       'xl': '1280px',
@@ -238,6 +242,9 @@ module.exports = {
         navbarMobileDropdownAnimationReverse: "navbarMobileDropdownAnimationReverse .2s ease-in-out forwards",
         navbarMobileColorAnimationReverse: "navbarMobileColorAnimationReverse .2s ease-in-out forwards",
         sidebarOpenAnimation: "sidebarOpenAnimation .3s ease-in-out forwards"
+      },
+      boxShadow: {
+        "dropdown-shadow": "0 10px 40px -6px rgb(0 0 0 / 0.06)"
       }
     },
     colors: {
@@ -247,6 +254,7 @@ module.exports = {
       "basic-white": "#FFFFFF",
       "muted-grey": "#9D9DAF",
       "muted-purple": "#9898F0",
+      "mobile-light-element-color": "#f9f9fb",
 
       "text-purple": "#3F3FE4",
       "text-default-gray": "#2E2E38",
@@ -254,6 +262,9 @@ module.exports = {
       "input-border-gray": "#C7C7D1",
       "property-name-grey": "#73738C",
       "checkmark-green": "#1ED286",
+      "text-dark-gray": "#505062",
+      "text-light-grey": "#9D9DAF",
+      "text-red": "#D2341E",
 
       "button-purple": "#1E1ED2"
     },

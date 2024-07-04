@@ -28,6 +28,7 @@ export default function useAuthLogin() {
         }
 
         setUserData({
+          id: userCredential.user.uid,
           name: userCredential.user.displayName,
           email: data.email,
         });
@@ -51,12 +52,13 @@ export default function useAuthLogin() {
           throw new Error("User data could not be found.");
         }
         setUserData({
+          id: user.uid,
           name: user.displayName,
           email: user.email,
         });
 
         setIsLoggedIn(true);
-        navigate("/home");
+        navigate("/home/configurations");
       })
       .catch((err) => {
         throw new Error(err.message);

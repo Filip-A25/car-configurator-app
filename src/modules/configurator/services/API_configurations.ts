@@ -1,7 +1,7 @@
-import {getDoc, doc} from "firebase/firestore";
+import {getDocs, collection, DocumentData, getDoc, doc, deleteDoc} from "firebase/firestore";
 import {db, storage} from "../../firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { CarConfigurations, CarModel } from "../types";
+import { CarConfigurations, CarModel, UserCarConfiguration } from "../types";
 import {fileNames, sortedPhotoNames} from "./const/fileNames";
 
 export interface ColorAndVariantProps {
@@ -66,6 +66,46 @@ export const fetchPropertyImagesByVariant = async ({modelName, name, variant}: V
         
         return photoItem;
     } catch (err: any) {
+        throw new Error(err);
+    }
+}
+
+export const deleteUserConfiguration = async (userId: string, configId: string) => {
+    try {
+        const response = await deleteDoc(doc(db, `users/${userId}/configurations`, configId));
+
+        return response;
+    } catch (err: any) {
+        throw new Error(err);
+    }
+}
+
+export const fetchAllUserConfigurations = async (id: string) => {
+    try {
+        const configsRef = collection(db, `users/${id}/configurations`);
+        const response = await getDocs(configsRef);
+
+        const configurationsArray: UserCarConfiguration[] = response.docs.map(config => {
+            const userId = config.id;
+            const {model, model_id, production_year, color, wheel_variant, interior_variant, creation_date, total_price}: DocumentData = config.data();
+            
+            const newConfig: UserCarConfiguration = {
+                id: userId,
+                model,
+                modelId: model_id,
+                productionYear: production_year,
+                color,
+                wheels: wheel_variant,
+                interiorVariant: interior_variant,
+                creationDate: creation_date,
+                totalPrice: total_price
+            }
+
+            return newConfig;
+        })
+
+        return configurationsArray;
+    } catch (err: any) {    
         throw new Error(err);
     }
 }

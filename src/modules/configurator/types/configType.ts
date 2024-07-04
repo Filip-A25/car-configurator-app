@@ -1,4 +1,5 @@
 import {CarModel} from "./carType";
+import { Timestamp } from "firebase/firestore";
 
 export interface TextVariant {
     label: string;
@@ -27,11 +28,14 @@ export interface CarConfigurationsWithId extends CarConfigurations {
 
 export interface UserCarConfiguration {
     model: CarModel;
+    modelId: string;
     productionYear: number;
     color: TextVariant;
     wheels: NumberVariant;
     interiorVariant: string;
-    price: number;
+    creationDate: Timestamp;
+    totalPrice: number;
+    id?: string;
 }
 
 export interface CurrentPropertyIndex {

@@ -33,7 +33,6 @@ export function CarSelect() {
         </section>
         <section className="mt-12 3xl:pr-64 overflow-x-visible">
           <Swiper
-            className="swiper-car-select"
             width={1800}
             slidesPerView={2}
             spaceBetween={40}
@@ -60,7 +59,7 @@ export function CarSelect() {
           >
             {carsArray?.map((car, index) => (
               <SwiperSlide key={index}>
-                <CarItem key={index} {...car} />
+                <CarItem {...car} />
               </SwiperSlide>
             ))}
           </Swiper>
