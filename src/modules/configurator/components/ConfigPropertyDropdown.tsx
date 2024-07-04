@@ -12,12 +12,20 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
   const configurations = useRecoilValue(currentConfigurationsState);
   const activePropIndex = useRecoilValue(activePropState);
 
-  let currentProperties =
-    propertyName === "color"
-      ? configurations?.color
-      : propertyName === "wheels"
-      ? configurations?.wheelVariants
-      : configurations?.interiorVariants;
+  const getCurrentProperties = () => {
+    switch (propertyName) {
+      case "color":
+        return configurations?.color;
+      case "wheels":
+        return configurations?.wheelVariants;
+      case "interior_variants":
+        return configurations?.interiorVariants;
+      default:
+        return;
+    }
+  };
+
+  const currentProperties = getCurrentProperties();
 
   return (
     <ul>

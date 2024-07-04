@@ -14,7 +14,7 @@ export function ConfigProperty({
     handleOpenDropdown,
     propertyImgUrl,
     activePropIndex,
-    getPropertyTypeName,
+    propertyTypeName,
   } = useConfigProperty({
     index,
     propertyName,
@@ -62,7 +62,7 @@ export function ConfigProperty({
           {description}
         </h3>
         <h4 className="font-optician-sans text-xs sm:text-sm 2xl:text-md 3xl:text-lg text-property-name-grey tracking-[2px]">
-          {getPropertyTypeName()}
+          {propertyTypeName}
         </h4>
       </section>
     </button>

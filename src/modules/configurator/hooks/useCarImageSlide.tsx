@@ -2,31 +2,29 @@ import { useRef, useState, useEffect } from "react";
 import {
   fetchCarImagesByColorAndVariant,
   fetchPropertyImageByVariant,
-  VariantProps,
 } from "../services";
 import { userConfigurationState, activePageState } from "../state";
 import { useRecoilValue } from "recoil";
-import { CarModel, InteriorPosition } from "../types";
+import {
+  InteriorPosition,
+  PropertyVariantProps,
+  ImageColorAndVariantProps,
+} from "../types";
 
 export function useCarImageSlide() {
   const [configImages, setConfigImages] = useState<string[]>();
   const currentUserConfiguration = useRecoilValue(userConfigurationState);
   const activePage = useRecoilValue(activePageState);
+  const [isDataFetching, setIsDataFetching] = useState(true);
 
   const paginationBackRef = useRef(null);
   const paginationNextRef = useRef(null);
-
-  interface Props {
-    modelName: CarModel;
-    color: string;
-    wheelVariant: number;
-  }
 
   const handleCarImageFetch = async ({
     modelName,
     color,
     wheelVariant,
-  }: Props) => {
+  }: ImageColorAndVariantProps) => {
     try {
       const images = await fetchCarImagesByColorAndVariant({
         modelName,
@@ -37,6 +35,8 @@ export function useCarImageSlide() {
       setConfigImages(images);
     } catch (err: any) {
       throw new Error(err);
+    } finally {
+      setIsDataFetching(false);
     }
   };
 
@@ -44,7 +44,7 @@ export function useCarImageSlide() {
     modelName,
     name,
     variant,
-  }: VariantProps) => {
+  }: PropertyVariantProps) => {
     try {
       const requestData = [
         {
@@ -67,6 +67,8 @@ export function useCarImageSlide() {
       setConfigImages(images);
     } catch (err: any) {
       throw new Error(err);
+    } finally {
+      setIsDataFetching(false);
     }
   };
 
@@ -74,7 +76,7 @@ export function useCarImageSlide() {
     if (!currentUserConfiguration) return;
 
     if (activePage.name === "Exterior") {
-      const requestData: Props = {
+      const requestData: ImageColorAndVariantProps = {
         modelName: currentUserConfiguration.model,
         color: currentUserConfiguration.color.label,
         wheelVariant: currentUserConfiguration.wheels.label,
@@ -84,7 +86,7 @@ export function useCarImageSlide() {
     }
 
     if (activePage.name === "Interior") {
-      const requestData: VariantProps = {
+      const requestData: PropertyVariantProps = {
         modelName: currentUserConfiguration.model,
         name: "interior_variants",
         variant: currentUserConfiguration.interior_variants.label,
@@ -94,5 +96,5 @@ export function useCarImageSlide() {
     }
   }, [currentUserConfiguration, activePage]);
 
-  return { configImages, paginationBackRef, paginationNextRef };
+  return { configImages, paginationBackRef, paginationNextRef, isDataFetching };
 }

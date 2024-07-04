@@ -1,20 +1,8 @@
 import {getDocs, collection, DocumentData, getDoc, doc, deleteDoc} from "firebase/firestore";
 import {db, storage} from "../../firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { CarConfigurations, CarModel, UserCarConfiguration } from "../types";
+import { CarConfigurations, ImageColorAndVariantProps, PropertyVariantProps, UserCarConfiguration } from "../types";
 import {fileNames, sortedPhotoNames} from "./const/fileNames";
-
-export interface ColorAndVariantProps {
-    modelName: CarModel;
-    color: string;
-    wheelVariant: number;
-}
-
-export interface VariantProps {
-    modelName: CarModel;
-    name: string;
-    variant: string | number;
-}
 
 export const fetchCarConfigurations = async (id: string) => {
     try {
@@ -39,7 +27,7 @@ export const fetchCarConfigurations = async (id: string) => {
     }
 }
 
-export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVariant}: ColorAndVariantProps) => {
+export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVariant}: ImageColorAndVariantProps) => {
     try {
         const modelFile = fileNames[modelName];
 
@@ -56,7 +44,7 @@ export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVa
     }
 }
 
-export const fetchPropertyImageByVariant = async ({modelName, name, variant}: VariantProps) => {
+export const fetchPropertyImageByVariant = async ({modelName, name, variant}: PropertyVariantProps) => {
     try {
         const modelFile = fileNames[modelName];
 
@@ -110,7 +98,7 @@ export const fetchAllUserConfigurations = async (id: string) => {
     }
 }
 
-export const fetchAllPropertyImagesByVariant = async ({modelName, name, variant}: VariantProps) => {
+export const fetchAllPropertyImagesByVariant = async ({modelName, name, variant}: PropertyVariantProps) => {
     try {
         const listRef = ref(storage, `${modelName}/${name}/${variant}`);
         const imagesList = await listAll(listRef);

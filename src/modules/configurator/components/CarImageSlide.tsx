@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { useCarImageSlide } from "../hooks";
@@ -6,16 +7,21 @@ import { IconDirection } from "../../../shared/types";
 import { activePageState, currentConfigurationsState } from "../state";
 import { useRecoilValue } from "recoil";
 import { PageLoading } from "../../global/components";
-import clsx from "clsx";
 
 export function CarImageSlide() {
-  const { configImages, paginationBackRef, paginationNextRef } =
+  const { configImages, paginationBackRef, paginationNextRef, isDataFetching } =
     useCarImageSlide();
 
   const configurations = useRecoilValue(currentConfigurationsState);
   const activePage = useRecoilValue(activePageState);
+  const [activePageName, setActivePageName] = useState("");
 
-  if (!configImages) return <PageLoading />;
+  useEffect(() => {
+    setActivePageName(activePage.name);
+    console.log(activePageName);
+  }, [activePage]);
+
+  if (isDataFetching || !configImages) return <PageLoading />;
 
   return (
     <Swiper
@@ -35,17 +41,9 @@ export function CarImageSlide() {
         configImages.map((imgUrl, index) => (
           <SwiperSlide
             key={index}
-            className={clsx(
-              activePage.name === "Exterior"
-                ? "swiper-slide-car-edit"
-                : "swiper-slide-interior-edit"
-            )}
+            className="pb-8 md:pb-16 px-[1rem] lg:px-[2rem] 2xl:px-[3rem] 3xl:px-[18rem] 3xl:!w-fit"
           >
-            <img
-              src={imgUrl}
-              alt={configurations?.model}
-              className="pb-8 md:pb-16"
-            />
+            <img src={imgUrl} alt={configurations?.model} />
           </SwiperSlide>
         ))}
       <div className="flex justify-center items-center">

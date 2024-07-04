@@ -5,10 +5,9 @@ import {
   dropdownOpen,
   userConfigurationState,
   activePropState,
-  activePageState,
 } from "../state";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { CarProperty, CarPropertyName, InteriorPosition } from "../types";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { CarProperty, InteriorPosition } from "../types";
 
 export function useConfigProperty({
   index,
@@ -24,7 +23,6 @@ export function useConfigProperty({
   const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownOpen);
   const [currentUserConfiguration, setCurrentUserConfiguration] =
     useRecoilState(userConfigurationState);
-  const activePage = useRecoilValue(activePageState);
 
   const [activePropIndex, setActivePropIndex] = useRecoilState(activePropState);
 
@@ -51,7 +49,7 @@ export function useConfigProperty({
 
   useEffect(() => {
     handleImageFetch();
-  }, [modelName, activePage]);
+  }, [modelName, propertyName]);
 
   const handleOpenDropdown = () => {
     if (!isDropdownOpen) {
@@ -85,10 +83,12 @@ export function useConfigProperty({
     }
   };
 
+  const propertyTypeName = getPropertyTypeName();
+
   return {
     handleOpenDropdown,
     propertyImgUrl,
     activePropIndex,
-    getPropertyTypeName,
+    propertyTypeName,
   };
 }

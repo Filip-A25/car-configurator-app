@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { ConfigPropertyDropdown } from "./ConfigPropertyDropdown";
 import { ConfigActionButton } from "./ConfigActionButton";
 import { PriceDisplay } from "./PriceDisplay";
@@ -7,6 +8,7 @@ import { activePageState, pageState } from "../state";
 export function ConfigSidebar() {
   const activePage = useRecoilValue(activePageState);
   const [pages, setPages] = useRecoilState(pageState);
+  const [activePageName, setActivePageName] = useState(activePage.name);
 
   const handleNavigateNext = () => {
     const newPages = pages.map((page) => ({
@@ -17,6 +19,10 @@ export function ConfigSidebar() {
     setPages(newPages);
   };
 
+  useEffect(() => {
+    setActivePageName(activePage.name);
+  }, [activePage]);
+
   return (
     <div
       className="
@@ -24,7 +30,7 @@ export function ConfigSidebar() {
     >
       <div className="flex flex-col justify-between min-h-full">
         <section className="pb-4 xs:pb-16">
-          {activePage.name === "Interior" ? (
+          {activePageName === "Interior" ? (
             <ConfigPropertyDropdown
               propertyName="interior_variants"
               isActive={false}
