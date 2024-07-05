@@ -8,9 +8,11 @@ import { activePageState, pageState } from "../state";
 export function ConfigSidebar() {
   const activePage = useRecoilValue(activePageState);
   const [pages, setPages] = useRecoilState(pageState);
-  const [activePageName, setActivePageName] = useState(activePage.name);
+  const [activePageName, setActivePageName] = useState(activePage?.name);
 
   const handleNavigateNext = () => {
+    if (!activePage) return;
+
     const newPages = pages.map((page) => ({
       ...page,
       isActive: page.index === activePage.index + 1,
@@ -20,7 +22,7 @@ export function ConfigSidebar() {
   };
 
   useEffect(() => {
-    setActivePageName(activePage.name);
+    setActivePageName(activePage?.name);
   }, [activePage]);
 
   return (

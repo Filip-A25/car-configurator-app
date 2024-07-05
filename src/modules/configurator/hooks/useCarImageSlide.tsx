@@ -76,7 +76,7 @@ export function useCarImageSlide() {
   useEffect(() => {
     if (!currentUserConfiguration) return;
 
-    if (activePage.name === "Exterior") {
+    if (activePage?.name === "Exterior") {
       const requestData: ImageColorAndVariantProps = {
         modelName: currentUserConfiguration.model,
         color: currentUserConfiguration.color.label,
@@ -86,7 +86,7 @@ export function useCarImageSlide() {
       handleCarImageFetch(requestData);
     }
 
-    if (activePage.name === "Interior") {
+    if (activePage?.name === "Interior") {
       const requestData: PropertyVariantProps = {
         modelName: currentUserConfiguration.model,
         name: "interior_variants",
