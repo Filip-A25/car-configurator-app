@@ -1,8 +1,8 @@
 import { useRecoilValue } from "recoil";
-import { configurationPrice } from "../state";
+import { configurationPriceState } from "../state";
 
 export function PriceDisplay() {
-  const displayPrice = useRecoilValue(configurationPrice);
+  const displayPrice = useRecoilValue(configurationPriceState);
 
   return (
     <section className="flex justify-between items-end max-sm:pt-2 px-5">

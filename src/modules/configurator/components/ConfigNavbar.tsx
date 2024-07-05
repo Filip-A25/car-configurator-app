@@ -1,8 +1,10 @@
 import { ReturnButton } from "../../../shared";
 import { dropdownOpen } from "../state";
 import { useRecoilValue } from "recoil";
-import { pageState } from "../state";
+import { activePageState } from "../state";
+import Button from "../../../shared/Button";
 import clsx from "clsx";
+import { PaginationDisplay } from "./PaginationDisplay";
 
 interface Props {
   model?: string;
@@ -11,7 +13,7 @@ interface Props {
 
 export function ConfigNavbar({ model, productionYear }: Props) {
   const isDropdownOpen = useRecoilValue(dropdownOpen);
-  const pageStep = useRecoilValue(pageState);
+  const activePage = useRecoilValue(activePageState);
 
   return (
     <div className="h-[50px] sm:h-[70px] bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
@@ -28,18 +30,14 @@ export function ConfigNavbar({ model, productionYear }: Props) {
           isDropdownOpen && "hidden"
         )}
       >
-        {pageStep.map((page, index) => (
-          <h3
-            className={clsx(
-              "sm:px-4 lg:px-8",
-              page.isActive ? "font-bold" : "max-sm:hidden"
-            )}
-            key={index}
-          >
-            <span className="text-muted-grey">{"0" + page.index} </span>
-            {page.name}
-          </h3>
-        ))}
+        {activePage.name === "Summary" ? (
+          <>
+            <Button label="Edit configuration" variant="secondary" />
+            <Button label="Delete" variant="secondary" />
+          </>
+        ) : (
+          <PaginationDisplay />
+        )}
       </section>
     </div>
   );

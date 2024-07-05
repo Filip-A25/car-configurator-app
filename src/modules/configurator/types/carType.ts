@@ -26,7 +26,8 @@ export interface CarProperty {
   name: string;
   description: string;
   price: number;
-  modelName?: CarModel;   
+  modelName?: CarModel;
+  isDescriptionDisplayed?: boolean;   
 }
 
 export type CarModel = "Audi RS5" | "Audi RS6" | "Audi e-tron GT";

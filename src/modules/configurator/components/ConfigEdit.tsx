@@ -1,4 +1,3 @@
-import { ConfigNavbar } from "./ConfigNavbar";
 import { ConfigSidebar } from "./ConfigSidebar";
 import { ConfigSidebarSelect } from "./ConfigSidebarSelect";
 import { CarImageSlide } from "./CarImageSlide";
@@ -6,15 +5,10 @@ import { useConfigEdit } from "../hooks";
 import clsx from "clsx";
 
 export function ConfigEdit() {
-  const { configurations, isDropdownOpen, activeDropdownName } =
-    useConfigEdit();
+  const { isDropdownOpen, activeDropdownName } = useConfigEdit();
 
   return (
-    <section className="relative h-full">
-      <ConfigNavbar
-        model={configurations?.model}
-        productionYear={configurations?.productionYear}
-      />
+    <>
       <section className="relative flex max-sm:flex-col min-h-[calc(100%-50px)] sm:min-h-[calc(100%-70px)]">
         <div
           className={clsx(
@@ -34,6 +28,6 @@ export function ConfigEdit() {
       {isDropdownOpen && activeDropdownName && (
         <ConfigSidebarSelect propertyName={activeDropdownName} />
       )}
-    </section>
+    </>
   );
 }

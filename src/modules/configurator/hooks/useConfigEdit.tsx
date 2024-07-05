@@ -5,15 +5,13 @@ import {
   dropdownOpen,
   dropdownState,
 } from "../state";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 import { fetchCarConfigurations } from "../services";
 import { useParams } from "react-router-dom";
 import { Timestamp } from "firebase/firestore";
 
 export function useConfigEdit() {
-  const [configurations, setConfigurations] = useRecoilState(
-    currentConfigurationsState
-  );
+  const setConfigurations = useSetRecoilState(currentConfigurationsState);
   const setCurrentUserConfiguration = useSetRecoilState(userConfigurationState);
   const isDropdownOpen = useRecoilValue(dropdownOpen);
   const activeDropdownName = useRecoilValue(dropdownState);
@@ -58,7 +56,6 @@ export function useConfigEdit() {
   }, []);
 
   return {
-    configurations,
     isDropdownOpen,
     activeDropdownName,
   };

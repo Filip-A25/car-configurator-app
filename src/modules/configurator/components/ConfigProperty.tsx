@@ -9,21 +9,19 @@ export function ConfigProperty({
   name,
   description,
   price,
+  isDescriptionDisplayed,
 }: CarProperty) {
-  const {
-    handleOpenDropdown,
-    propertyImgUrl,
-    activePropIndex,
-    propertyTypeName,
-  } = useConfigProperty({
-    index,
-    propertyName,
-    modelName,
-    label,
-    name,
-    description,
-    price,
-  });
+  const { handleOpenDropdown, propertyImgUrl, activePropIndex } =
+    useConfigProperty({
+      index,
+      propertyName,
+      modelName,
+      label,
+      name,
+      description,
+      price,
+      isDescriptionDisplayed,
+    });
 
   return (
     <button
@@ -61,9 +59,11 @@ export function ConfigProperty({
         <h3 className="text-text-default-gray text-sm sm:text-md 2xl:text-lg 3xl:text-xl">
           {description}
         </h3>
-        <h4 className="font-optician-sans text-xs sm:text-sm 2xl:text-md 3xl:text-lg text-property-name-grey tracking-[2px]">
-          {propertyTypeName}
-        </h4>
+        {isDescriptionDisplayed && (
+          <h4 className="font-optician-sans text-xs sm:text-sm 2xl:text-md 3xl:text-lg text-property-name-grey tracking-[2px]">
+            {propertyName === "color" ? `paint ${name}` : name}
+          </h4>
+        )}
       </section>
     </button>
   );
