@@ -5,7 +5,7 @@ export function PageLoading() {
     <img
       src={carLoadingImage}
       alt="Car"
-      className="filter grayscale opacity-10 w-[641px] h-[200px] object-contain mx-auto my-52 animate-pulse"
+      className="filter grayscale opacity-10 w-[641px] h-[200px] object-contain mx-auto max-sm:my-12 my-52 animate-pulse"
     />
   );
 }

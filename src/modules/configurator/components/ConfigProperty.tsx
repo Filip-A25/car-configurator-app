@@ -10,34 +10,38 @@ export function ConfigProperty({
   description,
   price,
 }: CarProperty) {
-  const { handleOpenDropdown, propertyImgUrl, activePropIndex } =
-    useConfigProperty({
-      index,
-      propertyName,
-      modelName,
-      label,
-      name,
-      description,
-      price,
-    });
+  const {
+    handleOpenDropdown,
+    propertyImgUrl,
+    activePropIndex,
+    propertyTypeName,
+  } = useConfigProperty({
+    index,
+    propertyName,
+    modelName,
+    label,
+    name,
+    description,
+    price,
+  });
 
   return (
     <button
-      className="flex items-center sm:pr-40 lg:pr-48 3xl:pr-64"
+      className="flex items-center p-2 xs:p-4 sm:p-5 sm:pr-40 lg:pr-48 3xl:pr-64"
       onClick={handleOpenDropdown}
     >
-      <div className="relative p-2 xs:p-3 sm:p-5">
+      <div className="relative overflow-hidden aspect-square h-[36px] sm:h-[60px]">
         {propertyImgUrl ? (
           <img
             src={propertyImgUrl}
             alt={name}
-            className="w-10 sm:w-12 2xl:w-14 3xl:w-20 rounded-[50%]"
+            className=" w-full h-full object-cover rounded-[50%] object-left"
           />
         ) : (
-          <div className="w-12 2xl:w-14 h-12 2xl:h-14 bg-light-gray-background-color rounded-[50%]" />
+          <div className="w-12 2xl:w-14 h-12 2xl:h-14 bg-light-gray-background-color rounded-[50%] animate-pulse" />
         )}
         {activePropIndex[propertyName] === index && (
-          <div className="absolute max-xs:right-2 max-xs:bottom-2 right-3 bottom-3 sm:bottom-5 sm:right-4 bg-checkmark-green w-3 h-3 sm:w-5 sm:h-5 rounded-[50%] flex justify-center items-center">
+          <div className="absolute right-0 bottom-0 bg-checkmark-green w-3 h-3 sm:w-5 sm:h-5 rounded-[50%] flex justify-center items-center">
             <svg
               width="12"
               height="12"
@@ -58,7 +62,7 @@ export function ConfigProperty({
           {description}
         </h3>
         <h4 className="font-optician-sans text-xs sm:text-sm 2xl:text-md 3xl:text-lg text-property-name-grey tracking-[2px]">
-          {propertyName === "color" ? `paint ${name}` : name}
+          {propertyTypeName}
         </h4>
       </section>
     </button>

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { fetchPropertyImagesByVariant } from "../services";
+import { fetchPropertyImageByVariant } from "../services";
 import {
   dropdownState,
   dropdownOpen,
   userConfigurationState,
   activePropState,
 } from "../state";
-import { useSetRecoilState, useRecoilState } from "recoil";
-import { CarProperty } from "../types";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { CarProperty, InteriorPosition } from "../types";
+import { getPropertyTypeName } from "../utilities/utilities";
 
 export function useConfigProperty({
   index,
@@ -33,9 +34,13 @@ export function useConfigProperty({
       const requestData = {
         modelName: modelName,
         name: name,
-        variant: label,
+        variant:
+          propertyName === "interior_variants"
+            ? `${label}_${InteriorPosition.seats}`
+            : label,
       };
-      const photoUrl = await fetchPropertyImagesByVariant(requestData);
+
+      const photoUrl = await fetchPropertyImageByVariant(requestData);
 
       setPropertyImgUrl(photoUrl);
     } catch (err: any) {
@@ -45,7 +50,7 @@ export function useConfigProperty({
 
   useEffect(() => {
     handleImageFetch();
-  }, [modelName]);
+  }, [modelName, propertyName]);
 
   const handleOpenDropdown = () => {
     if (!isDropdownOpen) {
@@ -54,7 +59,6 @@ export function useConfigProperty({
       return;
     }
     if (!currentUserConfiguration) return;
-
     setCurrentUserConfiguration({
       ...currentUserConfiguration,
       [propertyName]: {
@@ -66,5 +70,12 @@ export function useConfigProperty({
     setActivePropIndex({ ...activePropIndex, [propertyName]: index });
   };
 
-  return { handleOpenDropdown, propertyImgUrl, activePropIndex };
+  const propertyTypeName = getPropertyTypeName(propertyName);
+
+  return {
+    handleOpenDropdown,
+    propertyImgUrl,
+    activePropIndex,
+    propertyTypeName,
+  };
 }

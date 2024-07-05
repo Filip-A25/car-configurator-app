@@ -1,42 +1,101 @@
 import { useRef, useState, useEffect } from "react";
-import { fetchCarImagesByColorAndVariant } from "../services";
-import { userConfigurationState } from "../state";
+import {
+  fetchCarImagesByColorAndVariant,
+  fetchPropertyImageByVariant,
+} from "../services";
+import { userConfigurationState, activePageState } from "../state";
 import { useRecoilValue } from "recoil";
-import { CarModel } from "../types";
+import {
+  InteriorPosition,
+  PropertyVariantProps,
+  ImageColorAndVariantProps,
+} from "../types";
 
 export function useCarImageSlide() {
   const [configImages, setConfigImages] = useState<string[]>();
   const currentUserConfiguration = useRecoilValue(userConfigurationState);
+  const activePage = useRecoilValue(activePageState);
+  const [isDataFetching, setIsDataFetching] = useState(true);
 
   const paginationBackRef = useRef(null);
   const paginationNextRef = useRef(null);
 
-  const handleCarImageFetch = async (
-    modelName: CarModel,
-    color: string,
-    wheelVariant: number
-  ) => {
+  const handleCarImageFetch = async ({
+    modelName,
+    color,
+    wheelVariant,
+  }: ImageColorAndVariantProps) => {
     try {
-      const photos = await fetchCarImagesByColorAndVariant({
+      const images = await fetchCarImagesByColorAndVariant({
         modelName,
         color,
         wheelVariant,
       });
 
-      setConfigImages(photos);
+      setConfigImages(images);
     } catch (err: any) {
       throw new Error(err);
+    } finally {
+      setIsDataFetching(false);
+    }
+  };
+
+  const handleInteriorImageFetch = async ({
+    modelName,
+    name,
+    variant,
+  }: PropertyVariantProps) => {
+    try {
+      const requestData = [
+        {
+          modelName: modelName,
+          name: name,
+          variant: `${variant}_${InteriorPosition.dash}`,
+        },
+        {
+          modelName: modelName,
+          name: name,
+          variant: `${variant}_${InteriorPosition.seats}`,
+        },
+      ];
+
+      const imagePromises = requestData.map((request) =>
+        fetchPropertyImageByVariant(request)
+      );
+
+      const images = await Promise.all(imagePromises);
+
+      setConfigImages(images);
+    } catch (err: any) {
+      throw new Error(err);
+    } finally {
+      setIsDataFetching(false);
     }
   };
 
   useEffect(() => {
     if (!currentUserConfiguration) return;
-    handleCarImageFetch(
-      currentUserConfiguration.model,
-      currentUserConfiguration.color.label,
-      currentUserConfiguration.wheels.label
-    );
-  }, [currentUserConfiguration]);
 
-  return { configImages, paginationBackRef, paginationNextRef };
+    if (activePage?.name === "Exterior") {
+      const requestData: ImageColorAndVariantProps = {
+        modelName: currentUserConfiguration.model,
+        color: currentUserConfiguration.color.label,
+        wheelVariant: currentUserConfiguration.wheels.label,
+      };
+
+      handleCarImageFetch(requestData);
+    }
+
+    if (activePage?.name === "Interior") {
+      const requestData: PropertyVariantProps = {
+        modelName: currentUserConfiguration.model,
+        name: "interior_variants",
+        variant: currentUserConfiguration.interior_variants.label,
+      };
+
+      handleInteriorImageFetch(requestData);
+    }
+  }, [currentUserConfiguration, activePage]);
+
+  return { configImages, paginationBackRef, paginationNextRef, isDataFetching };
 }

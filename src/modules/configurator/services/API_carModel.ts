@@ -1,15 +1,8 @@
 import {collection, getDocs, DocumentData} from "firebase/firestore";
 import {getDownloadURL, ref} from "firebase/storage";
 import {db, storage} from "../../firebase/firebase";
-import {CarConfigurationsWithId, CarPosition, CarModel} from "../types";
+import {CarConfigurationsWithId, CarImageColorAndVariantProps} from "../types";
 import {fileNames} from "./const/fileNames";
-
-interface Props {
-    modelName: CarModel;
-    color: string;
-    wheelVariant: number;
-    position: CarPosition
-}
 
 const modelsRef = collection(db, "car-models");
 
@@ -40,7 +33,7 @@ export const fetchAllCarData = async () => {
     }
 }
 
-export const fetchCarImageByColorAndVariant = async ({modelName, color, wheelVariant, position}: Props) => {
+export const fetchCarImageByColorAndVariant = async ({modelName, color, wheelVariant, position}: CarImageColorAndVariantProps) => {
     try {
         const modelFile = fileNames[modelName];
 

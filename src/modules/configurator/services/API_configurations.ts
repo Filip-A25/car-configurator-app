@@ -1,20 +1,8 @@
 import {getDocs, collection, DocumentData, getDoc, doc, deleteDoc} from "firebase/firestore";
 import {db, storage} from "../../firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { CarConfigurations, CarModel, UserCarConfiguration } from "../types";
+import { CarConfigurations, ImageColorAndVariantProps, PropertyVariantProps, UserCarConfiguration } from "../types";
 import {fileNames, sortedPhotoNames} from "./const/fileNames";
-
-export interface ColorAndVariantProps {
-    modelName: CarModel;
-    color: string;
-    wheelVariant: number;
-}
-
-export interface VariantProps {
-    modelName: CarModel;
-    name: string;
-    variant: string | number;
-}
 
 export const fetchCarConfigurations = async (id: string) => {
     try {
@@ -39,7 +27,7 @@ export const fetchCarConfigurations = async (id: string) => {
     }
 }
 
-export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVariant}: ColorAndVariantProps) => {
+export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVariant}: ImageColorAndVariantProps) => {
     try {
         const modelFile = fileNames[modelName];
 
@@ -56,14 +44,14 @@ export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVa
     }
 }
 
-export const fetchPropertyImagesByVariant = async ({modelName, name, variant}: VariantProps) => {
+export const fetchPropertyImageByVariant = async ({modelName, name, variant}: PropertyVariantProps) => {
     try {
         const modelFile = fileNames[modelName];
 
         const variantRef = ref(storage, `${modelFile}/${name}/${variant}.png`);
 
         const photoItem = await getDownloadURL(variantRef);
-        
+
         return photoItem;
     } catch (err: any) {
         throw new Error(err);
@@ -96,7 +84,7 @@ export const fetchAllUserConfigurations = async (id: string) => {
                 productionYear: production_year,
                 color,
                 wheels: wheel_variant,
-                interiorVariant: interior_variant,
+                interior_variants: interior_variant,
                 creationDate: creation_date,
                 totalPrice: total_price
             }
@@ -106,6 +94,21 @@ export const fetchAllUserConfigurations = async (id: string) => {
 
         return configurationsArray;
     } catch (err: any) {    
+        throw new Error(err);
+    }
+}
+
+export const fetchAllPropertyImagesByVariant = async ({modelName, name, variant}: PropertyVariantProps) => {
+    try {
+        const listRef = ref(storage, `${modelName}/${name}/${variant}`);
+        const imagesList = await listAll(listRef);
+
+        const imagePromises = imagesList.items.map(image => getDownloadURL(ref(storage, image.fullPath)));
+
+        const propertyImagesArray = await Promise.all(imagePromises);
+
+        return propertyImagesArray;
+    } catch (err: any) {
         throw new Error(err);
     }
 }

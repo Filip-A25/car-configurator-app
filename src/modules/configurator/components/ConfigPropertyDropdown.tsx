@@ -1,9 +1,10 @@
 import { ConfigProperty } from "./ConfigProperty";
 import { currentConfigurationsState, activePropState } from "../state";
 import { useRecoilValue } from "recoil";
+import { CarPropertyName } from "../types";
 
 interface Props {
-  propertyName: "color" | "wheels";
+  propertyName: CarPropertyName;
   isActive: boolean;
 }
 
@@ -11,15 +12,26 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
   const configurations = useRecoilValue(currentConfigurationsState);
   const activePropIndex = useRecoilValue(activePropState);
 
-  const currentProperties =
-    propertyName === "color"
-      ? configurations?.color
-      : configurations?.wheelVariants;
+  const getCurrentProperties = () => {
+    switch (propertyName) {
+      case "color":
+        return configurations?.color;
+      case "wheels":
+        return configurations?.wheelVariants;
+      case "interior_variants":
+        return configurations?.interiorVariants;
+      default:
+        return;
+    }
+  };
+
+  const currentProperties = getCurrentProperties();
 
   return (
     <ul>
-      {Boolean(currentProperties?.length) &&
-        currentProperties?.map((item, index) =>
+      {currentProperties &&
+        Boolean(currentProperties.length) &&
+        currentProperties.map((item, index) =>
           !isActive && activePropIndex[propertyName] === index ? (
             <ConfigProperty
               key={index}

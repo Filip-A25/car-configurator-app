@@ -5,13 +5,15 @@ import { PaginationButton } from "../../../shared";
 import { IconDirection } from "../../../shared/types";
 import { currentConfigurationsState } from "../state";
 import { useRecoilValue } from "recoil";
-import carIcon from "../assets/car-icon.png";
+import { PageLoading } from "../../global/components";
 
 export function CarImageSlide() {
-  const { configImages, paginationBackRef, paginationNextRef } =
+  const { configImages, paginationBackRef, paginationNextRef, isDataFetching } =
     useCarImageSlide();
 
   const configurations = useRecoilValue(currentConfigurationsState);
+
+  if (isDataFetching || !configImages) return <PageLoading />;
 
   return (
     <Swiper
@@ -27,23 +29,15 @@ export function CarImageSlide() {
         nextEl: paginationNextRef.current,
       }}
     >
-      {configImages && Boolean(configImages.length) ? (
+      {Boolean(configImages.length) &&
         configImages.map((imgUrl, index) => (
-          <SwiperSlide key={index} className="swiper-slide-config-edit">
-            <img
-              src={imgUrl}
-              alt={configurations?.model}
-              className="pb-8 md:pb-16"
-            />
+          <SwiperSlide
+            key={index}
+            className="pb-8 md:pb-16 px-[1rem] lg:px-[2rem] 2xl:px-[3rem] 3xl:px-[18rem] 3xl:!w-fit"
+          >
+            <img src={imgUrl} alt={configurations?.model} />
           </SwiperSlide>
-        ))
-      ) : (
-        <img
-          src={carIcon}
-          alt="Car ico"
-          className="animate-pulse w-20 mx-auto md:py-40 opacity-10"
-        />
-      )}
+        ))}
       <div className="flex justify-center items-center">
         <div className="flex items-center text-text-default-gray text-lg sm:text-2xl">
           <PaginationButton

@@ -3,7 +3,7 @@ import { User } from "../types/userType";
 
 export const userState = atom<User | undefined>({
   key: "authentication.userState",
-  default: undefined,
+  default: undefined
 });
 
 export const loggedState = atom({

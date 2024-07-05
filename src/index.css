@@ -24,10 +24,6 @@
     @apply max-sm:!h-auto;
   }
 
-  .swiper-slide-config-edit {
-    @apply lg:px-[4rem]  xl:px-[6rem] 2xl:px-[12rem] 3xl:px-[18rem] 3xl:!w-fit;
-  }
-
   /* NAVBAR STYLES */
 
   .navbar-height {

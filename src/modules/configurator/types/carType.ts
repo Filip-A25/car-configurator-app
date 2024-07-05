@@ -6,6 +6,11 @@ export enum CarPosition {
   frontLeft = "front-left",
 }
 
+export enum InteriorPosition {
+  dash = "dash",
+  seats = "seats"
+}
+
 export interface CarModelImages {
   front: string;
   back: string;
@@ -16,7 +21,7 @@ export interface CarModelImages {
 
 export interface CarProperty {
   index: number;
-  propertyName: "color" | "wheels";
+  propertyName: CarPropertyName;
   label: string | number;
   name: string;
   description: string;
@@ -41,3 +46,4 @@ export interface CarImageFetchProps {
   wheelVariant: number;
   position: CarPosition
 }
+export type CarPropertyName = "color" | "wheels" | "interior_variants";
