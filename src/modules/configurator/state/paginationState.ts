@@ -20,15 +20,13 @@ export const pageState = atom<Page[]>({
   }]
 });
 
-export const activePageState = selector<Page>({
+export const activePageState = selector<Page | undefined>({
   key: "configurator.activePageState",
   get: ({ get }) => {
     const pages = get(pageState);
     const activePage = pages.find(page => page.isActive);
 
-    if (!activePage) {
-      throw new Error("No active page was found.");
-    }
+    if (!activePage) return undefined;
 
     return activePage;
   }

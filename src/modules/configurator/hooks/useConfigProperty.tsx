@@ -8,6 +8,7 @@ import {
 } from "../state";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { CarProperty, InteriorPosition } from "../types";
+import { getPropertyTypeName } from "../utilities/utilities";
 
 export function useConfigProperty({
   index,
@@ -69,20 +70,7 @@ export function useConfigProperty({
     setActivePropIndex({ ...activePropIndex, [propertyName]: index });
   };
 
-  const getPropertyTypeName = () => {
-    switch (propertyName) {
-      case "color":
-        return "Paint color";
-      case "wheels":
-        return "Wheels";
-      case "interior_variants":
-        return "Color";
-      default:
-        return;
-    }
-  };
-
-  const propertyTypeName = getPropertyTypeName();
+  const propertyTypeName = getPropertyTypeName(propertyName);
 
   return {
     handleOpenDropdown,
