@@ -5,7 +5,7 @@ import { CarSelect } from "./CarSelect";
 export function ConfigureACar() {
   return (
     <Routes>
-      <Route path="configuration-edit/:id" element={<ConfigDisplay />} />
+      <Route path="configuration-edit/query" element={<ConfigDisplay />} />
       <Route path="car-select" element={<CarSelect />} />
     </Routes>
   );

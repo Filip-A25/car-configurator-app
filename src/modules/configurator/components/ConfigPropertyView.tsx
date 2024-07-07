@@ -22,7 +22,9 @@ export function ConfigPropertyView({
         price={price}
         isDescriptionDisplayed={false}
       />
-      <span className="text-xl text-property-name-grey">{price} €</span>
+      <span className="text-md sm:text-xl text-property-name-grey">
+        {price} €
+      </span>
     </div>
   );
 }

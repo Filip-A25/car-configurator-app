@@ -19,8 +19,8 @@ export const fetchAllCarData = async () => {
                 model: name,
                 productionYear: production_year,
                 color,
-                wheelVariants: wheel_variant,
-                interiorVariants: interior_variant,
+                wheels: wheel_variant,
+                interior_variants: interior_variant,
                 price
             }
 

@@ -5,10 +5,12 @@ import {
   dropdownOpen,
   userConfigurationState,
   activePropState,
+  currentConfigurationsState,
 } from "../state";
-import { useRecoilState, useSetRecoilState } from "recoil";
 import { CarProperty, InteriorPosition } from "../types";
 import { getPropertyTypeName } from "../utilities/utilities";
+import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
+import { useSearchParams } from "react-router-dom";
 
 export function useConfigProperty({
   index,
@@ -24,8 +26,13 @@ export function useConfigProperty({
   const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownOpen);
   const [currentUserConfiguration, setCurrentUserConfiguration] =
     useRecoilState(userConfigurationState);
+  const configurations = useRecoilValue(currentConfigurationsState);
 
   const [activePropIndex, setActivePropIndex] = useRecoilState(activePropState);
+
+  const [searchParams] = useSearchParams();
+
+  const configId = searchParams.get("configId");
 
   const handleImageFetch = async () => {
     try {
@@ -47,6 +54,25 @@ export function useConfigProperty({
       throw new Error(err);
     }
   };
+
+  /*
+  const handleSetActiveProperty = () => {
+    if (!configurations || !currentUserConfiguration) return;
+    const properyArray = configurations[propertyName];
+    console.log(properyArray);
+    const targetProperty = currentUserConfiguration[propertyName];
+    console.log(targetProperty);
+    const targetIndex = properyArray.findIndex(
+      (item) => item === targetProperty
+    );
+
+    setActivePropIndex({ ...activePropIndex, [propertyName]: targetIndex });
+  };
+
+  useEffect(() => {
+    if (configId) handleSetActiveProperty();
+  }, []);
+  */
 
   useEffect(() => {
     handleImageFetch();

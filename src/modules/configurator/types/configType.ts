@@ -17,8 +17,8 @@ export interface CarConfigurations {
     model: CarModel;
     productionYear: number;
     color: TextVariant[];
-    wheelVariants: NumberVariant[];
-    interiorVariants: TextVariant[];
+    wheels: NumberVariant[];
+    interior_variants: TextVariant[];
     price: number;
 }
 

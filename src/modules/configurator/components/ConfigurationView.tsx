@@ -4,29 +4,29 @@ import { userConfigurationState, configurationPriceState } from "../state";
 import { ConfigPropertyView } from "./ConfigPropertyView";
 import { PageLoading } from "../../global/components";
 
-export function ConfigSummary() {
+export function ConfigurationView() {
   const configuration = useRecoilValue(userConfigurationState);
   const displayPrice = useRecoilValue(configurationPriceState);
 
   if (!configuration) return <PageLoading />;
 
   return (
-    <section className="px-32 py-10">
-      <div className="px-20 pb-20">
+    <section className="px-10 sm:px-20 md:px-32 py-10">
+      <div className="sm:px-20 pb-10 sm:pb-20">
         <CarImageSlide />
       </div>
       <section>
-        <div className="flex justify-between w-full">
+        <div className="flex max-sm:flex-col justify-between w-full">
           <div>
-            <h1 className="font-optician-sans text-text-default-gray text-4xl leading-none">
+            <h1 className="font-optician-sans text-text-default-gray text-2xl sm:text-4xl leading-none">
               {configuration?.model}
             </h1>
-            <h4 className="font-optician-sans text-text-muted-gray text-xl">
+            <h4 className="font-optician-sans text-text-muted-gray text-lg sm:text-xl">
               {configuration?.productionYear}
             </h4>
           </div>
           <span>
-            <span className="flex items-center justify-end pb-1">
+            <span className="flex items-center sm:justify-end pb-1">
               <h4 className="tracking-widest text-muted-grey text-xs sm:text-md 3xl:text-lg">
                 TOTAL
               </h4>
@@ -44,15 +44,15 @@ export function ConfigSummary() {
                 </svg>
               </div>
             </span>
-            <span className="text-xl">{displayPrice} €</span>
+            <span className="text-lg sm:text-xl">{displayPrice} €</span>
           </span>
         </div>
-        <div className="h-[1px] w-full bg-text-light-grey mt-8 mb-14" />
-        <section className="flex justify-between">
-          <span className="">Your configuration details</span>
+        <div className="h-[1px] w-full bg-text-light-grey my-6 sm:mt-8 sm:mb-14" />
+        <section className="flex max-md:flex-col justify-between">
+          <span className="max-md:mb-10">Your configuration details</span>
           <div className="basis-[60%]">
             <h4>Exterior</h4>
-            <div className="h-[1px] w-full bg-text-light-grey my-8" />
+            <div className="h-[1px] w-full bg-text-light-grey my-4 sm:my-8" />
             <ConfigPropertyView
               index={1}
               propertyName="color"
@@ -73,7 +73,7 @@ export function ConfigSummary() {
               price={configuration.wheels.price}
             />
             <h4>Interior</h4>
-            <div className="h-[1px] w-full bg-text-light-grey my-8" />
+            <div className="h-[1px] w-full bg-text-light-grey my-4 sm:my-8" />
             <ConfigPropertyView
               index={3}
               propertyName="color"
@@ -83,7 +83,7 @@ export function ConfigSummary() {
               description={configuration.color.name}
               price={configuration.color.price}
             />
-            <span className="flex justify-between font-bold py-10 text-xl">
+            <span className="flex justify-between font-bold py-10 text-lg sm:text-xl">
               <h4 className="text-text-dark-gray">Total</h4>
               <h4 className="text-text-default-gray">{displayPrice} €</h4>
             </span>

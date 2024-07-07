@@ -2,9 +2,9 @@ import { ReturnButton } from "../../../shared";
 import { dropdownOpen } from "../state";
 import { useRecoilValue } from "recoil";
 import { activePageState } from "../state";
-import Button from "../../../shared/Button";
 import clsx from "clsx";
 import { PaginationDisplay } from "./PaginationDisplay";
+import { ConfigOptionsDisplay } from "./ConfigOptionsDisplay";
 
 interface Props {
   model?: string;
@@ -31,10 +31,7 @@ export function ConfigNavbar({ model, productionYear }: Props) {
         )}
       >
         {activePage.name === "Summary" ? (
-          <>
-            <Button label="Edit configuration" variant="secondary" />
-            <Button label="Delete" variant="secondary" />
-          </>
+          <ConfigOptionsDisplay />
         ) : (
           <PaginationDisplay />
         )}

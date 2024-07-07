@@ -16,8 +16,8 @@ export const fetchCarConfigurations = async (id: string) => {
             model: responseData.name,
             productionYear: responseData.production_year,
             color: responseData.color,
-            wheelVariants: responseData.wheel_variant,
-            interiorVariants: responseData.interior_variant,
+            wheels: responseData.wheel_variant,
+            interior_variants: responseData.interior_variant,
             price: responseData.price
         }
 
@@ -108,6 +108,31 @@ export const fetchAllPropertyImagesByVariant = async ({modelName, name, variant}
         const propertyImagesArray = await Promise.all(imagePromises);
 
         return propertyImagesArray;
+    } catch (err: any) {
+        throw new Error(err);
+    }
+}
+
+export const fetchUserConfiguration = async (userId: string, configurationId: string) => {
+    try {
+        const configRef = doc(db, `users/${userId}/configurations/${configurationId}`);
+        const response = await getDoc(configRef);
+        
+        const responseData = response.data();
+
+        if (!responseData) throw new Error("Data could not be found.");
+        const userConfig: UserCarConfiguration = {
+            model: responseData.model,
+            modelId: responseData.model_id,
+            productionYear: responseData.production_year,
+            color: responseData.color,
+            wheels: responseData.wheel_variant,
+            interior_variants: responseData.interior_variant,
+            creationDate: responseData.creation_date,
+            totalPrice: responseData.total_price
+        }
+
+        return userConfig;
     } catch (err: any) {
         throw new Error(err);
     }
