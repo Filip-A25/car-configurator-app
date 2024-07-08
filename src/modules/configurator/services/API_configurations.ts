@@ -127,7 +127,7 @@ export const fetchUserConfiguration = async (userId: string, configurationId: st
             productionYear: responseData.production_year,
             color: responseData.color,
             wheels: responseData.wheel_variant,
-            interior_variants: responseData.interior_variant,
+            interior_variants: responseData.interior_variants,
             creationDate: responseData.creation_date,
             totalPrice: responseData.total_price
         }

@@ -49,7 +49,6 @@ export function useConfigEdit() {
         configId
       );
 
-      console.log(userConfigurations);
       setCurrentUserConfiguration({
         ...userConfigurations,
         modelId,

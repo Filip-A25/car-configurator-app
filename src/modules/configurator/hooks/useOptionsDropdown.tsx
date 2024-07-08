@@ -1,9 +1,10 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userState } from "../../authentification/state";
-import { userConfigurationsState } from "../state";
+import { userConfigurationsState, userConfigurationState } from "../state";
 import {
   fetchAllUserConfigurations,
   deleteUserConfiguration,
+  fetchUserConfiguration,
 } from "../services";
 import { OptionsDropdownProps } from "../components";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +17,7 @@ export function useOptionsDropdown({
 }: OptionsDropdownProps) {
   const user = useRecoilValue(userState);
   const setUserConfigurations = useSetRecoilState(userConfigurationsState);
+  const setUserConfiguration = useSetRecoilState(userConfigurationState);
 
   const navigate = useNavigate();
 
@@ -49,7 +51,14 @@ export function useOptionsDropdown({
   };
 
   const handleEditConfigurationNavigate = async () => {
-    navigate(`/home/configurations/view?modelId=${modelId}&configId=${id}`);
+    if (!user) throw new Error("User could not be found.");
+    try {
+      const response = await fetchUserConfiguration(user.id, id);
+      setUserConfiguration(response);
+      navigate(`/home/configurations/view?modelId=${modelId}&configId=${id}`);
+    } catch (err: any) {
+      throw new Error(err);
+    }
   };
 
   return { handleDeleteClick, handleEditConfigurationNavigate };

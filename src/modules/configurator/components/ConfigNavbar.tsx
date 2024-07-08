@@ -30,11 +30,7 @@ export function ConfigNavbar({ model, productionYear }: Props) {
           isDropdownOpen && "hidden"
         )}
       >
-        {activePage.name === "Summary" ? (
-          <ConfigOptionsDisplay />
-        ) : (
-          <PaginationDisplay />
-        )}
+        {activePage ? <PaginationDisplay /> : <ConfigOptionsDisplay />}
       </section>
     </div>
   );

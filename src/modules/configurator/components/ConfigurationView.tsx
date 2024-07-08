@@ -1,17 +1,12 @@
 import { CarImageSlide } from "./CarImageSlide";
 import { useRecoilValue } from "recoil";
-import {
-  userConfigurationState,
-  configurationPriceState,
-  currentConfigurationsState,
-} from "../state";
+import { userConfigurationState, configurationPriceState } from "../state";
 import { ConfigPropertyView } from "./ConfigPropertyView";
 import { PageLoading } from "../../global/components";
 import { ConfigNavbar } from "./ConfigNavbar";
 
 export function ConfigurationView() {
   const configuration = useRecoilValue(userConfigurationState);
-  const configurations = useRecoilValue(currentConfigurationsState);
   const displayPrice = useRecoilValue(configurationPriceState);
 
   if (!configuration) return <PageLoading />;
@@ -19,8 +14,8 @@ export function ConfigurationView() {
   return (
     <>
       <ConfigNavbar
-        model={configurations?.model}
-        productionYear={configurations?.productionYear}
+        model={configuration.model}
+        productionYear={configuration.productionYear}
       />
       <section className="px-10 sm:px-20 md:px-32 py-10">
         <div className="sm:px-20 pb-10 sm:pb-20">
@@ -87,12 +82,12 @@ export function ConfigurationView() {
               <div className="h-[1px] w-full bg-text-light-grey my-4 sm:my-8" />
               <ConfigPropertyView
                 index={3}
-                propertyName="color"
+                propertyName="interior_variants"
                 modelName={configuration.model}
-                label={configuration.color.label}
-                name="wheels"
-                description={configuration.color.name}
-                price={configuration.color.price}
+                label={configuration.interior_variants.label}
+                name="interior_variants"
+                description={configuration.interior_variants.name}
+                price={configuration.interior_variants.price}
               />
               <span className="flex justify-between font-bold py-10 text-lg sm:text-xl">
                 <h4 className="text-text-dark-gray">Total</h4>
