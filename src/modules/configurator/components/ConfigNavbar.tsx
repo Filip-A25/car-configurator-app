@@ -7,18 +7,19 @@ import { PaginationDisplay } from "./PaginationDisplay";
 import { ConfigOptionsDisplay } from "./ConfigOptionsDisplay";
 
 interface Props {
+  returnPath: string;
   model?: string;
   productionYear?: number;
 }
 
-export function ConfigNavbar({ model, productionYear }: Props) {
+export function ConfigNavbar({ returnPath, model, productionYear }: Props) {
   const isDropdownOpen = useRecoilValue(dropdownOpen);
   const activePage = useRecoilValue(activePageState);
 
   return (
     <div className="h-[50px] sm:h-[70px] bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
       <section className="flex justify-between text-lg sm:text-2xl 3xl:text-3xl text-text-default-gray">
-        <ReturnButton path="/car-select" />
+        <ReturnButton path={returnPath} />
         <h3 className="text-muted-grey font-optician-sans px-2">
           {productionYear}
         </h3>

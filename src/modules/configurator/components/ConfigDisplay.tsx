@@ -9,6 +9,7 @@ export function ConfigDisplay() {
   return (
     <section className="relative h-full">
       <ConfigNavbar
+        returnPath="/home/configure-a-car/car-select"
         model={configurations?.model}
         productionYear={configurations?.productionYear}
       />

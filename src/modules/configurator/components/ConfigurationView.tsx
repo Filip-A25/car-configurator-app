@@ -14,6 +14,7 @@ export function ConfigurationView() {
   return (
     <>
       <ConfigNavbar
+        returnPath="/home/configurations"
         model={configuration.model}
         productionYear={configuration.productionYear}
       />
