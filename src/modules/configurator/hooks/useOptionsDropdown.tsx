@@ -1,6 +1,6 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userState } from "../../authentification/state";
-import { userConfigurationsState, userConfigurationState } from "../state";
+import { userConfigurationsState } from "../state";
 import {
   fetchAllUserConfigurations,
   deleteUserConfiguration,

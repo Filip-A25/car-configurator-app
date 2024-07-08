@@ -21,6 +21,7 @@ export function ConfigPropertyView({
         description={description}
         price={price}
         isDescriptionDisplayed={false}
+        disabled
       />
       <span className="text-md sm:text-xl text-property-name-grey">
         {price} €

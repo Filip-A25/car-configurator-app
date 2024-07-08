@@ -1,5 +1,17 @@
+import { ButtonHTMLAttributes } from "react";
 import { useConfigProperty } from "../hooks";
-import { CarProperty } from "../types";
+import { CarProperty, CarModel } from "../types";
+
+interface Props extends CarProperty, ButtonHTMLAttributes<HTMLButtonElement> {
+  index: number;
+  propertyName: "color" | "wheels" | "interior_variants";
+  label: string | number;
+  name: string;
+  description: string;
+  price: number;
+  modelName?: CarModel;
+  isDescriptionDisplayed?: boolean;
+}
 
 export function ConfigProperty({
   index,
@@ -10,7 +22,8 @@ export function ConfigProperty({
   description,
   price,
   isDescriptionDisplayed,
-}: CarProperty) {
+  disabled,
+}: Props) {
   const { handleOpenDropdown, propertyImgUrl, activePropIndex } =
     useConfigProperty({
       index,
@@ -27,6 +40,7 @@ export function ConfigProperty({
     <button
       className="flex items-center p-2 xs:p-4 sm:p-5 sm:pr-40 lg:pr-48 3xl:pr-64"
       onClick={handleOpenDropdown}
+      disabled={disabled}
     >
       <div className="relative overflow-hidden aspect-square h-[36px] sm:h-[60px]">
         {propertyImgUrl ? (
