@@ -51,10 +51,10 @@ export function ConfigurationView() {
           <div className="flex max-sm:flex-col justify-between w-full">
             <div>
               <h1 className="font-optician-sans text-text-default-gray text-2xl sm:text-4xl leading-none">
-                {configuration?.model}
+                {configuration.model}
               </h1>
               <h4 className="font-optician-sans text-text-muted-gray text-lg sm:text-xl">
-                {configuration?.productionYear}
+                {configuration.productionYear}
               </h4>
             </div>
             <span>

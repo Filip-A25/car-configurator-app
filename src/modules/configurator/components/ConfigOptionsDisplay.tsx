@@ -32,13 +32,13 @@ export function ConfigOptionsDisplay() {
   return (
     <>
       <button
-        className="text-button-purple pl-10 py-6 text-sm"
+        className="text-button-purple px-3 py-6 text-sm"
         onClick={handleEditConfigurationNavigate}
       >
         Edit configuration
       </button>
       <button
-        className="text-text-red pl-10 py-6 text-sm"
+        className="text-text-red px-3 py-6 text-sm"
         onClick={handleDeleteClick}
       >
         Delete

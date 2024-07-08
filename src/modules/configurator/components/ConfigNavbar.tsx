@@ -20,10 +20,10 @@ export function ConfigNavbar({ returnPath, model, productionYear }: Props) {
     <div className="h-[50px] sm:h-[70px] bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
       <section className="flex justify-between text-lg sm:text-2xl 3xl:text-3xl text-text-default-gray">
         <ReturnButton path={returnPath} />
-        <h3 className="text-muted-grey font-optician-sans px-2">
+        <h3 className="max-sm:hidden text-muted-grey font-optician-sans px-2">
           {productionYear}
         </h3>
-        <h3 className="font-optician-sans px-2">{model}</h3>
+        <h3 className="max-sm:hidden font-optician-sans px-2">{model}</h3>
       </section>
       <section
         className={clsx(
