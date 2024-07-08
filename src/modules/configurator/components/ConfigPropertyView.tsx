@@ -1,28 +1,10 @@
 import { ConfigProperty } from "./ConfigProperty";
 import { CarProperty } from "../types";
 
-export function ConfigPropertyView({
-  index,
-  propertyName,
-  modelName,
-  label,
-  name,
-  description,
-  price,
-}: CarProperty) {
+export function ConfigPropertyView({ price, ...props }: CarProperty) {
   return (
     <div className="flex items-center justify-between cursor-text">
-      <ConfigProperty
-        index={index}
-        propertyName={propertyName}
-        modelName={modelName}
-        label={label}
-        name={name}
-        description={description}
-        price={price}
-        isDescriptionDisplayed={false}
-        disabled
-      />
+      <ConfigProperty price={price} disabled {...props} />
       <span className="text-md sm:text-xl text-property-name-grey">
         {price} €
       </span>

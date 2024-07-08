@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { CarImageSlide } from "./CarImageSlide";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { userConfigurationState, configurationPriceState } from "../state";
@@ -20,7 +20,7 @@ export function ConfigurationView() {
 
   const configId = searchParams.get("configId");
 
-  const handleGetUserConfiguration = async () => {
+  const handleGetUserConfiguration = useCallback(async () => {
     if (!user || !configId) throw new Error("Incomplete data.");
     try {
       const response = await fetchUserConfiguration(user.id, configId);
@@ -28,11 +28,11 @@ export function ConfigurationView() {
     } catch (err: any) {
       throw new Error(err);
     }
-  };
+  }, [user, configId]);
 
   useEffect(() => {
     handleGetUserConfiguration();
-  }, []);
+  }, [handleGetUserConfiguration]);
 
   if (!configuration) return <PageLoading />;
 

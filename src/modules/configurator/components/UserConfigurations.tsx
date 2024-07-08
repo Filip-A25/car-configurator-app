@@ -29,7 +29,7 @@ export function UserConfigurations() {
   useEffect(() => {
     if (!currentUser) return;
     handleUserConfigurationsFetch(currentUser.id);
-  }, []);
+  }, [currentUser]);
 
   if (isDataFetching) return <PageLoading />;
 

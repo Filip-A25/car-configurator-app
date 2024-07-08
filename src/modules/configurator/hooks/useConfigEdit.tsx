@@ -66,7 +66,7 @@ export function useConfigEdit() {
   useEffect(() => {
     if (!modelId) return;
     handleCarConfigurationsFetch(modelId);
-  }, []);
+  }, [modelId]);
 
   useEffect(() => {
     const preventPageLeave = (e: BeforeUnloadEvent) => {
