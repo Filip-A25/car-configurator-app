@@ -7,7 +7,7 @@ import {
   activePropState,
 } from "../state";
 import { CarProperty, InteriorPosition } from "../types";
-import { getPropertyTypeName } from "../utilities/utilities";
+import { getPropertyTypeName } from "../utilities/utils";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
 export function useConfigProperty({

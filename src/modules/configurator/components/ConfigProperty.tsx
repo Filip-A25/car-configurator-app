@@ -1,10 +1,10 @@
 import { ButtonHTMLAttributes } from "react";
 import { useConfigProperty } from "../hooks";
-import { CarProperty, CarModel } from "../types";
+import { CarPropertyName, CarModel } from "../types";
 
-interface Props extends CarProperty, ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   index: number;
-  propertyName: "color" | "wheels" | "interior_variants";
+  propertyName: CarPropertyName;
   label: string | number;
   name: string;
   description: string;

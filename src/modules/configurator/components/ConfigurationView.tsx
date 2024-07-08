@@ -8,6 +8,7 @@ import { PageLoading } from "../../global/components";
 import { ConfigNavbar } from "./ConfigNavbar";
 import { useSearchParams } from "react-router-dom";
 import { fetchUserConfiguration } from "../services";
+import { configuratorRoutes } from "./const";
 
 export function ConfigurationView() {
   const [configuration, setConfiguration] = useRecoilState(
@@ -39,7 +40,7 @@ export function ConfigurationView() {
   return (
     <>
       <ConfigNavbar
-        returnPath="/home/configurations"
+        returnPath={configuratorRoutes.configurations}
         model={configuration.model}
         productionYear={configuration.productionYear}
       />

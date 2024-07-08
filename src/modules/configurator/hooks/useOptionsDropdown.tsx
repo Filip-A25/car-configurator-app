@@ -8,7 +8,8 @@ import {
 } from "../services";
 import { OptionsDropdownProps } from "../components";
 import { useNavigate } from "react-router-dom";
-import { notifyDelete } from "../utilities/utilities";
+import { notifyDelete } from "../utilities/utils";
+import { configuratorRoutes } from "../components/const";
 
 export function useOptionsDropdown({
   id,
@@ -55,7 +56,9 @@ export function useOptionsDropdown({
     try {
       const response = await fetchUserConfiguration(user.id, id);
       setUserConfiguration(response);
-      navigate(`/home/configurations/view?modelId=${modelId}&configId=${id}`);
+      navigate(
+        `${configuratorRoutes.configurations}/view?modelId=${modelId}&configId=${id}`
+      );
     } catch (err: any) {
       throw new Error(err);
     }

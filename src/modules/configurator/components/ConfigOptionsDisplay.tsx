@@ -2,7 +2,8 @@ import { deleteUserConfiguration } from "../services";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../authentification/state";
-import { notifyDelete } from "../utilities/utilities";
+import { notifyDelete } from "../utilities/utils";
+import { configuratorRoutes } from "./const";
 
 export function ConfigOptionsDisplay() {
   const user = useRecoilValue(userState);
@@ -17,7 +18,7 @@ export function ConfigOptionsDisplay() {
     try {
       await deleteUserConfiguration(user.id, configId);
       notifyDelete();
-      navigate("/home/configurations");
+      navigate(configuratorRoutes.configurations);
     } catch (err: any) {
       throw new Error(err);
     }
@@ -25,7 +26,7 @@ export function ConfigOptionsDisplay() {
 
   const handleEditConfigurationNavigate = () => {
     navigate(
-      `/home/configure-a-car/configuration-edit/query?modelId=${modelId}&configId=${configId}`
+      `${configuratorRoutes.configureACar}/configuration-edit/query?modelId=${modelId}&configId=${configId}`
     );
   };
 

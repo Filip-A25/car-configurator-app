@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { userState } from "../../authentification/state";
 import { fetchAllUserConfigurations } from "../services";
 import { PageLoading } from "../../global/components";
+import { configuratorRoutes } from "./const";
 
 export function UserConfigurations() {
   const [userConfigurations, setUserConfigurations] = useRecoilState(
@@ -40,7 +41,7 @@ export function UserConfigurations() {
           View saved configurations
         </h2>
         <ConfigureLinkButton
-          path="/home/configure-a-car/car-select"
+          path={`${configuratorRoutes.configureACar}/car-select`}
           title="Configure a car"
         />
       </header>
