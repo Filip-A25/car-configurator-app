@@ -2,6 +2,7 @@ import { deleteUserConfiguration } from "../services";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../authentification/state";
+import { notifyDelete } from "../utilities/utilities";
 
 export function ConfigOptionsDisplay() {
   const user = useRecoilValue(userState);
@@ -15,6 +16,7 @@ export function ConfigOptionsDisplay() {
     if (!user || !configId) throw new Error("Data could not be found.");
     try {
       await deleteUserConfiguration(user.id, configId);
+      notifyDelete();
       navigate("/home/configurations");
     } catch (err: any) {
       throw new Error(err);

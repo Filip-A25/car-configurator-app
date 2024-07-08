@@ -7,7 +7,7 @@ export function Configurator() {
     <div id="configurator-content" className="h-[calc(100vh-70px)]">
       <Routes>
         <Route path="/configure-a-car/*" element={<ConfigureACar />} />
-        <Route path="/configurations" element={<Configurations />} />
+        <Route path="/configurations/*" element={<Configurations />} />
       </Routes>
     </div>
   );

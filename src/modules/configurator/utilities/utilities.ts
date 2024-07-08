@@ -1,3 +1,6 @@
+import {toast} from "react-toastify";
+import { toastifySuccessProps } from "../components/const";
+
 export const getPropertyTypeName = (propertyName: string) => {
     switch (propertyName) {
       case "color":
@@ -9,4 +12,8 @@ export const getPropertyTypeName = (propertyName: string) => {
       default:
         return;
     }
-  };
+}
+
+export const notifyDelete = () => {
+    toast.success("Configuration successfully deleted.", toastifySuccessProps);
+};

@@ -8,7 +8,7 @@ export * from './ConfigProperty';
 export * from './ConfigPropertyDropdown';
 export * from './ConfigSidebar';
 export * from './ConfigSidebarSelect';
-export * from './Configurations';
+export * from './UserConfigurations';
 export * from './Configurator';
 export * from './ConfigurationsEmpty';
 export * from './ConfigurationsSaved';

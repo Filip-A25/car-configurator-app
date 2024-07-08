@@ -1,7 +1,6 @@
 import { currentConfigurationsState } from "../state";
 import { ConfigNavbar } from "./ConfigNavbar";
 import { ConfigEdit } from "./ConfigEdit";
-import { ConfigurationView } from "./ConfigurationView";
 import { useRecoilValue } from "recoil";
 
 export function ConfigDisplay() {
@@ -13,7 +12,7 @@ export function ConfigDisplay() {
         model={configurations?.model}
         productionYear={configurations?.productionYear}
       />
-      <ConfigurationView />
+      <ConfigEdit />
     </section>
   );
 }

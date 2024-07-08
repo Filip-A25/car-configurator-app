@@ -1,29 +1,23 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userState } from "../../authentification/state";
 import { userConfigurationsState, userConfigurationState } from "../state";
-import { toast } from "react-toastify";
 import {
   fetchAllUserConfigurations,
   deleteUserConfiguration,
-  fetchUserConfiguration,
 } from "../services";
 import { OptionsDropdownProps } from "../components";
-import { toastifySuccessProps } from "../components/const";
 import { useNavigate } from "react-router-dom";
+import { notifyDelete } from "../utilities/utilities";
 
 export function useOptionsDropdown({
   id,
+  modelId,
   setIsOptionsDropdownOpen,
 }: OptionsDropdownProps) {
   const user = useRecoilValue(userState);
   const setUserConfigurations = useSetRecoilState(userConfigurationsState);
-  const setUserConfiguration = useSetRecoilState(userConfigurationState);
 
   const navigate = useNavigate();
-
-  const notifyDelete = () => {
-    toast.success("Configuration successfully deleted.", toastifySuccessProps);
-  };
 
   const handleUserConfigurationsFetch = async (userId: string) => {
     try {
@@ -55,14 +49,7 @@ export function useOptionsDropdown({
   };
 
   const handleEditConfigurationNavigate = async () => {
-    if (!user) throw new Error("User could not be found.");
-    try {
-      const response = await fetchUserConfiguration(user.id, id);
-      setUserConfiguration({ ...response });
-      navigate("/home/configurations/");
-    } catch (err: any) {
-      throw new Error(err);
-    }
+    navigate(`/home/configurations/view?modelId=${modelId}&configId=${id}`);
   };
 
   return { handleDeleteClick, handleEditConfigurationNavigate };
