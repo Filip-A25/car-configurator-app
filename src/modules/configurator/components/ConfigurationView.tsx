@@ -1,13 +1,38 @@
+import { useEffect } from "react";
 import { CarImageSlide } from "./CarImageSlide";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { userConfigurationState, configurationPriceState } from "../state";
+import { userState } from "../../authentification/state";
 import { ConfigPropertyView } from "./ConfigPropertyView";
 import { PageLoading } from "../../global/components";
 import { ConfigNavbar } from "./ConfigNavbar";
+import { useSearchParams } from "react-router-dom";
+import { fetchUserConfiguration } from "../services";
 
 export function ConfigurationView() {
-  const configuration = useRecoilValue(userConfigurationState);
+  const [configuration, setConfiguration] = useRecoilState(
+    userConfigurationState
+  );
   const displayPrice = useRecoilValue(configurationPriceState);
+  const user = useRecoilValue(userState);
+
+  const [searchParams] = useSearchParams();
+
+  const configId = searchParams.get("configId");
+
+  const handleGetUserConfiguration = async () => {
+    if (!user || !configId) throw new Error("Incomplete data.");
+    try {
+      const response = await fetchUserConfiguration(user.id, configId);
+      setConfiguration(response);
+    } catch (err: any) {
+      throw new Error(err);
+    }
+  };
+
+  useEffect(() => {
+    handleGetUserConfiguration();
+  }, []);
 
   if (!configuration) return <PageLoading />;
 
