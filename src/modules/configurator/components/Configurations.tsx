@@ -6,7 +6,7 @@ export function Configurations() {
   return (
     <Routes>
       <Route path="/" element={<UserConfigurations />} />
-      <Route path="view" element={<ConfigurationView />} />
+      <Route path="/view" element={<ConfigurationView />} />
     </Routes>
   );
 }

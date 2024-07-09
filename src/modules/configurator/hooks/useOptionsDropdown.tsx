@@ -57,7 +57,7 @@ export function useOptionsDropdown({
       const response = await fetchUserConfiguration(user.id, id);
       setUserConfiguration(response);
       navigate(
-        `${configuratorRoutes.configurations}/view?modelId=${modelId}&configId=${id}`
+        `${configuratorRoutes.configurationsView}?modelId=${modelId}&configId=${id}`
       );
     } catch (err: any) {
       throw new Error(err);

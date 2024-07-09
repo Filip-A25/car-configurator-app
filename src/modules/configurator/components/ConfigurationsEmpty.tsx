@@ -14,7 +14,7 @@ export function ConfigurationsEmpty() {
         <p className="text-center par-font-size">
           You haven't configured any cars yet. You may choose to{" "}
           <Link
-            to={`${configuratorRoutes.configureACar}/car-select`}
+            to={configuratorRoutes.carSelect}
             className="text-text-purple font-bold"
           >
             configure some now.

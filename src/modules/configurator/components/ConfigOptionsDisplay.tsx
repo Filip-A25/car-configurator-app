@@ -26,7 +26,7 @@ export function ConfigOptionsDisplay() {
 
   const handleEditConfigurationNavigate = () => {
     navigate(
-      `${configuratorRoutes.configureACar}/configuration-edit/query?modelId=${modelId}&configId=${configId}`
+      `${configuratorRoutes.configurationEditQuery}?modelId=${modelId}&configId=${configId}`
     );
   };
 

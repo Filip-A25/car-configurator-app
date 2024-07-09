@@ -41,7 +41,7 @@ export function UserConfigurations() {
           View saved configurations
         </h2>
         <ConfigureLinkButton
-          path={`${configuratorRoutes.configureACar}/car-select`}
+          path={configuratorRoutes.carSelect}
           title="Configure a car"
         />
       </header>
