@@ -1,6 +1,6 @@
 import { ConfigNavbar } from "./ConfigNavbar";
 import { ConfigEdit } from "./ConfigEdit";
-import { ConfigurationSummaryDisplay } from "./ConfigurationSummaryDisplay";
+import { ConfigurationSummary } from "./ConfigurationSummary";
 import { useRecoilValue } from "recoil";
 import { activePageState, userConfigurationState } from "../state";
 import { PageLoading } from "../../global/components";
@@ -21,7 +21,7 @@ export function ConfigDisplay() {
         productionYear={configuration.productionYear}
       />
       {activePage && activePage.name === "Summary" ? (
-        <ConfigurationSummaryDisplay userConfiguration={configuration} />
+        <ConfigurationSummary userConfiguration={configuration} />
       ) : (
         <ConfigEdit
           isDropdownOpen={isDropdownOpen}

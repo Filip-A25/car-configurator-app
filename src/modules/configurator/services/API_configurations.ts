@@ -145,9 +145,25 @@ export const createUserConfiguration = async (data: UserCarConfiguration, userId
             model_id: data.modelId,
             production_year: data.productionYear,
             color: {
-                
-            }
-        })
+                label: data.color.label,
+                name: data.color.name,
+                price: data.color.price
+            },
+            wheels: {
+                label: data.wheels.label,
+                name: data.wheels.name,
+                price: data.wheels.price
+            }, 
+            interior_variants: {
+                label: data.interior_variants.label,
+                name: data.interior_variants.name,
+                price: data.interior_variants.price
+            },
+            creation_date: data.creationDate,
+            total_price: data.totalPrice
+        });
+
+        return response;
     } catch (err: any) {
         throw new Error(err);
     }

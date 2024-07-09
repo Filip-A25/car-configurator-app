@@ -3,12 +3,16 @@ import { ConfigPropertyDropdown } from "./ConfigPropertyDropdown";
 import { ConfigActionButton } from "./ConfigActionButton";
 import { PriceDisplay } from "./PriceDisplay";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { activePageState, pageState } from "../state";
+import { activePageState, pageState, userConfigurationState } from "../state";
+import { userState } from "../../authentification/state";
+import { createUserConfiguration } from "../services";
 
 export function ConfigSidebar() {
   const activePage = useRecoilValue(activePageState);
   const [pages, setPages] = useRecoilState(pageState);
   const [activePageName, setActivePageName] = useState(activePage?.name);
+  const userConfiguration = useRecoilValue(userConfigurationState);
+  const user = useRecoilValue(userState);
 
   const handleNavigateNext = () => {
     if (!activePage) return;
@@ -19,6 +23,21 @@ export function ConfigSidebar() {
     }));
 
     setPages(newPages);
+  };
+
+  const handleCreateConfiguration = async () => {
+    if (!userConfiguration || !user) return;
+    try {
+      await createUserConfiguration(userConfiguration, user.id);
+    } catch (err: any) {
+      throw new Error(err);
+    }
+  };
+
+  const handleNextStep = () => {
+    if (!activePage) throw new Error("No page could be found.");
+    if (activePage.index < 3) return handleNavigateNext();
+    handleCreateConfiguration();
   };
 
   useEffect(() => {
@@ -46,11 +65,7 @@ export function ConfigSidebar() {
         </section>
         <PriceDisplay />
       </div>
-      <ConfigActionButton
-        text="Interior"
-        isArrow
-        onClick={handleNavigateNext}
-      />
+      <ConfigActionButton text="Interior" isArrow onClick={handleNextStep} />
     </div>
   );
 }
