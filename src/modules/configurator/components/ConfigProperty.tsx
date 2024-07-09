@@ -24,17 +24,20 @@ export function ConfigProperty({
   isDescriptionDisplayed,
   disabled,
 }: Props) {
-  const { handleOpenDropdown, propertyImgUrl, activePropIndex } =
-    useConfigProperty({
-      index,
-      propertyName,
-      modelName,
-      label,
-      name,
-      description,
-      price,
-      isDescriptionDisplayed,
-    });
+  const {
+    handleOpenDropdown,
+    propertyImgUrl,
+    activePropIndex,
+    propertyTypeName,
+  } = useConfigProperty({
+    index,
+    propertyName,
+    modelName,
+    label,
+    name,
+    description,
+    price,
+  });
 
   return (
     <button
@@ -75,7 +78,7 @@ export function ConfigProperty({
         </h3>
         {isDescriptionDisplayed && (
           <h4 className="font-optician-sans text-xs sm:text-sm 2xl:text-md 3xl:text-lg text-property-name-grey tracking-[2px]">
-            {propertyName === "color" ? `paint ${name}` : name}
+            {propertyTypeName}
           </h4>
         )}
       </section>

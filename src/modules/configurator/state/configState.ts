@@ -18,7 +18,7 @@ export const userConfigurationsState = atom<UserCarConfiguration[]>({
 })
 
 export const configurationPriceState = selector({
-  key: "configurator.configurationPrice",
+  key: "configurator.configurationPriceState",
   get: ({get}) => {
     const configuration = get(userConfigurationState);
     
