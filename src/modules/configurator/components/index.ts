@@ -19,3 +19,4 @@ export * from './ConfigureLinkButton';
 export * from './OptionsDropdown';
 export * from './OptionsDropdownItem';
 export * from './SavedConfigurationItem';
+export * from './ConfigurationSummaryDisplay';
