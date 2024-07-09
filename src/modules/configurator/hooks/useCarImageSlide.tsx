@@ -76,16 +76,6 @@ export function useCarImageSlide() {
   useEffect(() => {
     if (!currentUserConfiguration) return;
 
-    if (activePage?.name === "Exterior") {
-      const requestData: ImageColorAndVariantProps = {
-        modelName: currentUserConfiguration.model,
-        color: currentUserConfiguration.color.label,
-        wheelVariant: currentUserConfiguration.wheels.label,
-      };
-
-      handleCarImageFetch(requestData);
-    }
-
     if (activePage?.name === "Interior") {
       const requestData: PropertyVariantProps = {
         modelName: currentUserConfiguration.model,
@@ -94,7 +84,16 @@ export function useCarImageSlide() {
       };
 
       handleInteriorImageFetch(requestData);
+      return;
     }
+
+    const requestData: ImageColorAndVariantProps = {
+      modelName: currentUserConfiguration.model,
+      color: currentUserConfiguration.color.label,
+      wheelVariant: currentUserConfiguration.wheels.label,
+    };
+
+    handleCarImageFetch(requestData);
   }, [currentUserConfiguration, activePage]);
 
   return { configImages, paginationBackRef, paginationNextRef, isDataFetching };

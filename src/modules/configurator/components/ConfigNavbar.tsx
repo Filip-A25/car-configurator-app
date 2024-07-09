@@ -1,26 +1,29 @@
 import { ReturnButton } from "../../../shared";
 import { dropdownOpen } from "../state";
 import { useRecoilValue } from "recoil";
-import { pageState } from "../state";
+import { activePageState } from "../state";
 import clsx from "clsx";
+import { PaginationDisplay } from "./PaginationDisplay";
+import { ConfigOptionsDisplay } from "./ConfigOptionsDisplay";
 
 interface Props {
+  returnPath: string;
   model?: string;
   productionYear?: number;
 }
 
-export function ConfigNavbar({ model, productionYear }: Props) {
+export function ConfigNavbar({ returnPath, model, productionYear }: Props) {
   const isDropdownOpen = useRecoilValue(dropdownOpen);
-  const pageStep = useRecoilValue(pageState);
+  const activePage = useRecoilValue(activePageState);
 
   return (
     <div className="h-[50px] sm:h-[70px] bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
       <section className="flex justify-between text-lg sm:text-2xl 3xl:text-3xl text-text-default-gray">
-        <ReturnButton path="/car-select" />
-        <h3 className="text-muted-grey font-optician-sans px-2">
+        <ReturnButton path={returnPath} />
+        <h3 className="max-sm:hidden text-muted-grey font-optician-sans px-2">
           {productionYear}
         </h3>
-        <h3 className="font-optician-sans px-2">{model}</h3>
+        <h3 className="max-sm:hidden font-optician-sans px-2">{model}</h3>
       </section>
       <section
         className={clsx(
@@ -28,18 +31,7 @@ export function ConfigNavbar({ model, productionYear }: Props) {
           isDropdownOpen && "hidden"
         )}
       >
-        {pageStep.map((page, index) => (
-          <h3
-            className={clsx(
-              "sm:px-4 lg:px-8",
-              page.isActive ? "font-bold" : "max-sm:hidden"
-            )}
-            key={index}
-          >
-            <span className="text-muted-grey">{"0" + page.index} </span>
-            {page.name}
-          </h3>
-        ))}
+        {activePage ? <PaginationDisplay /> : <ConfigOptionsDisplay />}
       </section>
     </div>
   );

@@ -1,5 +1,17 @@
+import { ButtonHTMLAttributes } from "react";
 import { useConfigProperty } from "../hooks";
-import { CarProperty } from "../types";
+import { CarPropertyName, CarModel } from "../types";
+
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  index: number;
+  propertyName: CarPropertyName;
+  label: string | number;
+  name: string;
+  description: string;
+  price: number;
+  modelName?: CarModel;
+  isDescriptionDisplayed?: boolean;
+}
 
 export function ConfigProperty({
   index,
@@ -9,26 +21,26 @@ export function ConfigProperty({
   name,
   description,
   price,
-}: CarProperty) {
-  const {
-    handleOpenDropdown,
-    propertyImgUrl,
-    activePropIndex,
-    propertyTypeName,
-  } = useConfigProperty({
-    index,
-    propertyName,
-    modelName,
-    label,
-    name,
-    description,
-    price,
-  });
+  isDescriptionDisplayed,
+  disabled,
+}: Props) {
+  const { handleOpenDropdown, propertyImgUrl, activePropIndex } =
+    useConfigProperty({
+      index,
+      propertyName,
+      modelName,
+      label,
+      name,
+      description,
+      price,
+      isDescriptionDisplayed,
+    });
 
   return (
     <button
       className="flex items-center p-2 xs:p-4 sm:p-5 sm:pr-40 lg:pr-48 3xl:pr-64"
       onClick={handleOpenDropdown}
+      disabled={disabled}
     >
       <div className="relative overflow-hidden aspect-square h-[36px] sm:h-[60px]">
         {propertyImgUrl ? (
@@ -61,9 +73,11 @@ export function ConfigProperty({
         <h3 className="text-text-default-gray text-sm sm:text-md 2xl:text-lg 3xl:text-xl">
           {description}
         </h3>
-        <h4 className="font-optician-sans text-xs sm:text-sm 2xl:text-md 3xl:text-lg text-property-name-grey tracking-[2px]">
-          {propertyTypeName}
-        </h4>
+        {isDescriptionDisplayed && (
+          <h4 className="font-optician-sans text-xs sm:text-sm 2xl:text-md 3xl:text-lg text-property-name-grey tracking-[2px]">
+            {propertyName === "color" ? `paint ${name}` : name}
+          </h4>
+        )}
       </section>
     </button>
   );

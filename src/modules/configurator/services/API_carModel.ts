@@ -6,7 +6,7 @@ import {fileNames} from "./const/fileNames";
 
 const modelsRef = collection(db, "car-models");
 
-export const fetchAllCarData = async () => {
+export const fetchAllCarData = async (): Promise<CarConfigurationsWithId[]> => {
     try {
         const response = await getDocs(modelsRef);
 
@@ -19,8 +19,8 @@ export const fetchAllCarData = async () => {
                 model: name,
                 productionYear: production_year,
                 color,
-                wheelVariants: wheel_variant,
-                interiorVariants: interior_variant,
+                wheels: wheel_variant,
+                interior_variants: interior_variant,
                 price
             }
 
@@ -33,7 +33,7 @@ export const fetchAllCarData = async () => {
     }
 }
 
-export const fetchCarImageByColorAndVariant = async ({modelName, color, wheelVariant, position}: CarImageColorAndVariantProps) => {
+export const fetchCarImageByColorAndVariant = async ({modelName, color, wheelVariant, position}: CarImageColorAndVariantProps): Promise<string> => {
     try {
         const modelFile = fileNames[modelName];
 

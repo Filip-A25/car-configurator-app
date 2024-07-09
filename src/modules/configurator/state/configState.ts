@@ -9,7 +9,7 @@ export const currentConfigurationsState = atom<CarConfigurations | undefined>({
 
 export const userConfigurationState = atom<UserCarConfiguration | undefined>({
   key: "configurator.userConfigurationState",
-  default: undefined,
+  default: undefined
 });
 
 export const userConfigurationsState = atom<UserCarConfiguration[]>({
@@ -17,7 +17,7 @@ export const userConfigurationsState = atom<UserCarConfiguration[]>({
   default: []
 })
 
-export const configurationPrice = selector({
+export const configurationPriceState = selector({
   key: "configurator.configurationPrice",
   get: ({get}) => {
     const configuration = get(userConfigurationState);

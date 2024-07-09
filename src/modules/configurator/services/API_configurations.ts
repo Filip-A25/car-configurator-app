@@ -4,7 +4,7 @@ import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { CarConfigurations, ImageColorAndVariantProps, PropertyVariantProps, UserCarConfiguration } from "../types";
 import {fileNames, sortedPhotoNames} from "./const/fileNames";
 
-export const fetchCarConfigurations = async (id: string) => {
+export const fetchCarConfigurations = async (id: string): Promise<CarConfigurations> => {
     try {
         const configRef = doc(db, "car-models", id);
 
@@ -16,8 +16,8 @@ export const fetchCarConfigurations = async (id: string) => {
             model: responseData.name,
             productionYear: responseData.production_year,
             color: responseData.color,
-            wheelVariants: responseData.wheel_variant,
-            interiorVariants: responseData.interior_variant,
+            wheels: responseData.wheel_variant,
+            interior_variants: responseData.interior_variant,
             price: responseData.price
         }
 
@@ -27,7 +27,7 @@ export const fetchCarConfigurations = async (id: string) => {
     }
 }
 
-export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVariant}: ImageColorAndVariantProps) => {
+export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVariant}: ImageColorAndVariantProps): Promise<string[]> => {
     try {
         const modelFile = fileNames[modelName];
 
@@ -44,7 +44,7 @@ export const fetchCarImagesByColorAndVariant = async ({modelName, color, wheelVa
     }
 }
 
-export const fetchPropertyImageByVariant = async ({modelName, name, variant}: PropertyVariantProps) => {
+export const fetchPropertyImageByVariant = async ({modelName, name, variant}: PropertyVariantProps): Promise<string> => {
     try {
         const modelFile = fileNames[modelName];
 
@@ -68,7 +68,7 @@ export const deleteUserConfiguration = async (userId: string, configId: string) 
     }
 }
 
-export const fetchAllUserConfigurations = async (id: string) => {
+export const fetchAllUserConfigurations = async (id: string): Promise<UserCarConfiguration[]> => {
     try {
         const configsRef = collection(db, `users/${id}/configurations`);
         const response = await getDocs(configsRef);
@@ -98,7 +98,7 @@ export const fetchAllUserConfigurations = async (id: string) => {
     }
 }
 
-export const fetchAllPropertyImagesByVariant = async ({modelName, name, variant}: PropertyVariantProps) => {
+export const fetchAllPropertyImagesByVariant = async ({modelName, name, variant}: PropertyVariantProps): Promise<string[]> => {
     try {
         const listRef = ref(storage, `${modelName}/${name}/${variant}`);
         const imagesList = await listAll(listRef);
@@ -108,6 +108,31 @@ export const fetchAllPropertyImagesByVariant = async ({modelName, name, variant}
         const propertyImagesArray = await Promise.all(imagePromises);
 
         return propertyImagesArray;
+    } catch (err: any) {
+        throw new Error(err);
+    }
+}
+
+export const fetchUserConfiguration = async (userId: string, configurationId: string): Promise<UserCarConfiguration> => {
+    try {
+        const configRef = doc(db, `users/${userId}/configurations/${configurationId}`);
+        const response = await getDoc(configRef);
+        
+        const responseData = response.data();
+
+        if (!responseData) throw new Error("Data could not be found.");
+        const userConfig: UserCarConfiguration = {
+            model: responseData.model,
+            modelId: responseData.model_id,
+            productionYear: responseData.production_year,
+            color: responseData.color,
+            wheels: responseData.wheel_variant,
+            interior_variants: responseData.interior_variants,
+            creationDate: responseData.creation_date,
+            totalPrice: responseData.total_price
+        }
+
+        return userConfig;
     } catch (err: any) {
         throw new Error(err);
     }

@@ -17,9 +17,9 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
       case "color":
         return configurations?.color;
       case "wheels":
-        return configurations?.wheelVariants;
+        return configurations?.wheels;
       case "interior_variants":
-        return configurations?.interiorVariants;
+        return configurations?.interior_variants;
       default:
         return;
     }

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import emptyStateCarImg from "../assets/audi-rs6/front-blue-1.png";
+import { configuratorRoutes } from "./const";
 
 export function ConfigurationsEmpty() {
   return (
@@ -13,7 +14,7 @@ export function ConfigurationsEmpty() {
         <p className="text-center par-font-size">
           You haven't configured any cars yet. You may choose to{" "}
           <Link
-            to="/home/configure-a-car/car-select"
+            to={configuratorRoutes.carSelect}
             className="text-text-purple font-bold"
           >
             configure some now.

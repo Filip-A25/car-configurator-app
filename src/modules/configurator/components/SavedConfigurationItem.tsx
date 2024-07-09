@@ -65,6 +65,7 @@ export function SavedConfigurationItem({
           {isOptionsDropdownOpen && id && (
             <OptionsDropdown
               id={id}
+              modelId={modelId}
               setIsOptionsDropdownOpen={setIsOptionsDropdownOpen}
             />
           )}

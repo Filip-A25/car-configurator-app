@@ -5,35 +5,58 @@ import {
   dropdownOpen,
   dropdownState,
 } from "../state";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { fetchCarConfigurations } from "../services";
-import { useParams } from "react-router-dom";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { fetchCarConfigurations, fetchUserConfiguration } from "../services";
+import { useSearchParams } from "react-router-dom";
 import { Timestamp } from "firebase/firestore";
+import { userState } from "../../authentification/state";
 
 export function useConfigEdit() {
-  const [configurations, setConfigurations] = useRecoilState(
-    currentConfigurationsState
-  );
+  const setConfigurations = useSetRecoilState(currentConfigurationsState);
   const setCurrentUserConfiguration = useSetRecoilState(userConfigurationState);
   const isDropdownOpen = useRecoilValue(dropdownOpen);
   const activeDropdownName = useRecoilValue(dropdownState);
+  const user = useRecoilValue(userState);
 
-  const { id } = useParams();
+  const [searchParams] = useSearchParams();
 
-  const handleCarConfigurationsFetch = async (id: string) => {
+  const modelId = searchParams.get("modelId");
+  const configId = searchParams.get("configId");
+
+  const handleCarConfigurationsFetch = async (modelId: string) => {
     try {
-      const response = await fetchCarConfigurations(id);
+      const defaultConfigurations = await fetchCarConfigurations(modelId);
+      setConfigurations(defaultConfigurations);
 
-      setConfigurations(response);
+      if (!user) throw new Error("User could not be found.");
+
+      if (!configId) {
+        setCurrentUserConfiguration({
+          ...defaultConfigurations,
+          modelId,
+          color: defaultConfigurations.color[0],
+          wheels: defaultConfigurations.wheels[0],
+          interior_variants: defaultConfigurations.interior_variants[0],
+          creationDate: Timestamp.fromDate(new Date()),
+          totalPrice: defaultConfigurations.price,
+        });
+
+        return;
+      }
+
+      const userConfigurations = await fetchUserConfiguration(
+        user.id,
+        configId
+      );
 
       setCurrentUserConfiguration({
-        ...response,
-        modelId: id,
-        color: response.color[0],
-        wheels: response.wheelVariants[0],
-        interior_variants: response.interiorVariants[0],
-        creationDate: Timestamp.fromDate(new Date()),
-        totalPrice: response.price,
+        ...userConfigurations,
+        modelId,
+        color: userConfigurations.color,
+        wheels: userConfigurations.wheels,
+        interior_variants: userConfigurations.interior_variants,
+        creationDate: userConfigurations.creationDate,
+        totalPrice: userConfigurations.totalPrice,
       });
     } catch (err: any) {
       throw new Error(err);
@@ -41,9 +64,9 @@ export function useConfigEdit() {
   };
 
   useEffect(() => {
-    if (!id) return;
-    handleCarConfigurationsFetch(id);
-  }, []);
+    if (!modelId) return;
+    handleCarConfigurationsFetch(modelId);
+  }, [modelId]);
 
   useEffect(() => {
     const preventPageLeave = (e: BeforeUnloadEvent) => {
@@ -58,7 +81,6 @@ export function useConfigEdit() {
   }, []);
 
   return {
-    configurations,
     isDropdownOpen,
     activeDropdownName,
   };
