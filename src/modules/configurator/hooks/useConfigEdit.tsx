@@ -23,7 +23,17 @@ export function useConfigEdit() {
   const modelId = searchParams.get("modelId");
   const configId = searchParams.get("configId");
 
-  const handleCarConfigurationsFetch = async (modelId: string) => {
+  const handleUserConfigurationFetch = async () => {
+    if (!user || !configId) throw new Error("Incomplete data.");
+    try {
+      const response = await fetchUserConfiguration(user.id, configId);
+      setCurrentUserConfiguration(response);
+    } catch (err: any) {
+      throw new Error(err);
+    }
+  };
+
+  const handleCarConfigurationsFetch = async (id: string) => {
     try {
       const defaultConfigurations = await fetchCarConfigurations(modelId);
       setConfigurations(defaultConfigurations);

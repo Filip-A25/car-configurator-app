@@ -1,4 +1,4 @@
-import {getDocs, collection, DocumentData, getDoc, doc, deleteDoc} from "firebase/firestore";
+import {getDocs, collection, DocumentData, getDoc, doc, deleteDoc, addDoc} from "firebase/firestore";
 import {db, storage} from "../../firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { CarConfigurations, ImageColorAndVariantProps, PropertyVariantProps, UserCarConfiguration } from "../types";
@@ -133,6 +133,21 @@ export const fetchUserConfiguration = async (userId: string, configurationId: st
         }
 
         return userConfig;
+    } catch (err: any) {
+        throw new Error(err);
+    }
+}
+
+export const createUserConfiguration = async (data: UserCarConfiguration, userId: string) => {
+    try {
+        const response = await addDoc(collection(db, `users/${userId}/configurations`), {
+            model: data.model,
+            model_id: data.modelId,
+            production_year: data.productionYear,
+            color: {
+                
+            }
+        })
     } catch (err: any) {
         throw new Error(err);
     }

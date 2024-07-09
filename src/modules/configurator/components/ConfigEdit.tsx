@@ -1,12 +1,15 @@
 import { ConfigSidebar } from "./ConfigSidebar";
 import { ConfigSidebarSelect } from "./ConfigSidebarSelect";
 import { CarImageSlide } from "./CarImageSlide";
-import { useConfigEdit } from "../hooks";
+import { CarPropertyName } from "../types";
 import clsx from "clsx";
 
-export function ConfigEdit() {
-  const { isDropdownOpen, activeDropdownName } = useConfigEdit();
+interface Props {
+  isDropdownOpen: boolean;
+  activeDropdownName: CarPropertyName;
+}
 
+export function ConfigEdit({ isDropdownOpen, activeDropdownName }: Props) {
   return (
     <>
       <section className="relative flex max-sm:flex-col min-h-[calc(100%-50px)] sm:min-h-[calc(100%-70px)]">
