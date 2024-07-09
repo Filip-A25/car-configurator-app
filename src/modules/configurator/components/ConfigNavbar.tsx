@@ -12,7 +12,7 @@ interface Props {
   productionYear?: number;
 }
 
-export function ConfigNavbar({ returnPath, model, productionYear }: Props) {
+export function ConfigNavbar({ model, productionYear, returnPath }: Props) {
   const isDropdownOpen = useRecoilValue(dropdownOpen);
   const activePage = useRecoilValue(activePageState);
 

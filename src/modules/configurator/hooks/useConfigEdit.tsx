@@ -33,7 +33,7 @@ export function useConfigEdit() {
     }
   };
 
-  const handleCarConfigurationsFetch = async (id: string) => {
+  const handleCarConfigurationsFetch = async (modelId: string) => {
     try {
       const defaultConfigurations = await fetchCarConfigurations(modelId);
       setConfigurations(defaultConfigurations);
@@ -54,20 +54,7 @@ export function useConfigEdit() {
         return;
       }
 
-      const userConfigurations = await fetchUserConfiguration(
-        user.id,
-        configId
-      );
-
-      setCurrentUserConfiguration({
-        ...userConfigurations,
-        modelId,
-        color: userConfigurations.color,
-        wheels: userConfigurations.wheels,
-        interior_variants: userConfigurations.interior_variants,
-        creationDate: userConfigurations.creationDate,
-        totalPrice: userConfigurations.totalPrice,
-      });
+      handleUserConfigurationFetch();
     } catch (err: any) {
       throw new Error(err);
     }

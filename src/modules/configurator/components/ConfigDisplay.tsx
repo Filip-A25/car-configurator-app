@@ -19,6 +19,7 @@ export function ConfigDisplay() {
       <ConfigNavbar
         model={configuration.model}
         productionYear={configuration.productionYear}
+        returnPath=""
       />
       {activePage && activePage.name === "Summary" ? (
         <ConfigurationSummary userConfiguration={configuration} />
