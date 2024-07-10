@@ -45,7 +45,7 @@ export function ConfigProperty({
       onClick={handleOpenDropdown}
       disabled={disabled}
     >
-      <div className="relative overflow-hidden aspect-square h-[36px] sm:h-[60px]">
+      <div className="relative overflow-hidden aspect-square h-[36px] sm:h-[60px] 3xl:h-[70px]">
         {propertyImgUrl ? (
           <img
             src={propertyImgUrl}
@@ -73,7 +73,7 @@ export function ConfigProperty({
         )}
       </div>
       <section className="text-left pl-3">
-        <h3 className="text-text-default-gray text-sm sm:text-md 2xl:text-lg 3xl:text-xl">
+        <h3 className="text-text-default-gray text-sm sm:text-md 2xl:text-lg 3xl:text-2xl">
           {description}
         </h3>
         {isDescriptionDisplayed && (

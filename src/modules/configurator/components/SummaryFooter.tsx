@@ -69,7 +69,7 @@ export function SummaryFooter() {
         <PriceDisplay />
         <button
           onClick={handleOnClick}
-          className="flex justify-center items-center bg-button-purple text-basic-white text-xs lg:text-lg h-full px-24"
+          className="flex justify-center items-center bg-button-purple text-basic-white text-xs lg:text-lg h-full px-16 lg:px-24"
         >
           Save your configuration
         </button>
