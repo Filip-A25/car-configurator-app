@@ -11,7 +11,7 @@ export function ConfigActionButton({ text, isArrow, ...props }: Props) {
       className="absolute flex justify-center bottom-0 left-0 bg-button-purple w-full py-5 3xl:py-7"
       {...props}
     >
-      <span className="text-light-gray-element-color text-xl 3xl:text-2xl">
+      <span className="text-light-gray-element-color text-md lg:text-lg 3xl:text-2xl">
         {text}
       </span>
       {isArrow && (
@@ -19,7 +19,7 @@ export function ConfigActionButton({ text, isArrow, ...props }: Props) {
           viewBox="0 0 7 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="mx-3 my-auto w-4 h-4"
+          className="mx-3 my-auto w-3 h-3"
         >
           <path
             fillRule="evenodd"
