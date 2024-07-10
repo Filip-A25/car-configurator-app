@@ -35,6 +35,7 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
 
   const handleSetActivePropIndex = () => {
     if (!configurations || !userConfiguration) return;
+
     const index = configurations[propertyName].findIndex(
       (item) => item.label === userConfiguration[propertyName].label
     );
@@ -48,11 +49,12 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
   };
 
   useEffect(() => {
-    if (configurations && userConfiguration) {
-      setIsLoading(false);
-    }
-    handleSetActivePropIndex();
+    if (configurations || userConfiguration) handleSetActivePropIndex();
   }, [configurations, userConfiguration]);
+
+  useEffect(() => {
+    if (activePropIndex[propertyName] !== undefined) setIsLoading(false);
+  }, [activePropIndex]);
 
   const currentProperties = getCurrentProperties();
 
