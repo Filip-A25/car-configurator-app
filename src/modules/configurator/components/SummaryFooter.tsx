@@ -1,8 +1,9 @@
 import { UserCarConfiguration, UpdateConfigurationProps } from "../types";
 import { PriceDisplay } from "./PriceDisplay";
 import { createUserConfiguration, updateUserConfiguration } from "../services";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userState } from "../../authentification/state";
+import { activePageState, pageState } from "../state";
 import { notifyCreate, notifyUpdate } from "../utilities/utils";
 import { configuratorRoutes } from "./const";
 import { useNavigate } from "react-router-dom";
@@ -13,11 +14,14 @@ export function SummaryFooter({
   userConfiguration: UserCarConfiguration;
 }) {
   const user = useRecoilValue(userState);
+  const setFirstPageActive = useSetRecoilState(activePageState);
+  const pages = useRecoilValue(pageState);
   const navigate = useNavigate();
 
   const handleConfigurationUpdate = async (data: UpdateConfigurationProps) => {
     try {
       await updateUserConfiguration(data);
+      setFirstPageActive(pages[0]);
       notifyUpdate();
       navigate(configuratorRoutes.configurations);
     } catch (err: any) {
@@ -31,6 +35,7 @@ export function SummaryFooter({
   ) => {
     try {
       await createUserConfiguration(configuration, userId);
+      setFirstPageActive(pages[0]);
       notifyCreate();
       navigate(configuratorRoutes.configurations);
     } catch (err: any) {

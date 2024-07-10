@@ -29,5 +29,15 @@ export const activePageState = selector<Page | undefined>({
     if (!activePage) return undefined;
 
     return activePage;
+  },
+  set: ({set, get}, firstPage) => {
+    if (!firstPage || typeof firstPage !== "object" || !("name" in firstPage)) return;
+    const pages = get(pageState);
+    const defaultActivePages = pages.map(page => ({
+      ...page,
+      isActive: firstPage.name === page.name
+    }))
+
+    set(pageState, defaultActivePages);
   }
 })
