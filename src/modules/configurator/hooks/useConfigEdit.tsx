@@ -27,7 +27,7 @@ export function useConfigEdit() {
     if (!user || !configId) throw new Error("Incomplete data.");
     try {
       const response = await fetchUserConfiguration(user.id, configId);
-      setCurrentUserConfiguration(response);
+      setCurrentUserConfiguration({ ...response, id: configId });
     } catch (err: any) {
       throw new Error(err);
     }

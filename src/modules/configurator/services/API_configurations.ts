@@ -1,7 +1,7 @@
-import {getDocs, collection, DocumentData, getDoc, doc, deleteDoc, addDoc} from "firebase/firestore";
+import {getDocs, collection, DocumentData, getDoc, doc, deleteDoc, addDoc, setDoc} from "firebase/firestore";
 import {db, storage} from "../../firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { CarConfigurations, ImageColorAndVariantProps, PropertyVariantProps, UserCarConfiguration } from "../types";
+import { CarConfigurations, ImageColorAndVariantProps, PropertyVariantProps, UserCarConfiguration, UpdateConfigurationProps } from "../types";
 import {fileNames, sortedPhotoNames} from "./const/fileNames";
 
 export const fetchCarConfigurations = async (id: string): Promise<CarConfigurations> => {
@@ -161,6 +161,37 @@ export const createUserConfiguration = async (data: UserCarConfiguration, userId
             },
             creation_date: data.creationDate,
             total_price: data.totalPrice
+        });
+
+        return response;
+    } catch (err: any) {
+        throw new Error(err);
+    }
+}
+
+export const updateUserConfiguration = async ({configuration, userId, configId}: UpdateConfigurationProps) => {
+    try {
+        const response = await setDoc(doc(db, `users/${userId}/configurations`, configId), {
+            model: configuration.model,
+            model_id: configuration.modelId,
+            production_year: configuration.productionYear,
+            color: {
+                label: configuration.color.label,
+                name: configuration.color.name,
+                price: configuration.color.price
+            },
+            wheel_variant: {
+                label: configuration.wheels.label,
+                name: configuration.wheels.name,
+                price: configuration.wheels.price
+            },
+            interior_variants: {
+                label: configuration.interior_variants.label,
+                name: configuration.interior_variants.name,
+                price: configuration.interior_variants.price
+            },
+            creation_date: configuration.creationDate,
+            total_price: configuration.totalPrice
         });
 
         return response;

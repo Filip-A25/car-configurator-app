@@ -21,3 +21,7 @@ export const notifyDelete = () => {
 export const notifyCreate = () => {
   toast.success("Configuration successfully created.", toastifySuccessProps);
 }
+
+export const notifyUpdate = () => {
+  toast.success("Configuration successfully updated.", toastifySuccessProps);
+}

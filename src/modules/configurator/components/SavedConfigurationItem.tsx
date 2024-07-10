@@ -3,6 +3,7 @@ import { ConfigOptionsButton } from "./ConfigOptionsButton";
 import { OptionsDropdown } from "./OptionsDropdown";
 import { Timestamp } from "firebase/firestore";
 import { useSavedConfiguration } from "../hooks";
+import { PageLoading } from "../../global/components";
 
 interface Props {
   name: CarModel;
@@ -31,6 +32,8 @@ export function SavedConfigurationItem({
     setIsOptionsDropdownOpen,
     displayDate,
   } = useSavedConfiguration({ name, colorLabel, wheelsLabel, creationDate });
+
+  if (!imgUrl) return <PageLoading />;
 
   return (
     <li className="flex max-md:flex-col bg-mobile-light-element-color md:bg-basic-white mb-8 sm:mb-12">

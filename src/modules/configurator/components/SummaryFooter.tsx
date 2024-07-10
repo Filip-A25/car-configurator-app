@@ -1,9 +1,9 @@
-import { UserCarConfiguration } from "../types";
+import { UserCarConfiguration, UpdateConfigurationProps } from "../types";
 import { PriceDisplay } from "./PriceDisplay";
-import { createUserConfiguration } from "../services";
+import { createUserConfiguration, updateUserConfiguration } from "../services";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../authentification/state";
-import { notifyCreate } from "../utilities/utils";
+import { notifyCreate, notifyUpdate } from "../utilities/utils";
 import { configuratorRoutes } from "./const";
 import { useNavigate } from "react-router-dom";
 
@@ -15,15 +15,39 @@ export function SummaryFooter({
   const user = useRecoilValue(userState);
   const navigate = useNavigate();
 
-  const handleOnClick = async () => {
-    if (!user) throw new Error("User could no tbe found.");
+  const handleConfigurationUpdate = async (data: UpdateConfigurationProps) => {
     try {
-      await createUserConfiguration(userConfiguration, user.id);
+      await updateUserConfiguration(data);
+      notifyUpdate();
+      navigate(configuratorRoutes.configurations);
+    } catch (err: any) {
+      throw new Error(err);
+    }
+  };
+
+  const handleConfigurationCreate = async (
+    configuration: UserCarConfiguration,
+    userId: string
+  ) => {
+    try {
+      await createUserConfiguration(configuration, userId);
       notifyCreate();
       navigate(configuratorRoutes.configurations);
     } catch (err: any) {
       throw new Error(err);
     }
+  };
+
+  const handleOnClick = async () => {
+    if (!user) throw new Error("User could no tbe found.");
+    if (!userConfiguration.id)
+      return handleConfigurationCreate(userConfiguration, user.id);
+    const requestData: UpdateConfigurationProps = {
+      configuration: userConfiguration,
+      userId: user.id,
+      configId: userConfiguration.id,
+    };
+    handleConfigurationUpdate(requestData);
   };
 
   return (
