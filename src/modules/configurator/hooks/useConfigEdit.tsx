@@ -44,11 +44,16 @@ export function useConfigEdit() {
         setCurrentUserConfiguration({
           ...defaultConfigurations,
           modelId,
+          modelPrice: defaultConfigurations.price,
           color: defaultConfigurations.color[0],
           wheels: defaultConfigurations.wheels[0],
           interior_variants: defaultConfigurations.interior_variants[0],
           creationDate: Timestamp.fromDate(new Date()),
-          totalPrice: defaultConfigurations.price,
+          totalPrice:
+            defaultConfigurations.price +
+            defaultConfigurations.color[0].price +
+            defaultConfigurations.wheels[0].price +
+            defaultConfigurations.interior_variants[0].price,
         });
 
         return;

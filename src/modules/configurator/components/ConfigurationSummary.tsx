@@ -1,12 +1,7 @@
 import { ConfigurationSummaryDisplay } from "./ConfigurationSummaryDisplay";
-import { UserCarConfiguration } from "../types";
 import { SummaryFooter } from "./SummaryFooter";
 
-export function ConfigurationSummary({
-  userConfiguration,
-}: {
-  userConfiguration: UserCarConfiguration;
-}) {
+export function ConfigurationSummary() {
   return (
     <>
       <div className="mt-10">
@@ -17,8 +12,8 @@ export function ConfigurationSummary({
           Review your configuration and save your car.
         </h2>
       </div>
-      <ConfigurationSummaryDisplay userConfiguration={userConfiguration} />
-      <SummaryFooter userConfiguration={userConfiguration} />
+      <ConfigurationSummaryDisplay />
+      <SummaryFooter />
     </>
   );
 }

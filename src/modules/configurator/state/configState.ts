@@ -20,12 +20,22 @@ export const userConfigurationsState = atom<UserCarConfiguration[]>({
 export const configurationPriceState = selector({
   key: "configurator.configurationPriceState",
   get: ({get}) => {
-    const configuration = get(userConfigurationState);
+    const userConfiguration = get(userConfigurationState);
     
-    if (!configuration) return;
-    const price = configuration.totalPrice + configuration.color.price + configuration.wheels.price;
-    const decimalPrice = price.toFixed(2).replace(decimalRegexp, ",");
+    if (!userConfiguration) return;
+    const price = userConfiguration.modelPrice + userConfiguration.color.price + userConfiguration.wheels.price + userConfiguration.interior_variants.price;
     
-    return decimalPrice;
+    return price;
+  }
+})
+
+export const configurationStringPriceState = selector({
+  key: "configurator.configurationStringPriceState",
+  get: ({get}) => {
+    const currentPrice = get(configurationPriceState);
+
+    if (!currentPrice) return;
+
+    return currentPrice.toFixed(2).replace(decimalRegexp, ",");
   }
 })

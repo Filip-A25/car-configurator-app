@@ -75,12 +75,13 @@ export const fetchAllUserConfigurations = async (id: string): Promise<UserCarCon
 
         const configurationsArray: UserCarConfiguration[] = response.docs.map(config => {
             const userId = config.id;
-            const {model, model_id, production_year, color, wheel_variant, interior_variant, creation_date, total_price}: DocumentData = config.data();
+            const {model, model_id, model_price, production_year, color, wheel_variant, interior_variant, creation_date, total_price}: DocumentData = config.data();
             
             const newConfig: UserCarConfiguration = {
                 id: userId,
                 model,
                 modelId: model_id,
+                modelPrice: model_price,
                 productionYear: production_year,
                 color,
                 wheels: wheel_variant,
@@ -124,6 +125,7 @@ export const fetchUserConfiguration = async (userId: string, configurationId: st
         const userConfig: UserCarConfiguration = {
             model: responseData.model,
             modelId: responseData.model_id,
+            modelPrice: responseData.model_price, 
             productionYear: responseData.production_year,
             color: responseData.color,
             wheels: responseData.wheel_variant,
@@ -143,6 +145,7 @@ export const createUserConfiguration = async (data: UserCarConfiguration, userId
         const response = await addDoc(collection(db, `users/${userId}/configurations`), {
             model: data.model,
             model_id: data.modelId,
+            model_price: data.modelPrice,
             production_year: data.productionYear,
             color: {
                 label: data.color.label,
@@ -174,6 +177,7 @@ export const updateUserConfiguration = async ({configuration, userId, configId}:
         const response = await setDoc(doc(db, `users/${userId}/configurations`, configId), {
             model: configuration.model,
             model_id: configuration.modelId,
+            model_price: configuration.modelPrice,
             production_year: configuration.productionYear,
             color: {
                 label: configuration.color.label,

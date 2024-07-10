@@ -42,7 +42,7 @@ export function ConfigurationView() {
         model={configuration.model}
         productionYear={configuration.productionYear}
       />
-      <ConfigurationSummaryDisplay userConfiguration={configuration} />
+      <ConfigurationSummaryDisplay />
     </>
   );
 }

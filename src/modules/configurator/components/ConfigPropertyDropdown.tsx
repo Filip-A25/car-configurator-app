@@ -37,24 +37,22 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
     if (!configurations || !userConfiguration) return;
 
     const index = configurations[propertyName].findIndex(
-      (item) => item.label === userConfiguration[propertyName].label
+      (item) => item.label === userConfiguration[propertyName]?.label
     );
 
-    const newIndexes = {
-      ...activePropIndex,
+    setActivePropIndex((prevActivePropIndex) => ({
+      ...prevActivePropIndex,
       [propertyName]: index,
-    };
-
-    setActivePropIndex(newIndexes);
+    }));
   };
 
   useEffect(() => {
-    if (configurations || userConfiguration) handleSetActivePropIndex();
-  }, [configurations, userConfiguration]);
+    if (configurations && userConfiguration) handleSetActivePropIndex();
+  }, [configurations, userConfiguration, propertyName]);
 
   useEffect(() => {
     if (activePropIndex[propertyName] !== undefined) setIsLoading(false);
-  }, [activePropIndex]);
+  }, [activePropIndex, propertyName]);
 
   const currentProperties = getCurrentProperties();
 

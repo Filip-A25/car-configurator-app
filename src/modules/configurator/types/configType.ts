@@ -29,6 +29,7 @@ export interface CarConfigurationsWithId extends CarConfigurations {
 export interface UserCarConfiguration {
     model: CarModel;
     modelId: string;
+    modelPrice: number;
     productionYear: number;
     color: TextVariant;
     wheels: NumberVariant;
@@ -39,7 +40,7 @@ export interface UserCarConfiguration {
 }
 
 export interface CurrentPropertyIndex {
-    color: number;
-    wheels: number;
-    interior_variants: number;
+    color?: number;
+    wheels?: number;
+    interior_variants?: number;
 }

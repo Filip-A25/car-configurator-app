@@ -23,7 +23,7 @@ export function ConfigDisplay() {
         isConfigurationEdit
       />
       {activePage && activePage.name === "Summary" ? (
-        <ConfigurationSummary userConfiguration={configuration} />
+        <ConfigurationSummary />
       ) : (
         <ConfigEdit
           isDropdownOpen={isDropdownOpen}

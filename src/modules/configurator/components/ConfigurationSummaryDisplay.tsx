@@ -1,15 +1,17 @@
 import { CarImageSlide } from "./CarImageSlide";
 import { ConfigPropertyView } from "./ConfigPropertyView";
 import { useRecoilValue } from "recoil";
-import { configurationPriceState } from "../state";
-import { UserCarConfiguration } from "../types";
+import {
+  configurationStringPriceState,
+  userConfigurationState,
+} from "../state";
+import { PageLoading } from "../../global/components";
 
-export function ConfigurationSummaryDisplay({
-  userConfiguration,
-}: {
-  userConfiguration: UserCarConfiguration;
-}) {
-  const displayPrice = useRecoilValue(configurationPriceState);
+export function ConfigurationSummaryDisplay() {
+  const userConfiguration = useRecoilValue(userConfigurationState);
+  const displayPrice = useRecoilValue(configurationStringPriceState);
+
+  if (!userConfiguration) return <PageLoading />;
 
   return (
     <section className="px-10 sm:px-20 md:px-32 py-10">
