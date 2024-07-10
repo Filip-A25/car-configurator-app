@@ -6,7 +6,7 @@ export const pageState = atom<Page[]>({
   default: [{
     name: "Exterior",
     index: 1,
-    isActive: false
+    isActive: true
   },
   {
     name: "Interior",

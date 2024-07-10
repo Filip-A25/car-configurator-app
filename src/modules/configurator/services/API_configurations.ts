@@ -149,7 +149,7 @@ export const createUserConfiguration = async (data: UserCarConfiguration, userId
                 name: data.color.name,
                 price: data.color.price
             },
-            wheels: {
+            wheel_variant: {
                 label: data.wheels.label,
                 name: data.wheels.name,
                 price: data.wheels.price

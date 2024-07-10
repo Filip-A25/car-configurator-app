@@ -55,7 +55,7 @@ export function ConfigProperty({
         ) : (
           <div className="w-12 2xl:w-14 h-12 2xl:h-14 bg-light-gray-background-color rounded-[50%] animate-pulse" />
         )}
-        {activePropIndex[propertyName] === index && (
+        {!disabled && activePropIndex[propertyName] === index && (
           <div className="absolute right-0 bottom-0 bg-checkmark-green w-3 h-3 sm:w-5 sm:h-5 rounded-[50%] flex justify-center items-center">
             <svg
               width="12"

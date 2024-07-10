@@ -20,6 +20,7 @@ export function ConfigDisplay() {
         model={configuration.model}
         productionYear={configuration.productionYear}
         returnPath=""
+        isConfigurationEdit
       />
       {activePage && activePage.name === "Summary" ? (
         <ConfigurationSummary userConfiguration={configuration} />

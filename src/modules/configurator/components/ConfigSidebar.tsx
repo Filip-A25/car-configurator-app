@@ -6,6 +6,7 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { activePageState, pageState, userConfigurationState } from "../state";
 import { userState } from "../../authentification/state";
 import { createUserConfiguration } from "../services";
+import { notifyCreate } from "../utilities/utils";
 
 export function ConfigSidebar() {
   const activePage = useRecoilValue(activePageState);
@@ -29,6 +30,7 @@ export function ConfigSidebar() {
     if (!userConfiguration || !user) return;
     try {
       await createUserConfiguration(userConfiguration, user.id);
+      notifyCreate();
     } catch (err: any) {
       throw new Error(err);
     }

@@ -15,5 +15,9 @@ export const getPropertyTypeName = (propertyName: string) => {
 }
 
 export const notifyDelete = () => {
-    toast.success("Configuration successfully deleted.", toastifySuccessProps);
+  toast.success("Configuration successfully deleted.", toastifySuccessProps);
 };
+
+export const notifyCreate = () => {
+  toast.success("Configuration successfully created.", toastifySuccessProps);
+}

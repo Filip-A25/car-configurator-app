@@ -63,7 +63,7 @@ export function useConfigProperty({
       ...currentUserConfiguration,
       [propertyName]: {
         label: label,
-        description: description,
+        name: description,
         price: price,
       },
     });
