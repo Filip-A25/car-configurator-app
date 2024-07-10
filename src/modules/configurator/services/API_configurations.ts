@@ -75,19 +75,19 @@ export const fetchAllUserConfigurations = async (id: string): Promise<UserCarCon
 
         const configurationsArray: UserCarConfiguration[] = response.docs.map(config => {
             const userId = config.id;
-            const {model, model_id, model_price, production_year, color, wheel_variant, interior_variant, creation_date, total_price}: DocumentData = config.data();
+            const responseData = config.data();
             
             const newConfig: UserCarConfiguration = {
                 id: userId,
-                model,
-                modelId: model_id,
-                modelPrice: model_price,
-                productionYear: production_year,
-                color,
-                wheels: wheel_variant,
-                interior_variants: interior_variant,
-                creationDate: creation_date,
-                totalPrice: total_price
+                model: responseData.model,
+                modelId: responseData.model_id,
+                modelPrice: responseData.model_price,
+                productionYear: responseData.production_year,
+                color: responseData.color,
+                wheels: responseData.wheel_variant,
+                interior_variants: responseData.interior_variant,
+                creationDate: responseData.creation_date,
+                totalPrice: responseData.total_price
             }
 
             return newConfig;

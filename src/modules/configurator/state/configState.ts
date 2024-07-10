@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
 import { CarConfigurations, UserCarConfiguration } from "../types";
-import { decimalRegexp } from "../const";
+import { getDisplayPrice } from "../utilities/utils";
 
 export const currentConfigurationsState = atom<CarConfigurations | undefined>({
   key: "configurator.currentConfigurationsState",
@@ -23,7 +23,7 @@ export const configurationPriceState = selector({
     const userConfiguration = get(userConfigurationState);
     
     if (!userConfiguration) return;
-    const price = userConfiguration.modelPrice + userConfiguration.color.price + userConfiguration.wheels.price + userConfiguration.interior_variants.price;
+    const price = parseFloat(userConfiguration.modelPrice.toFixed(2)) + parseFloat(userConfiguration.color.price.toFixed(2)) + parseFloat(userConfiguration.wheels.price.toFixed(2)) + parseFloat(userConfiguration.interior_variants.price.toFixed(2));
     
     return price;
   }
@@ -36,6 +36,8 @@ export const configurationStringPriceState = selector({
 
     if (!currentPrice) return;
 
-    return currentPrice.toFixed(2).replace(decimalRegexp, ",");
+    const displayPrice = getDisplayPrice(currentPrice);
+
+    return displayPrice;
   }
 })

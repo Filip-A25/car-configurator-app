@@ -22,7 +22,7 @@ export function ConfigDisplay() {
         returnPath=""
         isConfigurationEdit
       />
-      {activePage && activePage.name === "Summary" ? (
+      {activePage?.name === "Summary" ? (
         <ConfigurationSummary />
       ) : (
         <ConfigEdit

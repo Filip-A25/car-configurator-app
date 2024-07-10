@@ -43,8 +43,9 @@ export function SummaryFooter() {
 
   const handleOnClick = async () => {
     if (!user || !userConfiguration) throw new Error("Insufficient data.");
-    if (!userConfiguration.id)
+    if (!userConfiguration.id) {
       return handleConfigurationCreate(userConfiguration, user.id);
+    }
     const requestData: UpdateConfigurationProps = {
       configuration: userConfiguration,
       userId: user.id,

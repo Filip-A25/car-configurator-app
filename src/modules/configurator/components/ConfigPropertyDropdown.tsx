@@ -6,7 +6,7 @@ import {
 } from "../state";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { CarPropertyName } from "../types";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { PageLoading } from "../../global/components";
 
 interface Props {
@@ -33,7 +33,7 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
     }
   };
 
-  const handleSetActivePropIndex = () => {
+  const handleSetActivePropIndex = useCallback(() => {
     if (!configurations || !userConfiguration) return;
 
     const index = configurations[propertyName].findIndex(
@@ -44,14 +44,14 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
       ...prevActivePropIndex,
       [propertyName]: index,
     }));
-  };
-
-  useEffect(() => {
-    if (configurations && userConfiguration) handleSetActivePropIndex();
   }, [configurations, userConfiguration, propertyName]);
 
   useEffect(() => {
-    if (activePropIndex[propertyName] !== undefined) setIsLoading(false);
+    handleSetActivePropIndex();
+  }, [handleSetActivePropIndex]);
+
+  useEffect(() => {
+    if (activePropIndex[propertyName]) setIsLoading(false);
   }, [activePropIndex, propertyName]);
 
   const currentProperties = getCurrentProperties();

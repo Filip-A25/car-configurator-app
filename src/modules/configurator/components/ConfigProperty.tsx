@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, useMemo } from "react";
 import { useConfigProperty } from "../hooks";
 import { CarPropertyName, CarModel } from "../types";
 
@@ -39,6 +39,10 @@ export function ConfigProperty({
     price,
   });
 
+  const isSelected = useMemo(() => {
+    if (!disabled && activePropIndex[propertyName] === index) return true;
+  }, [activePropIndex]);
+
   return (
     <button
       className="flex items-center p-2 xs:p-4 sm:p-5 sm:pr-40 lg:pr-48 3xl:pr-64"
@@ -55,7 +59,7 @@ export function ConfigProperty({
         ) : (
           <div className="w-12 2xl:w-14 h-12 2xl:h-14 bg-light-gray-background-color rounded-[50%] animate-pulse" />
         )}
-        {!disabled && activePropIndex[propertyName] === index && (
+        {isSelected && (
           <div className="absolute right-0 bottom-0 bg-checkmark-green w-3 h-3 sm:w-5 sm:h-5 rounded-[50%] flex justify-center items-center">
             <svg
               width="12"
