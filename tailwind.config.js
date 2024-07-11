@@ -96,12 +96,12 @@ module.exports = {
             transform: "rotate(33.75deg) translateY(-1.50px)"
           },
           "100%": {
-            transform: "rotate(45deg) translateY(-1.75px)"
+            transform: "rotate(45deg) translateY(-1.97px)"
           }
         },
         navbarMenuBottomAnimationReverse: {
           "0%": {
-            transform: "rotate(45deg) translateY(-1.75px)"
+            transform: "rotate(45deg) translateY(-1.97px)"
           },
           "25%": {
             transform: "rotate(33.75deg) translateY(-1.50px)"

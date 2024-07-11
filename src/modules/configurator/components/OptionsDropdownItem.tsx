@@ -6,7 +6,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function OptionsDropdownItem({ title, ...props }: Props) {
   return (
-    <li className="border-b border-light-gray-background-color hover:bg-light-gray-element-color cursor-pointer">
+    <li className="border-b border-light-gray-background-color bg-mobile-light-element-color hover:bg-light-gray-element-color cursor-pointer">
       <button
         className={`${
           title === "Delete" ? "text-text-red" : "text-button-purple"

@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`relative h-[80px] sm:h-[60px] lg:h-[70px] w-screen bg-navbar-dark-gray-color flex items-center z-50 ${
+      className={`relative h-[80px] md:h-[60px] lg:h-[70px] w-screen bg-navbar-dark-gray-color flex items-center z-50 ${
         isMenuOpen
           ? "max-md:animate-navbarMobileColorAnimation"
           : !isMenuOpen
