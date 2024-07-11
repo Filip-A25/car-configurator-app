@@ -6,7 +6,7 @@ import { loggedState } from "../../authentification/state";
 export const RoutePublicGuard: React.FC<PropsWithChildren> = ({ children }) => {
   const isLoggedIn = useRecoilValue(loggedState);
 
-  if (isLoggedIn) return <Navigate to="/" />;
+  if (isLoggedIn) return <Navigate to="/home/configurations" />;
 
   return <>{children}</>;
 };

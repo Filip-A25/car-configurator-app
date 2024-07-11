@@ -9,7 +9,7 @@ import {
 import { OptionsDropdownProps } from "../components";
 import { useNavigate } from "react-router-dom";
 import { notifyDelete } from "../utilities/utils";
-import { configuratorRoutes } from "../components/const";
+import { configuratorRoutes } from "../const";
 
 export function useOptionsDropdown({
   id,

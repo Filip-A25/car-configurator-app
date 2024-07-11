@@ -6,7 +6,7 @@ import { PageLoading } from "../../global/components";
 import { ConfigNavbar } from "./ConfigNavbar";
 import { useSearchParams } from "react-router-dom";
 import { fetchUserConfiguration } from "../services";
-import { configuratorRoutes } from "./const";
+import { configuratorRoutes } from "../const";
 import { ConfigurationSummaryDisplay } from "./ConfigurationSummaryDisplay";
 
 export function ConfigurationView() {

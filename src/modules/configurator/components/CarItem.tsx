@@ -3,7 +3,7 @@ import { fetchCarImageByColorAndVariant } from "../services";
 import { useEffect, useState } from "react";
 import carIcon from "../assets/car-icon.png";
 import { CarModel, TextVariant, CarPosition } from "../types";
-import { configuratorRoutes } from "./const";
+import { configuratorRoutes } from "../const";
 
 interface Props {
   id: string;

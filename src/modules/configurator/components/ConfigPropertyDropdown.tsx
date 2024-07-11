@@ -51,7 +51,8 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
   }, [handleSetActivePropIndex]);
 
   useEffect(() => {
-    if (activePropIndex[propertyName]) setIsLoading(false);
+    if (typeof activePropIndex[propertyName] !== "undefined")
+      setIsLoading(false);
   }, [activePropIndex, propertyName]);
 
   const currentProperties = getCurrentProperties();
