@@ -45,7 +45,7 @@ export function ConfigProperty({
 
   return (
     <button
-      className="flex items-center p-2 xs:p-4 sm:p-5 sm:pr-32 lg:pr-48 3xl:pr-64"
+      className="flex items-center p-2 xs:p-4 sm:p-5 sm:pr-32 lg:pr-40 3xl:pr-64"
       onClick={handleOpenDropdown}
       disabled={disabled}
     >

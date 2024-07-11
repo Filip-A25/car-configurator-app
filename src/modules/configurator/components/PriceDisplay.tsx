@@ -6,7 +6,7 @@ export function PriceDisplay() {
 
   return (
     <section className="flex justify-between items-end max-sm:pt-2 px-5">
-      <span className="flex items-center">
+      <span className="flex items-center pr-20">
         <h4 className="tracking-widest text-muted-grey text-xs md:text-md lg:text-lg 3xl:text-2xl">
           TOTAL
         </h4>
@@ -24,7 +24,7 @@ export function PriceDisplay() {
           </svg>
         </div>
       </span>
-      <span className="text-md md:text-xl lg:text-2xl 3xl:text-3xl text-text-default-gray">
+      <span className="text-md md:text-xl lg:text-xl 3xl:text-3xl text-text-default-gray">
         {displayPrice} €
       </span>
     </section>
