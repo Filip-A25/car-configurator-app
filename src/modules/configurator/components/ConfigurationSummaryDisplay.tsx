@@ -33,7 +33,7 @@ export function ConfigurationSummaryDisplay() {
               <h4 className="tracking-widest text-muted-grey text-xs sm:text-md 3xl:text-lg">
                 TOTAL
               </h4>
-              <div className="relative hover:after:content-['Total_configuration_price.'] hover:after:absolute max-sm:after:top-[-60%] 2xl:after:top-[-50%] 3xl:after:top-[-25%] max-sm:hover:after:leading-0 sm:hover:after:leading-8 max-sm:hover:after:left-8 sm:hover:after:left-10 hover:after:rounded-md max-sm:hover:after:h-6 sm:hover:after:h-8 hover:after:w-52 hover:after:text-center hover:after:opacity-90 hover:after:bg-muted-grey hover:after:text-basic-white">
+              <div className="relative hover:after:content-['Total_configuration_price.'] hover:after:absolute md:after:top-[-325%] 2xl:after:top-[-300%] 3xl:after:top-[-225%] sm:hover:after:left-[-300%] lg:hover:after:left-[-325%] 2xl:hover:after:left-[-300%] 3xl:hover:after:left-[-250%] max-sm:hover:after:leading-0 sm:hover:after:leading-8 hover:after:rounded-md max-sm:hover:after:h-6 sm:hover:after:h-8 hover:after:w-52 hover:after:text-center hover:after:opacity-90 hover:after:bg-muted-grey hover:after:text-basic-white">
                 <svg
                   viewBox="0 0 16 16"
                   fill="none"

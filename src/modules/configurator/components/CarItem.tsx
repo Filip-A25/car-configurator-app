@@ -1,9 +1,9 @@
 import ButtonLink from "../../../shared/ButtonLink";
 import { fetchCarImageByColorAndVariant } from "../services";
 import { useEffect, useState } from "react";
-import carIcon from "../assets/car-icon.png";
 import { CarModel, TextVariant, CarPosition } from "../types";
 import { configuratorRoutes } from "../const";
+import { PageLoading } from "../../global/components";
 
 interface Props {
   id: string;
@@ -42,13 +42,7 @@ export function CarItem({ id, model, productionYear, color }: Props) {
             className="block max-xs:min-h-[150px] min-h-[175px] sm:min-h-[300px] md:min-h-[325px] lg:min-h-[350px] 2xl:min-h-[375px] 3xl:min-h-[550px] object-cover ml-[-35%] md:ml-[-30%] lg:ml-[-35%]"
           />
         ) : (
-          <div className="cs-item-image flex justify-center items-center">
-            <img
-              src={carIcon}
-              alt="Car Icon"
-              className="w-14 h-14 animate-pulse opacity-15"
-            />
-          </div>
+          <PageLoading />
         )}
       </section>
       <section className="relative flex flex-col flex-1 justify-center lg:px-10 py-4 md:py-8 3xl:pt-16 3xl:pb-20">
