@@ -5,7 +5,7 @@ import { authRoutes } from "./const";
 
 export function Authentication() {
   return (
-    <div className="flex justify-center sm:pt-10">
+    <div className="flex justify-center max-sm:h-[calc(100vh-70px)] sm:pt-10">
       <Routes>
         <Route path="register" element={<AuthRegisterForm />} />
         <Route path="log-in" element={<AuthLoginForm />} />
