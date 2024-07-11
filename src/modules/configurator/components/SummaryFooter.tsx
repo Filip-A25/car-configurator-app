@@ -5,7 +5,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userState } from "../../authentification/state";
 import { activePageState, pageState, userConfigurationState } from "../state";
 import { notifyCreate, notifyUpdate } from "../utilities/utils";
-import { configuratorRoutes } from "./const";
+import { configuratorRoutes } from "../const";
 import { useNavigate } from "react-router-dom";
 import { PageLoading } from "../../global/components";
 

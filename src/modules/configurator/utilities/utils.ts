@@ -1,5 +1,5 @@
 import {toast} from "react-toastify";
-import { toastifySuccessProps } from "../components/const";
+import { toastifySuccessProps } from "../const";
 import { decimalRegexp } from "../const";
 
 export const getPropertyTypeName = (propertyName: string) => {

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { userState } from "../../authentification/state";
 import { fetchAllUserConfigurations } from "../services";
 import { PageLoading } from "../../global/components";
-import { configuratorRoutes } from "./const";
+import { configuratorRoutes } from "../const";
 
 export function UserConfigurations() {
   const [userConfigurations, setUserConfigurations] = useRecoilState(
