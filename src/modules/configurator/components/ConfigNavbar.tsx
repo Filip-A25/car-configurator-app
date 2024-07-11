@@ -23,7 +23,7 @@ export function ConfigNavbar({
   const isDropdownOpen = useRecoilValue(dropdownOpen);
 
   return (
-    <div className="h-[50px] sm:h-[70px] bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
+    <div className="h-[50px] sm:h-[60px] lg:h-[70px] bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
       <section className="flex justify-between text-lg sm:text-2xl 3xl:text-3xl text-text-default-gray">
         <ReturnButton onClick={returnOnClick} returnPath={returnPath} />
         <h3 className="max-sm:hidden text-muted-grey font-optician-sans px-2">
@@ -34,7 +34,7 @@ export function ConfigNavbar({
       <section
         className={clsx(
           "flex justify-between text-text-default-gray text-sm sm:text-md md:text-lg 3xl:text-xl",
-          isDropdownOpen && "hidden"
+          isDropdownOpen && "sm:hidden"
         )}
       >
         {isConfigurationEdit ? <PaginationDisplay /> : <ConfigOptionsDisplay />}

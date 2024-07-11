@@ -33,7 +33,7 @@ export function CarImageSlide() {
         configImages.map((imgUrl, index) => (
           <SwiperSlide
             key={index}
-            className="pb-8 md:pb-16 px-[1rem] lg:px-[2rem] 2xl:px-[3rem] 3xl:px-[18rem] 3xl:!w-fit"
+            className="md:pb-16 px-[1rem] lg:px-[2rem] 2xl:px-[3rem] 3xl:px-[18rem] 3xl:!w-fit"
           >
             <img src={imgUrl} alt={configurations?.model} />
           </SwiperSlide>
