@@ -1,7 +1,7 @@
-import {getDocs, collection, DocumentData, getDoc, doc, deleteDoc} from "firebase/firestore";
+import {getDocs, collection, DocumentData, getDoc, doc, deleteDoc, addDoc, setDoc} from "firebase/firestore";
 import {db, storage} from "../../firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { CarConfigurations, ImageColorAndVariantProps, PropertyVariantProps, UserCarConfiguration } from "../types";
+import { CarConfigurations, ImageColorAndVariantProps, PropertyVariantProps, UserCarConfiguration, UpdateConfigurationProps } from "../types";
 import {fileNames, sortedPhotoNames} from "./const/fileNames";
 
 export const fetchCarConfigurations = async (id: string): Promise<CarConfigurations> => {
@@ -75,18 +75,19 @@ export const fetchAllUserConfigurations = async (id: string): Promise<UserCarCon
 
         const configurationsArray: UserCarConfiguration[] = response.docs.map(config => {
             const userId = config.id;
-            const {model, model_id, production_year, color, wheel_variant, interior_variant, creation_date, total_price}: DocumentData = config.data();
+            const responseData = config.data();
             
             const newConfig: UserCarConfiguration = {
                 id: userId,
-                model,
-                modelId: model_id,
-                productionYear: production_year,
-                color,
-                wheels: wheel_variant,
-                interior_variants: interior_variant,
-                creationDate: creation_date,
-                totalPrice: total_price
+                model: responseData.model,
+                modelId: responseData.model_id,
+                modelPrice: responseData.model_price,
+                productionYear: responseData.production_year,
+                color: responseData.color,
+                wheels: responseData.wheel_variant,
+                interior_variants: responseData.interior_variant,
+                creationDate: responseData.creation_date,
+                totalPrice: responseData.total_price
             }
 
             return newConfig;
@@ -124,6 +125,7 @@ export const fetchUserConfiguration = async (userId: string, configurationId: st
         const userConfig: UserCarConfiguration = {
             model: responseData.model,
             modelId: responseData.model_id,
+            modelPrice: responseData.model_price, 
             productionYear: responseData.production_year,
             color: responseData.color,
             wheels: responseData.wheel_variant,
@@ -133,6 +135,70 @@ export const fetchUserConfiguration = async (userId: string, configurationId: st
         }
 
         return userConfig;
+    } catch (err: any) {
+        throw new Error(err);
+    }
+}
+
+export const createUserConfiguration = async (data: UserCarConfiguration, userId: string) => {
+    try {
+        const response = await addDoc(collection(db, `users/${userId}/configurations`), {
+            model: data.model,
+            model_id: data.modelId,
+            model_price: data.modelPrice,
+            production_year: data.productionYear,
+            color: {
+                label: data.color.label,
+                name: data.color.name,
+                price: data.color.price
+            },
+            wheel_variant: {
+                label: data.wheels.label,
+                name: data.wheels.name,
+                price: data.wheels.price
+            }, 
+            interior_variants: {
+                label: data.interior_variants.label,
+                name: data.interior_variants.name,
+                price: data.interior_variants.price
+            },
+            creation_date: data.creationDate,
+            total_price: data.totalPrice
+        });
+
+        return response;
+    } catch (err: any) {
+        throw new Error(err);
+    }
+}
+
+export const updateUserConfiguration = async ({configuration, userId, configId}: UpdateConfigurationProps) => {
+    try {
+        const response = await setDoc(doc(db, `users/${userId}/configurations`, configId), {
+            model: configuration.model,
+            model_id: configuration.modelId,
+            model_price: configuration.modelPrice,
+            production_year: configuration.productionYear,
+            color: {
+                label: configuration.color.label,
+                name: configuration.color.name,
+                price: configuration.color.price
+            },
+            wheel_variant: {
+                label: configuration.wheels.label,
+                name: configuration.wheels.name,
+                price: configuration.wheels.price
+            },
+            interior_variants: {
+                label: configuration.interior_variants.label,
+                name: configuration.interior_variants.name,
+                price: configuration.interior_variants.price
+            },
+            creation_date: configuration.creationDate,
+            total_price: configuration.totalPrice
+        });
+
+        return response;
     } catch (err: any) {
         throw new Error(err);
     }

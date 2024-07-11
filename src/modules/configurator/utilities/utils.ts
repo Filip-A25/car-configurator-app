@@ -1,5 +1,6 @@
 import {toast} from "react-toastify";
 import { toastifySuccessProps } from "../components/const";
+import { decimalRegexp } from "../const";
 
 export const getPropertyTypeName = (propertyName: string) => {
     switch (propertyName) {
@@ -15,5 +16,17 @@ export const getPropertyTypeName = (propertyName: string) => {
 }
 
 export const notifyDelete = () => {
-    toast.success("Configuration successfully deleted.", toastifySuccessProps);
+  toast.success("Configuration successfully deleted.", toastifySuccessProps);
 };
+
+export const notifyCreate = () => {
+  toast.success("Configuration successfully created.", toastifySuccessProps);
+}
+
+export const notifyUpdate = () => {
+  toast.success("Configuration successfully updated.", toastifySuccessProps);
+}
+
+export const getDisplayPrice = (price: number) => {
+  return price.toFixed(2).replace(decimalRegexp, ",");
+} 

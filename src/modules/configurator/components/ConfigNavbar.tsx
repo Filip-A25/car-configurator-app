@@ -1,7 +1,6 @@
 import { ReturnButton } from "../../../shared";
 import { dropdownOpen } from "../state";
 import { useRecoilValue } from "recoil";
-import { activePageState } from "../state";
 import clsx from "clsx";
 import { PaginationDisplay } from "./PaginationDisplay";
 import { ConfigOptionsDisplay } from "./ConfigOptionsDisplay";
@@ -10,11 +9,16 @@ interface Props {
   returnPath: string;
   model?: string;
   productionYear?: number;
+  isConfigurationEdit?: boolean;
 }
 
-export function ConfigNavbar({ returnPath, model, productionYear }: Props) {
+export function ConfigNavbar({
+  model,
+  productionYear,
+  returnPath,
+  isConfigurationEdit,
+}: Props) {
   const isDropdownOpen = useRecoilValue(dropdownOpen);
-  const activePage = useRecoilValue(activePageState);
 
   return (
     <div className="h-[50px] sm:h-[70px] bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
@@ -31,7 +35,7 @@ export function ConfigNavbar({ returnPath, model, productionYear }: Props) {
           isDropdownOpen && "hidden"
         )}
       >
-        {activePage ? <PaginationDisplay /> : <ConfigOptionsDisplay />}
+        {isConfigurationEdit ? <PaginationDisplay /> : <ConfigOptionsDisplay />}
       </section>
     </div>
   );

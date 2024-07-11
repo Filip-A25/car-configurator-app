@@ -6,7 +6,7 @@ export const pageState = atom<Page[]>({
   default: [{
     name: "Exterior",
     index: 1,
-    isActive: false
+    isActive: true
   },
   {
     name: "Interior",
@@ -29,5 +29,15 @@ export const activePageState = selector<Page | undefined>({
     if (!activePage) return undefined;
 
     return activePage;
+  },
+  set: ({set, get}, firstPage) => {
+    if (!firstPage || typeof firstPage !== "object" || !("name" in firstPage)) return;
+    const pages = get(pageState);
+    const defaultActivePages = pages.map(page => ({
+      ...page,
+      isActive: firstPage.name === page.name
+    }))
+
+    set(pageState, defaultActivePages);
   }
 })

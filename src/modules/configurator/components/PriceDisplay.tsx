@@ -1,13 +1,13 @@
 import { useRecoilValue } from "recoil";
-import { configurationPriceState } from "../state";
+import { configurationStringPriceState } from "../state";
 
 export function PriceDisplay() {
-  const displayPrice = useRecoilValue(configurationPriceState);
+  const displayPrice = useRecoilValue(configurationStringPriceState);
 
   return (
     <section className="flex justify-between items-end max-sm:pt-2 px-5">
-      <span className="flex items-center">
-        <h4 className="tracking-widest text-muted-grey text-xs sm:text-lg 3xl:text-2xl">
+      <span className="flex items-center pr-28">
+        <h4 className="tracking-widest text-muted-grey text-xs sm:text-sm md:text-lg">
           TOTAL
         </h4>
         <div className="relative hover:after:content-['Total_configuration_price.'] hover:after:absolute max-sm:after:top-[-60%] 2xl:after:top-[-50%] 3xl:after:top-[-25%] max-sm:hover:after:leading-0 sm:hover:after:leading-8 max-sm:hover:after:left-8 sm:hover:after:left-10 hover:after:rounded-md max-sm:hover:after:h-6 sm:hover:after:h-8 hover:after:w-52 hover:after:text-center hover:after:opacity-90 hover:after:bg-muted-grey hover:after:text-basic-white">
@@ -24,7 +24,7 @@ export function PriceDisplay() {
           </svg>
         </div>
       </span>
-      <span className="text-md sm:text-2xl 3xl:text-3xl text-text-default-gray">
+      <span className="text-md sm:text-xl 3xl:text-2xl text-text-default-gray">
         {displayPrice} €
       </span>
     </section>

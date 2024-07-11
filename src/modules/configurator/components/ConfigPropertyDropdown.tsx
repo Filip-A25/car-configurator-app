@@ -1,7 +1,13 @@
 import { ConfigProperty } from "./ConfigProperty";
-import { currentConfigurationsState, activePropState } from "../state";
-import { useRecoilValue } from "recoil";
+import {
+  currentConfigurationsState,
+  activePropState,
+  userConfigurationState,
+} from "../state";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { CarPropertyName } from "../types";
+import { useEffect, useState, useCallback } from "react";
+import { PageLoading } from "../../global/components";
 
 interface Props {
   propertyName: CarPropertyName;
@@ -10,7 +16,9 @@ interface Props {
 
 export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
   const configurations = useRecoilValue(currentConfigurationsState);
-  const activePropIndex = useRecoilValue(activePropState);
+  const userConfiguration = useRecoilValue(userConfigurationState);
+  const [activePropIndex, setActivePropIndex] = useRecoilState(activePropState);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getCurrentProperties = () => {
     switch (propertyName) {
@@ -25,7 +33,30 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
     }
   };
 
+  const handleSetActivePropIndex = useCallback(() => {
+    if (!configurations || !userConfiguration) return;
+
+    const index = configurations[propertyName].findIndex(
+      (item) => item.label === userConfiguration[propertyName]?.label
+    );
+
+    setActivePropIndex((prevActivePropIndex) => ({
+      ...prevActivePropIndex,
+      [propertyName]: index,
+    }));
+  }, [configurations, userConfiguration, propertyName]);
+
+  useEffect(() => {
+    handleSetActivePropIndex();
+  }, [handleSetActivePropIndex]);
+
+  useEffect(() => {
+    if (activePropIndex[propertyName]) setIsLoading(false);
+  }, [activePropIndex, propertyName]);
+
   const currentProperties = getCurrentProperties();
+
+  if (isLoading) return <PageLoading />;
 
   return (
     <ul>

@@ -23,6 +23,16 @@ export function useConfigEdit() {
   const modelId = searchParams.get("modelId");
   const configId = searchParams.get("configId");
 
+  const handleUserConfigurationFetch = async () => {
+    if (!user || !configId) throw new Error("Incomplete data.");
+    try {
+      const response = await fetchUserConfiguration(user.id, configId);
+      setCurrentUserConfiguration({ ...response, id: configId });
+    } catch (err: any) {
+      throw new Error(err);
+    }
+  };
+
   const handleCarConfigurationsFetch = async (modelId: string) => {
     try {
       const defaultConfigurations = await fetchCarConfigurations(modelId);
@@ -34,30 +44,22 @@ export function useConfigEdit() {
         setCurrentUserConfiguration({
           ...defaultConfigurations,
           modelId,
+          modelPrice: defaultConfigurations.price,
           color: defaultConfigurations.color[0],
           wheels: defaultConfigurations.wheels[0],
           interior_variants: defaultConfigurations.interior_variants[0],
           creationDate: Timestamp.fromDate(new Date()),
-          totalPrice: defaultConfigurations.price,
+          totalPrice:
+            defaultConfigurations.price +
+            defaultConfigurations.color[0].price +
+            defaultConfigurations.wheels[0].price +
+            defaultConfigurations.interior_variants[0].price,
         });
 
         return;
       }
 
-      const userConfigurations = await fetchUserConfiguration(
-        user.id,
-        configId
-      );
-
-      setCurrentUserConfiguration({
-        ...userConfigurations,
-        modelId,
-        color: userConfigurations.color,
-        wheels: userConfigurations.wheels,
-        interior_variants: userConfigurations.interior_variants,
-        creationDate: userConfigurations.creationDate,
-        totalPrice: userConfigurations.totalPrice,
-      });
+      handleUserConfigurationFetch();
     } catch (err: any) {
       throw new Error(err);
     }

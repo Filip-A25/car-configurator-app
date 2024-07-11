@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, useMemo } from "react";
 import { useConfigProperty } from "../hooks";
 import { CarPropertyName, CarModel } from "../types";
 
@@ -24,17 +24,24 @@ export function ConfigProperty({
   isDescriptionDisplayed,
   disabled,
 }: Props) {
-  const { handleOpenDropdown, propertyImgUrl, activePropIndex } =
-    useConfigProperty({
-      index,
-      propertyName,
-      modelName,
-      label,
-      name,
-      description,
-      price,
-      isDescriptionDisplayed,
-    });
+  const {
+    handleOpenDropdown,
+    propertyImgUrl,
+    activePropIndex,
+    propertyTypeName,
+  } = useConfigProperty({
+    index,
+    propertyName,
+    modelName,
+    label,
+    name,
+    description,
+    price,
+  });
+
+  const isSelected = useMemo(() => {
+    if (!disabled && activePropIndex[propertyName] === index) return true;
+  }, [activePropIndex]);
 
   return (
     <button
@@ -42,7 +49,7 @@ export function ConfigProperty({
       onClick={handleOpenDropdown}
       disabled={disabled}
     >
-      <div className="relative overflow-hidden aspect-square h-[36px] sm:h-[60px]">
+      <div className="relative overflow-hidden aspect-square h-[36px] sm:h-[60px] 3xl:h-[70px]">
         {propertyImgUrl ? (
           <img
             src={propertyImgUrl}
@@ -52,7 +59,7 @@ export function ConfigProperty({
         ) : (
           <div className="w-12 2xl:w-14 h-12 2xl:h-14 bg-light-gray-background-color rounded-[50%] animate-pulse" />
         )}
-        {activePropIndex[propertyName] === index && (
+        {isSelected && (
           <div className="absolute right-0 bottom-0 bg-checkmark-green w-3 h-3 sm:w-5 sm:h-5 rounded-[50%] flex justify-center items-center">
             <svg
               width="12"
@@ -70,12 +77,12 @@ export function ConfigProperty({
         )}
       </div>
       <section className="text-left pl-3">
-        <h3 className="text-text-default-gray text-sm sm:text-md 2xl:text-lg 3xl:text-xl">
+        <h3 className="text-text-default-gray text-sm sm:text-md 2xl:text-lg 3xl:text-2xl">
           {description}
         </h3>
         {isDescriptionDisplayed && (
           <h4 className="font-optician-sans text-xs sm:text-sm 2xl:text-md 3xl:text-lg text-property-name-grey tracking-[2px]">
-            {propertyName === "color" ? `paint ${name}` : name}
+            {propertyTypeName}
           </h4>
         )}
       </section>
