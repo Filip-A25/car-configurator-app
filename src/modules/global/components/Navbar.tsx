@@ -88,7 +88,6 @@ export default function Navbar() {
       <MenuDropdownMobile
         filteredPathsArray={filteredPathsArray}
         isMenuOpen={isMenuOpen}
-        isMenuAnimated={isMenuAnimated}
         isLoggedIn={isLoggedIn}
       />
       <MenuDropdown
