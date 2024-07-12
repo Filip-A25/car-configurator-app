@@ -1,32 +1,31 @@
-import React, { PropsWithChildren, useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { loggedState } from "../state";
-import { userState } from "../../authentification/state";
-import { auth } from "../../firebase";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
+import { loggedState } from "../state";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import { userState } from "../../authentification/state";
+import { configuratorRoutes } from "../../configurator/const";
+import { Navigate } from "react-router-dom";
 import { PageLoading } from "./PageLoading";
 
-export const RoutePrivateGuard: React.FC<PropsWithChildren> = ({
-  children,
-}) => {
+export const RouteRootGuard: React.FC<PropsWithChildren> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedState);
   const setUserData = useSetRecoilState(userState);
   const [isPageLoading, setIsPageLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user) throw new Error("User could not be found.");
-      if (!user.displayName || !user.email)
-        throw new Error("User data coult not be found");
-      setIsPageLoading(false);
-
+      if (!user || !user.displayName || !user.email) {
+        setIsLoggedIn(false);
+        return setIsPageLoading(false);
+      }
       setUserData({
         id: user.uid,
         name: user.displayName,
         email: user.email,
       });
       setIsLoggedIn(true);
+      setIsPageLoading(false);
     });
 
     return () => unsubscribe();
@@ -36,5 +35,5 @@ export const RoutePrivateGuard: React.FC<PropsWithChildren> = ({
 
   if (!isLoggedIn) return <Navigate to="/auth/log-in" />;
 
-  return <>{children}</>;
+  return <Navigate to={configuratorRoutes.configurations} />;
 };

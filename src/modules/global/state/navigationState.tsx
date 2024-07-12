@@ -1,6 +1,10 @@
 import { atom, selector } from "recoil";
-import { loggedState } from "../../authentification/state/userState";
 import { Path } from "../types/navigationType";
+
+export const loggedState = atom({
+  key: "isLoggedIn",
+  default: false,
+});
 
 export const pathsState = atom<Path[]>({
   key: "pathState",

@@ -9,6 +9,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import "swiper/css";
 import "react-toastify/dist/ReactToastify.css";
+import { RouteRootGuard } from "./modules/global/components/RouteRootGuard";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
       <ToastContainer />
       <Navbar />
       <Routes>
+        <Route path="/*" element={<RouteRootGuard />} />
         <Route
           path="/auth/*"
           element={
