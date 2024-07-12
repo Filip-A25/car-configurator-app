@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
-
-export function ReturnButton({ path }: { path: string }) {
+export function ReturnButton({
+  onClick,
+}: {
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}) {
   return (
-    <Link to={path} className="flex items-center">
+    <button className="flex items-center" onClick={onClick}>
       <svg
         width="16"
         height="16"
@@ -17,6 +19,6 @@ export function ReturnButton({ path }: { path: string }) {
           fill="#2E2E38"
         />
       </svg>
-    </Link>
+    </button>
   );
 }

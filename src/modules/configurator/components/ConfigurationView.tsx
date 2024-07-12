@@ -4,7 +4,7 @@ import { userConfigurationState } from "../state";
 import { userState } from "../../authentification/state";
 import { PageLoading } from "../../global/components";
 import { ConfigNavbar } from "./ConfigNavbar";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { fetchUserConfiguration } from "../services";
 import { configuratorRoutes } from "../const";
 import { ConfigurationSummaryDisplay } from "./ConfigurationSummaryDisplay";
@@ -14,6 +14,7 @@ export function ConfigurationView() {
     userConfigurationState
   );
   const user = useRecoilValue(userState);
+  const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
 
@@ -33,12 +34,16 @@ export function ConfigurationView() {
     handleGetUserConfiguration();
   }, [handleGetUserConfiguration]);
 
+  const handleCarSelectNavigate = () => {
+    navigate(configuratorRoutes.configurations);
+  };
+
   if (!configuration) return <PageLoading />;
 
   return (
     <>
       <ConfigNavbar
-        returnPath={configuratorRoutes.configurations}
+        returnOnClick={handleCarSelectNavigate}
         model={configuration.model}
         productionYear={configuration.productionYear}
       />
