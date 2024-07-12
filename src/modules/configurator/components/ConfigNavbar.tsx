@@ -6,16 +6,18 @@ import { PaginationDisplay } from "./PaginationDisplay";
 import { ConfigOptionsDisplay } from "./ConfigOptionsDisplay";
 
 interface Props {
-  returnPath: string;
+  returnOnClick?: VoidFunction;
+  returnPath?: string;
   model?: string;
   productionYear?: number;
   isConfigurationEdit?: boolean;
 }
 
 export function ConfigNavbar({
+  returnOnClick,
+  returnPath,
   model,
   productionYear,
-  returnPath,
   isConfigurationEdit,
 }: Props) {
   const isDropdownOpen = useRecoilValue(dropdownOpen);
@@ -23,7 +25,7 @@ export function ConfigNavbar({
   return (
     <div className="h-[50px] sm:h-[70px] bg-light-gray-element-color border-b border-input-border-gray flex justify-between items-center px-4 sm:px-10 2xl:px-12">
       <section className="flex justify-between text-lg sm:text-2xl 3xl:text-3xl text-text-default-gray">
-        <ReturnButton path={returnPath} />
+        <ReturnButton onClick={returnOnClick} returnPath={returnPath} />
         <h3 className="max-sm:hidden text-muted-grey font-optician-sans px-2">
           {productionYear}
         </h3>

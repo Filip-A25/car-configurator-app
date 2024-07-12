@@ -4,6 +4,8 @@ import {
   userConfigurationState,
   dropdownOpen,
   dropdownState,
+  activePageState,
+  pageState,
 } from "../state";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { fetchCarConfigurations, fetchUserConfiguration } from "../services";
@@ -17,6 +19,8 @@ export function useConfigEdit() {
   const isDropdownOpen = useRecoilValue(dropdownOpen);
   const activeDropdownName = useRecoilValue(dropdownState);
   const user = useRecoilValue(userState);
+  const setActivePage = useSetRecoilState(activePageState);
+  const pages = useRecoilValue(pageState);
 
   const [searchParams] = useSearchParams();
 
@@ -50,10 +54,12 @@ export function useConfigEdit() {
           interior_variants: defaultConfigurations.interior_variants[0],
           creationDate: Timestamp.fromDate(new Date()),
           totalPrice:
-            defaultConfigurations.price +
-            defaultConfigurations.color[0].price +
-            defaultConfigurations.wheels[0].price +
-            defaultConfigurations.interior_variants[0].price,
+            parseFloat(defaultConfigurations.price.toFixed(2)) +
+            parseFloat(defaultConfigurations.color[0].price.toFixed(2)) +
+            parseFloat(defaultConfigurations.wheels[0].price.toFixed(2)) +
+            parseFloat(
+              defaultConfigurations.interior_variants[0].price.toFixed(2)
+            ),
         });
 
         return;
@@ -71,6 +77,8 @@ export function useConfigEdit() {
   }, [modelId]);
 
   useEffect(() => {
+    setActivePage(pages[0]);
+
     const preventPageLeave = (e: BeforeUnloadEvent) => {
       e.preventDefault();
     };
