@@ -1,6 +1,7 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ConfigureACar } from "./ConfigureACar";
 import { Configurations } from "./Configurations";
+import { NotFoundPage } from "../../../shared/NotFoundPage";
 import { configuratorRoutes } from "../const";
 
 export function Configurator() {
@@ -8,8 +9,13 @@ export function Configurator() {
     <div id="configurator-content" className="h-[calc(100vh-70px)]">
       <Routes>
         <Route
-          path="/"
-          element={<Navigate to={configuratorRoutes.configurations} />}
+          path="*"
+          element={
+            <NotFoundPage
+              returnPageTitle="your configurations"
+              returnPagePath={configuratorRoutes.configurations}
+            />
+          }
         />
         <Route path="/configure-a-car/*" element={<ConfigureACar />} />
         <Route path="/configurations/*" element={<Configurations />} />

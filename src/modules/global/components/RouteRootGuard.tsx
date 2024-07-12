@@ -7,8 +7,13 @@ import { userState } from "../../authentification/state";
 import { configuratorRoutes } from "../../configurator/const";
 import { Navigate } from "react-router-dom";
 import { PageLoading } from "./PageLoading";
+import { NotFoundPage } from "../../../shared/NotFoundPage";
 
-export const RouteRootGuard: React.FC<PropsWithChildren> = ({ children }) => {
+interface Props extends PropsWithChildren {
+  isErrorPage?: boolean;
+}
+
+export const RouteRootGuard = ({ children, isErrorPage }: Props) => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedState);
   const setUserData = useSetRecoilState(userState);
   const [isPageLoading, setIsPageLoading] = useState(true);
@@ -33,7 +38,17 @@ export const RouteRootGuard: React.FC<PropsWithChildren> = ({ children }) => {
 
   if (isPageLoading) return <PageLoading />;
 
-  if (!isLoggedIn) return <Navigate to="/auth/log-in" />;
+  if (!isLoggedIn && !isErrorPage) return <Navigate to="/auth/log-in" />;
+  if (!isLoggedIn && isErrorPage)
+    return (
+      <NotFoundPage returnPageTitle="sign in" returnPagePath="/auth/log-in" />
+    );
 
-  return <Navigate to={configuratorRoutes.configurations} />;
+  if (!isErrorPage) return <Navigate to={configuratorRoutes.configurations} />;
+  return (
+    <NotFoundPage
+      returnPageTitle="your configurations"
+      returnPagePath={configuratorRoutes.configurations}
+    />
+  );
 };
