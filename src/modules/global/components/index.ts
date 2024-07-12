@@ -1,4 +1,5 @@
 export * from './DropdownLogoutItem';
+export * from './FirebaseAuthProvider';
 export * from './MenuDropdown';
 export * from './MenuDropdownItem';
 export * from './MenuDropdownMobile';
