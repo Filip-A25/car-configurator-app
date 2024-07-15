@@ -13,7 +13,7 @@ export function AuthRegisterForm() {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
-    <section className="relative flex flex-col w-screen sm:w-[500px] lg:w-[550px] 3xl:w-[650px] bg-basic-white text-text-default-gray px-10 py-8 lg:pb-16 lg:pt10 3xl:pb-20 3xl:pt-12 sm:shadow-md">
+    <section className="relative flex flex-col w-screen sm:w-[500px] lg:w-[550px] 3xl:w-[650px] bg-basic-white text-text-default-gray px-10 py-8 lg:pb-10 lg:pt10 3xl:pb-20 3xl:pt-12 sm:shadow-md">
       <h2 className="form-size-header font-bold 3xl:text-5xl 3xl:leading-relaxed">
         Sign Up
       </h2>
@@ -24,7 +24,7 @@ export function AuthRegisterForm() {
         </Link>
       </span>
       {!isFormOpen ? (
-        <div className="mt-8 pt-6 pb-80">
+        <div className="mt-8 pt-6 pb-52">
           <Button
             label="Sign up with e-mail"
             variant="primary"
@@ -41,9 +41,9 @@ export function AuthRegisterForm() {
       ) : (
         <FormProvider {...form}>
           <form id="register-form" onSubmit={form.handleSubmit(onSubmit)}>
-            <section className="flex flex-col form-vertical-margin form-bottom-padding pb-20 md:pb-30">
+            <section className="flex flex-col form-vertical-margin form-bottom-padding pb-10 md:pb-5">
               <section className="py-3">
-                <div className="py-3 flex flex-col">
+                <div className="pt-3 flex flex-col">
                   <label className="leading-10">Nickname</label>
                   <InputField
                     name="name"
@@ -52,7 +52,7 @@ export function AuthRegisterForm() {
                     validation={validation.username}
                   />
                 </div>
-                <div className="py-3 flex flex-col">
+                <div className="pt-3 flex flex-col">
                   <label className="leading-10">E-mail address</label>
                   <InputField
                     name="email"
@@ -61,7 +61,7 @@ export function AuthRegisterForm() {
                     validation={validation.email}
                   />
                 </div>
-                <div className="py-3 flex flex-col">
+                <div className="pt-3 flex flex-col">
                   <label className="leading-10">Password</label>
                   <InputField
                     name="password"
