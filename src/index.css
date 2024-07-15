@@ -19,6 +19,10 @@
   overflow: visible !important;
 }
 
+.swiper-slide {
+  height: auto !important;
+}
+
 @layer utilities {
   .swiper-wrapper {
     @apply max-sm:!h-auto;

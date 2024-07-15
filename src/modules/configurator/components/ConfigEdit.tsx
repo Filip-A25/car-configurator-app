@@ -15,13 +15,13 @@ export function ConfigEdit({ isDropdownOpen, activeDropdownName }: Props) {
       <section className="relative flex max-sm:flex-col min-h-[calc(100%-50px)] md:min-h-[calc(100%-60px)] lg:min-h-[calc(100%-70px)]">
         <div
           className={clsx(
-            "md:py-20 max-sm:relative flex sm:items-center max-sm:h-full w-full sm:w-[calc(100%-350px)] md:w-[calc(100%-425px)] lg:w-[calc(100%-475px)] 3xl:w-[calc(100%-565px)]",
+            "sm:py-16 max-sm:relative flex sm:items-center max-sm:h-full w-full sm:w-[calc(100%-350px)] md:w-[calc(100%-375px)] lg:w-[calc(100%-425px)] 3xl:w-[calc(100%-565px)]",
             activeDropdownName === "interior_variants"
-              ? "max-xs:py-28 xs:py-40"
-              : "max-xs:py-20 xs:py-32",
+              ? "max-xs:py-32 xs:py-40"
+              : "max-xs:py-20 xs:py-28",
             ((isDropdownOpen && activeDropdownName === "color") ||
               (isDropdownOpen && activeDropdownName === "interior_variants")) &&
-              "max-xs:py-4"
+              "max-xs:pb-9 max-xs:pt-12 xs:pb-24 xs:pt-36"
           )}
         >
           <CarImageSlide />

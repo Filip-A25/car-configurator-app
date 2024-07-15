@@ -58,7 +58,7 @@ export function SummaryFooter() {
 
   return (
     <div className="h-[50px] sm:h-[70px] bg-light-gray-element-color border-t border-input-border-gray flex justify-between items-center">
-      <section className="flex justify-between text-lg sm:text-lg lg:text-2xl 3xl:text-3xl text-text-default-gray px-5">
+      <section className="max-md:hidden flex justify-between text-lg sm:text-lg lg:text-2xl 3xl:text-3xl text-text-default-gray px-5">
         <h3 className="max-sm:hidden text-muted-grey font-optician-sans px-2">
           {userConfiguration.productionYear}
         </h3>
@@ -66,7 +66,7 @@ export function SummaryFooter() {
           {userConfiguration.model}
         </h3>
       </section>
-      <section className="flex items-center h-full">
+      <section className="flex items-center h-full max-md:w-full max-md:justify-between">
         <PriceDisplay />
         <button
           onClick={handleOnClick}

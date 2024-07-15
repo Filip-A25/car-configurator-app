@@ -1,4 +1,4 @@
-import {getDocs, collection, DocumentData, getDoc, doc, deleteDoc, addDoc, setDoc} from "firebase/firestore";
+import {getDocs, collection, getDoc, doc, deleteDoc, addDoc, setDoc} from "firebase/firestore";
 import {db, storage} from "../../firebase";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { CarConfigurations, ImageColorAndVariantProps, PropertyVariantProps, UserCarConfiguration, UpdateConfigurationProps } from "../types";

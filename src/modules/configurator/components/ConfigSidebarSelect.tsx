@@ -20,14 +20,14 @@ export function ConfigSidebarSelect({ propertyName }: Props) {
   return (
     <div
       className={clsx(
-        "absolute bottom-0 max-sm:w-full sm:right-0 sm:top-0 border-l border-input-border-gray sm:w-[350px] md:w-[425px] lg:w-[475px] 3xl:w-[565px] bg-light-gray-element-color px-6 sm:h-full",
+        "absolute bottom-0 max-sm:w-full sm:right-0 sm:top-0 border-l border-input-border-gray sm:w-[350px] md:w-[375px] lg:w-[425px] 3xl:w-[565px] bg-light-gray-element-color px-6 sm:h-full",
         isDropdownOpen && "sm:animate-sidebarOpenAnimation"
       )}
     >
       <div className="flex flex-col justify-between min-h-full pb-20 sn:pt-8 sm:pb-24 3xl:pb-28">
         <section>
-          <div className="flex justify-between px-2 sm:px-5 pt-3 sm:pt-5 pb-2 sm:pb-10">
-            <h1 className="leading-10 text-xl sm:text-2xl">
+          <div className="flex justify-between px-2 sm:px-5 pt-3 sm:pt-5 pb-2 sm:pb-6 lg:pb-8">
+            <h1 className="leading-10 text-xl lg:text-2xl">
               {propertyName === "wheels" ? "Wheels" : "Color"}
             </h1>
             <button className="px-3" onClick={handleDropdownClose}>

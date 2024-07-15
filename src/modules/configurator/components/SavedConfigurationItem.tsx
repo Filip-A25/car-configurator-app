@@ -38,9 +38,13 @@ export function SavedConfigurationItem({
   return (
     <li className="flex max-md:flex-col bg-mobile-light-element-color md:bg-basic-white mb-8 sm:mb-12">
       <section className="basis-[40%] 3xl:basis-[45%]">
-        <div className="lg:px-2 xl:px-1 md:py-14 lg:py-16 2xl:py-10">
-          <img src={imgUrl} alt={name} />
-        </div>
+        {!Boolean(imgUrl) ? (
+          <PageLoading />
+        ) : (
+          <div className="lg:px-2 xl:px-1 md:py-14 lg:py-16 2xl:py-10">
+            <img src={imgUrl} alt={name} />
+          </div>
+        )}
       </section>
       <div className="max-md:hidden my-auto md:h-36 lg:h-44 2xl:h-52 3xl:h-64 w-[1px] bg-input-border-gray" />
       <section className="flex basis-[60%] 3xl:basis-[55%] justify-between md:px-10 md:py-8 lg:px-14 2xl:px-12 lg:py-10 xl:py-12 3xl:py-20">
