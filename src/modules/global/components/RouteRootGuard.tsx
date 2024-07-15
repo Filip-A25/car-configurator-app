@@ -1,9 +1,7 @@
-import { PropsWithChildren, useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase";
+import { PropsWithChildren } from "react";
 import { loggedState } from "../state";
-import { useSetRecoilState, useRecoilState } from "recoil";
-import { userState } from "../../authentification/state";
+import { pageLoadingState } from "../state/loadingState";
+import { useRecoilValue } from "recoil";
 import { configuratorRoutes } from "../../configurator/const";
 import { Navigate } from "react-router-dom";
 import { PageLoading } from "./PageLoading";
@@ -14,27 +12,8 @@ interface Props extends PropsWithChildren {
 }
 
 export const RouteRootGuard = ({ children, isErrorPage }: Props) => {
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedState);
-  const setUserData = useSetRecoilState(userState);
-  const [isPageLoading, setIsPageLoading] = useState(true);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user || !user.displayName || !user.email) {
-        setIsLoggedIn(false);
-        return setIsPageLoading(false);
-      }
-      setUserData({
-        id: user.uid,
-        name: user.displayName,
-        email: user.email,
-      });
-      setIsLoggedIn(true);
-      setIsPageLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
+  const isLoggedIn = useRecoilValue(loggedState);
+  const isPageLoading = useRecoilValue(pageLoadingState);
 
   if (isPageLoading) return <PageLoading />;
 
