@@ -38,7 +38,7 @@ export function SavedConfigurationItem({
   return (
     <li className="flex max-md:flex-col bg-mobile-light-element-color md:bg-basic-white mb-8 sm:mb-12">
       <section className="basis-[40%] 3xl:basis-[45%]">
-        {!Boolean(imgUrl.length) ? (
+        {!Boolean(imgUrl) ? (
           <PageLoading />
         ) : (
           <div className="lg:px-2 xl:px-1 md:py-14 lg:py-16 2xl:py-10">
