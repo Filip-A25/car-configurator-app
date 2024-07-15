@@ -34,7 +34,7 @@ export function ConfigDisplay() {
   if (!configuration) return <PageLoading />;
 
   return (
-    <section className="relative h-full">
+    <section className="sm:relative h-full">
       <ConfigNavbar
         returnOnClick={handleNavigateBack}
         model={configuration.model}
