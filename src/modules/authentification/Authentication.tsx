@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { AuthLoginForm, AuthRegisterForm } from "./components";
 import { NotFoundPage } from "../../shared/NotFoundPage";
+import { authRoutes } from "./const";
 
 export function Authentication() {
   return (
@@ -13,7 +14,7 @@ export function Authentication() {
           element={
             <NotFoundPage
               returnPageTitle="sign in"
-              returnPagePath="/auth/log-in"
+              returnPagePath={authRoutes.logIn}
             />
           }
         />

@@ -1,5 +1,6 @@
 import { atom, selector } from "recoil";
 import { Path } from "../types/navigationType";
+import { authRoutes } from "../../authentification/const";
 
 export const loggedState = atom({
   key: "isLoggedIn",
@@ -11,12 +12,12 @@ export const pathsState = atom<Path[]>({
   default: [
     {
       name: "Register",
-      path: "/auth/register",
+      path: authRoutes.register,
       userLoggedIn: false,
     },
     {
       name: "Log in",
-      path: "/auth/log-in",
+      path: authRoutes.logIn,
       userLoggedIn: false,
     },
     {

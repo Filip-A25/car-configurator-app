@@ -5,6 +5,7 @@ import InputField from "./inputs/InputField";
 import { FormProvider } from "react-hook-form";
 import Button from "../../../shared/Button";
 import useAuthLogin from "../hooks/useAuthLogin";
+import { authRoutes } from "../const";
 
 export function AuthLoginForm() {
   const { handleGoogleSignIn, onSubmit, form } = useAuthLogin();
@@ -19,7 +20,7 @@ export function AuthLoginForm() {
         <h2 className="form-size-header font-bold">Sign In</h2>
         <span className="text-sm">
           Don't have an account?{" "}
-          <Link to="/auth/register" className="text-text-purple">
+          <Link to={authRoutes.register} className="text-text-purple">
             Create one now!
           </Link>
         </span>

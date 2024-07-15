@@ -4,6 +4,7 @@ import { useRecoilValue } from "recoil";
 import { loggedState } from "../state";
 import { pageLoadingState } from "../state/loadingState";
 import { PageLoading } from "./PageLoading";
+import { authRoutes } from "../../authentification/const";
 
 export const RoutePrivateGuard: React.FC<PropsWithChildren> = ({
   children,
@@ -13,7 +14,7 @@ export const RoutePrivateGuard: React.FC<PropsWithChildren> = ({
 
   if (isPageLoading) return <PageLoading />;
 
-  if (!isLoggedIn) return <Navigate to="/auth/log-in" />;
+  if (!isLoggedIn) return <Navigate to={authRoutes.logIn} />;
 
   return <>{children}</>;
 };

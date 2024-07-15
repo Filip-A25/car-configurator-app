@@ -6,6 +6,7 @@ import { configuratorRoutes } from "../../configurator/const";
 import { Navigate } from "react-router-dom";
 import { PageLoading } from "./PageLoading";
 import { NotFoundPage } from "../../../shared/NotFoundPage";
+import { authRoutes } from "../../authentification/const";
 
 interface Props extends PropsWithChildren {
   isErrorPage?: boolean;
@@ -17,10 +18,13 @@ export const RouteRootGuard = ({ children, isErrorPage }: Props) => {
 
   if (isPageLoading) return <PageLoading />;
 
-  if (!isLoggedIn && !isErrorPage) return <Navigate to="/auth/log-in" />;
+  if (!isLoggedIn && !isErrorPage) return <Navigate to={authRoutes.logIn} />;
   if (!isLoggedIn && isErrorPage)
     return (
-      <NotFoundPage returnPageTitle="sign in" returnPagePath="/auth/log-in" />
+      <NotFoundPage
+        returnPageTitle="sign in"
+        returnPagePath={authRoutes.logIn}
+      />
     );
 
   if (!isErrorPage) return <Navigate to={configuratorRoutes.configurations} />;
