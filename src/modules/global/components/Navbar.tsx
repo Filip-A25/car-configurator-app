@@ -5,16 +5,29 @@ import { pathSelector } from "../state/navigationState";
 import MenuDropdownMobile from "./MenuDropdownMobile";
 import MenuDropdown from "./MenuDropdown";
 import { loggedState } from "../state";
+import clsx from "clsx";
 
 export default function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const filteredPathsArray = useRecoilValue(pathSelector);
   const isLoggedIn = useRecoilValue(loggedState);
+  const [isNavbarAnimated, setIsNavbarAnimated] = useState(false);
+  const [isMenuAnimated, setIsMenuAnimated] = useState(false);
 
   const { pathname } = useLocation();
 
   const handleOpenMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setMenuOpen(!isMenuOpen);
+    setIsNavbarAnimated(true);
+    setIsMenuAnimated(true);
+    setMenuOpen(true);
+  };
+
+  const handleCloseMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setMenuOpen(false);
+    setTimeout(() => {
+      setIsNavbarAnimated(false);
+      setIsMenuAnimated(false);
+    }, 200);
   };
 
   useEffect(() => {
@@ -23,13 +36,14 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`relative h-[70px] w-screen bg-navbar-dark-gray-color flex items-center ${
-        isMenuOpen
+      className={clsx(
+        "relative h-[80px] md:h-[60px] lg:h-[70px] w-screen bg-navbar-dark-gray-color flex items-center",
+        isMenuOpen && isNavbarAnimated
           ? "max-md:animate-navbarMobileColorAnimation"
-          : !isMenuOpen
+          : !isMenuOpen && isNavbarAnimated
           ? "max-md:animate-navbarMobileColorAnimationReverse"
           : ""
-      }`}
+      )}
     >
       <NavLink
         to="/"
@@ -52,26 +66,29 @@ export default function Navbar() {
       </NavLink>
       <button
         className="absolute nav-menu-link-height nav-menu-link-width right-[40px] flex flex-col justify-center outline-none"
-        onClick={handleOpenMenu}
+        onClick={isMenuOpen ? handleCloseMenu : handleOpenMenu}
       >
         <div
-          className={`${
-            isMenuOpen
+          className={clsx(
+            "h-[5%] w-full bg-light-gray-element-color",
+            isMenuOpen && isMenuAnimated
               ? "animate-navbarMenuTopAnimation"
               : "animate-navbarMenuTopAnimationReverse mb-[7px]"
-          } h-[5%] w-full bg-light-gray-element-color`}
+          )}
         />
         <div
-          className={`${
-            isMenuOpen
+          className={clsx(
+            "h-[5%] w-[80%] bg-light-gray-element-color",
+            isMenuOpen && isMenuAnimated
               ? "animate-navbarMenuBottomAnimation"
               : "animate-navbarMenuBottomAnimationReverse w-[80%]"
-          } h-[5%] w-[80%] bg-light-gray-element-color`}
+          )}
         />
       </button>
       <MenuDropdownMobile
         filteredPathsArray={filteredPathsArray}
         isMenuOpen={isMenuOpen}
+        isMenuAnimated={isMenuAnimated}
         isLoggedIn={isLoggedIn}
       />
       <MenuDropdown

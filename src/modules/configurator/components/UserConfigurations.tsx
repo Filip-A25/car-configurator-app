@@ -35,9 +35,9 @@ export function UserConfigurations() {
   if (isDataFetching) return <PageLoading />;
 
   return (
-    <section className="text-center md:text-left px-10 sm:px-20 md:px-20 lg:px-20 2xl:px-48 3xl:px-52 py-12 sm:py-16 3xl:py-24 flex flex-col">
-      <header className="flex flex-col sm:flex-row items-start justify-between pb-8 3xl:pb-20">
-        <h2 className="text-xl sm:text-sm lg:text-xl 3xl:text-2xl pb-10 sm:py-3 md:py-4 3xl:py-5">
+    <section className="text-center md:text-left px-10 sm:px-20 md:px-20 lg:px-20 2xl:px-48 3xl:px-52 pb-24 pt-12 sm:py-16 3xl:py-24 flex flex-col">
+      <header className="flex flex-col sm:flex-row items-start justify-between md:pb-8 3xl:pb-20">
+        <h2 className="text-md sm:text-sm lg:text-xl 3xl:text-2xl pb-10 sm:py-3 md:py-4 3xl:py-5">
           View saved configurations
         </h2>
         <ConfigureLinkButton

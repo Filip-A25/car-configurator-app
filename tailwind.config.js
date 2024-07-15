@@ -96,12 +96,12 @@ module.exports = {
             transform: "rotate(33.75deg) translateY(-1.50px)"
           },
           "100%": {
-            transform: "rotate(45deg) translateY(-1.75px)"
+            transform: "rotate(45deg) translateY(-1.97px)"
           }
         },
         navbarMenuBottomAnimationReverse: {
           "0%": {
-            transform: "rotate(45deg) translateY(-1.75px)"
+            transform: "rotate(45deg) translateY(-1.97px)"
           },
           "25%": {
             transform: "rotate(33.75deg) translateY(-1.50px)"
@@ -127,40 +127,6 @@ module.exports = {
             alignItems: "center"
           },
           "100%": {}
-        },
-        navbarDropdownAnimation: {
-          "0%": {
-            transform: "translateY(-200%)"
-          },
-          "25%": {
-            transform: "translateY(-150%)"
-          },
-          "50%": {
-            transform: "translateY(-100%)"
-          },
-          "75%": {
-            transform: "translateY(-50%)"
-          },
-          "100%": {
-            transform: "translateY(0%)"
-          }
-        },
-        navbarDropdownAnimationReverse: {
-          "0%": {
-            transform: "translateY(0%)"
-          },
-          "25%": {
-            transform: "translateY(-50%)"
-          },
-          "50%": {
-            transform: "translateY(-100%)"
-          },
-          "75%": {
-            transform: "translateY(-150%)"
-          },
-          "100%": {
-            transform: "translateY(-200%)"
-          }
         },
         navbarMobileDropdownAnimation: {
           "0%": {
@@ -235,8 +201,6 @@ module.exports = {
         navbarMenuTopAnimationReverse: "navbarMenuTopAnimationReverse .2s ease-in-out forwards",
         navbarMenuBottomAnimation: "navbarMenuBottomAnimation .2s ease-in-out forwards",
         navbarMenuBottomAnimationReverse: "navbarMenuBottomAnimationReverse .2s ease-in-out forwards",
-        navbarDropdownAnimation: "navbarDropdownAnimation .15s ease-in-out forwards ",
-        navbarDropdownAnimationReverse: "navbarDropdownAnimationReverse .15s ease-in-out forwards",
         navbarMobileDropdownAnimation: "navbarMobileDropdownAnimation .2s ease-in-out forwards",
         navbarMobileColorAnimation: "navbarMobileColorAnimation .2s ease-in-out forwards",
         navbarMobileDropdownAnimationReverse: "navbarMobileDropdownAnimationReverse .2s ease-in-out forwards",
