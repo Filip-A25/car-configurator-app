@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { AuthLoginForm, AuthRegisterForm } from "./components";
+import { NotFoundPage } from "../../shared/NotFoundPage";
+import { authRoutes } from "./const";
 
 export function Authentication() {
   return (
@@ -7,6 +9,15 @@ export function Authentication() {
       <Routes>
         <Route path="register" element={<AuthRegisterForm />} />
         <Route path="log-in" element={<AuthLoginForm />} />
+        <Route
+          path="*"
+          element={
+            <NotFoundPage
+              returnPageTitle="sign in"
+              returnPagePath={authRoutes.logIn}
+            />
+          }
+        />
       </Routes>
     </div>
   );

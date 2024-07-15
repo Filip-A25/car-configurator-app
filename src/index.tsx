@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
+import { FirebaseAuthProvider } from "./modules/global/components/FirebaseAuthProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <RecoilRoot>
-        <App />
+        <FirebaseAuthProvider>
+          <App />
+        </FirebaseAuthProvider>
       </RecoilRoot>
     </BrowserRouter>
   </React.StrictMode>

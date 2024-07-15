@@ -6,6 +6,7 @@ import googleLogoImg from "../assets/google-logo.png";
 import Button from "../../../shared/Button";
 import useAuthRegister from "../hooks/useAuthRegister";
 import { FormProvider } from "react-hook-form";
+import { authRoutes } from "../const";
 
 export function AuthRegisterForm() {
   const { onSubmit, handleGoogleSignUp, form } = useAuthRegister();
@@ -16,7 +17,7 @@ export function AuthRegisterForm() {
       <h2 className="form-size-header font-bold">Sign Up</h2>
       <span className="text-sm">
         Already have an account?{" "}
-        <Link to="/auth/log-in" className="text-text-purple">
+        <Link to={authRoutes.logIn} className="text-text-purple">
           Sign in.
         </Link>
       </span>

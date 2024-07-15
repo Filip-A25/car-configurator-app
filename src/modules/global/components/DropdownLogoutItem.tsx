@@ -1,7 +1,7 @@
 import { auth } from "../../firebase/firebase";
 import { signOut } from "firebase/auth";
 import { useSetRecoilState } from "recoil";
-import { loggedState } from "../../authentification/state/userState";
+import { loggedState } from "../state";
 import { useNavigate } from "react-router-dom";
 
 export default function DropdownLogoutItem() {

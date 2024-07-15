@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 import { pathSelector } from "../state/navigationState";
 import MenuDropdownMobile from "./MenuDropdownMobile";
 import MenuDropdown from "./MenuDropdown";
-import { loggedState } from "../../authentification/state/userState";
+import { loggedState } from "../state";
 import clsx from "clsx";
 
 export default function Navbar() {

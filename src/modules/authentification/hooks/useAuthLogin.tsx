@@ -6,7 +6,8 @@ import {
 import { auth, provider } from "../../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { userState, loggedState } from "../state/userState";
+import { userState } from "../state/userState";
+import { loggedState } from "../../global/state";
 import { useSetRecoilState } from "recoil";
 
 interface LoginData {
