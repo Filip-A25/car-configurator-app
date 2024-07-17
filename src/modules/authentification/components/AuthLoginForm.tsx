@@ -15,30 +15,38 @@ export function AuthLoginForm() {
       <form
         id="log-in-form"
         onSubmit={form.handleSubmit(onSubmit)}
-        className="relative flex flex-col w-screen sm:w-[500px] bg-basic-white text-text-default-gray py-8 px-10 sm:shadow-md"
+        className="relative flex flex-col w-screen sm:w-[500px] lg:w-[550px] 3xl:w-[650px] bg-basic-white text-text-default-gray px-10 py-8 lg:pb-10 lg:pt10 3xl:pb-20 3xl:pt-12 sm:shadow-md"
       >
-        <h2 className="form-size-header font-bold">Sign In</h2>
-        <span className="text-sm">
+        <h2 className="form-size-header font-bold 3xl:text-5xl 3xl:leading-relaxed">
+          Sign In
+        </h2>
+        <span className="max-md:text-sm md:text-md 3xl:text-lg">
           Don't have an account?{" "}
           <Link to={authRoutes.register} className="text-text-purple">
             Create one now!
           </Link>
         </span>
-        <section className="flex flex-col form-vertical-margin form-bottom-padding">
-          <label>E-mail address</label>
-          <InputField
-            name="email"
-            placeholder="Enter your email..."
-            type="email"
-            validation={validation.email}
-          />
-          <label>Password</label>
-          <InputField
-            name="password"
-            placeholder="Enter your password..."
-            type="password"
-            validation={validation.password}
-          />
+        <section className="flex flex-col form-vertical-margin form-bottom-padding pb-12 md:pb-14">
+          <section className="py-3">
+            <div className="pt-3 flex flex-col">
+              <label className="leading-10">E-mail address</label>
+              <InputField
+                name="email"
+                placeholder="Enter your email..."
+                type="email"
+                validation={validation.email}
+              />
+            </div>
+            <div className="pt-3 flex flex-col">
+              <label className="leading-10">Password</label>
+              <InputField
+                name="password"
+                placeholder="Enter your password..."
+                type="password"
+                validation={validation.password}
+              />
+            </div>
+          </section>
         </section>
         <Button label="Sign In" variant="primary" />
         <Button

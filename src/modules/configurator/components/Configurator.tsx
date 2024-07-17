@@ -8,7 +8,7 @@ export function Configurator() {
   return (
     <div
       id="configurator-content"
-      className="min-h-[calc(100vh-80px)] md:min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-70px)]"
+      className="max-sm:relative min-h-[calc(100vh-80px)] md:min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-70px)]"
     >
       <Routes>
         <Route
