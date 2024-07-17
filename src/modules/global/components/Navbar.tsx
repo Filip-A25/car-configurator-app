@@ -73,7 +73,9 @@ export default function Navbar() {
             "h-[5%] w-full bg-light-gray-element-color",
             isMenuOpen && isMenuAnimated
               ? "animate-navbarMenuTopAnimation"
-              : "animate-navbarMenuTopAnimationReverse mb-[7px]"
+              : isMenuAnimated
+              ? "animate-navbarMenuTopAnimationReverse"
+              : "mb-[7px]"
           )}
         />
         <div
@@ -81,7 +83,9 @@ export default function Navbar() {
             "h-[5%] w-[80%] bg-light-gray-element-color",
             isMenuOpen && isMenuAnimated
               ? "animate-navbarMenuBottomAnimation"
-              : "animate-navbarMenuBottomAnimationReverse w-[80%]"
+              : isMenuAnimated
+              ? "animate-navbarMenuBottomAnimationReverse w-[80%]"
+              : ""
           )}
         />
       </button>

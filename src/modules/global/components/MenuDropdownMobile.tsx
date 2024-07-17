@@ -21,9 +21,9 @@ export default function MenuDropdownMobile({
       className={clsx(
         "hidden absolute h-[calc(100vh-80px)] md:h-[100px] md:right-[40px] top-full w-full md:w-[20%] 2xl:w-[15%] bg-basic-white z-20",
         isMenuOpen && isMenuAnimated
-          ? "max-sm:block md:hidden animate-navbarMobileDropdownAnimation"
+          ? "max-md:block md:hidden animate-navbarMobileDropdownAnimation"
           : isMenuAnimated
-          ? "max-sm:block md:hidden animate-navbarMobileDropdownAnimationReverse"
+          ? "max-md:block md:hidden animate-navbarMobileDropdownAnimationReverse"
           : ""
       )}
     >
