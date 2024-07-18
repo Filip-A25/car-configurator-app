@@ -1,20 +1,19 @@
-import { ButtonHTMLAttributes, useMemo } from "react";
+import { ButtonHTMLAttributes } from "react";
 import { useConfigProperty } from "../hooks";
 import { CarPropertyName, CarModel } from "../types";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  index: number;
   propertyName: CarPropertyName;
   label: string | number;
   name: string;
   description: string;
   price: number;
-  modelName?: CarModel;
+  modelName: CarModel;
   isDescriptionDisplayed?: boolean;
+  onClickHandler?: () => void;
 }
 
 export function ConfigProperty({
-  index,
   propertyName,
   modelName,
   label,
@@ -23,30 +22,22 @@ export function ConfigProperty({
   price,
   isDescriptionDisplayed,
   disabled,
+  onClickHandler,
 }: Props) {
-  const {
-    handleOpenDropdown,
-    propertyImgUrl,
-    activePropIndex,
-    propertyTypeName,
-  } = useConfigProperty({
-    index,
+  const { propertyImgUrl, propertyTypeName, isSelected } = useConfigProperty({
     propertyName,
     modelName,
     label,
     name,
     description,
     price,
+    disabled,
   });
-
-  const isSelected = useMemo(() => {
-    if (!disabled && activePropIndex[propertyName] === index) return true;
-  }, [activePropIndex]);
 
   return (
     <button
-      className="flex items-center p-2 xs:p-4 sm:p-5 sm:pr-32 lg:pr-40 3xl:pr-64"
-      onClick={handleOpenDropdown}
+      className="flex items-center p-2 xs:p-4 sm:p-5 sm:pr-12 3xl:pr-20"
+      onClick={onClickHandler}
       disabled={disabled}
     >
       <div className="relative overflow-hidden aspect-square h-[36px] sm:h-[48px] lg:h-[60px]">

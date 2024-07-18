@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { ConfigPropertyDropdown } from "./ConfigPropertyDropdown";
 import { ConfigActionButton } from "./ConfigActionButton";
 import { PriceDisplay } from "./PriceDisplay";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { activePageState, pageState } from "../state";
+import { ActiveConfigProperty } from "./ActiveConfigProperty";
 
 export function ConfigSidebar() {
   const activePage = useRecoilValue(activePageState);
@@ -33,14 +33,11 @@ export function ConfigSidebar() {
       <div className="flex flex-col justify-between min-h-full">
         <section className="pb-4 xs:pb-16">
           {activePageName === "Interior" ? (
-            <ConfigPropertyDropdown
-              propertyName="interior_variants"
-              isActive={false}
-            />
+            <ActiveConfigProperty propertyName="interior_variants" />
           ) : (
             <>
-              <ConfigPropertyDropdown propertyName="color" isActive={false} />
-              <ConfigPropertyDropdown propertyName="wheels" isActive={false} />
+              <ActiveConfigProperty propertyName="color" />
+              <ActiveConfigProperty propertyName="wheels" />
             </>
           )}
         </section>

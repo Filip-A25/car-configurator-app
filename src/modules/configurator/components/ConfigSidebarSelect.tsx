@@ -45,7 +45,7 @@ export function ConfigSidebarSelect({ propertyName }: Props) {
               </svg>
             </button>
           </div>
-          <ConfigPropertyDropdown propertyName={activeDropdownName} isActive />
+          <ConfigPropertyDropdown propertyName={activeDropdownName} />
         </section>
         <PriceDisplay />
       </div>

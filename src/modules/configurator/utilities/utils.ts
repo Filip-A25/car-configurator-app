@@ -27,6 +27,6 @@ export const notifyUpdate = () => {
   toast.success("Configuration successfully updated.", toastifySuccessProps);
 }
 
-export const getDisplayPrice = (price: number) => {
-  return price.toFixed(2).replace(decimalRegexp, ",");
+export const getDisplayPrice = (price: number | undefined) => {
+  return price?.toFixed(2).replace(decimalRegexp, ",");
 } 

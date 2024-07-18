@@ -9,7 +9,7 @@ export function ReturnButton({ onClick, returnPath }: Props) {
   return (
     <>
       {returnPath ? (
-        <Link to={returnPath}>
+        <Link to={returnPath} className="flex items-center">
           <svg
             width="16"
             height="16"

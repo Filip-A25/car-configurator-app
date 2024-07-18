@@ -13,6 +13,12 @@ export interface NumberVariant {
     price: number;
 }
 
+export interface PropertyVariant {
+    label: string | number;
+    name: string;
+    price: number;
+}
+
 export interface CarConfigurations {
     model: CarModel;
     productionYear: number;

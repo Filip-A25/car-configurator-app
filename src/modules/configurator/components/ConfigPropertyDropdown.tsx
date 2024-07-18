@@ -1,24 +1,18 @@
 import { ConfigProperty } from "./ConfigProperty";
-import {
-  currentConfigurationsState,
-  activePropState,
-  userConfigurationState,
-} from "../state";
+import { currentConfigurationsState, userConfigurationState } from "../state";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { CarPropertyName } from "../types";
-import { useEffect, useState, useCallback } from "react";
-import { PageLoading } from "../../global/components";
+import { CarPropertyName, PropertyVariant } from "../types";
+import { ConfigPropertySkeleton } from "./ConfigPropertySkeleton";
 
-interface Props {
+export function ConfigPropertyDropdown({
+  propertyName,
+}: {
   propertyName: CarPropertyName;
-  isActive: boolean;
-}
-
-export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
+}) {
   const configurations = useRecoilValue(currentConfigurationsState);
-  const userConfiguration = useRecoilValue(userConfigurationState);
-  const [activePropIndex, setActivePropIndex] = useRecoilState(activePropState);
-  const [isLoading, setIsLoading] = useState(true);
+  const [userConfiguration, setUserConfiguration] = useRecoilState(
+    userConfigurationState
+  );
 
   const getCurrentProperties = () => {
     switch (propertyName) {
@@ -33,61 +27,45 @@ export function ConfigPropertyDropdown({ propertyName, isActive }: Props) {
     }
   };
 
-  const handleSetActivePropIndex = useCallback(() => {
-    if (!configurations || !userConfiguration) return;
-
-    const index = configurations[propertyName].findIndex(
-      (item) => item.label === userConfiguration[propertyName]?.label
-    );
-
-    setActivePropIndex((prevActivePropIndex) => ({
-      ...prevActivePropIndex,
-      [propertyName]: index,
-    }));
-  }, [configurations, userConfiguration, propertyName]);
-
-  useEffect(() => {
-    handleSetActivePropIndex();
-  }, [handleSetActivePropIndex]);
-
-  useEffect(() => {
-    if (typeof activePropIndex[propertyName] !== "undefined")
-      setIsLoading(false);
-  }, [activePropIndex, propertyName]);
+  const handleSetActiveProperty = (propertyData: PropertyVariant) => {
+    if (!userConfiguration) return;
+    setUserConfiguration({
+      ...userConfiguration,
+      [propertyName]: {
+        label: propertyData.label,
+        name: propertyData.name,
+        price: propertyData.price,
+      },
+    });
+  };
 
   const currentProperties = getCurrentProperties();
 
-  if (isLoading) return <PageLoading />;
+  if (!configurations) return <ConfigPropertySkeleton />;
 
   return (
     <ul>
       {currentProperties &&
         Boolean(currentProperties.length) &&
-        currentProperties.map((item, index) =>
-          !isActive && activePropIndex[propertyName] === index ? (
-            <ConfigProperty
-              key={index}
-              index={index}
-              propertyName={propertyName}
-              modelName={configurations?.model}
-              label={item.label}
-              name={propertyName}
-              description={item.name}
-              price={item.price}
-            />
-          ) : isActive ? (
-            <ConfigProperty
-              key={index}
-              index={index}
-              propertyName={propertyName}
-              modelName={configurations?.model}
-              label={item.label}
-              name={propertyName}
-              description={item.name}
-              price={item.price}
-            />
-          ) : null
-        )}
+        currentProperties.map((item, index) => (
+          <ConfigProperty
+            key={index}
+            propertyName={propertyName}
+            modelName={configurations?.model}
+            label={item.label}
+            name={propertyName}
+            description={item.name}
+            price={item.price}
+            onClickHandler={() => {
+              const propertyData: PropertyVariant = {
+                label: item.label,
+                name: item.name,
+                price: item.price,
+              };
+              handleSetActiveProperty(propertyData);
+            }}
+          />
+        ))}
     </ul>
   );
 }

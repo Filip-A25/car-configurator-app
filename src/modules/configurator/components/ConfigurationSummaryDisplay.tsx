@@ -61,7 +61,6 @@ export function ConfigurationSummaryDisplay() {
             <h4 className="3xl:text-2xl">Exterior</h4>
             <div className="h-[1px] w-full bg-text-light-grey my-4 sm:my-8" />
             <ConfigPropertyView
-              index={1}
               propertyName="color"
               modelName={userConfiguration.model}
               label={userConfiguration.color.label}
@@ -71,7 +70,6 @@ export function ConfigurationSummaryDisplay() {
               isDescriptionDisplayed={false}
             />
             <ConfigPropertyView
-              index={2}
               propertyName="wheels"
               modelName={userConfiguration.model}
               label={userConfiguration.wheels.label}
@@ -82,7 +80,6 @@ export function ConfigurationSummaryDisplay() {
             <h4 className="3xl:text-2xl">Interior</h4>
             <div className="h-[1px] w-full bg-text-light-grey my-4 sm:my-8" />
             <ConfigPropertyView
-              index={3}
               propertyName="interior_variants"
               modelName={userConfiguration.model}
               label={userConfiguration.interior_variants.label}

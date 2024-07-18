@@ -1,35 +1,51 @@
-import { useEffect, useState } from "react";
+import { ButtonHTMLAttributes, useEffect, useState, useMemo } from "react";
 import { fetchPropertyImageByVariant } from "../services";
 import {
-  dropdownState,
-  dropdownOpen,
-  userConfigurationState,
-  activePropState,
+  activeColorPropertyState,
+  activeWheelPropertyState,
+  activeInteriorPropertyState,
 } from "../state";
-import { CarProperty, InteriorPosition } from "../types";
+import { CarModel, CarPropertyName, InteriorPosition } from "../types";
 import { getPropertyTypeName } from "../utilities/utils";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
+
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  propertyName: CarPropertyName;
+  modelName: CarModel;
+  label: string | number;
+  name: string;
+  description: string;
+  price: number;
+}
 
 export function useConfigProperty({
-  index,
   propertyName,
   modelName,
   label,
   name,
-  description,
-  price,
-}: CarProperty) {
+  disabled,
+}: Props) {
   const [propertyImgUrl, setPropertyImgUrl] = useState("");
-  const setActiveDropdownName = useSetRecoilState(dropdownState);
-  const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownOpen);
-  const [currentUserConfiguration, setCurrentUserConfiguration] =
-    useRecoilState(userConfigurationState);
+  const activeColorProperty = useRecoilValue(activeColorPropertyState);
+  const activeWheelProperty = useRecoilValue(activeWheelPropertyState);
+  const activeInteriorProperty = useRecoilValue(activeInteriorPropertyState);
 
-  const [activePropIndex, setActivePropIndex] = useRecoilState(activePropState);
+  const isSelected = useMemo(() => {
+    switch (propertyName) {
+      case "color":
+        return activeColorProperty?.label === label && !disabled;
+      case "wheels":
+        return activeWheelProperty?.label === label && !disabled;
+      case "interior_variants":
+        return activeInteriorProperty?.label === label && !disabled;
+      default:
+        return;
+    }
+  }, [activeColorProperty, activeWheelProperty, activeInteriorProperty]);
 
   const handleImageFetch = async () => {
     try {
-      if (!modelName) return;
+      if (!modelName || !name || !label) return;
 
       const requestData = {
         modelName: modelName,
@@ -52,30 +68,11 @@ export function useConfigProperty({
     handleImageFetch();
   }, [modelName, propertyName]);
 
-  const handleOpenDropdown = () => {
-    if (!isDropdownOpen) {
-      setIsDropdownOpen(true);
-      setActiveDropdownName(propertyName);
-      return;
-    }
-    if (!currentUserConfiguration) return;
-    setCurrentUserConfiguration({
-      ...currentUserConfiguration,
-      [propertyName]: {
-        label: label,
-        name: description,
-        price: price,
-      },
-    });
-    setActivePropIndex({ ...activePropIndex, [propertyName]: index });
-  };
-
   const propertyTypeName = getPropertyTypeName(propertyName);
 
   return {
-    handleOpenDropdown,
     propertyImgUrl,
-    activePropIndex,
     propertyTypeName,
+    isSelected,
   };
 }

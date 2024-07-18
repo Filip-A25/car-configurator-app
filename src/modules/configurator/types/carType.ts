@@ -20,13 +20,12 @@ export interface CarModelImages {
 }
 
 export interface CarProperty {
-  index: number;
   propertyName: CarPropertyName;
   label: string | number;
   name: string;
   description: string;
   price: number;
-  modelName?: CarModel;
+  modelName: CarModel;
   isDescriptionDisplayed?: boolean;   
 }
 
